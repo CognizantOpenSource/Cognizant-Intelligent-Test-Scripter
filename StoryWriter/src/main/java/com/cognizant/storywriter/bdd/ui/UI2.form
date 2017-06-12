@@ -443,7 +443,7 @@
                         <Component class="javax.swing.JButton" name="saveEditor">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/saveproj.png"/>
+                              <Image iconType="3" name="saveproj.png"/>
                             </Property>
                             <Property name="mnemonic" type="int" value="83"/>
                             <Property name="toolTipText" type="java.lang.String" value="Save"/>
@@ -500,7 +500,7 @@
                         <Component class="javax.swing.JButton" name="addStoryBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/add.png"/>
+                              <Image iconType="3" name="add.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Add a Story"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -514,7 +514,7 @@
                         <Component class="javax.swing.JButton" name="remStortBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/rem.png"/>
+                              <Image iconType="3" name="rem.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Remove Story"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -565,7 +565,7 @@
                         <Component class="javax.swing.JButton" name="newProjBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/new-project.png"/>
+                              <Image iconType="3" name="new-project.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="New Project"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -579,7 +579,7 @@
                         <Component class="javax.swing.JButton" name="openProjBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/open-project.png"/>
+                              <Image iconType="3" name="open-project.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Open Project"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -593,7 +593,7 @@
                         <Component class="javax.swing.JButton" name="saveProjBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/saveall.png"/>
+                              <Image iconType="3" name="saveall.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Save Project"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -607,7 +607,7 @@
                         <Component class="javax.swing.JButton" name="importStoryBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/down.png"/>
+                              <Image iconType="3" name="down.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Import  Feature"/>
                             <Property name="focusPainted" type="boolean" value="false"/>
@@ -619,7 +619,7 @@
                         <Component class="javax.swing.JButton" name="exportStoryBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/spritz/bdd/ui/resources/up.png"/>
+                              <Image iconType="3" name="up.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="Export as Feature File"/>
                             <Property name="focusable" type="boolean" value="false"/>
