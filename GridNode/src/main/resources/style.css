@@ -1,0 +1,12 @@
+.text-field.error {
+    -fx-text-box-border: red ;
+    -fx-focus-color: red ;
+}
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.grid-pane{
+    -fx-font-family: MS Reference Sans Serif;
+}
