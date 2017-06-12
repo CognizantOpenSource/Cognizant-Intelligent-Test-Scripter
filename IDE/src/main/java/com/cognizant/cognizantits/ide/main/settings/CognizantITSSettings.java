@@ -1,0 +1,906 @@
+/*
+ * Copyright 2014 - 2017 Cognizant Technology Solutions
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.cognizant.cognizantits.ide.main.settings;
+
+
+import com.cognizant.cognizantits.datalib.component.Project;
+import com.cognizant.cognizantits.datalib.settings.ExecutionSettings;
+import com.cognizant.cognizantits.datalib.settings.testmgmt.Option;
+import com.cognizant.cognizantits.engine.core.TMIntegration;
+import com.cognizant.cognizantits.engine.mail.Mailer;
+import com.cognizant.cognizantits.engine.reporting.sync.Sync;
+import com.cognizant.cognizantits.ide.main.help.Help;
+import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
+import com.cognizant.cognizantits.ide.main.utils.ConnectButton;
+import com.cognizant.cognizantits.ide.main.utils.table.XTable;
+import com.cognizant.cognizantits.ide.main.utils.table.XTablePanel;
+import com.cognizant.cognizantits.ide.settings.IconSettings;
+import com.cognizant.cognizantits.ide.util.Notification;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * 
+ */
+public class CognizantITSSettings extends javax.swing.JFrame {
+
+    private static final ImageIcon DEFAULT_ICON
+            = new ImageIcon(TMSettings.class.getResource("/ui/resources/toolbar/bulb_yellow.png"));
+    private static final ImageIcon PASS_ICON
+            = new ImageIcon(TMSettings.class.getResource("/ui/resources/toolbar/bulb_green.png"));
+    private static final ImageIcon FAIL_ICON
+            = new ImageIcon(TMSettings.class.getResource("/ui/resources/toolbar/bulb_red.png"));
+
+    private final AppMainFrame sMainFrame;
+
+    private Project sProject;
+
+    private ExecutionSettings execSettings;
+
+    private XTablePanel mailSettingsPanel;
+
+    private XTablePanel databaseSettingsPanel;
+
+    private XTablePanel uDPanel;
+
+    private ConnectButton mailConnect;
+
+    private ConnectButton dbConnect;
+
+    public CognizantITSSettings(AppMainFrame sMainFrame) {
+        this.sMainFrame = sMainFrame;
+        initComponents();
+        setIconImage(IconSettings.getIconSettings().getSettingsGear().getImage());
+        initTabs();
+    }
+
+    private void initTabs() {
+        uDPanel = new XTablePanel();
+        runSettingsTab.addTab("UserDefined", uDPanel);
+        mailSettingsPanel = new XTablePanel();
+        runSettingsTab.addTab("Mail Settings", mailSettingsPanel);
+        databaseSettingsPanel = new XTablePanel();
+        runSettingsTab.addTab("Database Settings", databaseSettingsPanel);
+
+        mailConnect = new ConnectButton() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    if (Mailer.connect(
+                            PropUtils.getPropertiesFromTable(
+                                    ((XTablePanel) mailSettingsPanel).table))) {
+                        success();
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(CognizantITSSettings.class.getName()).log(Level.SEVERE, null, ex);
+                    failure();
+                }
+            }
+        };
+
+        dbConnect = new ConnectButton() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                Properties prop = PropUtils.getPropertiesFromTable(
+                        ((XTablePanel) databaseSettingsPanel).table);
+                Optional.ofNullable(prop)
+                        .filter((p) -> {
+                            return Optional
+                                    .ofNullable(p.getProperty("db.driver"))
+                                    .filter((val) -> {
+                                        return !val.trim().isEmpty();
+                                    })
+                                    .isPresent()
+                                    && Optional
+                                    .ofNullable(p.getProperty("db.connection.string"))
+                                    .filter((val) -> {
+                                        return !val.trim().isEmpty();
+                                    })
+                                    .isPresent();
+                        })
+                        .ifPresent((p) -> {
+                            String driver = p.getProperty("db.driver");
+                            String connStr = p.getProperty("db.connection.string");
+                            String user = p.getProperty("db.user");
+                            String pwd = p.getProperty("db.password");
+                            try {
+                                Class.forName(driver);
+                                if (user != null && pwd != null) {
+                                    DriverManager.getConnection(connStr, user, pwd);
+                                } else {
+                                    DriverManager.getConnection(connStr);
+                                }
+                                success();
+                            } catch (ClassNotFoundException | SQLException ex) {
+                                Logger.getLogger(CognizantITSSettings.class.getName()).log(Level.SEVERE, null, ex);
+                                failure();
+                            }
+                        });
+            }
+        };
+
+        mailSettingsPanel.addToolBarComp(mailConnect);
+        databaseSettingsPanel.addToolBarComp(dbConnect);
+    }
+
+    public void afterProjectChange() {
+        sProject = sMainFrame.getProject();
+        loadAll();
+    }
+
+    public void loadSettings() {
+        this.execSettings = sProject.getProjectSettings().getExecSettings();
+        loadRunSettings();
+        loadTestSetTMSettings();
+        loadMailSettings();
+        loadDBSettings();
+        showSettings();
+    }
+
+    public void loadSettings(ExecutionSettings execSettings) {
+        this.execSettings = execSettings;
+        loadRunSettings();
+        loadTestSetTMSettings();
+        showSettings();
+    }
+
+    public void showSettings() {
+        setLocationRelativeTo(null);
+        if (!isVisible()) {
+            setVisible(true);
+        } else {
+            toFront();
+        }
+    }
+
+    private void loadAll() {
+        loadTMSettings();
+        PropUtils.loadPropertiesInTable(sProject.getProjectSettings()
+                .getUserDefinedSettings(), uDPanel.table);
+        loadMailSettings();
+        loadDBSettings();
+    }
+
+    private void loadRunSettings() {
+        executionTimeOut.setText(execSettings.getRunSettings().getExecutionTimeOut() + "");
+        threadCount.setValue(execSettings.getRunSettings().getThreadCount());
+        remoteGridURL.setText(execSettings.getRunSettings().getRemoteGridURL());
+        String iterMode = execSettings.getRunSettings().getIterationMode();
+        setButtonModelFromText(iterMode, iModeBgroup);
+        String execMode = execSettings.getRunSettings().getExecutionMode();
+        setButtonModelFromText(execMode, eModeBgroup);
+        String screenshot = execSettings.getRunSettings().getScreenShotFor();
+        if (screenshot.matches("(Pass|Both)")) {
+            passCheckBox.setSelected(true);
+        }
+        if (screenshot.matches("(Fail|Both)")) {
+            failCheckBox.setSelected(true);
+        }
+        fullpagescreenshot.setSelected(execSettings.getRunSettings().getTakeFullPageScreenShot());
+
+        reRunNo.getModel().setValue(execSettings.getRunSettings().getRerunTimes());
+        useExistingDriver.setSelected(execSettings.getRunSettings().useExistingDriver());
+        reportPerformanceLog.setSelected(execSettings.getRunSettings().isPerformanceLogEnabled());
+        bddReport.setSelected(execSettings.getRunSettings().isBddReportEnabled());
+        sendMail.setSelected(execSettings.getRunSettings().isMailSend());
+        /**
+         * loading environments
+         */
+        testEnv.setModel(new DefaultComboBoxModel(getEnvList()));
+        testEnv.setSelectedItem(execSettings.getRunSettings().getTestEnv());
+    }
+
+    private Object[] getEnvList() {
+        return sProject.getTestData().getEnvironments().toArray();
+    }
+
+    private void loadTMSettings() {
+        testMgmtModuleCombo.setModel(new DefaultComboBoxModel(
+                sProject.getProjectSettings().getTestMgmtModule().getModuleNames().toArray()));
+        if (testMgmtModuleCombo.getItemCount() > 0) {
+            loadTMTestSetSettings(testMgmtModuleCombo.getSelectedItem().toString());
+        }
+    }
+
+    private void loadTestSetTMSettings() {
+        loadTMSettings();
+        String updateToTM = execSettings.getTestMgmgtSettings().getUpdateResultsToTM();
+        if (!"None".equals(updateToTM)) {
+            updateresultscheckbox.setSelected(true);
+            testMgmtModuleCombo.setSelectedItem(updateToTM);
+        } else {
+            updateresultscheckbox.setSelected(false);
+        }
+        updateresultscheckboxItemStateChanged(null);
+    }
+
+    private void loadMailSettings() {
+        PropUtils.loadPropertiesInTable(
+                sProject.getProjectSettings().getMailSettings(),
+                mailSettingsPanel.table);
+        mailConnect.reset();
+    }
+
+    private void loadDBSettings() {
+        PropUtils.loadPropertiesInTable(
+                sProject.getProjectSettings().getDatabaseSettings(),
+                databaseSettingsPanel.table);
+        dbConnect.reset();
+    }
+
+    private void setButtonModelFromText(String text, ButtonGroup Bgroup) {
+        for (Enumeration<AbstractButton> buttons = Bgroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button.getText().equals(text)) {
+                button.setSelected(true);
+            }
+        }
+    }
+
+    private void saveRunSettings() {
+        execSettings.getRunSettings().setExecutionTimeOut(executionTimeOut.getText());
+        execSettings.getRunSettings().setExecutionMode(getSelectedButton(eModeBgroup));
+        execSettings.getRunSettings().setThreadCount(threadCount.getValue().toString());
+        execSettings.getRunSettings().setIterationMode(getSelectedButton(iModeBgroup));
+        execSettings.getRunSettings().setRemoteGridURL(remoteGridURL.getText());
+        execSettings.getRunSettings().setScreenShotFor(getPassFail());
+        execSettings.getRunSettings().setTakeFullPageScreenShot(fullpagescreenshot.isSelected());
+        execSettings.getRunSettings().setRerunTimes(reRunNo.getModel().getValue().toString());
+        execSettings.getRunSettings().useExistingDriver(useExistingDriver.isSelected());
+        execSettings.getRunSettings().setReportPerformanceLog(reportPerformanceLog.isSelected());
+        execSettings.getRunSettings().setBddReport(bddReport.isSelected());
+        execSettings.getRunSettings().setMailSend(sendMail.isSelected());
+        execSettings.getRunSettings().setTestEnv(testEnv.getSelectedItem().toString());
+        execSettings.getRunSettings().save();
+        sMainFrame.reloadSettings();
+    }
+
+    private String getSelectedButton(ButtonGroup bGroup) {
+        for (Enumeration<AbstractButton> buttons = bGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return "None";
+    }
+
+    private String getPassFail() {
+        if (passCheckBox.isSelected() && failCheckBox.isSelected()) {
+            return "Both";
+        }
+        if (passCheckBox.isSelected()) {
+            return "Pass";
+        }
+        if (failCheckBox.isSelected()) {
+            return "Fail";
+        }
+        return "None";
+    }
+
+    private void saveTestSetTMSettings() {
+        if (updateresultscheckbox.isSelected()) {
+            execSettings.getTestMgmgtSettings().set(PropUtils.getPropertiesFromTable(tsTMTable));
+            execSettings.getTestMgmgtSettings().setUpdateResultsToTM(testMgmtModuleCombo.getSelectedItem().toString());
+        } else {
+            execSettings.getTestMgmgtSettings().setUpdateResultsToTM("None");
+        }
+    }
+
+    private void saveTMSettings() {
+        sProject.getProjectSettings().getTestMgmtModule().save();
+    }
+
+    private void saveuserDefinedSettings() {
+        sProject.getProjectSettings().getUserDefinedSettings().set(
+                PropUtils.getPropertiesFromTable(uDPanel.table));
+        sProject.getProjectSettings().getUserDefinedSettings().save();
+    }
+
+    private void saveMailSettings() {
+        sProject.getProjectSettings().getMailSettings().set(
+                PropUtils.getPropertiesFromTable(((XTablePanel) mailSettingsPanel).table));
+        sProject.getProjectSettings().getMailSettings().save();
+    }
+
+    private void saveDBSettings() {
+        sProject.getProjectSettings().getDatabaseSettings().set(
+                PropUtils.getPropertiesFromTable(((XTablePanel) databaseSettingsPanel).table));
+        sProject.getProjectSettings().getDatabaseSettings().save();
+    }
+
+    public void saveAll() {
+        saveRunSettings();
+        saveTestSetTMSettings();
+        saveTMSettings();
+        saveuserDefinedSettings();
+        saveMailSettings();
+        saveDBSettings();
+    }
+
+    private void loadTMTestSetSettings(String module) {
+        ((DefaultTableModel) tsTMTable.getModel()).setRowCount(0);
+        if (execSettings != null) {
+            if (execSettings.getTestMgmgtSettings().getUpdateResultsToTM().equals(module)) {
+                PropUtils.loadPropertiesInTable(execSettings.getTestMgmgtSettings(), tsTMTable, "UpdateResultsToTM");
+            }
+        }
+        if (tsTMTable.getRowCount() == 0) {
+            List<Option> options = sProject.getProjectSettings().getTestMgmtModule().getModule(module).getOptions();
+            for (Option option : options) {
+                PropUtils.addValueinTable(tsTMTable, option.getName(), option.getValue());
+            }
+        }
+        testConn.setIcon(DEFAULT_ICON);
+    }
+
+    public List<String> getUserDefinedList() {
+        Set<String> udSet = new HashSet<>();
+        for (int i = 0; i < uDPanel.table.getRowCount(); i++) {
+            String key = Objects.toString(uDPanel.table.getValueAt(i, 0), "").trim();
+            if (!key.isEmpty()) {
+                udSet.add("%".concat(key).concat("%"));
+            }
+
+        }
+        return new ArrayList<>(udSet);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        iModeBgroup = new javax.swing.ButtonGroup();
+        eModeBgroup = new javax.swing.ButtonGroup();
+        savePanel = new javax.swing.JPanel();
+        saveSettings = new javax.swing.JButton();
+        resetSettings = new javax.swing.JButton();
+        runSettingsTab = new javax.swing.JTabbedPane();
+        globalSettings = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        executionTimeOut = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        remoteGridURL = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        passCheckBox = new javax.swing.JCheckBox();
+        failCheckBox = new javax.swing.JCheckBox();
+        fullpagescreenshot = new javax.swing.JCheckBox();
+        threadCount = new javax.swing.JSpinner();
+        jLabel29 = new javax.swing.JLabel();
+        reRunNo = new javax.swing.JSpinner();
+        jLabel30 = new javax.swing.JLabel();
+        useExistingDriver = new javax.swing.JCheckBox();
+        reportPerformanceLog = new javax.swing.JCheckBox();
+        envLabel = new javax.swing.JLabel();
+        testEnv = new javax.swing.JComboBox<>();
+        whatsEnvironment = new javax.swing.JLabel();
+        bddReport = new javax.swing.JCheckBox();
+        sendMail = new javax.swing.JCheckBox();
+        qcrunSettings = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tsTMTable = new XTable();
+        jToolBar1 = new javax.swing.JToolBar();
+        updateresultscheckbox = new javax.swing.JCheckBox();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
+        testMgmtModuleCombo = new javax.swing.JComboBox();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        testConn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        reset = new javax.swing.JButton();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Run Settings");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        savePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        savePanel.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+
+        saveSettings.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        saveSettings.setText("Save");
+        saveSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveSettingsActionPerformed(evt);
+            }
+        });
+
+        resetSettings.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        resetSettings.setText("Restore");
+        resetSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetSettingsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout savePanelLayout = new javax.swing.GroupLayout(savePanel);
+        savePanel.setLayout(savePanelLayout);
+        savePanelLayout.setHorizontalGroup(
+            savePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(savePanelLayout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(saveSettings)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resetSettings)
+                .addContainerGap())
+        );
+        savePanelLayout.setVerticalGroup(
+            savePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(savePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(savePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveSettings)
+                    .addComponent(resetSettings))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(savePanel, java.awt.BorderLayout.SOUTH);
+
+        runSettingsTab.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+
+        globalSettings.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel1.setText("ExecutionTimeOut");
+
+        executionTimeOut.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        executionTimeOut.setText("jTextField4");
+        executionTimeOut.setToolTipText("in Minutes");
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel2.setText("Parallel Execution");
+
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel3.setText("Iteration Mode");
+
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel4.setText("Execution Mode");
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel5.setText("Remote Grid Url");
+
+        remoteGridURL.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+
+        eModeBgroup.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jRadioButton1.setText("Local");
+
+        eModeBgroup.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jRadioButton2.setText("Grid");
+
+        iModeBgroup.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jRadioButton3.setText("ContinueOnError");
+
+        iModeBgroup.add(jRadioButton4);
+        jRadioButton4.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jRadioButton4.setText("BreakOnError");
+
+        jLabel9.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel9.setText("Screenshot");
+
+        passCheckBox.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        passCheckBox.setText("Pass");
+
+        failCheckBox.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        failCheckBox.setText("Fail");
+
+        fullpagescreenshot.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        fullpagescreenshot.setText("Take Full Page Screenshot");
+
+        threadCount.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+
+        jLabel29.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel29.setText("Retry Execution");
+
+        reRunNo.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        reRunNo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
+
+        jLabel30.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        jLabel30.setText("Times");
+
+        useExistingDriver.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        useExistingDriver.setText("Use Existing Browser");
+        useExistingDriver.setToolTipText("Will use the same browser instance for all the TestCases and Iterations in Testsets");
+
+        reportPerformanceLog.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        reportPerformanceLog.setText("Performance Reporting");
+        reportPerformanceLog.setToolTipText("Report page performance logs.");
+
+        envLabel.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        envLabel.setText("Environment");
+
+        testEnv.setToolTipText("Select the execution Environment");
+
+        whatsEnvironment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        whatsEnvironment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/ask.png"))); // NOI18N
+        whatsEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        whatsEnvironment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        whatsEnvironment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                whatsEnvironmentMouseClicked(evt);
+            }
+        });
+
+        bddReport.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        bddReport.setText("Bdd Reporting");
+
+        sendMail.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        sendMail.setText("Send Mail after Execution");
+
+        javax.swing.GroupLayout globalSettingsLayout = new javax.swing.GroupLayout(globalSettings);
+        globalSettings.setLayout(globalSettingsLayout);
+        globalSettingsLayout.setHorizontalGroup(
+            globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(globalSettingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel29)
+                    .addComponent(envLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(globalSettingsLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(executionTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, globalSettingsLayout.createSequentialGroup()
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(globalSettingsLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jRadioButton2))
+                                .addGroup(globalSettingsLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jRadioButton4))
+                                .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(globalSettingsLayout.createSequentialGroup()
+                                    .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(whatsEnvironment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(56, 56, 56))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, globalSettingsLayout.createSequentialGroup()
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel9))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(globalSettingsLayout.createSequentialGroup()
+                                    .addComponent(passCheckBox)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(failCheckBox))
+                                .addComponent(remoteGridURL, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fullpagescreenshot)
+                                .addGroup(globalSettingsLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(reRunNo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel30))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, globalSettingsLayout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(reportPerformanceLog)
+                                .addComponent(useExistingDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(sendMail)
+                                .addComponent(bddReport)))))
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+        globalSettingsLayout.setVerticalGroup(
+            globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(globalSettingsLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(executionTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(whatsEnvironment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(envLabel)
+                        .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(remoteGridURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(passCheckBox)
+                    .addComponent(failCheckBox))
+                .addGap(18, 18, 18)
+                .addComponent(fullpagescreenshot)
+                .addGap(29, 29, 29)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(reRunNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30))
+                .addGap(30, 30, 30)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(useExistingDriver)
+                    .addComponent(sendMail))
+                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bddReport)
+                    .addComponent(reportPerformanceLog))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        runSettingsTab.addTab("Run Settings", globalSettings);
+
+        qcrunSettings.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        qcrunSettings.setLayout(new java.awt.BorderLayout());
+
+        tsTMTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Key", "Value"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tsTMTable.setColumnSelectionAllowed(true);
+        tsTMTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(tsTMTable);
+        tsTMTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TMSettingsControl.initTMTable(tsTMTable);
+
+        qcrunSettings.add(jScrollPane5, java.awt.BorderLayout.CENTER);
+
+        jToolBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+        jToolBar1.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        updateresultscheckbox.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        updateresultscheckbox.setText("Update Results back to");
+        updateresultscheckbox.setFocusable(false);
+        updateresultscheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        updateresultscheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        updateresultscheckbox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                updateresultscheckboxItemStateChanged(evt);
+            }
+        });
+        jToolBar1.add(updateresultscheckbox);
+        jToolBar1.add(filler4);
+
+        testMgmtModuleCombo.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
+        testMgmtModuleCombo.setMinimumSize(new java.awt.Dimension(150, 25));
+        testMgmtModuleCombo.setPreferredSize(new java.awt.Dimension(150, 25));
+        testMgmtModuleCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                testMgmtModuleComboItemStateChanged(evt);
+            }
+        });
+        jToolBar1.add(testMgmtModuleCombo);
+        jToolBar1.add(filler3);
+
+        testConn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/toolbar/bulb_yellow.png"))); // NOI18N
+        testConn.setText("Test Connection");
+        testConn.setFocusable(false);
+        testConn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        testConn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testConnActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(testConn);
+        jToolBar1.add(jSeparator1);
+
+        reset.setText("Reset");
+        reset.setFocusable(false);
+        reset.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        reset.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(reset);
+
+        qcrunSettings.add(jToolBar1, java.awt.BorderLayout.NORTH);
+
+        runSettingsTab.addTab("TM Settings", qcrunSettings);
+
+        getContentPane().add(runSettingsTab, java.awt.BorderLayout.CENTER);
+        getContentPane().add(filler5, java.awt.BorderLayout.PAGE_START);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void resetSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetSettingsActionPerformed
+        loadAll();
+        Notification.show("Old Values Loaded");
+    }//GEN-LAST:event_resetSettingsActionPerformed
+
+    private void saveSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSettingsActionPerformed
+        saveAll();
+        Notification.show("Settings Saved");
+    }//GEN-LAST:event_saveSettingsActionPerformed
+
+    private void updateresultscheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_updateresultscheckboxItemStateChanged
+        tsTMTable.setEnabled(updateresultscheckbox.isSelected());
+        testConn.setEnabled(updateresultscheckbox.isSelected());
+        reset.setEnabled(updateresultscheckbox.isSelected());
+    }//GEN-LAST:event_updateresultscheckboxItemStateChanged
+
+    private void testMgmtModuleComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_testMgmtModuleComboItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            loadTMTestSetSettings(testMgmtModuleCombo.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_testMgmtModuleComboItemStateChanged
+
+    private void testConnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testConnActionPerformed
+        String module = Objects.toString(testMgmtModuleCombo.getSelectedItem(), "");
+        execSettings.getTestMgmgtSettings().set(PropUtils.getPropertiesFromTable(tsTMTable));
+        execSettings.getTestMgmgtSettings().setUpdateResultsToTM(module);
+        Sync tm = TMIntegration.getInstance(execSettings.getTestMgmgtSettings());
+        testConnection(tm);
+    }//GEN-LAST:event_testConnActionPerformed
+
+    private void whatsEnvironmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_whatsEnvironmentMouseClicked
+        Help.openEnvBasedExec();
+    }//GEN-LAST:event_whatsEnvironmentMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        sMainFrame.getTestExecution().getTestSetComp().reloadSettings();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        if (testMgmtModuleCombo.getSelectedItem() != null) {
+            String module = testMgmtModuleCombo.getSelectedItem().toString();
+            ((DefaultTableModel) tsTMTable.getModel()).setRowCount(0);
+            List<Option> options = sProject.getProjectSettings().getTestMgmtModule().getModule(module).getOptions();
+            for (Option option : options) {
+                PropUtils.addValueinTable(tsTMTable, option.getName(), option.getValue());
+            }
+        }
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void testConnection(final Sync connection) {
+        try {
+            if (connection != null) {
+                this.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+                if (connection.isConnected()) {
+                    testConn.setIcon(PASS_ICON);
+                    this.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.DEFAULT_CURSOR));
+                    return;
+
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CognizantITSSettings.class
+                    .getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        this.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.DEFAULT_CURSOR));
+        testConn.setIcon(FAIL_ICON);
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox bddReport;
+    private javax.swing.ButtonGroup eModeBgroup;
+    private javax.swing.JLabel envLabel;
+    private javax.swing.JTextField executionTimeOut;
+    private javax.swing.JCheckBox failCheckBox;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.JCheckBox fullpagescreenshot;
+    private javax.swing.JPanel globalSettings;
+    private javax.swing.ButtonGroup iModeBgroup;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JCheckBox passCheckBox;
+    private javax.swing.JPanel qcrunSettings;
+    private javax.swing.JSpinner reRunNo;
+    private javax.swing.JTextField remoteGridURL;
+    private javax.swing.JCheckBox reportPerformanceLog;
+    private javax.swing.JButton reset;
+    private javax.swing.JButton resetSettings;
+    private javax.swing.JTabbedPane runSettingsTab;
+    private javax.swing.JPanel savePanel;
+    private javax.swing.JButton saveSettings;
+    private javax.swing.JCheckBox sendMail;
+    private javax.swing.JButton testConn;
+    private javax.swing.JComboBox<String> testEnv;
+    private javax.swing.JComboBox testMgmtModuleCombo;
+    private javax.swing.JSpinner threadCount;
+    private javax.swing.JTable tsTMTable;
+    private javax.swing.JCheckBox updateresultscheckbox;
+    private javax.swing.JCheckBox useExistingDriver;
+    private javax.swing.JLabel whatsEnvironment;
+    // End of variables declaration//GEN-END:variables
+}
