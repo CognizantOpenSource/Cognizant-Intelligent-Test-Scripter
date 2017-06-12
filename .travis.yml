@@ -15,7 +15,7 @@ cache:
 script: "mvn clean install"
 
 before_deploy:
-  - export RELEASE_FILE=$(ls target/cognizant-intelligent-test-scripter-*.*)
+  - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
   
 deploy:
   provider: releases
