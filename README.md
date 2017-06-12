@@ -1,4 +1,4 @@
-# Cognizant Intelligent Test Scripter
+# Cognizant Intelligent Test Scripter [![Build Status](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter.svg?branch=master)](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter) 
 
 Script-less Test Automation Platform
 
