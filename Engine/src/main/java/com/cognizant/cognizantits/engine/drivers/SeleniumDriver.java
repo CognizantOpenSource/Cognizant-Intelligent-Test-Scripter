@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.engine.core.RunContext;
 import com.cognizant.cognizantits.engine.drivers.WebDriverFactory.Browser;
 import com.cognizant.cognizantits.engine.drivers.customWebDriver.EmptyDriver;
 import com.cognizant.cognizantits.engine.drivers.customWebDriver.ExtendedHtmlUnitDriver;
+import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnCaughtException;
 import com.galenframework.config.GalenConfig;
 import com.galenframework.config.GalenProperty;
@@ -136,28 +137,29 @@ public class SeleniumDriver {
 
     public Boolean isAlive() {
         try {
-            driver.manage();
+            driver.getCurrentUrl();
             return true;
         } catch (Exception ex) {
-            Logger.getLogger(this.getClass().getName()).log(Level.OFF, " Driver is Dead");
-            return false;
+            throw new DriverClosedException(runContext.BrowserName);
         }
     }
 
     public File createScreenShot() {
-        if (driver == null) {
-            System.err.println("Report Driver[" + runContext.BrowserName + "]  is not initialized");
-        } else if (isAlive()) {
-            if (alertPresent()) {
-                System.err.println("Couldn't take ScreenShot Alert Present in the page");
-                return ((TakesScreenshot) (new EmptyDriver())).getScreenshotAs(OutputType.FILE);
-            } else if (driver instanceof MobileDriver || driver instanceof ExtendedHtmlUnitDriver
-                    || driver instanceof EmptyDriver) {
-                return ((TakesScreenshot) (driver)).getScreenshotAs(OutputType.FILE);
-            } else {
-                return createNewScreenshot();
+        try {
+            if (driver == null) {
+                System.err.println("Report Driver[" + runContext.BrowserName + "]  is not initialized");
+            } else if (isAlive()) {
+                if (alertPresent()) {
+                    System.err.println("Couldn't take ScreenShot Alert Present in the page");
+                    return ((TakesScreenshot) (new EmptyDriver())).getScreenshotAs(OutputType.FILE);
+                } else if (driver instanceof MobileDriver || driver instanceof ExtendedHtmlUnitDriver
+                        || driver instanceof EmptyDriver) {
+                    return ((TakesScreenshot) (driver)).getScreenshotAs(OutputType.FILE);
+                } else {
+                    return createNewScreenshot();
+                }
             }
-        } else {
+        } catch (DriverClosedException ex) {
             System.err.println("Couldn't take ScreenShot Driver is closed or connection is lost with driver");
         }
         return null;

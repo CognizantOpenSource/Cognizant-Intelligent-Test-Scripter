@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.datalib.component.TestStep;
 import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.execution.data.DataProcessor;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
+import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
 import com.cognizant.cognizantits.engine.support.Status;
@@ -130,7 +131,7 @@ public class TestStepRunner {
             ann.beforeStepExecution();
             executeStep(context, curr);
             ann.afterStepExecution();
-        } catch (DataNotFoundException ex) {
+        } catch (DataNotFoundException | DriverClosedException ex) {
             throw ex;
         } catch (Throwable ex) {
             throw new UnKnownError(ex);

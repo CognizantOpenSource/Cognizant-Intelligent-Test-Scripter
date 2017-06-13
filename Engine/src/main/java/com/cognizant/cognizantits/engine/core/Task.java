@@ -22,6 +22,7 @@ import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.data.UserDataAccess;
+import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnCaughtException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
@@ -121,6 +122,9 @@ public class Task implements Runnable {
             cc = createControl();
             runner.run(cc, iter);
             success = true;
+        } catch (DriverClosedException dex) {
+            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, dex.getMessage(), dex);
+            report.updateTestLog("DriverClosedException", dex.getMessage(), Status.FAILNS);
         } catch (ForcedException ex) {
             onError(ex, ex.getName(), ex.getMessage(), Status.FAIL);
         } catch (ElementException ex) {

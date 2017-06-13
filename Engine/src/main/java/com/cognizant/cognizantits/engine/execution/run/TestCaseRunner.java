@@ -23,6 +23,7 @@ import com.cognizant.cognizantits.engine.core.CommandControl;
 import com.cognizant.cognizantits.engine.execution.data.DataIterator;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.data.StepSet;
+import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
@@ -317,7 +318,7 @@ public class TestCaseRunner {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="run">
-    public void run(CommandControl cc, int iter) throws DataNotFoundException {
+    public void run(CommandControl cc, int iter) throws DataNotFoundException, DriverClosedException {
         parameter.setIteration(iter);
         setControl(cc);
         if (testcase != null) {
@@ -341,6 +342,8 @@ public class TestCaseRunner {
                         }
                     } catch (ForcedException | ElementException ex) {
                         onRuntimeException(ex);
+                    } catch (DriverClosedException dex) {
+                        throw dex;
                     } catch (Throwable ex) {
                         onError(ex);
                     }
@@ -361,11 +364,11 @@ public class TestCaseRunner {
         return -1;
     }
 
-    public void run() throws DataNotFoundException {
+    public void run() throws DataNotFoundException, DriverClosedException {
         run(createControl(this), parameter.getIteration());
     }
 
-    public void run(CommandControl cc) throws DataNotFoundException {
+    public void run(CommandControl cc) throws DataNotFoundException, DriverClosedException {
         run(cc, parameter.getIteration());
     }
 
