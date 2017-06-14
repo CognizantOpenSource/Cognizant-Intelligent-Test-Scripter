@@ -332,6 +332,8 @@ public class TestCaseRunner {
                     checkForStartLoop(testStep, currStep);
                     try {
                         runStep(testStep);
+                    } catch (DriverClosedException dex) {
+                        throw dex;
                     } catch (DataNotFoundException ex) {
                         onDataNotFoundException(ex);
                         currStep = breakSubIteration();
@@ -342,8 +344,6 @@ public class TestCaseRunner {
                         }
                     } catch (ForcedException | ElementException ex) {
                         onRuntimeException(ex);
-                    } catch (DriverClosedException dex) {
-                        throw dex;
                     } catch (Throwable ex) {
                         onError(ex);
                     }
@@ -372,11 +372,11 @@ public class TestCaseRunner {
         run(cc, parameter.getIteration());
     }
 
-    private void runStep(TestStep testStep) throws DataNotFoundException, Throwable {
+    private void runStep(TestStep testStep) throws DataNotFoundException, DriverClosedException, Throwable {
         new TestStepRunner(testStep, resolveParam()).run(this);
     }
 
-    public void runStep(Step step, int subIter) throws DataNotFoundException {
+    public void runStep(Step step, int subIter) throws DataNotFoundException, DriverClosedException {
         Parameter param = new Parameter();
         param.setIteration(this.parameter.getIteration());
         param.setSubIteration(subIter);

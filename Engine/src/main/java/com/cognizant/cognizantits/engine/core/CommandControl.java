@@ -100,14 +100,17 @@ public abstract class CommandControl {
     }
 
     private Boolean canIFindElement() {
-        switch (Action) {
-            case "waitForElementToBePresent":
-            case "setObjectProperty":
-            case "clickInputByLabel":
-                return false;
-            default:
-                return true;
+        if (seDriver.isAlive()) {
+            switch (Action) {
+                case "waitForElementToBePresent":
+                case "setObjectProperty":
+                case "clickInputByLabel":
+                    return false;
+                default:
+                    return true;
+            }
         }
+        return false;
     }
 
     abstract public void execute(String com, int sub);

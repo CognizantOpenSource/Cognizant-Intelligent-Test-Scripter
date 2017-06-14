@@ -47,7 +47,7 @@ public class TestStepRunner {
         this.testStep = null;
     }
 
-    public void run(TestCaseRunner context) throws DataNotFoundException {
+    public void run(TestCaseRunner context) throws DataNotFoundException, DriverClosedException {
         if (this.parameter != null && this.testStep != null) {
             if (context.executor().isDebugExe()) {
                 checkForDebug();
@@ -124,7 +124,7 @@ public class TestStepRunner {
         }
     }
 
-    private void executeStep(TestCaseRunner context) throws DataNotFoundException {
+    private void executeStep(TestCaseRunner context) throws DataNotFoundException, DriverClosedException {
         try {
             Step curr = new Step(testStep, context);
             Annotation ann = new Annotation(context.getControl());
