@@ -49,6 +49,7 @@ public class Step {
         Reference = ts.getReference();
         Description = ts.getDescription();
         if (ts.getTag().matches(".*[0-9]+")) {
+            // strip break point and other special characters and parse step
             StepNum = Integer.parseInt(ts.getTag().replaceAll("[^0-9]", ""));
         }
         BreakPoint = ts.hasBreakPoint();
