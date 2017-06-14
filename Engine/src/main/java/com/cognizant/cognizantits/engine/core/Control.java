@@ -58,6 +58,7 @@ public class Control {
             control.startRun();
             control.resetAll();
         } while (exe.retryExecution());
+        ConsoleReport.reset();
     }
 
     public static void call(Project project) throws UnCaughtException {
@@ -102,6 +103,7 @@ public class Control {
                             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                    ConsoleReport.reset();
                 }
             }
         });
@@ -197,7 +199,7 @@ public class Control {
         } catch (Exception ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ConsoleReport.reset();
+
     }
 
     private static void initDeps() {

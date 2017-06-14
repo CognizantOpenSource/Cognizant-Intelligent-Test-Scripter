@@ -23,6 +23,7 @@ import com.cognizant.cognizantits.engine.core.CommandControl;
 import com.cognizant.cognizantits.engine.execution.data.DataIterator;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.data.StepSet;
+import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
@@ -317,7 +318,7 @@ public class TestCaseRunner {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="run">
-    public void run(CommandControl cc, int iter) throws DataNotFoundException {
+    public void run(CommandControl cc, int iter) throws DataNotFoundException, DriverClosedException {
         parameter.setIteration(iter);
         setControl(cc);
         if (testcase != null) {
@@ -331,6 +332,8 @@ public class TestCaseRunner {
                     checkForStartLoop(testStep, currStep);
                     try {
                         runStep(testStep);
+                    } catch (DriverClosedException dex) {
+                        throw dex;
                     } catch (DataNotFoundException ex) {
                         onDataNotFoundException(ex);
                         currStep = breakSubIteration();
@@ -361,19 +364,19 @@ public class TestCaseRunner {
         return -1;
     }
 
-    public void run() throws DataNotFoundException {
+    public void run() throws DataNotFoundException, DriverClosedException {
         run(createControl(this), parameter.getIteration());
     }
 
-    public void run(CommandControl cc) throws DataNotFoundException {
+    public void run(CommandControl cc) throws DataNotFoundException, DriverClosedException {
         run(cc, parameter.getIteration());
     }
 
-    private void runStep(TestStep testStep) throws DataNotFoundException, Throwable {
+    private void runStep(TestStep testStep) throws DataNotFoundException, DriverClosedException, Throwable {
         new TestStepRunner(testStep, resolveParam()).run(this);
     }
 
-    public void runStep(Step step, int subIter) throws DataNotFoundException {
+    public void runStep(Step step, int subIter) throws DataNotFoundException, DriverClosedException {
         Parameter param = new Parameter();
         param.setIteration(this.parameter.getIteration());
         param.setSubIteration(subIter);
