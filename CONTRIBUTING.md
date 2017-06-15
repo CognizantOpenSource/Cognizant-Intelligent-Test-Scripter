@@ -34,7 +34,7 @@ When you open your pull request we ask that you indicate that you've signed the 
 
 * If the issues are related to execution attach the `console.txt` and reports if possible.
 
-* If you are facing any issue with the UI attach screenshots and log.txt present in the installation location.
+* If you are facing any issue with the UI attach screenshots and `log.txt` present in the installation location.
 
 * Please report Addon/Extension related issues to their respective Github Repos.
 
@@ -61,7 +61,7 @@ Setup the dependencies
 mvn clean install
 ```
 
-The Release will be created in `dist` folder. You can test using the files inside `dist\release` folder.
+The Release will be created in `Dist` folder. You can test using the files inside `Dist/release` folder.
 
 If you want to debug/run from source code. You have to run the IDE project.
 
@@ -82,4 +82,4 @@ $ git commit -m "A brief summary of the commit
 
 ### Help/Documentaion Contribution 
 
-Check the Help Repo on how to contribute
+Check the Help [Repo](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-Helpdoc) on how to contribute
