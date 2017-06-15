@@ -48,6 +48,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
@@ -68,9 +70,11 @@ import javax.swing.tree.TreePath;
 
 /**
  *
- * 
+ *
  */
 public class ProjectTree implements ActionListener {
+
+    private static final Logger LOGGER = Logger.getLogger(ProjectTree.class.getName());
 
     ProjectPopupMenu popupMenu;
 
@@ -393,6 +397,8 @@ public class ProjectTree implements ActionListener {
                     "Delete Scenario",
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                LOGGER.log(Level.INFO, "Delete Scenarios approved for {0}; {1}",
+                        new Object[]{scenarioNodes.size(), scenarioNodes});
                 for (ScenarioNode scenarioNode : scenarioNodes) {
                     deleteTestCases(Collections.list(scenarioNode.children()));
                     scenarioNode.getScenario().delete();
@@ -413,6 +419,8 @@ public class ProjectTree implements ActionListener {
                     "Delete TestCase",
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                LOGGER.log(Level.INFO, "Delete TestCases approved for {0}; {1}",
+                        new Object[]{testcaseNodes.size(), testcaseNodes});
                 deleteTestCases(testcaseNodes);
             }
         }
