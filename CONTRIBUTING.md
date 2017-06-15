@@ -4,7 +4,7 @@ These are just guidelines, not rules. Use your best judgment. Please feel free t
 
 ## Code of Conduct
 
-This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [cogcits@gmail.com](mailto:cogcits@gmail.com).
+This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [CogCITS@cognizant.com](mailto:CogCITS@cognizant.com).
 
 ## Communication
 
