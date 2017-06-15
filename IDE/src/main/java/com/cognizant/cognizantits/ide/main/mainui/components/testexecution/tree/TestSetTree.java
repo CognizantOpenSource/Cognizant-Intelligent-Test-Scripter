@@ -38,6 +38,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JComponent;
@@ -59,6 +61,8 @@ import javax.swing.tree.TreePath;
  */
 public class TestSetTree implements ActionListener {
 
+    private static final Logger LOGGER = Logger.getLogger(TestSetTree.class.getName());
+    
     private final TestSetPopupMenu popupMenu;
     private final JTree tree;
 
@@ -341,6 +345,8 @@ public class TestSetTree implements ActionListener {
                     "Delete Release",
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                LOGGER.log(Level.INFO, "Delete Releases approved for {0}; {1}",
+                        new Object[]{releases.size(), releases});
                 for (ReleaseNode releaseNode : releases) {
                     deleteTestSets(Collections.list(releaseNode.children()));
                     releaseNode.getRelease().delete();
@@ -361,6 +367,8 @@ public class TestSetTree implements ActionListener {
                     "Delete TestSet",
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                LOGGER.log(Level.INFO, "Delete TestSets approved for {0}; {1}",
+                        new Object[]{testsets.size(), testsets});
                 deleteTestSets(testsets);
             }
         }

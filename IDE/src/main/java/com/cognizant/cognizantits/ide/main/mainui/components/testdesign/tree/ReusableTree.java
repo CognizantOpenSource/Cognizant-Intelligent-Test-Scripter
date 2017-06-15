@@ -25,6 +25,8 @@ import com.cognizant.cognizantits.ide.util.Notification;
 import com.cognizant.cognizantits.ide.util.Validator;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -32,9 +34,11 @@ import javax.swing.tree.TreePath;
 
 /**
  *
- * 
+ *
  */
 public class ReusableTree extends ProjectTree {
+
+    private static final Logger LOGGER = Logger.getLogger(ReusableTree.class.getName());
 
     public ReusableTree(TestDesign testDesign) {
         super(testDesign);
@@ -152,6 +156,8 @@ public class ReusableTree extends ProjectTree {
                     "Delete TestCase",
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                LOGGER.log(Level.INFO, "Delete Reusable Groups approved for {0}; {1}",
+                        new Object[]{groupNodes.size(), groupNodes});
                 for (GroupNode groupNode : groupNodes) {
                     if (confirmBox.isSelected()) {
                         getTreeModel().toggleAllTestCasesFrom(groupNode);
@@ -185,10 +191,10 @@ public class ReusableTree extends ProjectTree {
         return false;
     }
 
-    public void save(){
+    public void save() {
         getTreeModel().save();
     }
-    
+
     class ReusablePopupMenu extends ProjectPopupMenu {
 
         JMenuItem addGroup;

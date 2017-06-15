@@ -38,7 +38,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * 
+ *
  */
 public class Project {
 
@@ -182,13 +182,13 @@ public class Project {
                     .collect(toList())
                     .forEach(scn -> {
                         project.getMeta().remove(scn);
-                        project.getData().stream().filter(Objects::nonNull)
+                        project.getData().removeAll(project.getData().stream().filter(Objects::nonNull)
                                 .filter(di -> di.hasScenario(scn.getName()))
-                                .forEach(project.getData()::remove);
+                                .collect(toList()));
                     });
-            project.getData().stream().filter(Objects::nonNull)
+            project.getData().removeAll(project.getData().stream().filter(Objects::nonNull)
                     .filter(di -> !sp.hasTestCase(di.getName(), di.getScenario()))
-                    .collect(toList()).forEach(project.getData()::remove);
+                    .collect(toList()));
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -362,7 +362,7 @@ public class Project {
     }
 
     public void refactorScenario(String oldScenarioName, String newScenarioName) {
-        System.out.println("Refactoring started for Scenario " + oldScenarioName + " to " + newScenarioName);
+        LOGGER.log(Level.INFO, "Refactoring started for Scenario [{0}] to [{1}]", new Object[]{oldScenarioName, newScenarioName});
         for (Scenario scenario : scenarios) {
             scenario.refactorScenario(oldScenarioName, newScenarioName);
         }
@@ -370,8 +370,7 @@ public class Project {
             release.refactorScenario(oldScenarioName, newScenarioName);
         }
         testData.refactorScenario(oldScenarioName, newScenarioName);
-        System.out.println("Refactoring done for Scenario " + oldScenarioName + " to " + newScenarioName);
-
+        LOGGER.log(Level.INFO, "Refactoring done for Scenario [{0}] to [{1}]", new Object[]{oldScenarioName, newScenarioName});
         getInfo().findScenario(oldScenarioName).ifPresent(scn -> scn.setName(newScenarioName));
         getInfo().getData().stream().filter(Objects::nonNull).filter(di -> di.hasScenario(oldScenarioName)).forEach(di -> {
             di.getAttributes().find(Meta.Attributes.scenario.name())
@@ -380,7 +379,7 @@ public class Project {
     }
 
     public void refactorTestCase(String scenarioName, String oldTestCaseName, String newTestCaseName) {
-        System.out.println("Refactoring started for TestCase " + oldTestCaseName + " to " + newTestCaseName);
+        LOGGER.log(Level.INFO, "Refactoring started for TestCase [{0}] to [{1}]", new Object[]{oldTestCaseName, newTestCaseName});
         for (Scenario scenario : scenarios) {
             scenario.refactorTestCase(scenarioName, oldTestCaseName, newTestCaseName);
         }
@@ -388,14 +387,14 @@ public class Project {
             release.refactorTestCase(scenarioName, oldTestCaseName, newTestCaseName);
         }
         testData.refactorTestCase(scenarioName, oldTestCaseName, newTestCaseName);
-        System.out.println("Refactoring done for TestCase " + oldTestCaseName + " to " + newTestCaseName);
+        LOGGER.log(Level.INFO, "Refactoring done for TestCase [{0}] to [{1}]", new Object[]{oldTestCaseName, newTestCaseName});
         getInfo().getData().stream().filter(Objects::nonNull)
                 .filter(di -> di.hasScenario(scenarioName) && di.getName().equals(oldTestCaseName))
                 .forEach(di -> di.setName(newTestCaseName));
     }
 
     public void refactorTestCaseScenario(String testCaseName, String oldScenarioName, String newScenarioName) {
-        System.out.println("Refactoring started for TestCase " + testCaseName + " from Scenario " + oldScenarioName + " to " + newScenarioName);
+        LOGGER.log(Level.INFO, "Refactoring started TestCase [{0}] from Scenario [{1}] to [{2}]", new Object[]{testCaseName, oldScenarioName, newScenarioName});
         for (Scenario scenario : scenarios) {
             scenario.refactorTestCaseScenario(testCaseName, oldScenarioName, newScenarioName);
         }
@@ -403,7 +402,7 @@ public class Project {
             release.refactorTestCaseScenario(testCaseName, oldScenarioName, newScenarioName);
         }
         testData.refactorTestCaseScenario(testCaseName, oldScenarioName, newScenarioName);
-        System.out.println("Refactoring done for TestCase " + testCaseName + " from Scenario " + oldScenarioName + " to " + newScenarioName);
+        LOGGER.log(Level.INFO, "Refactoring done TestCase [{0}] from Scenario [{1}] to [{2}]", new Object[]{testCaseName, oldScenarioName, newScenarioName});
         getInfo().getData().stream().filter(Objects::nonNull)
                 .filter(di -> di.hasScenario(oldScenarioName) && di.getName().equals(testCaseName))
                 .forEach(di -> {
