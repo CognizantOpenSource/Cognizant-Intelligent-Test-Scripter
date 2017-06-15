@@ -173,7 +173,7 @@ public class FileUtils {
                     subFile.delete();
                 }
             }
-            LOGGER.log(Level.INFO, "deleting {0}", new Object[]{location});    
+            LOGGER.log(Level.INFO, "Deleting {0}", new Object[]{location});    
             return file.delete();
         }
        return true;
