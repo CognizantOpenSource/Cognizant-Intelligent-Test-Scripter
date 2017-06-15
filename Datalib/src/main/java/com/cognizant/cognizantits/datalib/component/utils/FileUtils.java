@@ -36,11 +36,11 @@ import org.apache.commons.csv.CSVRecord;
 
 /**
  *
- * 
+ *
  */
 public class FileUtils {
 
-    private static final Logger LOG = Logger.getLogger(FileUtils.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FileUtils.class.getName());
 
     private static final JFileChooser SAVE_AS_LOC = new JFileChooser();
 
@@ -82,10 +82,10 @@ public class FileUtils {
                     }
                 }
             } catch (IOException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOGGER.log(Level.SEVERE, null, ex);
             }
         } else {
-            LOG.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
+            LOGGER.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
         }
     }
 
@@ -97,10 +97,10 @@ public class FileUtils {
                     return parser.getRecords();
                 }
             } catch (IOException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOGGER.log(Level.SEVERE, null, ex);
             }
         } else {
-            LOG.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
+            LOGGER.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
         }
         return new ArrayList<>();
     }
@@ -113,10 +113,10 @@ public class FileUtils {
                     return new CSVHParser(parser.getHeaderMap(), parser.getRecords());
                 }
             } catch (IOException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOGGER.log(Level.SEVERE, null, ex);
             }
         } else {
-            LOG.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
+            LOGGER.log(Level.SEVERE, "File [{0}] doesn''t exist", file.getAbsolutePath());
         }
         return null;
     }
@@ -148,6 +148,8 @@ public class FileUtils {
             if (src.exists()) {
                 File target = new File(src.getParent(), toName);
                 if (target.exists()) {
+                    LOGGER.log(Level.WARNING, " target {1} exists failed to rename {1}",
+                            new Object[]{fromFile, toName});
                     return false;
                 }
                 Files.move(src.toPath(), target.toPath());
@@ -156,6 +158,7 @@ public class FileUtils {
             Logger.getLogger(FileUtils.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+        LOGGER.log(Level.INFO, "{0} Renamed to {1}", new Object[]{fromFile, toName});
         return true;
     }
 
@@ -170,8 +173,9 @@ public class FileUtils {
                     subFile.delete();
                 }
             }
+            LOGGER.log(Level.INFO, "deleting {0}", new Object[]{location});    
             return file.delete();
         }
-        return true;
+       return true;
     }
 }
