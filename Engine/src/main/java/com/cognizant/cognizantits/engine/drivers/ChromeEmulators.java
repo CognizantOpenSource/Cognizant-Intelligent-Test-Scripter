@@ -71,6 +71,7 @@ public class ChromeEmulators {
                 Map prefs = (Map) devtools.get("preferences");
                 String stdemulators = (String) prefs.get("standardEmulatedDeviceList");
                 List list = MAPPER.readValue(stdemulators, List.class);
+                EMULATORS.clear();
                 EMULATORS.addAll(
                         (List<String>) list.stream()
                         .map((device) -> {
