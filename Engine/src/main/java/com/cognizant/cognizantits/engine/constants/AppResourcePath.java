@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * 
+ *
  */
 public class AppResourcePath {
 
@@ -47,6 +47,8 @@ public class AppResourcePath {
     private final static String REPORT_HISTORY_DATA = "reportHistory.js";
 
     private final static String EXPLORER_CONFIG = "ExplorerConfig.properties";
+
+    private final static String CHROME_EMULATOR_FILE = "chrome-emulators.json";
 
     private final static String ADDON_LOCATION = "Extensions";
 
@@ -82,6 +84,10 @@ public class AppResourcePath {
 
     public static String getExplorerConfig() {
         return getConfigurationPath() + File.separator + EXPLORER_CONFIG;
+    }
+
+    public static String getChromeEmulatorsFile() {
+        return getConfigurationPath() + File.separator + CHROME_EMULATOR_FILE;
     }
 
     public static String getReportThemePreviewPath() {
