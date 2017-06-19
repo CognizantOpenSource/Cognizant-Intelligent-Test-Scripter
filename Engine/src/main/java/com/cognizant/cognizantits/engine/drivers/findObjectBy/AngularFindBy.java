@@ -19,6 +19,7 @@ import com.cognizant.cognizantits.engine.drivers.findObjectBy.support.SProperty;
 import com.paulhammant.ngwebdriver.ByAngular;
 import com.paulhammant.ngwebdriver.ByAngularRepeaterCell;
 import com.paulhammant.ngwebdriver.ByAngularRepeaterRow;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * 
+ *
  */
 public class AngularFindBy {
 
@@ -76,7 +77,7 @@ public class AngularFindBy {
     public By getByRepeaterRow(String repeaterRow) {
         String repeater = repeaterRow.split("###")[0];
         int row = Integer.valueOf(repeaterRow.split("###")[1]);
-        return new ByAngularRepeaterRow(repeater, false, row) {
+        return new ByAngularRepeaterRow(NgWebDriver.DEFAULT_ROOT_SELECTOR, repeater, false, row) {
             @Override
             public List<WebElement> findElements(SearchContext searchContext) {
                 List<WebElement> elements = new ArrayList<>();
@@ -102,7 +103,7 @@ public class AngularFindBy {
         String repeater = repeaterVal.split("###")[0];
         int row = Integer.valueOf(repeaterVal.split("###")[1]);
         String column = repeaterVal.split("###")[2];
-        return new ByAngularRepeaterCell(repeater, false, row, column) {
+        return new ByAngularRepeaterCell(NgWebDriver.DEFAULT_ROOT_SELECTOR, repeater, false, row, column) {
             @Override
             public List<WebElement> findElements(SearchContext searchContext) {
                 List<WebElement> elements = new ArrayList<>();
@@ -125,7 +126,7 @@ public class AngularFindBy {
     public By getByExactRepeaterRow(String repeaterRow) {
         String repeater = repeaterRow.split("###")[0];
         int row = Integer.valueOf(repeaterRow.split("###")[1]);
-        return new ByAngularRepeaterRow(repeater, true, row) {
+        return new ByAngularRepeaterRow(NgWebDriver.DEFAULT_ROOT_SELECTOR, repeater, true, row) {
             @Override
             public List<WebElement> findElements(SearchContext searchContext) {
                 List<WebElement> elements = new ArrayList<>();
@@ -151,7 +152,7 @@ public class AngularFindBy {
         String repeater = repeaterVal.split("###")[0];
         int row = Integer.valueOf(repeaterVal.split("###")[1]);
         String column = repeaterVal.split("###")[2];
-        return new ByAngularRepeaterCell(repeater, true, row, column) {
+        return new ByAngularRepeaterCell(NgWebDriver.DEFAULT_ROOT_SELECTOR, repeater, true, row, column) {
             @Override
             public List<WebElement> findElements(SearchContext searchContext) {
                 List<WebElement> elements = new ArrayList<>();
