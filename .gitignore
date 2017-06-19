@@ -28,3 +28,6 @@ nb-configuration.xml
 # System Files
 .DS_Store
 Thumbs.db
+
+# other files
+recent.items
