@@ -185,6 +185,7 @@ public class HtmlTestCaseHandler extends TestCaseHandler implements PrimaryHandl
     }
 
     private void onSetpDone() {
+        DoneSteps++;                
         if (reusable != null && reusable.get(TestCase.STATUS).equals("")) {
             reusable.put(TestCase.STATUS, "PASS");
         }
@@ -217,7 +218,6 @@ public class HtmlTestCaseHandler extends TestCaseHandler implements PrimaryHandl
         switch (state) {
             case DONE:
             case PASSNS:
-                DoneSteps++;
                 onSetpDone();
                 break;
             case PASS:
@@ -228,7 +228,6 @@ public class HtmlTestCaseHandler extends TestCaseHandler implements PrimaryHandl
             case DEBUG:
             case WARNING:
             case FAILNS:
-                FailedSteps++;
                 onSetpFailed();
                 break;
 
