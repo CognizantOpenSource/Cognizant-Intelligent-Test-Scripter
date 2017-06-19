@@ -39,7 +39,7 @@
         <jetty.version>9.4.3.v20170317</jetty.version>
         
         <geherkin.version>4.0.0</geherkin.version>
-        <autocomplete.version>2.6.0</autocomplete.version>
+        <autocomplete.version>2.6.1</autocomplete.version>
         
         <setupDir>../Dist/release</setupDir>
         <resourceDir>../Resources</resourceDir>  
