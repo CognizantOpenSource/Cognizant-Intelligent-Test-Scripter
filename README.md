@@ -6,9 +6,9 @@ Cognizant Intelligent Test Scripter is an open-source script-less test automatio
 
 You can check the Help Documentation from [HelpDoc](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/)
 
-## Pull Requests
+## Development / Contribution
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting your pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting your pull requests. It also has details on how to setup your development environment.
 
 ## Code of Conduct
 

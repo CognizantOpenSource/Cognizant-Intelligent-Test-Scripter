@@ -88,13 +88,13 @@ public class Main {
             mainFrame.setPreferredSize(new Dimension(1000, 700));
             mainFrame.setLocationRelativeTo(null);
             splash.progressed(99);
+            splash.setVisible(false);
             mainFrame.checkAndLoadRecent();
             mainFrame.setDefaultCloseOperation(AppMainFrame.DO_NOTHING_ON_CLOSE);
             Boolean IS_MAXI_SUPPORTED = Toolkit.getDefaultToolkit().isFrameStateSupported(JFrame.MAXIMIZED_BOTH);
             if (IS_MAXI_SUPPORTED) {
                 mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             }
-            splash.setVisible(false);
             splash.dispose();
             mainFrame.setVisible(true);
         }, "UI:MainUI").start();
