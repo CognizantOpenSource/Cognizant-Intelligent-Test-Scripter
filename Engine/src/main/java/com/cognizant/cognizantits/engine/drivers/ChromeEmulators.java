@@ -98,10 +98,10 @@ public class ChromeEmulators {
             return SystemUtils.getUserHome().getAbsolutePath() + "/AppData/Local/Google/Chrome/User Data/Default";
         }
         if (SystemUtils.IS_OS_MAC_OSX) {
-            return "~/Library/Application Support/Google/Chrome/Default";
+            return SystemUtils.getUserHome().getAbsolutePath()+"/Library/Application Support/Google/Chrome/Default";
         }
         if (SystemUtils.IS_OS_LINUX) {
-            return "~/.config/google-chrome/Default";
+            return SystemUtils.getUserHome().getAbsolutePath()+"/.config/google-chrome/Default";
         }
         return "OSNotConfigured";
     }
