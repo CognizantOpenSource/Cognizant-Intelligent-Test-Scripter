@@ -28,10 +28,6 @@ import org.json.simple.JSONObject;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- *
- * @author 389747
- */
  @Ignore
 public class JIRAClientTest {
 
