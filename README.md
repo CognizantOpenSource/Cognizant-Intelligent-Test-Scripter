@@ -4,6 +4,7 @@ Cognizant Intelligent Test Scripter is an open-source script-less test automatio
 
 ## Download
 
+Download the latest version from the [Releases](../../releases). After extracting the zip, follow the [Installation.md](Resources/Installation.md)
 
 ## Documentation
 
