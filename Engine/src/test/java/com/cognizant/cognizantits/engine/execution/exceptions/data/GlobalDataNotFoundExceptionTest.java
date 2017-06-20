@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cognizant.execution.exceptions.data;
+package com.cognizant.cognizantits.engine.execution.exceptions.data;
 
 import com.cognizant.cognizantits.engine.execution.exception.data.GlobalDataNotFoundException;
 import org.junit.After;
