@@ -48,7 +48,7 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  *
- * 
+ *
  */
 public class DriverSettings extends javax.swing.JFrame {
 
@@ -390,6 +390,7 @@ public class DriverSettings extends javax.swing.JFrame {
         duplicateEmulator = new javax.swing.JRadioButton();
         dupDriverCombo = new javax.swing.JComboBox<>();
         pxLabel = new javax.swing.JLabel();
+        syncChromeEmulators = new javax.swing.JButton();
         capabilityPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         capTable = new XTable();
@@ -629,6 +630,14 @@ public class DriverSettings extends javax.swing.JFrame {
         pxLabel.setText("px");
         pxLabel.setEnabled(false);
 
+        syncChromeEmulators.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/refresh.png"))); // NOI18N
+        syncChromeEmulators.setToolTipText("Refresh the list of Emulators from Chrome");
+        syncChromeEmulators.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                syncChromeEmulatorsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout emulatorPanelLayout = new javax.swing.GroupLayout(emulatorPanel);
         emulatorPanel.setLayout(emulatorPanelLayout);
         emulatorPanelLayout.setHorizontalGroup(
@@ -660,7 +669,9 @@ public class DriverSettings extends javax.swing.JFrame {
                         .addComponent(pxLabel))
                     .addGroup(emulatorPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(chromeEmulatorList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(chromeEmulatorList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(syncChromeEmulators, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(emulatorPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(dupDriverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -687,13 +698,15 @@ public class DriverSettings extends javax.swing.JFrame {
                             .addComponent(firefoxBrowser))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(20, 20, 20)
                 .addGroup(emulatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chromeEmulator)
                     .addComponent(chromeEmulatorHint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(chromeEmulatorList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(15, 15, 15)
+                .addGroup(emulatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chromeEmulatorList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(syncChromeEmulators))
+                .addGap(24, 24, 24)
                 .addComponent(appiumEmulator)
                 .addGap(18, 18, 18)
                 .addComponent(appiumConnectionString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -928,6 +941,11 @@ public class DriverSettings extends javax.swing.JFrame {
                 });
     }//GEN-LAST:event_encryptActionPerformed
 
+    private void syncChromeEmulatorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncChromeEmulatorsActionPerformed
+        ChromeEmulators.sync();
+        loadChromeEmulators();
+    }//GEN-LAST:event_syncChromeEmulatorsActionPerformed
+
     private String encrypt(String value) {
         if (!value.isEmpty() && !value.matches(".*  Enc")) {
             return Base64.encodeBase64String(value.getBytes()) + " Enc";
@@ -989,6 +1007,7 @@ public class DriverSettings extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> resolution;
     private javax.swing.JButton saveSettings;
     private javax.swing.JPopupMenu simpleMenu;
+    private javax.swing.JButton syncChromeEmulators;
     private javax.swing.JRadioButton uaEmulator;
     private javax.swing.JTextArea userAgent;
     // End of variables declaration//GEN-END:variables

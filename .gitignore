@@ -19,6 +19,7 @@ pom.xml.next
 /Dist/release/**
 
 # IDE Generated Files
+nbproject
 nbactions*.xml
 nb-configuration.xml
 .settings/

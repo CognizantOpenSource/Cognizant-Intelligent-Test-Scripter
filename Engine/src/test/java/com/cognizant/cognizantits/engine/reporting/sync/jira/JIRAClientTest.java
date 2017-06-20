@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cognizant.reporting.sync.jira;
+package com.cognizant.cognizantits.engine.reporting.sync.jira;
 
 import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRAClient;
 import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRAHttpClient;
@@ -28,10 +28,6 @@ import org.json.simple.JSONObject;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- *
- * @author 389747
- */
  @Ignore
 public class JIRAClientTest {
 
