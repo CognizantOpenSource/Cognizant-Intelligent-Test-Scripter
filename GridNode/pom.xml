@@ -4,12 +4,10 @@
     <parent>
         <groupId>com.cognizant</groupId>
         <artifactId>cognizant-intelligent-test-scripter</artifactId>
-        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.cognizant</groupId>
     <artifactId>cognizant-intelligent-test-scripter-gridnode</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>GridNode</name>
