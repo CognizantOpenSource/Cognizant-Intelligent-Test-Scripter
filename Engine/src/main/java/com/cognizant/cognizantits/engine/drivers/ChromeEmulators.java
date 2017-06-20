@@ -91,8 +91,9 @@ public class ChromeEmulators {
     /**
      * As per Chromium
      * https://www.chromium.org/user-experience/user-data-directory
+     * @return Preferences location
      */
-    private static String getPrefLocation() {
+    public static String getPrefLocation() {
         if (SystemUtils.IS_OS_WINDOWS) {
             return SystemUtils.getUserHome().getAbsolutePath() + "/AppData/Local/Google/Chrome/User Data/Default";
         }
