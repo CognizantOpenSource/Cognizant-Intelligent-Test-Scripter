@@ -81,7 +81,7 @@ public class ChromeEmulators {
                         .collect(Collectors.toList()));
                 saveList();
             } else {
-                LOG.severe("Either Chrome is not installed or OS not supported by CITS");
+                LOG.severe("Either Chrome is not installed or OS not supported");
             }
         } catch (IOException ex) {
             LOG.log(Level.SEVERE, null, ex);
