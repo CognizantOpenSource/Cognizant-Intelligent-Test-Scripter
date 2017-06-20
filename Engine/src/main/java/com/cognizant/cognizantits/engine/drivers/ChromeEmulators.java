@@ -100,7 +100,7 @@ public class ChromeEmulators {
             return "~/Library/Application Support/Google/Chrome/Default";
         }
         if (SystemUtils.IS_OS_LINUX) {
-            return " ~/.config/google-chrome/Default";
+            return "~/.config/google-chrome/Default";
         }
         return "OSNotConfigured";
     }
