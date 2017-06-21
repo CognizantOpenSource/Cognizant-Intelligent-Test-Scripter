@@ -43,6 +43,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategy;
 
 /**
  * Class to handle driver related operation
@@ -167,36 +168,35 @@ public class SeleniumDriver {
 
     private File createNewScreenshot() {
         try {
-            boolean isChromeEmulator = WebDriverFactory.isChromeEmulator(runContext, Control.getCurrentProject().getProjectSettings());
-            if (GalenConfig.getConfig().getBooleanProperty(GalenProperty.SCREENSHOT_FULLPAGE)) {
-                if (isChromeEmulator) {
-                    return getAShotFull(driver);
-                } else {
-                    return GalenUtils.makeFullScreenshot(driver);
-                }
-            } else if (isChromeEmulator) {
-                return getAShot(driver);
+            boolean chromeEmulator = WebDriverFactory.isChromeEmulator(
+                    Control.getCurrentProject().getProjectSettings()
+                    .getEmulators().getEmulator(runContext.BrowserName));
+            boolean fullPage = GalenConfig.getConfig()
+                    .getBooleanProperty(GalenProperty.SCREENSHOT_FULLPAGE);
+            if (chromeEmulator) {
+                return getScreenShotFromAShot(driver, fullPage);
             } else {
-                return GalenUtils.takeScreenshot(driver);
+                return getScreenShotFromGalen(driver, fullPage);
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Error making screenshot", e);
+        } catch (Exception ex) {
+            throw new RuntimeException("Error making screenshot", ex);
         }
     }
 
-    private File getAShotFull(WebDriver driver) throws IOException {
-        File file = File.createTempFile("screenshot", ".png");
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(400))
-                .takeScreenshot(driver);
-        ImageIO.write(screenshot.getImage(), "png", file);
-        return file;
+    private File getScreenShotFromAShot(WebDriver driver, boolean fullPage) throws Exception {
+        ShootingStrategy strategy = fullPage ? ShootingStrategies.viewportPasting(400)
+                : ShootingStrategies.simple();
+        return getScreenShotFromAShot(driver, strategy);
     }
 
-    private File getAShot(WebDriver driver) throws IOException {
+    private File getScreenShotFromGalen(WebDriver driver, boolean fullPage) throws Exception {
+        return fullPage ? GalenUtils.makeFullScreenshot(driver)
+                : GalenUtils.takeScreenshot(driver);
+    }
+
+    private File getScreenShotFromAShot(WebDriver driver, ShootingStrategy strategy) throws IOException {
         File file = File.createTempFile("screenshot", ".png");
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.simple())
+        Screenshot screenshot = new AShot().shootingStrategy(strategy)
                 .takeScreenshot(driver);
         ImageIO.write(screenshot.getImage(), "png", file);
         return file;

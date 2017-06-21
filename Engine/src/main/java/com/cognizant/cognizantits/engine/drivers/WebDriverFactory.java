@@ -226,8 +226,7 @@ public class WebDriverFactory {
         return Objects.isNull(o) || o.toString().isEmpty();
     }
 
-    public static boolean isChromeEmulator(RunContext context, ProjectSettings settings) {
-        Emulator emulator = settings.getEmulators().getEmulator(context.BrowserName);
+    public static boolean isChromeEmulator(Emulator emulator) {
         return emulator != null && "Chrome Emulator".equalsIgnoreCase(emulator.getType());
     }
 
