@@ -2,37 +2,8 @@
 
 ## How to Install
 
+Make sure you have downloaded and extracted the `cognizant-intelligent-test-scripter-*-setup.zip` from [releases](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/releases/latest)
 
-### Sikuli OCR support
-
-To enable Sikuli OCR support required Tesseract language files should be added.
-
-Download data files form here,
-* [Data file for English v3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/tesseract-ocr-3.02.eng.tar.gz/download)
-
-* [For other languages](https://github.com/tesseract-ocr/tesseract/wiki/Data-Files)
-
-Copy the data-files from `[datafile]/tesseract-ocr/tessdata` to `Sikulix` data folder.
-
-Create the below folder structure if not present
-
-Windows :   
-```
-%APPDATA%\Sikulix\SikulixTesseract\tessdata
-```
-
-Mac :
-```
-~/Library/Application Support/Sikulix/SikulixTesseract/tessdata
-```
-
-Linux: 
-
-```
-~/.Sikulix/SikulixTesseract/tessdata
-```
-
- check out this sikuli [issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.
 
 ### Installing Browser Extensions
 
@@ -100,5 +71,41 @@ Double Click the `Run.command` to launch the UI
 If you see **It's Downloaded From Internet Warning** then enter the following command in terminal
 
 `xattr -d -r com.apple.quarantine /path/to/cognizant-intelligent-test-scripter`
+
+### Sikuli OCR support
+
+If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files as explained below.
+
+To enable Sikuli OCR support, required Tesseract language files should be added.
+
+Download data files form here,
+* [Data file for English v3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/tesseract-ocr-3.02.eng.tar.gz/download)
+
+* [For other languages](https://github.com/tesseract-ocr/tesseract/wiki/Data-Files)
+
+
+Create the below folder structure if not present
+
+Windows :   
+```
+%APPDATA%\Sikulix\SikulixTesseract\tessdata
+```
+
+Mac :
+```
+~/Library/Application Support/Sikulix/SikulixTesseract/tessdata
+```
+
+Linux: 
+
+```
+~/.Sikulix/SikulixTesseract/tessdata
+```
+
+Extract `tesseract-ocr-3.02.eng.tar.gz`  
+
+Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
+
+ check out this sikuli [issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.
 
 
