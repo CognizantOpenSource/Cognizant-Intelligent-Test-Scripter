@@ -4,6 +4,7 @@
 
 Make sure you have downloaded and extracted the `cognizant-intelligent-test-scripter-*-setup.zip` from [releases](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/releases/latest)
 
+> *installation_location* mentioned below is the location where you have extracted the zip
 
 ### Installing Browser Extensions
 
