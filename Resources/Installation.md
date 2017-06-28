@@ -23,7 +23,7 @@ Internet Explorer
 
 ### Installing Extension Certificate
 
-Open the `Ext_Certificate.cert` file which is in `installation_location/Extensions` . 
+Open the `Ext_Certificate.cer` file which is in `installation_location/Extensions` . 
 
 For Windows
 
@@ -38,7 +38,7 @@ To install the Certificate, perform the following steps in the Certificate windo
 
 For Mac
 
- * Double-click `Ext_Certificate.cert`. This will bring up the Keychain Access utility. Enter your password to unlock it.
+ * Double-click `Ext_Certificate.cer`. This will bring up the Keychain Access utility. Enter your password to unlock it.
 
  * Be sure you add the certificate to the System keychain, not the login keychain. Click "Always Trust," even though this doesn't seem to do anything.
 
@@ -51,7 +51,7 @@ For Mac
  * Or Open Terminal and then enter 
 
  ```
- sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain Ext_Certificate.cert
+ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain Ext_Certificate.cer
  ```
 
 ## Launching UI
@@ -106,6 +106,6 @@ Extract `tesseract-ocr-3.02.eng.tar.gz`
 
 Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
 
- check out this sikuli [issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.
+Check out this [sikuli issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.
 
 
