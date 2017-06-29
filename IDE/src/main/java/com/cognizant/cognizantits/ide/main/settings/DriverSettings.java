@@ -850,11 +850,8 @@ public class DriverSettings extends javax.swing.JFrame {
 
     private void browserComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_browserComboItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    checkAndLoadCapabilities();
-                }
+            SwingUtilities.invokeLater(() -> {
+                checkAndLoadCapabilities();
             });
         }
     }//GEN-LAST:event_browserComboItemStateChanged
@@ -925,10 +922,10 @@ public class DriverSettings extends javax.swing.JFrame {
     private void configProxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configProxyActionPerformed
         DefaultTableModel model = (DefaultTableModel) driverPropTable.getModel();
         model.addRow(new Object[]{"useProxy", "true"});
-        model.addRow(new Object[]{"proxyHost", "proxy.cognizant.com"});
-        model.addRow(new Object[]{"proxyPort", "6050"});
-        model.addRow(new Object[]{"proxyUserDomain", "cts"});
-        model.addRow(new Object[]{"proxyUser", "235813"});
+        model.addRow(new Object[]{"proxyHost", "proxy.xx.com"});
+        model.addRow(new Object[]{"proxyPort", "5656"});
+        model.addRow(new Object[]{"proxyUserDomain", "xyz"});
+        model.addRow(new Object[]{"proxyUser", "username"});
         model.addRow(new Object[]{"proxyPassword", "urp@55w0rb"});
     }//GEN-LAST:event_configProxyActionPerformed
 

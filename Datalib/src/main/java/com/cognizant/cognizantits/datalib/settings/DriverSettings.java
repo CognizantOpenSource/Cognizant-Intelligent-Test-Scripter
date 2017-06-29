@@ -15,12 +15,9 @@
  */
 package com.cognizant.cognizantits.datalib.settings;
 
-import java.util.Locale;
-import java.util.Objects;
-
 public class DriverSettings extends AbstractPropSettings {
 
-    private static String geckoDriverPath, chromeDriverPath, ieDriverPath, edgeDriverPath;
+    private static String geckoDriverPath, chromeDriverPath;
 
     static {
         setDriverPath();
@@ -42,17 +39,13 @@ public class DriverSettings extends AbstractPropSettings {
     }
 
     private static void setDriverPath() {
-        if (Objects.toString(System.getProperty("os.name"), "")
-                .toLowerCase(Locale.ENGLISH).contains("win")) {
+        if (System.getProperty("os.name", "")
+                .toLowerCase().contains("win")) {
             geckoDriverPath = "./lib/Drivers/geckodriver.exe";
             chromeDriverPath = "./lib/Drivers/chromedriver.exe";
-            ieDriverPath = "./lib/Drivers/IEDriverServer.exe";
-            edgeDriverPath = "./lib/Drivers/MicrosoftWebDriver.exe";
         } else {
             geckoDriverPath = "./lib/Drivers/geckodriver";
             chromeDriverPath = "./lib/Drivers/chromedriver";
-            ieDriverPath = "./lib/Drivers/IEDriverServer";
-            edgeDriverPath = "./lib/Drivers/MicrosoftWebDriver";
         }
     }
 
@@ -89,11 +82,11 @@ public class DriverSettings extends AbstractPropSettings {
     }
 
     public String getIEDriverPath() {
-        return getProperty("IEDriverPath", ieDriverPath);
+        return getProperty("IEDriverPath", "./lib/Drivers/IEDriverServer.exe");
     }
 
     public String getEdgeDriverPath() {
-        return getProperty("EdgeDriverPath", edgeDriverPath);
+        return getProperty("EdgeDriverPath", "./lib/Drivers/MicrosoftWebDriver.exe");
     }
 
     public Boolean useProxy() {

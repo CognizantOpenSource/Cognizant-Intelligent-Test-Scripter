@@ -15,35 +15,27 @@
  */
 package com.cognizant.cognizantits.datalib.settings;
 
-import java.util.Objects;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.lang.reflect.Method;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class DriverSettingsTest {
 
-    private static DriverSettings ds;
     private static boolean isWin;
 
+    private DriverSettings ds;
+
     @BeforeClass
-    public static void setUpClass() throws Exception {        
-        isWin = Objects.toString(System.getProperty("os.name"), "").startsWith("Windows");
+    public static void setUpClass() {
+        isWin = System.getProperty("os.name", "").toLowerCase().contains("win");
     }
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
+    @BeforeMethod
+    public void setUp(Method method) {
         ds = new DriverSettings("tmp");
-    }
-
-    @After
-    public void tearDown() throws Exception {
+        System.out.println("Running " + method.getName());
     }
 
     /**
@@ -51,7 +43,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testGetGeckcoDriverPath() {
-        System.out.println("getGeckcoDriverPath");
         String expResult;
         if (isWin) {
             expResult = "./lib/Drivers/geckodriver.exe";
@@ -67,7 +58,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testGetChromeDriverPath() {
-        System.out.println("getChromeDriverPath");
         String expResult;
         if (isWin) {
             expResult = "./lib/Drivers/chromedriver.exe";
@@ -83,13 +73,7 @@ public class DriverSettingsTest {
      */
     @Test
     public void testGetIEDriverPath() {
-        System.out.println("getIEDriverPath");
-        String expResult;
-        if (isWin) {
-            expResult = "./lib/Drivers/IEDriverServer.exe";
-        } else {
-            expResult = "./lib/Drivers/IEDriverServer";
-        }
+        String expResult = "./lib/Drivers/IEDriverServer.exe";
         String result = ds.getIEDriverPath();
         assertEquals(result, expResult);
     }
@@ -99,13 +83,7 @@ public class DriverSettingsTest {
      */
     @Test
     public void testGetEdgeDriverPath() {
-        System.out.println("getEdgeDriverPath");
-        String expResult;
-        if (isWin) {
-            expResult = "./lib/Drivers/MicrosoftWebDriver.exe";
-        } else {
-            expResult = "./lib/Drivers/MicrosoftWebDriver";
-        }
+        String expResult = "./lib/Drivers/MicrosoftWebDriver.exe";
         String result = ds.getEdgeDriverPath();
         assertEquals(result, expResult);
     }
@@ -115,7 +93,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testSetGeckcoDriverPath() {
-        System.out.println("setGeckcoDriverPath");
         String path = "./lib/gk";
         ds.setGeckcoDriverPath(path);
         assertEquals(ds.getGeckcoDriverPath(), path);
@@ -126,7 +103,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testSetChromeDriverPath() {
-        System.out.println("setChromeDriverPath");
         String path = "./lib/chrome";
         ds.setChromeDriverPath(path);
         assertEquals(ds.getChromeDriverPath(), path);
@@ -137,7 +113,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testSetIEDriverPath() {
-        System.out.println("setIEDriverPath");
         String path = "./lib/ie";
         ds.setIEDriverPath(path);
         assertEquals(ds.getIEDriverPath(), path);
@@ -148,7 +123,6 @@ public class DriverSettingsTest {
      */
     @Test
     public void testSetEdgeDriverPath() {
-        System.out.println("setEdgeDriverPath");
         String path = "./lib/edge";
         ds.setEdgeDriverPath(path);
         assertEquals(ds.getEdgeDriverPath(), path);
