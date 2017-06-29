@@ -15,20 +15,21 @@
  */
 package com.cognizant.cognizantits.engine.constants;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
- 
+
 public class SystemDefaults {
 
     public static AtomicInteger waitTime = new AtomicInteger(10);
     public static AtomicInteger elementWaitTime = new AtomicInteger(10);
-
     public static AtomicBoolean stopExecution = new AtomicBoolean();
-    public static AtomicBoolean pauseExecution = new AtomicBoolean(false);     
+    public static AtomicBoolean pauseExecution = new AtomicBoolean(false);
     public static AtomicBoolean debugMode = new AtomicBoolean();
     public static AtomicBoolean stopCurrentIteration = new AtomicBoolean();
     public static AtomicBoolean getClassesFromJar = new AtomicBoolean();
@@ -36,6 +37,21 @@ public class SystemDefaults {
     public static AtomicBoolean nextStepflag = new AtomicBoolean(true);
     public static Map<String, String> CLVars = new HashMap<>();
     public static Map<String, String> EnvVars = new HashMap<>();
+
+    private static Properties buildProperties;
+
+    static {
+        buildProperties = new Properties();
+        try {
+            buildProperties.load(SystemDefaults.class.getResourceAsStream("/engine/build.properties"));
+        } catch (IOException ex) {
+            Logger.getLogger(SystemDefaults.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    public static String getBuildVersion() {
+        return buildProperties.getProperty("Bundle-Version");
+    }
 
     public static void pollWait() {
         try {
@@ -63,7 +79,7 @@ public class SystemDefaults {
     public static void printSystemInfo() {
         System.out.println("Run Information");
         System.out.println("========================");
-        System.out.println("cognizant.intelligent.test.scripter.engine : 1.0"); //TODO: externalize
+        System.out.println("cognizant.intelligent.test.scripter.engine : " + getBuildVersion());
         printSystemInfo("java.runtime.name");
         printSystemInfo("java.version");
         printSystemInfo("java.home");
