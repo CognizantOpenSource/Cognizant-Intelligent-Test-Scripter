@@ -20,7 +20,9 @@ Firefox
  
 Internet Explorer
 
- * Install the `CognizantITS Toolbar.exe` which is located in `installation_location/Extensions/Internet Explorer`
+ * Download the Latest version of [CITS_IE_Toolbar from here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases/latest)
+
+ * Follow the Installation docs from [here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar#requirements)
 
 ### Installing Extension Certificate
 
