@@ -23,6 +23,7 @@ import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,12 +52,12 @@ public class QCRestClient {
     public final String usr, domain, project;
     public String serverUrl;
 
-    public QCRestClient(String url, String userId, String pass, String domain, String project) {
+    public QCRestClient(String url, String userId, String pass, String domain, String project,Map config) {
         setServerUrl(url);
         this.usr = userId;
         this.domain = domain;
         this.project = project;
-        httpClient = new QCRestHttpClient(getUrl(serverUrl), userId, pass);
+        httpClient = new QCRestHttpClient(getUrl(serverUrl), userId, pass,config);
     }
 
     private void setServerUrl(String url) {

@@ -61,12 +61,11 @@ public class QCRestSync implements Sync {
      */
     public QCRestSync(Properties ops) throws Exception {
         LOG.info("Initializing TM integration with QC Rest API");
-
         client = new QCRestClient(ops.getProperty("QCUrl"),
                 ops.getProperty("QCUserName"),
                 ops.getProperty("QCPassword"),
                 ops.getProperty("QCDomain"),
-                ops.getProperty("QCProject"));
+                ops.getProperty("QCProject"),ops);
         vMap = new Properties(ops);
         client.login();
         init();

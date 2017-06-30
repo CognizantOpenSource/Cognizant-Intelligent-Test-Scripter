@@ -13,47 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package util.data.fx;
+package com.cognizant.cognizantits.engine.util.data.fx;
 
-import com.cognizant.cognizantits.engine.util.data.fx.FParser;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lib.ExtendedRunner;
-import lib.Repeat;
-import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
 import org.json.simple.JSONValue;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.Test;
 
-/**
- *
- * @author 389747
- */
-@RunWith(ExtendedRunner.class)
 public class FParserTest {
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of getFuncList method, of class FParser.
@@ -72,13 +42,12 @@ public class FParserTest {
     /**
      * Test of eval method, of class FParser.
      */
-    @Test
-    @Repeat(200)
+    @Test(invocationCount = 10)
     public void testEval() {
+        System.out.println("Eval");
         String s = "Concat(=Round(=Random(4)),test@gmail.com)";
         Object result = FParser.eval(s);
-        assertThat("random email ", result.toString(), new RegexMatcher("[0-9]{4}test@gmail.com"));
-
+        assertTrue(result.toString().matches("[0-9]{4}test@gmail.com"), "random email " + result);
     }
 
     /**
@@ -91,59 +60,39 @@ public class FParserTest {
         Object result;
         s = "Date(0,\"MM-dd-yy\")";
         result = FParser.eval(s);
-        assertThat("date " + result, result.toString(),
-                new RegexMatcher("(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-\\d{2}"));
+        assertTrue(result.toString().matches("(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-\\d{2}"),
+                "date " + result);
+
         s = "Date(0,\"MM dd yyyy\")";
         result = FParser.eval(s);
-        assertThat("date " + result, result.toString(),
-                new RegexMatcher("(0[1-9]|1[012]) (0[1-9]|[12][0-9]|3[01]) \\d{4}"));
+        assertTrue(result.toString().matches("(0[1-9]|1[012]) (0[1-9]|[12][0-9]|3[01]) \\d{4}"),
+                "date " + result);
+
         s = "Date(0,\"MM:dd:yyyy\")";
         result = FParser.eval(s);
-        assertThat("date " + result, result.toString(),
-                new RegexMatcher("(0[1-9]|1[012]):(0[1-9]|[12][0-9]|3[01]):\\d{4}"));
+        assertTrue(result.toString().matches("(0[1-9]|1[012]):(0[1-9]|[12][0-9]|3[01]):\\d{4}"),
+                "date " + result);
         s = "Date(0,\"dd/MM/yyyy\")";
         result = FParser.eval(s);
-        assertThat("date " + result, result.toString(),
-                new RegexMatcher("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4}"));
+        assertTrue(result.toString().matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4}"),
+                "date " + result);
     }
 
     /**
      * Test of evaljs method, of class FParser.
      */
-    @Test
-    @Repeat(200)
+    @Test(invocationCount = 10)
     public void testEvaljs() {
+        System.out.println("Evaljs");
         String script = "floor(100 + random() * 900)";
         String result = FParser.evaljs(script);
-        assertThat("Test random ", result, new RegexMatcher("[0-9]{3}"));
+        assertTrue(result.matches("[0-9]{3}"),
+                "Test random ");
         script = "'test'+ floor(100 + random() * 900)+'vt@gmail.com'";
         result = (String) JSONValue.parse(FParser.evaljs(script));
-        assertThat("Test random Email ", result, new RegexMatcher("test[0-9]{3}vt@gmail.com"));
+        assertTrue(result.matches("test[0-9]{3}vt@gmail.com"),
+                "Test random email ");
 
-    }
-
-}
-
-class RegexMatcher extends TypeSafeMatcher<String> {
-
-    private final String regex;
-
-    public RegexMatcher(final String regex) {
-        this.regex = regex;
-    }
-
-    @Override
-    public void describeTo(Description description) {
-        description.appendText("matches regex=`" + regex + "`");
-    }
-
-    @Override
-    public boolean matchesSafely(final String string) {
-        return string.matches(regex);
-    }
-
-    public static RegexMatcher matchesRegex(final String regex) {
-        return new RegexMatcher(regex);
     }
 
 }

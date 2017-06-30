@@ -13,38 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package util.data;
+package com.cognizant.cognizantits.engine.util.data;
 
-import com.cognizant.cognizantits.engine.util.data.KeyMap;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-/**
- *
- * @author 389747
- */
 public class KeyMapTest {
 
-    Map vMap = new HashMap();
+    private final Map vMap = new HashMap();
 
     public KeyMapTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
+    @BeforeMethod
     public void setUp() {
         System.setProperty("var.1", "x");
         System.setProperty("var.2", "y");
@@ -61,13 +47,11 @@ public class KeyMapTest {
         vMap.put("rel", "L2");
     }
 
-    @After
+    @AfterMethod
     public void tearDown() {
+        vMap.clear();
     }
 
-    public static void main(String[] args) {
-        new KeyMapTest().testResolveContextVars();
-    }
 
     /**
      * Test of resolveContextVars method, of class KeyMap.

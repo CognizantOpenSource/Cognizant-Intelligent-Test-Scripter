@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.engine.util.data.mime.MIME;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,8 +56,8 @@ public class QCRestHttpClient extends BasicHttpClient {
     Object LOGIN_KEY;
     Header[] COOKIES = new Header[]{};
 
-    public QCRestHttpClient(URL urL, String uN, String pW) {
-        super(urL, uN, pW);
+    public QCRestHttpClient(URL url, String userName, String password,Map config) {
+        super(url, userName, password,config);
     }
 
     @Override

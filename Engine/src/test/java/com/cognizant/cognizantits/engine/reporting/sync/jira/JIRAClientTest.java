@@ -15,9 +15,6 @@
  */
 package com.cognizant.cognizantits.engine.reporting.sync.jira;
 
-import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRAClient;
-import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRAHttpClient;
-import com.cognizant.cognizantits.engine.reporting.sync.jira.ZAPIClient;
 import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
 import java.util.List;
@@ -25,17 +22,15 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
- @Ignore
 public class JIRAClientTest {
 
-    @Test
+    @Test(enabled = false)
     public void testUpdateResult_0args() throws Exception {
         JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass);
-        String f = "D:/report.txt";
-        JIRAHttpClient httpclient = new JIRAHttpClient(jc.url, Data.uname, Data.pass);
+        String f = "report.txt";
+        JIRAHttpClient httpclient = new JIRAHttpClient(jc.url, Data.uname, Data.pass, null);
         int eid = jc.updateResult(ZAPIClient.status.UNEXECUTED, "buyProduct",
                 "TestSet_Demo", "Release_Demo", "DemonProject", httpclient);
         jc.updateResult(ZAPIClient.status.PASS, eid, httpclient);
@@ -43,13 +38,13 @@ public class JIRAClientTest {
         DLogger.Log(out);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testCreateIssue_JSONObject_List() {
         JSONObject res = null;
         try {
             JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass);
             JIRAHttpClient httpclient = new JIRAHttpClient(
-                    jc.url, Data.uname, Data.pass);
+                    jc.url, Data.uname, Data.pass, null);
             Map issue = getIssue(Data.project);
             List<File> attach = null;
             res = jc.createIssue(httpclient, (JSONObject) issue, attach);
@@ -80,7 +75,7 @@ public class JIRAClientTest {
         data.put("fields", fields);
         return data;
     }
-    
+
     public static class Data {
 
         public static String server = "https://jira.domain.com",

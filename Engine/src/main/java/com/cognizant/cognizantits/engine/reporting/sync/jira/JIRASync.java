@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.engine.reporting.util.TestInfo;
 import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,28 +31,34 @@ public class JIRASync implements Sync {
 
     private JIRAClient conn;
     private String project = "";
+    private JIRAHttpClient jc;
 
     public JIRASync(String server, String uname, String pass, String project) {
+        this(server, uname, pass, project, null);
+    }
+
+    public JIRASync(String server, String uname, String pass, String project, Map options) {
         conn = new JIRAClient(server, uname, pass);
         this.project = project;
+        jc = new JIRAHttpClient(conn.url, conn.userName, conn.password, options);
     }
 
     /**
-     * 
+     *
      * @param options
      */
     public JIRASync(Properties options) {
         this(options.getProperty("JIRAZephyrUrl"),
                 options.getProperty("JIRAZephyrUserName"),
                 options.getProperty("JIRAZephyrPassword"),
-                options.getProperty("JIRAZephyrProject"));
+                options.getProperty("JIRAZephyrProject"),
+                options);
+
     }
 
     @Override
     public boolean isConnected() {
         try {
-            JIRAHttpClient jc = new JIRAHttpClient(conn.url, conn.userName,
-                    conn.password);
             return conn.isConnected(jc) && conn.containsProject(project, jc);
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, null, ex);
@@ -64,8 +71,6 @@ public class JIRASync implements Sync {
     public synchronized boolean updateResults(TestInfo tc, String status,
             List<File> attach) {
         try {
-            JIRAHttpClient jc = new JIRAHttpClient(conn.url, conn.userName,
-                    conn.password);
             String rls = RunManager.getGlobalSettings().getRelease();
             String tset = RunManager.getGlobalSettings().getTestSet();
 
@@ -93,8 +98,6 @@ public class JIRASync implements Sync {
     public synchronized String createIssue(JSONObject issue, List<File> attach) {
         String result = "[JIRA : Issue Creation Failed!!]\n";
         try {
-            JIRAHttpClient jc = new JIRAHttpClient(conn.url, conn.userName,
-                    conn.password);
             JSONObject res = conn.createIssue(jc, issue, attach);
             Object key = res.get("key");
             if (key != null) {

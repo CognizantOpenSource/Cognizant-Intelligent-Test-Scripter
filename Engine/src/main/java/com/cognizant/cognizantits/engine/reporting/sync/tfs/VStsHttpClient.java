@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.engine.reporting.sync.tfs;
 
 import com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient;
 import java.net.URL;
+import java.util.Map;
 import org.apache.http.HttpRequest;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.methods.HttpGet;
@@ -29,8 +30,8 @@ public class VStsHttpClient extends BasicHttpClient {
 
     final String encodedToken;
 
-    public VStsHttpClient(URL urL, String PAT) {
-        super(urL, "", "");
+    public VStsHttpClient(URL urL, String PAT,Map config) {
+        super(urL, "", "",config);
         ACCESSTOKEN = PAT;
         encodedToken = java.util.Base64.getEncoder().encodeToString((ACCESSTOKEN + ":").getBytes());
     }

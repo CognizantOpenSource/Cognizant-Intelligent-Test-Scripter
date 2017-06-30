@@ -16,38 +16,10 @@
 package com.cognizant.cognizantits.engine.execution.exceptions.data;
 
 import com.cognizant.cognizantits.engine.execution.exception.data.TestDataNotFoundException;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
-/**
- *
- * @author 389747
- */
 public class TestDataNotFoundExceptionTest {
-    
-    public TestDataNotFoundExceptionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-   
 
     /**
      * Test of getTemplate method, of class TestDataNotFoundException.
@@ -57,10 +29,10 @@ public class TestDataNotFoundExceptionTest {
         System.out.println("getTemplate- TestData");
         String expResult = "{0} \n[Env : {1} | Sheet : {2} | Field : {3} | TestCase : {4}/{5} | Reusabe : {6}/{7} ]";
         String result = TestDataNotFoundException.getTemplate(true);
-        assertEquals("TestData template reusable ",expResult, result);
+        assertEquals(expResult, result);
         expResult = "{0} \n[Env : {1} | Sheet : {2} | Field : {3} | TestCase : {4}/{5} ]";
         result = TestDataNotFoundException.getTemplate(false);
-        assertEquals("TestData template ",expResult, result);
+        assertEquals(expResult, result);
     }
-    
+
 }

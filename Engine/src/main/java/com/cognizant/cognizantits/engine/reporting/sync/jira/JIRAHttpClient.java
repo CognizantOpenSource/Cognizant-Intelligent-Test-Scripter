@@ -17,12 +17,13 @@ package com.cognizant.cognizantits.engine.reporting.sync.jira;
 
 import com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient;
 import java.net.URL;
+import java.util.Map;
 import org.apache.http.client.methods.HttpPost;
 
 public class JIRAHttpClient extends BasicHttpClient {
 
-    public JIRAHttpClient(URL urL, String uN, String pW) {
-        super(urL, uN, pW);
+    public JIRAHttpClient(URL url, String userName, String password,Map config) {
+        super(url, userName, password,config);
     }
 
     @Override

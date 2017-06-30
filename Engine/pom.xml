@@ -110,9 +110,8 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.10</version>
+            <version>6.11</version>
             <scope>test</scope>
-            <type>jar</type>
         </dependency>
     </dependencies>
     

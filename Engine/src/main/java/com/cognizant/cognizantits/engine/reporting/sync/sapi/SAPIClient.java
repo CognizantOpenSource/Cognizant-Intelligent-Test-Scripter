@@ -32,8 +32,8 @@ public class SAPIClient extends BasicHttpClient {
 
     Header auth;
 
-    public SAPIClient(String urL, String uN, String pW) throws MalformedURLException {
-        super(new URL(urL), uN, pW);
+    public SAPIClient(String url, String userName, String password) throws MalformedURLException {
+        super(new URL(url), userName, password);
     }
 
     public SAPIClient(Map<String, String> op) throws MalformedURLException {
@@ -47,7 +47,7 @@ public class SAPIClient extends BasicHttpClient {
         req.addHeader(auth);
     }
 
-    @Override
+    
     public boolean hasProxy() {
         return false;
     }

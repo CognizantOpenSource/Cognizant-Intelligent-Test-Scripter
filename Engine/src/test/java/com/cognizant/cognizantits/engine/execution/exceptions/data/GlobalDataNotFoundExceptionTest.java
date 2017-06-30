@@ -16,39 +16,10 @@
 package com.cognizant.cognizantits.engine.execution.exceptions.data;
 
 import com.cognizant.cognizantits.engine.execution.exception.data.GlobalDataNotFoundException;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
-/**
- *
- * @author 389747
- */
 public class GlobalDataNotFoundExceptionTest {
-    
-    public GlobalDataNotFoundExceptionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-   
 
     /**
      * Test of getTemplate method, of class GlobalDataNotFoundException.
@@ -58,11 +29,11 @@ public class GlobalDataNotFoundExceptionTest {
         System.out.println("getTemplate- GlobalData");
         String expResult = "{0} \n[Env : {1} | Field : {2} | GID : {3} | TestCase : {4}/{5} | Reusabe : {6}/{7} ]";
         String result = GlobalDataNotFoundException.getTemplate(true);
-        assertEquals("GlobalData template reusable ",expResult, result);
+        assertEquals( expResult, result);
         expResult = "{0} \n[Env : {1} | Field : {2} | GID : {3} | TestCase : {4}/{5} ]";
         result = GlobalDataNotFoundException.getTemplate(false);
-        assertEquals("GlobalData template ",expResult, result);
-        
+        assertEquals( expResult, result);
+
     }
-    
+
 }

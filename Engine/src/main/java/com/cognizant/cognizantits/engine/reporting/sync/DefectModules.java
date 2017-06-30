@@ -36,12 +36,11 @@ public class DefectModules {
         String project = fields.get("project");
         String result = null;
         Sync sync;
-
         try {
             Data.initData();
             switch (moduleId) {
                 case "JIRA":
-                    sync = new JIRASync(Data.server, Data.uname, Data.pass, project);
+                    sync = new JIRASync(Data.server, Data.uname, Data.pass, project, Data.options);
                     if (sync.isConnected()) {
                         JSONObject data = JIRAClient.getJsonified(fields);
                         result = sync.createIssue(data, attach);
@@ -50,7 +49,7 @@ public class DefectModules {
                     }
                     break;
                 case "QC":
-                    result="Not suported yet!";
+                    result = "Not suported yet!";
                     break;
 
             }
@@ -67,19 +66,16 @@ class Data {
 
     public static String server = "", uname = "", pass = "", project = "DEMO",
             domain = "";
+    public static Properties options = new Properties();
 
     public static void initData() throws Exception {
-
-        Properties p = new Properties();
-
-        p.load(new FileReader(FilePath.getExplorerConfig()));
-        server = p.getProperty("URL");
+        options.load(new FileReader(FilePath.getExplorerConfig()));
+        server = options.getProperty("URL");
         checkServer(server);
-        uname = getDecoded(p.getProperty("UserName"));
-        pass = getDecoded(p.getProperty("Password"));
-        domain = p.getProperty("Domain");
-        project = p.getProperty("Project");
-
+        uname = getDecoded(options.getProperty("UserName"));
+        pass = getDecoded(options.getProperty("Password"));
+        domain = options.getProperty("Domain");
+        project = options.getProperty("Project");
     }
 
     static String getDecoded(String val) {

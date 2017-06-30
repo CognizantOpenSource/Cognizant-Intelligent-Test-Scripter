@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,10 +44,10 @@ public class VStsClient {
     final String PAT;
     URL url;
 
-    public VStsClient(String url, String PAT) {
+    public VStsClient(String url, String PAT,Map config) {
         this.setUrl(url);
         this.PAT = PAT;
-        httpClient = new VStsHttpClient(getUrl(serverUrl), PAT);
+        httpClient = new VStsHttpClient(getUrl(serverUrl), PAT,config);
     }
 
     private void setUrl(String url) {
@@ -103,10 +104,10 @@ public class VStsClient {
         return -1;
     }
 
-    public boolean containsProject(String project, VStsHttpClient vc) {
+    public boolean containsProject(String project) {
 
         try {
-            String res = vc.Get(new URL(vc.url + "DefaultCollection/_apis/projects")).toString();
+            String res = httpClient.Get(new URL(httpClient.url + "DefaultCollection/_apis/projects")).toString();
             return res.contains("\"name\":\"" + project + "\"");
 
         } catch (Exception ex) {
@@ -115,9 +116,9 @@ public class VStsClient {
         }
     }
 
-    public boolean isConnected(VStsHttpClient httpclient) {
+    public boolean isConnected() {
         try {
-            DLogger.Log(httpclient.Get(new URL(httpclient.url
+            DLogger.Log(httpClient.Get(new URL(httpClient.url
                     + "DefaultCollection/_apis/projects")).toString());
             return true;
         } catch (Exception ex) {

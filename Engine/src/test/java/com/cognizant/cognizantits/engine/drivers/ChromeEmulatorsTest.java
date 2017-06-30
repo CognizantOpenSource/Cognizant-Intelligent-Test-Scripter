@@ -19,13 +19,11 @@ import com.cognizant.cognizantits.engine.support.DesktopApi;
 import java.io.File;
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.junit.Assume.assumeFalse;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
+import org.testng.SkipException;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -35,24 +33,11 @@ public class ChromeEmulatorsTest {
 
     private static final boolean IS_TRAVIS_LINUX = isTravisLinux();
 
-    public ChromeEmulatorsTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-
-    }
-
-    @After
-    public void tearDown() {
+    @BeforeMethod
+    public void before() {
+        if (IS_TRAVIS_LINUX) {
+            throw new SkipException("Skipped as running on Travis");
+        }
     }
 
     /**
@@ -60,7 +45,6 @@ public class ChromeEmulatorsTest {
      */
     @Test
     public void testGetPrefLocation() {
-        assumeFalse(IS_TRAVIS_LINUX);
         System.out.println("getPrefLocation");
         File file = new File(ChromeEmulators.getPrefLocation(), "Preferences");
         if (!file.exists()) {
@@ -77,11 +61,9 @@ public class ChromeEmulatorsTest {
      */
     @Test
     public void testSync() {
-        assumeFalse(IS_TRAVIS_LINUX);
         System.out.println("sync");
         ChromeEmulators.sync();
-        assertEquals("EmulatorsList is Empty",
-                false, ChromeEmulators.getEmulatorsList().isEmpty());
+        assertTrue(!ChromeEmulators.getEmulatorsList().isEmpty(), "EmulatorsList is Empty");
 
     }
 
@@ -89,14 +71,11 @@ public class ChromeEmulatorsTest {
      * Test of getEmulatorsList method, of class ChromeEmulators.
      */
     @Test
-
     public void testGetEmulatorsList() {
-        assumeFalse(IS_TRAVIS_LINUX);
         System.out.println("getEmulatorsList");
         List<String> result = ChromeEmulators.getEmulatorsList();
-        assertEquals("Some/all emulators missing in the EmulatorsList", true,
-                Stream.of("Nexus 5", "Galaxy S5", "Nexus 6P", "iPhone 5", "iPhone 6 Plus")
-                        .allMatch(result::contains)
+        assertTrue(Stream.of("Nexus 5", "Galaxy S5", "Nexus 6P", "iPhone 5", "iPhone 6 Plus")
+                .allMatch(result::contains), "Some/all emulators missing in the EmulatorsList"
         );
 
     }

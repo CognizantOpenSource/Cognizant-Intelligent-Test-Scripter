@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.engine.reporting.util.TestInfo;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,36 +28,36 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * 
+ *
  */
 public class VStsSync implements Sync {
 
     private VStsClient conn;
-    ArrayList<VStsTestData> listOTest = new ArrayList<>();
+    private final ArrayList<VStsTestData> listOTest = new ArrayList<>();
     private String project = "";
     private int testPlanId;
     private static final Logger LOG = Logger.getLogger(VStsSync.class.getName());
 
-    public VStsSync(String server, String PAT, String project, int testPlanId) {
-        conn = new VStsClient(server, PAT);
+    public VStsSync(String server, String PAT, String project, int testPlanId, Map config) {
+        conn = new VStsClient(server, PAT, config);
         this.project = project;
         this.testPlanId = testPlanId;
     }
 
     /**
-     * 
+     *
      * @param options
      */
     public VStsSync(Properties options) {
         this(options.getProperty("VSTSUrl"), options.getProperty("VSTSAccessToken"),
-                options.getProperty("VSTSProject"), Integer.valueOf(options.getProperty("VSTSTestPlanId")));
+                options.getProperty("VSTSProject"), Integer.valueOf(options.getProperty("VSTSTestPlanId")),
+                options);
     }
 
     @Override
     public boolean isConnected() {
         try {
-            VStsHttpClient vc = new VStsHttpClient(conn.url, conn.PAT);
-            return conn.isConnected(vc) && conn.containsProject(project, vc);
+            return conn.isConnected() && conn.containsProject(project);
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, null, ex);
             return false;
@@ -85,5 +86,5 @@ public class VStsSync implements Sync {
     public String createIssue(JSONObject issue, List<File> attach) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
 }

@@ -104,6 +104,18 @@
             {
                 "name": "VSTSTestPlanId",
                 "value": ""
+            },
+			{
+                "name": "useProxy",
+                "value": "false"
+            },
+			{
+                "name": "proxyHost",
+                "value": ""
+            },
+			{
+                "name": "proxyPort",
+                "value": ""
             }
         ]
     },

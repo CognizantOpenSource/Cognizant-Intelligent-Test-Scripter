@@ -20,21 +20,15 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URL;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.AuthCache;
-import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -43,141 +37,47 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.config.Registry;
-import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.BasicAuthCache;
-import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
-import org.apache.http.ssl.SSLContextBuilder;
-import org.apache.http.util.EntityUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-public class BasicHttpClient {
+public class BasicHttpClient extends AbstractHttpClient {
 
-    public URL url;
+    private static final Logger LOG = Logger.getLogger(BasicHttpClient.class.getName());
 
-    CloseableHttpClient client;
-    HttpContext context;
+    public final URL url;
+    private CloseableHttpClient client;
+    private HttpContext context;
     /**
      * false - if the server has untrusted SSL (accept all cert) true - for
      * default system keystore
      */
-    boolean trusted = false;
-    UsernamePasswordCredentials creds;
+    private boolean trusted = false;
+    private UsernamePasswordCredentials creds;
+    private HttpHost proxy;
 
-    public BasicHttpClient(URL urL, String userName, String password) {
-        url = urL;
-        client = trusted ? getClient() : getCustomClient();
+    public BasicHttpClient(URL url, String userName, String password) {
+        this(url, userName, password, null);
+    }
+
+    public BasicHttpClient(URL url, String userName, String password, Map<String, String> config) {
+        this.url = url;
         try {
-            context = getContext(url.toURI(), (creds = new UsernamePasswordCredentials(userName, password)));
+            client = trusted ? getSystemClient() : getCustomClient();
+            creds = new UsernamePasswordCredentials(userName, password);
+            context = createContext(url.toURI(), creds);
+            if (config != null && Boolean.valueOf(config.get("useProxy"))) {
+                this.proxy = new HttpHost(config.get("proxyHost"),
+                        Integer.valueOf(config.get("proxyPort")));
+            }
         } catch (Exception ex) {
-            Logger.getLogger(BasicHttpClient.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, "Error creating HttpClient!", ex);
         }
-    }
-
-    public HttpHost getProxy() {
-        return new HttpHost(System.getProperties().getProperty("http.proxyHost", proxyHost()),
-                Integer.valueOf(System.getProperties().getProperty("http.proxyPort", proxyPort())));
-    }
-
-    public String proxyHost() {
-        return "proxy.cognizant.com";
-    }
-
-    public String proxyPort() {
-        return "6050";
-    }
-
-    public boolean hasProxy() {
-        return true;
-    }
-
-    /**
-     * returns systen Def client
-     *
-     * @return
-     */
-    final CloseableHttpClient getClient() {
-        return HttpClients.createSystem();
-    }
-
-    /**
-     * custom http client for server with SSL errors
-     *
-     * @return
-     */
-    final CloseableHttpClient getCustomClient() {
-        try {
-            HttpClientBuilder builder = HttpClientBuilder.create();
-            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
-                @Override
-                public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-                    return true;
-                }
-            }).build();
-            builder.setSSLContext(sslContext);
-            HostnameVerifier hostnameVerifier = new NoopHostnameVerifier();
-            SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-            Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-                    .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                    .register("https", sslSocketFactory)
-                    .build();
-            PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-            builder.setConnectionManager(connMgr);
-            return builder.build();
-        } catch (Exception ex) {
-            Logger.getLogger(BasicHttpClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return getClient();
-    }
-
-    /**
-     * execute the given URI request
-     *
-     * @param req
-     * @return
-     * @throws Exception
-     */
-    public CloseableHttpResponse execute(HttpUriRequest req) throws Exception {
-        DLogger.Log(req.toString());
-        if (hasProxy()) {
-            ((HttpRequestBase) req).setConfig(RequestConfig.custom().setProxy(getProxy()).build());
-        }
-        return client.execute(req, context);
-    }
-
-    private HttpContext getContext(URI uri,
-            UsernamePasswordCredentials creds) throws Exception {
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-                new AuthScope(uri.getHost(), uri.getPort()),
-                creds);
-        org.apache.http.HttpHost host = new org.apache.http.HttpHost(uri.getHost(), uri.getPort(), uri.getScheme());
-        AuthCache authCache = new BasicAuthCache();
-        BasicScheme basicAuth = new BasicScheme();
-        authCache.put(host, basicAuth);
-        HttpClientContext context1 = HttpClientContext.create();
-        context1.setCredentialsProvider(credsProvider);
-        context1.setAuthCache(authCache);
-        return context1;
     }
 
     /**
@@ -218,14 +118,29 @@ public class BasicHttpClient {
 
     public void auth(HttpRequest req) throws AuthenticationException {
         req.addHeader(new BasicScheme().authenticate(creds, req, context));
+    }
 
+    /**
+     * execute the given URI request
+     *
+     * @param req
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public CloseableHttpResponse execute(HttpUriRequest req) throws Exception {
+        DLogger.Log(req.toString());
+        if (Objects.nonNull(proxy)) {            
+            ((HttpRequestBase) req).setConfig(RequestConfig.custom().setProxy(proxy).build());
+        }
+        return client.execute(req, context);
     }
 
     /**
      * Http Post request for given data as JSON string
      *
      * @param targetUrl
-     * @param jsonStr
+     * @param data
      * @return
      * @throws Exception
      */
@@ -236,7 +151,6 @@ public class BasicHttpClient {
         auth(httpput);
         HttpResponse response = execute(httpput);
         return parseResponse(response);
-
     }
 
     public void setPutEntity(String xmlstr, HttpPut httpput) throws UnsupportedEncodingException {
@@ -260,7 +174,7 @@ public class BasicHttpClient {
         setHeader(httppost);
         auth(httppost);
         setPostEntity(toUplod, httppost);
-        return doPost(httppost);
+        return parseResponse(doPost(httppost));
     }
 
     /**
@@ -277,7 +191,7 @@ public class BasicHttpClient {
         setHeader(httppost);
         auth(httppost);
         setPostEntity(data, toUplod, httppost);
-        return doPost(httppost);
+        return parseResponse(doPost(httppost));
     }
 
     public void setPostEntity(File toUplod, HttpPost httppost) {
@@ -306,24 +220,14 @@ public class BasicHttpClient {
         HttpPost httppost = new HttpPost(targetUrl.toURI());
         setHeader(httppost);
         setPostEntity(payload, httppost);
-        return doPost(httppost);
+        return parseResponse(doPost(httppost));
     }
 
     public JSONObject patch(URL targetUrl, String payload) throws Exception {
         HttpPatch httppatch = new HttpPatch(targetUrl.toURI());
         setHeader(httppatch);
         setPatchEntity(payload, httppatch);
-        return doPatch(httppatch);
-    }
-
-    protected JSONObject doPost(HttpPost httppost) throws Exception {
-        HttpResponse response = execute(httppost);
-        return parseResponse(response);
-    }
-
-    protected JSONObject doPatch(HttpPatch httppatch) throws Exception {
-        HttpResponse response = execute(httppatch);
-        return parseResponse(response);
+        return parseResponse(doPatch(httppatch));
     }
 
     public void setPostEntity(String jsonStr, HttpPost httppost) throws UnsupportedEncodingException {
@@ -370,76 +274,11 @@ public class BasicHttpClient {
         return Get(setParams(builder, jsonStr).build());
     }
 
-    public JSONObject Get(URI uri) throws Exception {
+    private JSONObject Get(URI uri) throws Exception {
         HttpGet httpGet = new HttpGet(uri);
         setHeader(httpGet);
         auth(httpGet);
-        HttpResponse response = execute(httpGet);
-        return parseResponse(response);
-    }
-
-    /**
-     * Parse http response as JSON
-     *
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @SuppressWarnings("unchecked")
-    public JSONObject parseResponse(HttpResponse response) throws Exception {
-        HttpEntity entity = response.getEntity();
-        String resp = "";
-        try {
-            if (entity != null) {
-                resp = EntityUtils.toString(entity);
-                JSONParser parser = new JSONParser();
-                Object data = parser.parse(resp);
-                JSONObject jobj;
-                if (data instanceof JSONObject) {
-                    jobj = (JSONObject) data;
-                } else {
-                    jobj = new JSONObject();
-                    jobj.put("array", (JSONArray) data);
-                }
-                EntityUtils.consume(entity);
-                return jobj;
-            } else {
-                return null;
-            }
-        } catch (Exception ex) {
-            DLogger.Log("Unknown Response : ", resp);
-            Logger.getLogger(BasicHttpClient.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-            return null;
-        }
-    }
-
-    /**
-     * Builds URL params from input JSON string
-     *
-     * @param builder
-     * @param jsonStr
-     * @return
-     * @throws ParseException
-     */
-    private URIBuilder setParams(URIBuilder builder, String jsonStr) throws ParseException {
-
-        if (jsonStr != null && !"".equals(jsonStr)) {
-            try {
-                JSONParser parser = new JSONParser();
-                JSONObject json = (JSONObject) parser.parse(jsonStr);
-
-                for (Object Key : json.keySet()) {
-                    builder.setParameter(Key.toString(), (String) json.get(Key));
-                }
-
-            } catch (Exception ex) {
-                DLogger.LogE(ex.getMessage());
-                Logger.getLogger(BasicHttpClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
-        return builder;
+        return parseResponse(doGet(httpGet));
     }
 
 }

@@ -16,37 +16,10 @@
 package com.cognizant.cognizantits.engine.execution.exceptions.data;
 
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
-/**
- *
- * @author 389747
- */
 public class DataNotFoundExceptionTest {
-
-    public DataNotFoundExceptionTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of getTemplate method, of class DataNotFoundException.
@@ -57,7 +30,7 @@ public class DataNotFoundExceptionTest {
         Boolean isReusable = true;
         String expResult = "{0} \n"
                 + "[Env : {1} | Field : {2} | TestCase : {4}/{5} | Reusabe : {6}/{7} ]";
-        String result =DataNotFoundException.getTemplate(isReusable);
+        String result = DataNotFoundException.getTemplate(isReusable);
         assertEquals(expResult, result);
         isReusable = false;
         expResult = "{0} \n"
