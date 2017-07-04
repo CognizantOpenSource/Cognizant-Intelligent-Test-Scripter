@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galenframework.config.GalenConfig;
 import com.galenframework.config.GalenProperty;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -39,6 +40,11 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +59,7 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -160,6 +167,7 @@ public class WebDriverFactory {
                 caps = DesiredCapabilities.firefox().merge(caps);
                 if (!isGrid) {
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
+                    addGeckoDriverAddon((FirefoxDriver) driver);
                 }
                 break;
             case Chrome:
@@ -385,11 +393,13 @@ public class WebDriverFactory {
         } else {
             fProfile = new FirefoxProfile();
         }
-        if (SystemDefaults.getClassesFromJar.get() && SystemDefaults.debugMode.get()) {
-            if (FilePath.getFireFoxAddOnPath().exists()) {
-                fProfile.addExtension(FilePath.getFireFoxAddOnPath());
-            }
-        }
+
+//        Patch provided in addGeckoDriverAddon
+//        if (SystemDefaults.getClassesFromJar.get() && SystemDefaults.debugMode.get()) {
+//            if (FilePath.getFireFoxAddOnPath().exists()) {
+//                fProfile.addExtension(FilePath.getFireFoxAddOnPath());
+//            }
+//        }
 
         fProfile = addFFProfile(fProfile);
         caps.setCapability(FirefoxDriver.PROFILE, fProfile);
@@ -434,5 +444,40 @@ public class WebDriverFactory {
         //Do your ChromeOptions Settings over here
 
         return chromeOptions;
+    }
+
+    /**
+     * Patch for
+     * https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/issues/7
+     * Based on
+     * https://github.com/mozilla/geckodriver/issues/759#issuecomment-308522851
+     *
+     * @param fDriver FirefoxDriver
+     */
+    private static void addGeckoDriverAddon(FirefoxDriver fDriver) {
+        if (SystemDefaults.getClassesFromJar.get() && SystemDefaults.debugMode.get()) {
+            if (FilePath.getFireFoxAddOnPath().exists()) {
+                HttpCommandExecutor ce = (HttpCommandExecutor) fDriver.getCommandExecutor();
+                String url = ce.getAddressOfRemoteServer() + "/session/" + fDriver.getSessionId() + "/moz/addon/install";
+                addGeckoDriverAddon(FilePath.getFireFoxAddOnPath(), url);
+            }
+        }
+    }
+
+    private static Boolean addGeckoDriverAddon(File addonLoc, String url) {
+        try {
+            HttpClient client = HttpClients.createDefault();
+            HttpPost post = new HttpPost(url);
+            Map<String, Object> addonInfo = new HashMap<>();
+            addonInfo.put("temporary", true);
+            addonInfo.put("path", addonLoc.getAbsolutePath());
+            String json = new Gson().toJson(addonInfo);
+            StringEntity requestEntity = new StringEntity(json, ContentType.APPLICATION_JSON);
+            post.setEntity(requestEntity);
+            return client.execute(post).getStatusLine().getStatusCode() == 200;
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
