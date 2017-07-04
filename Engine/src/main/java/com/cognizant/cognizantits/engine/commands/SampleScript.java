@@ -119,9 +119,7 @@ public class SampleScript extends General {
 
             //To get all the subiteration values for current Scenario/TestCase/Iteration
             testDataView.records();
-
-            //To get a row of value 
-//            tdModel.view().w
+            
             // to access the data from DataSheets pass TestDataname and
             // Column name as inputs
             // Don't pass GlobalData as inputsheet
