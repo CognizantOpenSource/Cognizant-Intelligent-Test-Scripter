@@ -17,6 +17,18 @@
             {
                 "name": "JIRAZephyrProject",
                 "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
+                "value": ""
             }
         ]
     },
@@ -49,6 +61,18 @@
             },
             {
                 "name": "qcTestsetName",
+                "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
                 "value": ""
             }
         ]
@@ -83,6 +107,18 @@
             {
                 "name": "qcTestsetName",
                 "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
+                "value": ""
             }
         ]
     },
@@ -105,15 +141,15 @@
                 "name": "VSTSTestPlanId",
                 "value": ""
             },
-			{
+	    {
                 "name": "useProxy",
                 "value": "false"
             },
-			{
+	    {
                 "name": "proxyHost",
                 "value": ""
             },
-			{
+	    {
                 "name": "proxyPort",
                 "value": ""
             }
@@ -140,6 +176,18 @@
             },
             {
                 "name": "ZephyrTestPhase",
+                "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
                 "value": ""
             }
         ]
