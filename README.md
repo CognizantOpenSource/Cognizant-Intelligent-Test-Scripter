@@ -1,4 +1,10 @@
-# Cognizant Intelligent Test Scripter [![Build Status](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter.svg?branch=master)](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Cognizant-Intelligent-Test-Scripter) [![Google Group](https://img.shields.io/badge/%E2%9C%89-Google%20Group-blue.svg)](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter)
+<h1 align="center"> Cognizant Intelligent Test Scripter </h1> 
+<div align="center">
+
+[![Build Status](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter.svg?branch=master)](https://travis-ci.org/CognizantQAHub/Cognizant-Intelligent-Test-Scripter) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Cognizant-Intelligent-Test-Scripter) [![Google Group](https://img.shields.io/badge/%E2%9C%89-Google%20Group-blue.svg)](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter) 
+[![release](http://github-release-version.herokuapp.com/github/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/release.svg?style=flat)](../../releases/latest)
+
+</div>
 
 Cognizant Intelligent Test Scripter is an open-source script-less test automation solution that provides a unified interface for all the “day-to-day” test automation activities such as test design, development, execution, reporting and maintenance.
 
