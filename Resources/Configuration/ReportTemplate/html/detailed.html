@@ -115,7 +115,7 @@
         </div>
         <div id="screen-shadow"></div>
         <div id="popup" class="popup">
-	    <text class = "newTabBtn" onClick="openInNewTab()">Open in New Tab</text>
+	    <text class = "newTabBtn" onClick="window.open($('#screenShotImage').attr('src'), '_blank');">Open in New Tab</text>
             <div class="popup-wrapper">
                 <a class="popup-close-link" href="#">close</a>
                 <div class="popup-content"></div>
