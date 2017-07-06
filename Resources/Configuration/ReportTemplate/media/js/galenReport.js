@@ -52,13 +52,13 @@ function setStatusLink(stat, actualImagePath, expectedImagePath, mapImagePath, o
     }
     return stat;
 }
-var screenshot;
+
 function setStatus() {
     var $this = $(this);
     var actualImagePath = $this.attr("data-actual-image");
     var expectedImagePath = $this.attr("data-expected-image");
     var mapImagePath = $this.attr("data-map-image");
-    screenshot = $this.attr("data-screenshot-image");
+    var screenshot = $this.attr("data-screenshot-image");
     var objects = $this.attr("data-objects-area");
     if (actualImagePath && actualImagePath !== "undefined") {
         showImageComparison(actualImagePath, expectedImagePath, mapImagePath);
@@ -68,7 +68,7 @@ function setStatus() {
     }
 }
 function openInNewTab(){
-	window.open(window.location.href.substring(0,window.location.href.lastIndexOf('/'))+ screenshot.substring(1,screenshot.length), '_blank');
+    window.open($("#screenShotImage").attr("src"), '_blank');
 }
 
 function showImageComparison(actualImagePath, expectedImagePath, mapImagePath) {
