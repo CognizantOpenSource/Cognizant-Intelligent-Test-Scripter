@@ -14,11 +14,13 @@
  * limitations under the License.
  **/
 jQuery.fn.centerHorizontally = function () {
-    this.css("position", "absolute");
-    this.css("top", Math.max(0, $(window).scrollTop() + 80) + "px");
+    this.css("position", "fixed");
+    this.css("top", 40 + "px");
+    this.css("width", Math.max(0, (($(window).width() - 50))) + "px");
+    this.css("height", Math.max(0, (($(window).height() - 50))) + "px");
+    this.css("overflow", "auto");
     console.log($(this).outerWidth());
-    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
-            $(window).scrollLeft()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
     return this;
 }
 
@@ -50,13 +52,13 @@ function setStatusLink(stat, actualImagePath, expectedImagePath, mapImagePath, o
     }
     return stat;
 }
-
+var screenshot;
 function setStatus() {
     var $this = $(this);
     var actualImagePath = $this.attr("data-actual-image");
     var expectedImagePath = $this.attr("data-expected-image");
     var mapImagePath = $this.attr("data-map-image");
-    var screenshot = $this.attr("data-screenshot-image");
+    screenshot = $this.attr("data-screenshot-image");
     var objects = $this.attr("data-objects-area");
     if (actualImagePath && actualImagePath !== "undefined") {
         showImageComparison(actualImagePath, expectedImagePath, mapImagePath);
@@ -65,7 +67,9 @@ function setStatus() {
         showScreenShot(objects, screenshot);
     }
 }
-
+function openInNewTab(){
+	window.open(window.location.href.substring(0,window.location.href.lastIndexOf('/'))+ screenshot.substring(1,screenshot.length), '_blank');
+}
 
 function showImageComparison(actualImagePath, expectedImagePath, mapImagePath) {
     loadImage(actualImagePath, function (actualImage, actualImageWidth, actualImageHeight) {
