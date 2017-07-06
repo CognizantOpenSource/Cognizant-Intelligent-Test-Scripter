@@ -20,7 +20,16 @@ h1 {
     font-size: 24px;
     margin-top: 4px;
 }
-
+.newTabBtn {
+    position: absolute;
+    margin: 13px 15px;
+    font-size: 10px;
+    background-color: #dcdcdc;
+    padding: 2px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 2;
+}
 .small{
     font-family:verdana;    font-size:8px;
 }

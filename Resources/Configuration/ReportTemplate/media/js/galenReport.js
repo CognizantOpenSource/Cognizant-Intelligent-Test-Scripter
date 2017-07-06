@@ -14,11 +14,15 @@
  * limitations under the License.
  **/
 jQuery.fn.centerHorizontally = function () {
-    this.css("position", "absolute");
-    this.css("top", Math.max(0, $(window).scrollTop() + 80) + "px");
-    console.log($(this).outerWidth());
-    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
-            $(window).scrollLeft()) + "px");
+    this.css({
+	position: 'fixed',
+	top: '40px',
+	width: Math.max(0, (($(window).width() - 70))) + "px",
+	height: Math.max(0, (($(window).height() - 50))) + "px",
+	overflow: 'auto',
+	left: "30px",
+	z-index: '2'
+    });
     return this;
 }
 
@@ -65,7 +69,6 @@ function setStatus() {
         showScreenShot(objects, screenshot);
     }
 }
-
 
 function showImageComparison(actualImagePath, expectedImagePath, mapImagePath) {
     loadImage(actualImagePath, function (actualImage, actualImageWidth, actualImageHeight) {
