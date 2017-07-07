@@ -21,7 +21,7 @@ jQuery.fn.centerHorizontally = function () {
 	height: Math.max(0, (($(window).height() - 50))) + "px",
 	overflow: 'auto',
 	left: "30px",
-	z-index: '2'
+	'z-index': '2'
     });
     return this;
 }
