@@ -138,7 +138,11 @@ public class SeleniumDriver {
 
     public Boolean isAlive() {
         try {
-            driver.getCurrentUrl();
+            if(driver instanceof MobileDriver){
+                driver.manage();
+            } else {
+                driver.getCurrentUrl();
+            }
             return true;
         } catch (Exception ex) {
             throw new DriverClosedException(runContext.BrowserName);
