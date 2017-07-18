@@ -21,6 +21,8 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,10 +72,10 @@ public class BasicHttpClientTest {
     @Test(description = "http-get of remote address")
     public void testGetHttp() throws Exception {
         System.out.println("Get-http");
-        URL targetUrl = new URL("http://postman-echo.com/get");
-        BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");
+        URL targetUrl = new URL("http://echo.jsontest.com/data/vola");       
+        BasicHttpClient instance = new BasicHttpClient(targetUrl, "", "");
         JSONObject result = instance.Get(targetUrl, "data", "vola");
-        assertEquals(result.get("args"), getArgs);
+        assertEquals(result, getArgs);
     }
 
     /**
