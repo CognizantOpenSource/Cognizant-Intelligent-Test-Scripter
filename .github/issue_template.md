@@ -2,12 +2,16 @@
 IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOUT INVESTIGATING
 -->
 
-**I'm submitting a ...**  (check one with "x")
-```
-[ ] bug report => search github for a similar issue or PR before submitting
-[ ] feature request
-[ ] support request => Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter)
-```
+**I'm submitting a ...**  <!--(check one with "x")-->
+
+[ ] bug report   
+<!-- Check the [issues section](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/issues?utf8=%E2%9C%93&q=) to see if it is already logged before submitting -->
+
+[ ] feature request  
+
+[ ] support request
+<!-- Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) or [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter) -->
+
 
 **Current behavior**
 <!--Describe current behavior of the application-->
@@ -36,7 +40,7 @@ please provide the *STEPS TO REPRODUCE* and if possible a *DEMO* of the problem.
 * **Selenium :**
 <!-- Selenium Version -->
 
-* **Driver :** 
-<!-- Driver(Chrome/IE/Firefox) Version -->
+* **Browser | Driver  :** 
+<!-- (Chrome/IE/Firefox) Version -->
 
 
