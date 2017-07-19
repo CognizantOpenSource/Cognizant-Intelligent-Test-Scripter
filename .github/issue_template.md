@@ -3,9 +3,14 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOU
 -->
 
 **I'm submitting a ...**  <!--(check one with "x")-->
-- [ ] bug report => Check the [issues section](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/issues?utf8=%E2%9C%93&q=) to see if it is already logged before submitting
-- [ ] feature request
-- [ ] support request => Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) or [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter)
+
+[ ] bug report   
+<!-- Check the [issues section](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter/issues?utf8=%E2%9C%93&q=) to see if it is already logged before submitting -->
+
+[ ] feature request  
+
+[ ] support request
+<!-- Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) or [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter) -->
 
 
 **Current behavior**
