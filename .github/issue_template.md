@@ -2,12 +2,11 @@
 IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOUT INVESTIGATING
 -->
 
-**I'm submitting a ...**  (check one with "x")
-```
-[ ] bug report => search github for a similar issue or PR before submitting
-[ ] feature request
-[ ] support request => Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter)
-```
+**I'm submitting a ...**  <!--(check one with "x")-->
+- [ ] bug report => search github for a similar issue or PR before submitting
+- [ ] feature request
+- [ ] support request => Please do not submit support request here, instead see [Gitter](https://gitter.im/Cognizant-Intelligent-Test-Scripter) or [Google Group](https://groups.google.com/forum/#!forum/cognizant-intelligent-test-scripter)
+
 
 **Current behavior**
 <!--Describe current behavior of the application-->
