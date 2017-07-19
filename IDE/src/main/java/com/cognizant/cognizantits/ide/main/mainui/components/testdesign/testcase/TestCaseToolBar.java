@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.engine.drivers.WebDriverFactory;
 import com.cognizant.cognizantits.ide.main.utils.SearchBox;
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.settings.IconSettings;
+import java.awt.event.ItemEvent;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
@@ -31,7 +32,7 @@ import javax.swing.JToolBar;
 
 /**
  *
- * 
+ *
  */
 public class TestCaseToolBar extends JToolBar {
 
@@ -43,6 +44,8 @@ public class TestCaseToolBar extends JToolBar {
     private JButton consoleButton;
 
     private JButton runButton;
+
+    private JButton debugButton;
 
     private JButton record;
 
@@ -80,12 +83,11 @@ public class TestCaseToolBar extends JToolBar {
         record.setToolTipText("Start/Stop Recording");
         record.setIcon(IconSettings.getIconSettings().getRecordStartIcon());
 
-        JButton debug;
         add(runButton = Utils.createButton("Run", "run", "F6", testCaseComp));
-        add(debug = Utils.createButton("Debug", "debug", "Ctrl+F6", testCaseComp));
+        add(debugButton = Utils.createButton("Debug", "debug", "Ctrl+F6", testCaseComp));
 
         runButton.setComponentPopupMenu(browsersMenu);
-        debug.setComponentPopupMenu(browsersMenu);
+        debugButton.setComponentPopupMenu(browsersMenu);
         addSeparator();
 
         JButton addRowButton = Utils.createButton("Add Row", "add", ""
@@ -139,6 +141,13 @@ public class TestCaseToolBar extends JToolBar {
         for (String browser : browsers) {
             browsersMenu.add(browserMenuItem = new JRadioButtonMenuItem(browser));
             browserMenuItem.setActionCommand(browser);
+            browserMenuItem.addItemListener((ItemEvent ie) -> {
+                if (ie.getStateChange() == ItemEvent.SELECTED) {
+                    String selBrowser = ((JRadioButtonMenuItem) ie.getSource()).getText() + ". Right Click to change the browser";
+                    runButton.setToolTipText("Run [F6] - with " + selBrowser);
+                    debugButton.setToolTipText("Debug [Ctrl+F6] - with " + selBrowser);
+                }
+            });
             browserSelectButtonGroup.add(browserMenuItem);
         }
     }
@@ -168,7 +177,7 @@ public class TestCaseToolBar extends JToolBar {
     }
 
     void setPlaceHolderText(String text, String toolTip) {
-        searchField.setPlaceHolder(text,toolTip);
+        searchField.setPlaceHolder(text, toolTip);
     }
 
     void startMode() {
