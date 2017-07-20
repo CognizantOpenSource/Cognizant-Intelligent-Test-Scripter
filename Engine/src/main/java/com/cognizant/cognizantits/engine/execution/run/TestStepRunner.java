@@ -109,9 +109,10 @@ public class TestStepRunner {
             } catch (DataNotFoundException ex) {
                 throw ex;
             } catch (Exception ex) {
-                LOG.log(Level.WARNING, "Unable to load reusable", ex);
+                throw ex;
             }
         }
+        LOG.log(Level.WARNING, "unable to load reusable");
     }
 
     private void executeTestCase(TestCaseRunner context, TestCase stc) throws DataNotFoundException {
