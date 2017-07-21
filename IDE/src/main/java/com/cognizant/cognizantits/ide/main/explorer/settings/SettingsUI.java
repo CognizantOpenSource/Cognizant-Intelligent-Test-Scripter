@@ -57,6 +57,7 @@ public class SettingsUI extends javax.swing.JFrame {
         updateModuleDropDown();
         TableCheckBoxColumn.installFor(fieldsTable, 0);
         JtableUtils.addlisteners(fieldsTable, true);
+        fieldsTable.getTableHeader().setReorderingAllowed(false);
         JtableUtils.addlisteners(modulesTable, false);
         loadExplorerSettings();
         fieldConfig.setAlwaysOnTop(true);
@@ -861,6 +862,10 @@ public class SettingsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Object rowValue = fieldsTable.getValueAt(fieldsTable.getSelectedRow(), 1);
+        if (rowValue != null) {
+            conn.DeleteField(moduleList.getSelectedItem().toString(), rowValue.toString());
+        }
         JtableUtils.deleterow(fieldsTable);
     }//GEN-LAST:event_jButton6ActionPerformed
 
