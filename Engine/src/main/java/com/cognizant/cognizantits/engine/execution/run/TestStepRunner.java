@@ -103,9 +103,10 @@ public class TestStepRunner {
      * @throws DataNotFoundException, ForcedException
      */
     private void execute(TestCaseRunner context) throws DataNotFoundException, ForcedException {
-        if (getStep().getAction().matches(".*:.*")) {
-            String scenario = getStep().getAction().split(":", 2)[0];
-            String testcase = getStep().getAction().split(":", 2)[1];
+        if (getStep().isReusableStep()) {
+            String[] rData = getStep().getReusableData();
+            String scenario = rData[0];
+            String testcase = rData[1];
             Scenario scn = context.project().getScenarioByName(scenario);
             if (scn != null) {
                 TestCase stc = scn.getTestCaseByName(testcase);
