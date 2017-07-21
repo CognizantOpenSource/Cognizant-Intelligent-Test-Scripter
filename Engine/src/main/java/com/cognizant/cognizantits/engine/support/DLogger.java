@@ -31,7 +31,8 @@ public class DLogger {
     }
 
     public static boolean debug() {
-        return SystemDefaults.debug();                
+        return SystemDefaults.CLVars.containsKey("debug") 
+                || SystemDefaults.debugMode.get();
         
     }
 

@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 /**
  *
- *
+ * 
  */
 public class ProjectRunner implements TestRunner {
 
@@ -182,7 +182,7 @@ public class ProjectRunner implements TestRunner {
          */
         for (Map.Entry<String, String> e : System.getenv().entrySet()) {
             if (e.getKey().startsWith("app.")) {
-                    prop.put(e.getKey().replace("app.", ""), e.getValue());
+                prop.put(e.getKey().replace("app.", ""), e.getValue());
             }
         }
         /**
@@ -192,8 +192,7 @@ public class ProjectRunner implements TestRunner {
 
         prop.putAll(SystemDefaults.EnvVars);
         if (!prop.isEmpty()) {
-            System.out.println("Override with Environment Settings :\n "
-                    + (SystemDefaults.debug() ? prop : prop.keySet()));
+            System.out.println("Override with Environment Settings :\n " + prop);
             /*
              * update the exe/run/user settings with CLI's Env settings
              * (case sensitive)
