@@ -94,6 +94,7 @@ public class MobileORPage implements ORPageInf<MobileORObject, MobileOR> {
     public void removeFromParent() {
         root.setSaved(false);
         root.getPages().remove(this);
+        FileUtils.deleteFile(getRepLocation());
     }
 
     @JsonIgnore

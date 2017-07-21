@@ -96,6 +96,7 @@ public class WebORPage implements ORPageInf<WebORObject, WebOR> {
     public void removeFromParent() {
         root.setSaved(false);
         root.getPages().remove(this);
+        FileUtils.deleteFile(getRepLocation());
     }
 
     @JsonIgnore
