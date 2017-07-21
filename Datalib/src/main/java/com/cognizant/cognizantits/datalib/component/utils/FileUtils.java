@@ -148,7 +148,7 @@ public class FileUtils {
             if (src.exists()) {
                 File target = new File(src.getParent(), toName);
                 if (target.exists()) {
-                    LOGGER.log(Level.WARNING, " target {1} exists failed to rename {1}",
+                    LOGGER.log(Level.INFO, "A File with Name '{1}' already exists, failed to rename '{0}'",
                             new Object[]{fromFile, toName});
                     return false;
                 }
