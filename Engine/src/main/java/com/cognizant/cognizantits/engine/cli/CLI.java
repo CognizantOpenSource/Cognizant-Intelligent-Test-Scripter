@@ -61,6 +61,7 @@ public class CLI {
             SystemDefaults.CLVars.put(vals[0], vals[1]);
         } else {
             /*
+            * handle as a flag if it doesn't match key=var
             */
             SystemDefaults.CLVars.put(val, "true");
         }
