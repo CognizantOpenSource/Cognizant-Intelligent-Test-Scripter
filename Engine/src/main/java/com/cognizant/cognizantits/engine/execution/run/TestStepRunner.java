@@ -22,6 +22,7 @@ import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.execution.data.DataProcessor;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
+import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
 import com.cognizant.cognizantits.engine.support.Status;
@@ -29,6 +30,7 @@ import com.cognizant.cognizantits.engine.support.Step;
 import com.cognizant.cognizantits.engine.support.reflect.MethodExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.lang.String.format;
 
 public class TestStepRunner {
 
@@ -93,25 +95,36 @@ public class TestStepRunner {
         return testStep;
     }
 
-    private void execute(TestCaseRunner context) throws DataNotFoundException {
-        if (getStep().getAction().matches(".*:.*")) {
-            String scenario = getStep().getAction().split(":", 2)[0];
-            String testcase = getStep().getAction().split(":", 2)[1];
-            try {
-                Scenario scn = context.project().getScenarioByName(scenario);
-                if (scn != null) {
-                    TestCase stc = scn.getTestCaseByName(testcase);
-                    if (stc != null) {
-                        executeTestCase(context, stc);
-                        return;
-                    }
+    /**
+     * parse the Execute action to reusable testcase and executes in the current
+     * testcase context
+     *
+     * @param context - current testcase context to run the reusable
+     * @throws DataNotFoundException, ForcedException
+     */
+    private void execute(TestCaseRunner context) throws DataNotFoundException, ForcedException {
+        if (getStep().isReusableStep()) {
+            String[] rData = getStep().getReusableData();
+            String scenario = rData[0];
+            String testcase = rData[1];
+            Scenario scn = context.project().getScenarioByName(scenario);
+            if (scn != null) {
+                TestCase stc = scn.getTestCaseByName(testcase);
+                if (stc != null) {
+                    executeTestCase(context, stc);
+                    return;
+                } else {
+                    throw new ForcedException("unable to load reusable",
+                            format("reusable testcase [%s] not found", testcase));
                 }
-            } catch (DataNotFoundException ex) {
-                throw ex;
-            } catch (Exception ex) {
-                LOG.log(Level.WARNING, "Unable to load reusable", ex);
+            } else {
+                throw new ForcedException("unable to load reusable",
+                        format("scenario [%s] not found", scenario));
             }
         }
+        throw new ForcedException("unable to load reusable",
+                format("invalid reusable [%s], expected format [scenario:reusable]",
+                        getStep().getAction()));
     }
 
     private void executeTestCase(TestCaseRunner context, TestCase stc) throws DataNotFoundException {
