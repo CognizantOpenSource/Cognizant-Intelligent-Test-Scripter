@@ -60,6 +60,8 @@ public class CLI {
             String[] vals = val.split("=", 2);
             SystemDefaults.CLVars.put(vals[0], vals[1]);
         } else {
+            /*
+            */
             SystemDefaults.CLVars.put(val, "true");
         }
     }

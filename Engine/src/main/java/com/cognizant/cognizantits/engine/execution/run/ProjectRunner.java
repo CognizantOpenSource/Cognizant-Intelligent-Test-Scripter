@@ -191,8 +191,11 @@ public class ProjectRunner implements TestRunner {
 
         prop.putAll(SystemDefaults.EnvVars);
         if (!prop.isEmpty()) {
+            /*
+            * display entries only if debug flag is set
+            */
             System.out.println("Override with Environment Settings :\n "
-                    + (SystemDefaults.debug() ? prop : prop.keySet()));
+                    + (SystemDefaults.debug() ? prop.entrySet() : prop.keySet()));
             /*
              * update the exe/run/user settings with CLI's Env settings
              * (case sensitive)
