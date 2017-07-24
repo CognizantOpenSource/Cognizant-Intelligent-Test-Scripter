@@ -94,4 +94,7 @@ public class SystemDefaults {
         System.out.println(String.format("%-20s : %s", key, System.getProperty(key)));
     }
 
+    public static boolean debug() {
+        return debugMode.get() || Boolean.valueOf(CLVars.get("debug"));
+    }
 }

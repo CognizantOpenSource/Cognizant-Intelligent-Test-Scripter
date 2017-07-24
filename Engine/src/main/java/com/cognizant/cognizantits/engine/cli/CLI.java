@@ -36,7 +36,7 @@ import org.json.simple.JSONValue;
 
 /**
  *
- * 
+ *
  */
 public class CLI {
 
@@ -56,9 +56,12 @@ public class CLI {
     }
 
     static void setVar(String val) {
-        String key = val.substring(0, val.indexOf('='));
-        val = val.substring(val.indexOf('=') + 1);
-        SystemDefaults.CLVars.put(key, val);
+        if (val.contains("=")) {
+            String[] vals = val.split("=", 2);
+            SystemDefaults.CLVars.put(vals[0], vals[1]);
+        } else {
+            SystemDefaults.CLVars.put(val, "true");
+        }
     }
 
     static void setEnv(String val) {
@@ -317,5 +320,6 @@ public class CLI {
         public static final String BROWSER_NAME = "browser";
         public static final String VERSION = "version";
         public static final String V = "v";
+        public static final String DEBUG = "debug";
     }
 }

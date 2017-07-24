@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * 
+ *
  */
 public class ProjectRunner implements TestRunner {
 
@@ -186,13 +186,13 @@ public class ProjectRunner implements TestRunner {
             }
         }
         /**
-         * update with app CLI's setEnv settings (will override the System
-         * Env)
+         * update with app CLI's setEnv settings (will override the System Env)
          */
 
         prop.putAll(SystemDefaults.EnvVars);
         if (!prop.isEmpty()) {
-            System.out.println("Override with Environment Settings :\n " + prop);
+            System.out.println("Override with Environment Settings :\n "
+                    + (SystemDefaults.debug() ? prop : prop.keySet()));
             /*
              * update the exe/run/user settings with CLI's Env settings
              * (case sensitive)
