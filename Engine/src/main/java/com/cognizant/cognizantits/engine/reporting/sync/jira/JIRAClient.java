@@ -34,9 +34,10 @@ public class JIRAClient {
     public URL url;
 
     public Map<String, Map<Object, Integer>> tsets = new HashMap<>();
-    public static String JIRAIssue = "/rest/api/latest/issue",
-            JIRAIssueAttach = "/rest/api/latest/issue/issuekey/attachments";
-    
+    public static String JIRAIssue = "rest/api/latest/issue",
+            JIRAIssueAttach = "rest/api/latest/issue/issuekey/attachments",
+            JIRAProject = "rest/api/latest/project";
+
     String jsonStr = null;
 
     public JIRAClient(String url, String username, String password) {
@@ -50,8 +51,7 @@ public class JIRAClient {
             if (!jiraUrl.endsWith("/")) {
                 jiraUrl = jiraUrl.concat("/");
             }
-            URL main = new URL(jiraUrl);
-            this.url = main;
+            this.url = new URL(jiraUrl);
         } catch (MalformedURLException ex) {
             Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -198,7 +198,7 @@ public class JIRAClient {
     public boolean containsProject(String project, JIRAHttpClient jc) {
 
         try {
-            String res = jc.Get(new URL(jc.url + "/rest/api/latest/project"))
+            String res = jc.Get(new URL(jc.url + JIRAProject))
                     .toString();
             return res.contains("\"key\":\"" + project + "\"")
                     || ZAPIClient.getProjID(project, jc) != -1;
@@ -213,7 +213,7 @@ public class JIRAClient {
     public boolean isConnected(JIRAHttpClient httpclient) {
         try {
             DLogger.Log(httpclient.Get(
-                    new URL(httpclient.url + "/rest/api/latest/project"))
+                    new URL(httpclient.url + JIRAProject))
                     .toString());
             return true;
         } catch (Exception ex) {

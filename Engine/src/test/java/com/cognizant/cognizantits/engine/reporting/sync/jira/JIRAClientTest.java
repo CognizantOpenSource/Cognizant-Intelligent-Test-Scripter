@@ -22,9 +22,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class JIRAClientTest {
+
+    @Test(enabled = false)
+    public void testConnection() {
+        JIRASync sync = new JIRASync(Data.server, Data.uname, Data.pass, Data.project);
+        Assert.assertTrue(sync.isConnected());
+    }
 
     @Test(enabled = false)
     public void testUpdateResult_0args() throws Exception {
