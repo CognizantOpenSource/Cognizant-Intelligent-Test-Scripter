@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.engine.reporting.sync.jira;
 
 import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 import org.json.simple.JSONObject;
@@ -26,7 +27,7 @@ import org.testng.annotations.Test;
 public class JIRAClientTest {
 
     @Test(enabled = false)
-    public void testConnection() {
+    public void testConnection() throws MalformedURLException {
         JIRASync sync = new JIRASync(Data.server, Data.uname, Data.pass, Data.project);
         Assert.assertTrue(sync.isConnected());
     }
@@ -43,7 +44,7 @@ public class JIRAClientTest {
     }
 
     @Test(enabled = false)
-    public void testCreateIssue_JSONObject_List() {
+    public void testCreateIssue_JSONObject_List() throws MalformedURLException {
         JSONObject res = null;
         JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass, null);
         Map issue = getIssue(Data.project);
