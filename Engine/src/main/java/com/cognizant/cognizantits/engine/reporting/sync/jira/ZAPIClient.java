@@ -41,8 +41,6 @@ public class ZAPIClient {
             EXECUTIONS = "rest/zapi/latest/execution",
             API = "rest/zapi/latest/moduleInfo",
             UPDATERESULT = "rest/zapi/latest/execution/{{eid}}/quickExecute";
-    static JSONObject empty = new JSONObject();
-    static String emptyStr = empty.toString();
 
     class array {
 
