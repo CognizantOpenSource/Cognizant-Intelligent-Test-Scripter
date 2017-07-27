@@ -25,6 +25,7 @@ import com.cognizant.cognizantits.engine.execution.exception.DriverClosedExcepti
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.Step;
 import com.cognizant.cognizantits.engine.support.reflect.MethodExecutor;
@@ -38,6 +39,7 @@ public class TestStepRunner {
 
     private final TestStep testStep;
     private final Parameter parameter;
+    private Step step;
 
     public TestStepRunner(TestStep testStep, Parameter parameter) {
         this.parameter = parameter;
@@ -54,6 +56,8 @@ public class TestStepRunner {
             if (context.executor().isDebugExe()) {
                 checkForDebug();
             }
+            step = new Step(testStep, context);
+            context.getReport().updateStepDetails(step);
             switch (getStep().getObject()) {
                 case "Execute":
                     execute(context);
@@ -114,15 +118,14 @@ public class TestStepRunner {
                     executeTestCase(context, stc);
                     return;
                 } else {
-                    throw new ForcedException("unable to load reusable",
-                            format("reusable testcase [%s] not found", testcase));
+                    throw new ForcedException(format("reusable testcase [//%s/%s] not found",
+                            scenario, testcase));
                 }
             } else {
-                throw new ForcedException("unable to load reusable",
-                        format("scenario [%s] not found", scenario));
+                throw new ForcedException(format("scenario [%s] not found", scenario));
             }
         }
-        throw new ForcedException("unable to load reusable",
+        throw new ForcedException(
                 format("invalid reusable [%s], expected format [scenario:reusable]",
                         getStep().getAction()));
     }
@@ -139,22 +142,23 @@ public class TestStepRunner {
 
     private void executeStep(TestCaseRunner context) throws DataNotFoundException, DriverClosedException {
         try {
-            Step curr = new Step(testStep, context);
             Annotation ann = new Annotation(context.getControl());
             ann.beforeStepExecution();
-            executeStep(context, curr);
+            executeStep(context, step, parameter);
             ann.afterStepExecution();
-        } catch (DataNotFoundException | DriverClosedException ex) {
+        } catch (DataNotFoundException | DriverClosedException
+                | ForcedException | ElementException ex) {
             throw ex;
         } catch (Throwable ex) {
             throw new UnKnownError(ex);
         }
     }
 
-    private void executeStep(TestCaseRunner context, Step curr) throws Throwable {
-        context.getReport().updateStepDetails(curr.printStep());
-        context.getControl().sync(curr, String.valueOf(parameter.getSubIteration()));
-        executeAction(context, curr.Action);
+    private void executeStep(TestCaseRunner context, Step step, Parameter parameter)
+            throws Throwable {
+        step.printStep();
+        context.getControl().sync(step, String.valueOf(parameter.getSubIteration()));
+        executeAction(context, step.Action);
     }
 
     public void executeAction(TestCaseRunner context, String action) throws Throwable {

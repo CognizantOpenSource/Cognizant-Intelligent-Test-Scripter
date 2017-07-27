@@ -15,31 +15,22 @@
  */
 package com.cognizant.cognizantits.engine.execution.exception;
 
-public class ForcedException extends RuntimeException {
+public class TestFailedException extends RuntimeException {
 
-    public String ErrorName;
-    public String ErrorDescription;
+    private String testName;
 
-    public ForcedException(String errorName, String errorDescription) {
-        this.ErrorName = errorName;
-        this.ErrorDescription = errorDescription;
-
-    }
-
-    public ForcedException(String errorName, Throwable ex) {
+    public TestFailedException(String scenario, String testcase, Throwable ex) {
         super(ex);
-        this.ErrorName = errorName;
-        this.ErrorDescription = ex.getMessage();
+        this.testName = String.format("//%s/%s", scenario, testcase);
     }
 
-    public ForcedException(String errorDescription) {
-        this.ErrorName = "ForcedException";
-        this.ErrorDescription = errorDescription;
+    public TestFailedException(String errorDescription, Throwable ex) {
+        super(errorDescription, ex);
     }
 
     @Override
     public String getMessage() {
-        return ErrorDescription;
+        return String.format("Error in testcase [%s]", testName);
     }
 
 }
