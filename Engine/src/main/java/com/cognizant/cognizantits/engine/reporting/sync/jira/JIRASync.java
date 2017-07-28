@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.engine.reporting.sync.Sync;
 import com.cognizant.cognizantits.engine.reporting.util.TestInfo;
 import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -29,66 +30,58 @@ import org.json.simple.JSONObject;
 
 public class JIRASync implements Sync {
 
-    private JIRAClient conn;
-    private String project = "";
-    private JIRAHttpClient jc;
+    private static final Logger LOG = Logger.getLogger(JIRASync.class.getName());
+    private JIRAClient restClient;
+    private String project;
 
-    public JIRASync(String server, String uname, String pass, String project) {
+    public JIRASync(String server, String uname, String pass, String project)
+            throws MalformedURLException {
         this(server, uname, pass, project, null);
     }
 
-    public JIRASync(String server, String uname, String pass, String project, Map options) {
-        conn = new JIRAClient(server, uname, pass);
+    public JIRASync(String server, String uname, String pass, String project, Map options)
+            throws MalformedURLException {
+        restClient = new JIRAClient(server, uname, pass, options);
         this.project = project;
-        jc = new JIRAHttpClient(conn.url, conn.userName, conn.password, options);
     }
-
-    /**
-     *
-     * @param options
-     */
-    public JIRASync(Properties options) {
+    
+    public JIRASync(Properties options) throws MalformedURLException {
         this(options.getProperty("JIRAZephyrUrl"),
                 options.getProperty("JIRAZephyrUserName"),
                 options.getProperty("JIRAZephyrPassword"),
                 options.getProperty("JIRAZephyrProject"),
                 options);
-
     }
 
     @Override
     public boolean isConnected() {
         try {
-            return conn.isConnected(jc) && conn.containsProject(project, jc);
+            return restClient.isConnected() && restClient.containsProject(project);
         } catch (Exception ex) {
-            LOG.log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
             return false;
         }
     }
-    private static final Logger LOG = Logger.getLogger(JIRASync.class.getName());
 
     @Override
-    public synchronized boolean updateResults(TestInfo tc, String status,
+    public synchronized boolean updateResults(TestInfo test, String status,
             List<File> attach) {
         try {
             String rls = RunManager.getGlobalSettings().getRelease();
             String tset = RunManager.getGlobalSettings().getTestSet();
-
-            int eid = conn.updateResult(getStatus("UE"), tc.testCase, tset,
-                    rls, project, jc);
+            int eid = restClient.updateResult(getStatus("UE"),
+                    test.testCase, tset, rls, project);
             if (eid > 0) {
-                conn.updateResult(getStatus(status), eid, jc);
-                for (File f : attach) {
-                    String res = conn.addAttachment(eid, f, jc);
-                    DLogger.Log(res);
-                }
+                restClient.updateResult(getStatus(status), eid);
+                attach.stream().map((f) -> restClient.addAttachment(eid, f))
+                        .forEach(DLogger::Log);
             } else {
                 return false;
             }
-            DLogger.LogE("Results updated for TestCase/Test [" + tc.testCase + "]");
+            DLogger.LogE("Results updated for TestCase/Test [" + test.testCase + "]");
             return true;
         } catch (Exception ex) {
-            LOG.log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
 
         return false;
@@ -98,13 +91,13 @@ public class JIRASync implements Sync {
     public synchronized String createIssue(JSONObject issue, List<File> attach) {
         String result = "[JIRA : Issue Creation Failed!!]\n";
         try {
-            JSONObject res = conn.createIssue(jc, issue, attach);
+            JSONObject res = restClient.createIssue(issue, attach);
             Object key = res.get("key");
             if (key != null) {
                 result = "[JIRA : Issue " + key + " Created successfully!!]";
             }
         } catch (Exception ex) {
-            LOG.log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
             result += ex.getMessage();
         }
 
@@ -128,7 +121,7 @@ public class JIRASync implements Sync {
 
     @Override
     public void disConnect() {
-        conn = null;
+        // state-less
     }
 
     @Override
