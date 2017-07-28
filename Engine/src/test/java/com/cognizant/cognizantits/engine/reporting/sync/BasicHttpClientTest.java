@@ -62,22 +62,26 @@ public class BasicHttpClientTest {
     public void setUpMethod() throws Exception {
         getArgs = new JSONObject();
         getArgs.put("data", "vola");
+        getArgs.put("empty", "");
+        getArgs.put("special", "^\\d{5,}$");
     }
 
     /**
      * Test of Get method, of class BasicHttpClient.
+     * @throws java.lang.Exception
      */
     @Test(description = "http-get of remote address")
     public void testGetHttp() throws Exception {
         System.out.println("Get-http");
         URL targetUrl = new URL("http://postman-echo.com/get");
-        BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");
-        JSONObject result = instance.Get(targetUrl, "data", "vola");
+        BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");        
+        JSONObject result = instance.Get(targetUrl, getArgs.toJSONString());
         assertEquals(result.get("args"), getArgs);
     }
 
     /**
      * Test of Get method, of class BasicHttpClient.
+     * @throws java.lang.Exception
      */
     @Test(description = "https-get of remote address")
     public void testGetHttps() throws Exception {
@@ -90,14 +94,15 @@ public class BasicHttpClientTest {
 
     /**
      * Test of Get method, of class BasicHttpClient.
+     * @throws java.lang.Exception
      */
     @Test(description = "http-get of local address")
     public void testGetHttpLocal() throws Exception {
         System.out.println("Get-http-local");
         URL targetUrl = new URL("http://127.0.0.1:" + PORT);
-        BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");
-        JSONObject result = instance.Get(targetUrl, getArgs.toJSONString());
-        assertEquals(result, getArgs);
+        BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");        
+        JSONObject result = instance.Get(targetUrl, "data", "vola");
+        assertEquals(result.toString(), "{\"data\":\"vola\"}");
     }
 
     public static class LocalServer {
