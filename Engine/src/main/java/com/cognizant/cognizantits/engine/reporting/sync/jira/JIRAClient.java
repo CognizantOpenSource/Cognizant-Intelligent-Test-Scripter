@@ -42,11 +42,11 @@ public class JIRAClient {
         client = new JIRAHttpClient(toURL(urlStr), userName, password, options);
     }
 
-    private static URL toURL(String url) throws MalformedURLException {        
-            if (!url.endsWith("/")) {
-                url = url.concat("/");
-            }
-            return new URL(url);
+    private static URL toURL(String url) throws MalformedURLException {
+        if (!url.endsWith("/")) {
+            url = url.concat("/");
+        }
+        return new URL(url);
     }
 
     /**
@@ -112,11 +112,16 @@ public class JIRAClient {
             res = client.post(new URL(client.url + ISSUE), issue.toString());
             String restAttach = ISSUE_ATTACHMENTS.replace("issuekey",
                     (String) res.get("id"));
-            List<JSONObject> attchRes = new ArrayList<>();
-            res.put("Attachments", attchRes);
-            for (File f : attachments) {
-                attchRes.add(client.post(new URL(client.url + restAttach), f));
+            if (attachments != null && !attachments.isEmpty()) {
+                List<JSONObject> attchRes = new ArrayList<>();
+                res.put("Attachments", attchRes);
+                for (File f : attachments) {
+                    attchRes.add(client.post(new URL(client.url + restAttach), f));
+                }
+            } else {
+                LOG.log(Level.INFO, "no attachments to upload");
             }
+            LOG.log(Level.INFO, "issue response {0}", res.toString());
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
