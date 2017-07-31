@@ -36,10 +36,7 @@ public class SHR {
 
     private final MobileObjectSpy mobileObjectSpy;
 
-    private final AppMainFrame sMainFrame;
-
     public SHR(AppMainFrame sMainFrame) {
-        this.sMainFrame = sMainFrame;
         objHeal = new ObjectHeal(sMainFrame);
         objSpy = new ObjectSpy(sMainFrame);
         recorder = new Recorder(sMainFrame);
@@ -60,7 +57,7 @@ public class SHR {
             objHeal.closeWindow();
         }
         if (objSpy.isVisible()) {
-            objSpy.toFront();
+            objSpy.setState(ObjectSpy.NORMAL);
         } else {
             objSpy.pack();
             objSpy.setLocation(0, 0);
@@ -76,7 +73,7 @@ public class SHR {
             objSpy.closeWindow();
         }
         if (objHeal.isVisible()) {
-            objHeal.toFront();
+            objHeal.setState(ObjectHeal.NORMAL);
         } else {
             objHeal.pack();
             objHeal.setLocation(0, 0);
@@ -89,7 +86,7 @@ public class SHR {
 
     public void showMobileSpy() {
         if (mobileObjectSpy.isVisible()) {
-            mobileObjectSpy.toFront();
+            mobileObjectSpy.setState(MobileObjectSpy.NORMAL);
         } else {
             mobileObjectSpy.setLocationRelativeTo(null);
             mobileObjectSpy.setLocation(mobileObjectSpy.getLocation().x, 0);
@@ -100,7 +97,7 @@ public class SHR {
 
     public void showImageSpy() {
         if (imageSpy.isVisible()) {
-            imageSpy.toFront();
+            imageSpy.setState(ImageSpy.NORMAL);
         } else {
             imageSpy.showImageSpy();
             imageSpy.toFront();
