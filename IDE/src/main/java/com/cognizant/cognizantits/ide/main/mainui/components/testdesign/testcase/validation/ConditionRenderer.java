@@ -17,26 +17,32 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcas
 
 import com.cognizant.cognizantits.datalib.component.TestStep;
 import java.awt.Color;
+import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
 import java.util.Objects;
 import javax.swing.JComponent;
 
-/**
- *
- * 
- */
 public class ConditionRenderer extends AbstractRenderer {
 
     String objNotPresent = "Object is not present in the Object Repository";
-    String mandatorySecondObject = "Additonal Object is needed for the action";
+    String shouldBeEmpty = "Syntax error. Condition should be empty for the Action";
+    String inValidInput = "Syntax error. Invalid object";
 
     public ConditionRenderer() {
-        super("Condition Shouldn't be empty.");
+        super("Condition Shouldn't be empty. Additonal Object is needed for the action");
     }
 
     @Override
     public void render(JComponent comp, TestStep step, Object value) {
         if (!step.isCommented()) {
-            if (step.isPageObjectStep()) {
+            if (isEmpty(value)) {
+                if (!isOptional(step)) {
+                    setEmpty(comp);
+                } else {
+                    setDefault(comp);
+                }
+            } else if (isNotNeeded(step)) {
+                setNotPresent(comp, shouldBeEmpty);
+            } else if (step.isPageObjectStep()) {
                 if (isObjectPresent(step)) {
                     setDefault(comp);
                 } else {
@@ -45,11 +51,32 @@ public class ConditionRenderer extends AbstractRenderer {
             } else if (isValidObject(value)) {
                 setDefault(comp);
             } else {
-                setNotPresent(comp, objNotPresent);
+                setNotPresent(comp, inValidInput);
             }
+            
         } else {
             setDefault(comp);
         }
+    }
+
+    private Boolean isOptional(TestStep step) {
+        if (step.getObject().matches("Execute")) {
+            return true;
+        } else if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
+            return !MethodInfoManager.methodInfoMap.
+                    get(step.getAction()).condition().isMandatory();
+        }
+        return true;
+    }
+
+    private Boolean isNotNeeded(TestStep step) {
+        if (step.getObject().matches("Execute")) {
+            return false;
+        } else if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
+            return !MethodInfoManager.methodInfoMap.
+                    get(step.getAction()).condition().isMandatory();
+        }
+        return true;
     }
 
     private Color getColor(Object value) {
@@ -68,7 +95,7 @@ public class ConditionRenderer extends AbstractRenderer {
 
     private Boolean isObjectPresent(TestStep step) {
         return step.getProject().getObjectRepository()
-                .isObjectPresent(step.getReference(), step.getObject());
+                .isObjectPresent(step.getReference(), step.getCondition());
     }
 
     private Boolean isValidObject(Object value) {
