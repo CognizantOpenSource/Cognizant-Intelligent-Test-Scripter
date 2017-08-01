@@ -23,46 +23,20 @@ import javax.swing.JComponent;
 
 public class ConditionRenderer extends AbstractRenderer {
 
-    String objNotPresent = "Object is not present in the Object Repository";
-    String shouldBeEmpty = "Syntax error. Condition should be empty for the Action";
-    String inValidInput = "Syntax error. Invalid object";
-    String defaultConditions = "(Start Param)|(End Param$)|(Start Loop)|(GlobalObject)|(screen)|(viewport)|(End Param:@?\\d)|(End Loop:@?\\d)";
-    
     public ConditionRenderer() {
         super("Condition Shouldn't be empty. Additonal Object is needed for the action");
     }
 
     @Override
     public void render(JComponent comp, TestStep step, Object value) {
-        if (!step.isCommented()) {
-            if (isEmpty(value)) {
-                if (!isNotNeeded(step)) {
-                    setEmpty(comp);
-                } else {
-                    setDefault(comp);
-                }
-            } else if (isNotNeeded(step) && !isValidObject(value)) {
-                setNotPresent(comp, shouldBeEmpty);
-            } else if (step.isPageObjectStep()) {
-                if (isObjectPresent(step)) {
-                    setDefault(comp);
-                } else if(isValidObject(value)) {
-                    setDefault(comp);
-                } else {
-                    setNotPresent(comp, objNotPresent);
-                }
-            } else if (isValidObject(value)) {
-                setDefault(comp);
-            } else {
-                setNotPresent(comp, inValidInput);
-            }
-            
+        if (!step.isCommented() && isEmpty(value) && !isOptional(step)) {
+            setEmpty(comp);
         } else {
             setDefault(comp);
         }
     }
 
-    private Boolean isNotNeeded(TestStep step) {
+    private Boolean isOptional(TestStep step) {
         if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
             return !MethodInfoManager.methodInfoMap.get(step.getAction()).condition().isMandatory();
         }
@@ -81,15 +55,6 @@ public class ConditionRenderer extends AbstractRenderer {
             default:
                 return new Color(204, 0, 255);
         }
-    }
-
-    private Boolean isObjectPresent(TestStep step) {
-        return step.getProject().getObjectRepository()
-                .isObjectPresent(step.getReference(), step.getCondition());
-    }
-
-    private Boolean isValidObject(Object value) {
-        return Objects.toString(value, "").trim().matches(defaultConditions);
     }
 
 }
