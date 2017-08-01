@@ -136,6 +136,6 @@ public class Command {
     }
 
     public void executeTestCase(String scenarioName, String testCaseName) {
-        executeTestCase(scenarioName, testCaseName, 1);
+        executeTestCase(scenarioName, testCaseName, userData.getSubIterationAsNumber());
     }
 }
