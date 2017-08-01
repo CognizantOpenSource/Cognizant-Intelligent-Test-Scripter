@@ -29,7 +29,7 @@ import org.apache.commons.cli.ParseException;
 
 /**
  *
- * 
+ *
  */
 public class LookUp {
 
@@ -58,6 +58,7 @@ public class LookUp {
         OPTIONS.addOption(Op.B_TIME, false, "Display current build time");
         OPTIONS.addOption(Op.B_VERSION, false, "Display current build version");
         OPTIONS.addOption(Op.DONT_LAUNCH_SUMMARY, false, "Disables launching summary report after execution");
+        OPTIONS.addOption(Op.DEBUG, false, "Enable debug mode");
         OPTIONS.addOption(Op.HELP, false, "Help");
         OPTIONS.addOption(Op.HELLO, false, "Says Hello!");
         OPTIONS.addOption(Op.TIME, false, "Display Current Time");
@@ -115,6 +116,12 @@ public class LookUp {
                         break;
                     case Op.STANDALONE_REPORT:
                         CLI.createStandaloneReport();
+                        break;
+                    case Op.DEBUG:
+                        /*
+                        * set debug=true
+                         */
+                        CLI.setVar(Op.DEBUG);
                         break;
                     case Op.SET_VAR:
                         CLI.setVar(op.getValue());
