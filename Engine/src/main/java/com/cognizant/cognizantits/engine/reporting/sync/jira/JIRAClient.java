@@ -19,7 +19,7 @@ import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,33 +29,24 @@ import org.json.simple.JSONObject;
 
 public class JIRAClient {
 
-    String userName;
-    String password;
-    public URL url;
+    private static final Logger LOG = Logger.getLogger(JIRAClient.class.getName());
 
-    public Map<String, Map<Object, Integer>> tsets = new HashMap<>();
-    public static String JIRAIssue = "/rest/api/latest/issue",
-            JIRAIssueAttach = "/rest/api/latest/issue/issuekey/attachments";
-    
-    String jsonStr = null;
+    public static final String ISSUE = "rest/api/latest/issue",
+            ISSUE_ATTACHMENTS = "rest/api/latest/issue/issuekey/attachments",
+            PROJECT = "rest/api/latest/project";
 
-    public JIRAClient(String url, String username, String password) {
-        this.setUrl(url);
-        this.userName = username;
-        this.password = password;
+    private final JIRAHttpClient client;
+
+    public JIRAClient(String urlStr, String userName, String password, Map options)
+            throws MalformedURLException {
+        client = new JIRAHttpClient(toURL(urlStr), userName, password, options);
     }
 
-    private void setUrl(String jiraUrl) {
-        try {
-            if (!jiraUrl.endsWith("/")) {
-                jiraUrl = jiraUrl.concat("/");
-            }
-            URL main = new URL(jiraUrl);
-            this.url = main;
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
+    private static URL toURL(String url) throws MalformedURLException {
+        if (!url.endsWith("/")) {
+            url = url.concat("/");
         }
-
+        return new URL(url);
     }
 
     /**
@@ -67,19 +58,18 @@ public class JIRAClient {
      * @param ts
      * @param rc
      * @param proj
-     * @param httpclient
      * @return
      * @throws Exception
      * @see #updateResult(int, int,
      * com.cognizant.reporting.sync.jira.JIRAHttpClient)
      */
     public int updateResult(int status, String tc, String ts, String rc,
-            String proj, JIRAHttpClient httpclient) throws Exception {
+            String proj) throws Exception {
         DLogger.Log("Req EID with", "Testcase : ", tc, "TestSet :", ts,
                 "Release :", rc, "Project :", proj);
-        int eid = ZAPIClient.getExecutionID(tc, ts, rc, proj, httpclient);
+        int eid = ZAPIClient.getExecutionID(tc, ts, rc, proj, client);
         if (eid > 0) {
-            updateResult(status, eid, httpclient);
+            updateResult(status, eid);
         }
         return eid;
     }
@@ -90,12 +80,10 @@ public class JIRAClient {
      *
      * @param status execution status
      * @param eid execution ID
-     * @param httpclient
      * @throws Exception
      */
-    public void updateResult(int status, int eid, JIRAHttpClient httpclient)
-            throws Exception {
-        ZAPIClient.updateResult(status, eid, httpclient);
+    public void updateResult(int status, int eid) throws Exception {
+        ZAPIClient.updateResult(status, eid, client);
     }
 
     /**
@@ -103,39 +91,39 @@ public class JIRAClient {
      * )
      *
      * @param eid execution ID
-     * @param toattach file to upload
-     * @param httpclient
+     * @param attachment file to upload
      * @return
      */
-    public String addAttachment(int eid, File toattach,
-            JIRAHttpClient httpclient) {
-        return ZAPIClient.addAttachment(eid, toattach, httpclient);
+    public String addAttachment(int eid, File attachment) {
+        return ZAPIClient.addAttachment(eid, attachment, client);
     }
 
     /**
      * upload the bug from given details (using JIRA rest api)
      *
-     * @param client
      * @param issue issue details to upload
-     * @param attchmns dependent attachments to upload(report)
+     * @param attachments dependent attachments to upload(report)
      * @return
      */
     @SuppressWarnings("unchecked")
-    public JSONObject createIssue(JIRAHttpClient client, JSONObject issue,
-            List<File> attchmns) {
+    public JSONObject createIssue(JSONObject issue, List<File> attachments) {
         JSONObject res = null;
         try {
-            res = client
-                    .post(new URL(client.url + JIRAIssue), issue.toString());
-            String issyeKey = (String) res.get("id");
-            String restAttach = JIRAIssueAttach.replace("issuekey", issyeKey);
-            for (File f : attchmns) {
-                res.put("Attachments",
-                        client.post(new URL(client.url + restAttach), f));
+            res = client.post(new URL(client.url + ISSUE), issue.toString());
+            String restAttach = ISSUE_ATTACHMENTS.replace("issuekey",
+                    (String) res.get("id"));
+            if (attachments != null && !attachments.isEmpty()) {
+                List<JSONObject> attchRes = new ArrayList<>();
+                res.put("Attachments", attchRes);
+                for (File f : attachments) {
+                    attchRes.add(client.post(new URL(client.url + restAttach), f));
+                }
+            } else {
+                LOG.log(Level.INFO, "no attachments to upload");
             }
-
+            LOG.log(Level.INFO, "issue response {0}", res.toString());
         } catch (Exception ex) {
-            Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return res;
     }
@@ -170,7 +158,6 @@ public class JIRAClient {
                     fields.put(key, obj);
                     break;
                 case "assignee":
-
                     obj = new JSONObject();
                     obj.put("name", dataMap.get(key));
                     fields.put(key, obj);
@@ -180,47 +167,37 @@ public class JIRAClient {
                     break;
             }
         }
-
         JSONObject data = new JSONObject();
         data.put("fields", fields);
         DLogger.Log(data);
         return data;
-
     }
 
     /**
      * check for project existence , used for test connection feature
      *
      * @param project
-     * @param jc
      * @return
      */
-    public boolean containsProject(String project, JIRAHttpClient jc) {
-
+    public boolean containsProject(String project) {
         try {
-            String res = jc.Get(new URL(jc.url + "/rest/api/latest/project"))
-                    .toString();
+            String res = client.Get(new URL(client.url + PROJECT)).toString();
             return res.contains("\"key\":\"" + project + "\"")
-                    || ZAPIClient.getProjID(project, jc) != -1;
-
+                    || ZAPIClient.getProjID(project, client) != -1;
         } catch (Exception ex) {
-            Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
             return false;
-
         }
     }
 
-    public boolean isConnected(JIRAHttpClient httpclient) {
+    public boolean isConnected() {
         try {
-            DLogger.Log(httpclient.Get(
-                    new URL(httpclient.url + "/rest/api/latest/project"))
-                    .toString());
+            DLogger.Log(client.Get(new URL(client.url + PROJECT)).toString());
             return true;
         } catch (Exception ex) {
-            Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
             return false;
         }
-
     }
 
 }
