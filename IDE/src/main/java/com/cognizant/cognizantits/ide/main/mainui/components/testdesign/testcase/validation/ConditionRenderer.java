@@ -26,7 +26,7 @@ public class ConditionRenderer extends AbstractRenderer {
     String objNotPresent = "Object is not present in the Object Repository";
     String shouldBeEmpty = "Syntax error. Condition should be empty for the Action";
     String inValidInput = "Syntax error. Invalid object";
-    String defaultConditions = "(Start Param)|(End Param$)|(Start Loop)|(GlobalObject)|(screen)|(viewport)|(End Param@?\\d)|(End Loop:@?\\d)";
+    String defaultConditions = "(Start Param)|(End Param$)|(Start Loop)|(GlobalObject)|(screen)|(viewport)|(End Param:@?\\d)|(End Loop:@?\\d)";
     
     public ConditionRenderer() {
         super("Condition Shouldn't be empty. Additonal Object is needed for the action");
