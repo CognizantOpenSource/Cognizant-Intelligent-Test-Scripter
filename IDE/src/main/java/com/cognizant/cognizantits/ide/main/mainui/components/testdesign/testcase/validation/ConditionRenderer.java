@@ -26,7 +26,8 @@ public class ConditionRenderer extends AbstractRenderer {
     String objNotPresent = "Object is not present in the Object Repository";
     String shouldBeEmpty = "Syntax error. Condition should be empty for the Action";
     String inValidInput = "Syntax error. Invalid object";
-
+    String defaultConditions = "(Start Param)|(End Param$)|(Start Loop)|(GlobalObject)|(screen)|(viewport)|(End Param@?\\d)|(End Loop:@?\\d)";
+    
     public ConditionRenderer() {
         super("Condition Shouldn't be empty. Additonal Object is needed for the action");
     }
@@ -35,15 +36,17 @@ public class ConditionRenderer extends AbstractRenderer {
     public void render(JComponent comp, TestStep step, Object value) {
         if (!step.isCommented()) {
             if (isEmpty(value)) {
-                if (!isOptional(step)) {
+                if (!isNotNeeded(step)) {
                     setEmpty(comp);
                 } else {
                     setDefault(comp);
                 }
-            } else if (isNotNeeded(step)) {
+            } else if (isNotNeeded(step) && !isValidObject(value)) {
                 setNotPresent(comp, shouldBeEmpty);
             } else if (step.isPageObjectStep()) {
                 if (isObjectPresent(step)) {
+                    setDefault(comp);
+                } else if(isValidObject(value)) {
                     setDefault(comp);
                 } else {
                     setNotPresent(comp, objNotPresent);
@@ -59,22 +62,9 @@ public class ConditionRenderer extends AbstractRenderer {
         }
     }
 
-    private Boolean isOptional(TestStep step) {
-        if (step.getObject().matches("Execute")) {
-            return true;
-        } else if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
-            return !MethodInfoManager.methodInfoMap.
-                    get(step.getAction()).condition().isMandatory();
-        }
-        return true;
-    }
-
     private Boolean isNotNeeded(TestStep step) {
-        if (step.getObject().matches("Execute")) {
-            return false;
-        } else if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
-            return !MethodInfoManager.methodInfoMap.
-                    get(step.getAction()).condition().isMandatory();
+        if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
+            return !MethodInfoManager.methodInfoMap.get(step.getAction()).condition().isMandatory();
         }
         return true;
     }
@@ -99,8 +89,7 @@ public class ConditionRenderer extends AbstractRenderer {
     }
 
     private Boolean isValidObject(Object value) {
-        return Objects.toString(value, "").trim()
-                .matches("Execute|WebService|App|Browser");
+        return Objects.toString(value, "").trim().matches(defaultConditions);
     }
 
 }
