@@ -20,7 +20,7 @@ import com.cognizant.cognizantits.engine.execution.run.TestCaseRunner;
 
 /**
  *
- * 
+ *
  */
 public abstract class UserDataAccess {
 
@@ -52,6 +52,10 @@ public abstract class UserDataAccess {
 
     public String getSubIteration() {
         return context().getCurrentSubIteration();
+    }
+
+    public int getSubIterationAsNumber() {
+        return Integer.valueOf(getSubIteration());
     }
 
     public String getGlobalData(String globalDataID, String columnName) {
