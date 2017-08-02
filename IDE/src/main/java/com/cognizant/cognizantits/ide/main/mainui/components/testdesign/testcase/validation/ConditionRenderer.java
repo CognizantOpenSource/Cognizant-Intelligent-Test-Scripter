@@ -24,7 +24,7 @@ import javax.swing.JComponent;
 public class ConditionRenderer extends AbstractRenderer {
 
     public ConditionRenderer() {
-        super("Condition Shouldn't be empty. Additonal Object is needed for the action");
+        super("Condition Shouldn't be empty. Additonal Object/Data is needed for the action");
     }
 
     @Override
