@@ -224,7 +224,7 @@ public class WebDriverFactory {
             try {
                 driver.manage().window().maximize();
             } catch(Exception ex) {
-                System.err.println("unable to maximize browser!")
+                System.err.println("unable to maximize browser!");
             }
         }
         return driver;
