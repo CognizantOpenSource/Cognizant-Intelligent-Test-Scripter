@@ -221,7 +221,11 @@ public class WebDriverFactory {
             driver = createRemoteDriver(remoteUrl, caps, checkForProxy, settings.getDriverSettings());
         }
         if (driver != null) {
-            driver.manage().window().maximize();
+            try {
+                driver.manage().window().maximize();
+            } catch(Exception ex) {
+                System.err.println("unable to maximize browser!")
+            }
         }
         return driver;
     }
