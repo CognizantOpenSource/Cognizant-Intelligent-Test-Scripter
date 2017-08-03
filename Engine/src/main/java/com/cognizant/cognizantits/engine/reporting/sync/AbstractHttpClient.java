@@ -32,6 +32,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
@@ -69,6 +70,10 @@ abstract public class AbstractHttpClient {
 
     public HttpResponse doPost(HttpPost httpPost) throws Exception {
         return execute(httpPost);
+    }
+
+    public HttpResponse doPut(HttpPut httpPut) throws Exception {
+        return execute(httpPut);
     }
 
     public HttpResponse doPatch(HttpPatch httpPatch) throws Exception {

@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcas
 
 import com.cognizant.cognizantits.datalib.component.TestStep;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation.ActionRenderer;
+import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation.ConditionRenderer;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation.InputRenderer;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation.ObjectRenderer;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation.ReferenceRenderer;
@@ -24,10 +25,6 @@ import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * 
- */
 public class TestCaseValidator {
 
     StepRenderer stepRenderer;
@@ -35,6 +32,7 @@ public class TestCaseValidator {
     ReferenceRenderer referenceRenderer;
     ActionRenderer actionRenderer;
     InputRenderer inputRenderer;
+    ConditionRenderer conditionRenderer;
 
     private Boolean validate = true;
     private final JTable testCaseTable;
@@ -50,6 +48,7 @@ public class TestCaseValidator {
         referenceRenderer = new ReferenceRenderer();
         actionRenderer = new ActionRenderer();
         inputRenderer = new InputRenderer();
+        conditionRenderer = new ConditionRenderer();
     }
 
     public void initValidations() {
@@ -67,6 +66,8 @@ public class TestCaseValidator {
                 .setCellRenderer(actionRenderer);
         testCaseTable.getColumnModel().getColumn(TestStep.HEADERS.Input.getIndex())
                 .setCellRenderer(inputRenderer);
+        testCaseTable.getColumnModel().getColumn(TestStep.HEADERS.Condition.getIndex())
+                .setCellRenderer(conditionRenderer);
     }
 
     private void removeValidations() {
@@ -79,6 +80,8 @@ public class TestCaseValidator {
         testCaseTable.getColumnModel().getColumn(TestStep.HEADERS.Action.getIndex())
                 .setCellRenderer(null);
         testCaseTable.getColumnModel().getColumn(TestStep.HEADERS.Input.getIndex())
+                .setCellRenderer(null);
+        testCaseTable.getColumnModel().getColumn(TestStep.HEADERS.Condition.getIndex())
                 .setCellRenderer(null);
     }
 

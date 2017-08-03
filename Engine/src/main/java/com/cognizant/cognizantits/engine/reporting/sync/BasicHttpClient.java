@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpHost;
@@ -81,41 +81,11 @@ public class BasicHttpClient extends AbstractHttpClient {
     }
 
     /**
-     * custom header for respective client
+     * basic auth implementation
      *
-     * @param httppost
+     * @param req
+     * @throws AuthenticationException
      */
-    public void setHeader(HttpPost httppost) {
-        httppost.addHeader("Accept", "application/json");
-    }
-
-    /**
-     * custom header for respective client
-     *
-     * @param httppatch
-     */
-    public void setHeader(HttpPatch httppatch) {
-
-    }
-
-    /**
-     * custom header for respective client
-     *
-     * @param httpGet
-     */
-    public void setHeader(HttpGet httpGet) {
-        httpGet.addHeader("Accept", "application/json");
-    }
-
-    /**
-     * custom header for respective client
-     *
-     * @param httpput
-     */
-    public void setHeader(HttpPut httpput) {
-        httpput.addHeader("Accept", "application/json");
-    }
-
     public void auth(HttpRequest req) throws AuthenticationException {
         req.addHeader(new BasicScheme().authenticate(creds, req, context));
     }
@@ -130,12 +100,12 @@ public class BasicHttpClient extends AbstractHttpClient {
     @Override
     public CloseableHttpResponse execute(HttpUriRequest req) throws Exception {
         DLogger.Log(req.toString());
-        if (Objects.nonNull(proxy)) {            
-            ((HttpRequestBase) req).setConfig(RequestConfig.custom().setProxy(proxy).build());
-        }
+        Optional.ofNullable(proxy).ifPresent((p)
+                -> ((HttpRequestBase) req).setConfig(RequestConfig.custom().setProxy(p).build()));
         return client.execute(req, context);
     }
 
+// <editor-fold defaultstate="collapsed" desc="PUT implementation">
     /**
      * Http Post request for given data as JSON string
      *
@@ -146,11 +116,19 @@ public class BasicHttpClient extends AbstractHttpClient {
      */
     public JSONObject put(URL targetUrl, String data) throws Exception {
         HttpPut httpput = new HttpPut(targetUrl.toURI());
-        setHeader(httpput);
         setPutEntity(data, httpput);
         auth(httpput);
-        HttpResponse response = execute(httpput);
-        return parseResponse(response);
+        setHeader(httpput);
+        return parseResponse(doPut(httpput));
+    }
+
+    /**
+     * custom header for respective client
+     *
+     * @param httpput
+     */
+    public void setHeader(HttpPut httpput) {
+        httpput.addHeader("Accept", "application/json");
     }
 
     public void setPutEntity(String xmlstr, HttpPut httpput) throws UnsupportedEncodingException {
@@ -159,6 +137,22 @@ public class BasicHttpClient extends AbstractHttpClient {
             input.setContentType("application/json");
         }
         httpput.setEntity(input);
+    }
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc="POST implementation">
+    /**
+     * Http Post request for given data as JSON string
+     *
+     * @param targetUrl
+     * @param payload
+     * @return
+     * @throws Exception
+     */
+    public JSONObject post(URL targetUrl, String payload) throws Exception {
+        HttpPost httppost = new HttpPost(targetUrl.toURI());
+        setPostEntity(payload, httppost);
+        return parseResponse(doPost(httppost));
     }
 
     /**
@@ -171,8 +165,6 @@ public class BasicHttpClient extends AbstractHttpClient {
      */
     public JSONObject post(URL targetUrl, File toUplod) throws Exception {
         HttpPost httppost = new HttpPost(targetUrl.toURI());
-        setHeader(httppost);
-        auth(httppost);
         setPostEntity(toUplod, httppost);
         return parseResponse(doPost(httppost));
     }
@@ -188,10 +180,24 @@ public class BasicHttpClient extends AbstractHttpClient {
      */
     public JSONObject post(URL targetUrl, String data, File toUplod) throws Exception {
         HttpPost httppost = new HttpPost(targetUrl.toURI());
-        setHeader(httppost);
-        auth(httppost);
         setPostEntity(data, toUplod, httppost);
         return parseResponse(doPost(httppost));
+    }
+
+    /**
+     * custom header for respective client
+     *
+     * @param httppost
+     */
+    public void setHeader(HttpPost httppost) {
+        httppost.addHeader("Accept", "application/json");
+    }
+
+    @Override
+    public HttpResponse doPost(HttpPost httpPost) throws Exception {
+        auth(httpPost);
+        setHeader(httpPost);
+        return super.doPost(httpPost);
     }
 
     public void setPostEntity(File toUplod, HttpPost httppost) {
@@ -208,33 +214,30 @@ public class BasicHttpClient extends AbstractHttpClient {
         httppost.setEntity(builder.build());
     }
 
-    /**
-     * Http Post request for given data as JSON string
-     *
-     * @param targetUrl
-     * @param payload
-     * @return
-     * @throws Exception
-     */
-    public JSONObject post(URL targetUrl, String payload) throws Exception {
-        HttpPost httppost = new HttpPost(targetUrl.toURI());
-        setHeader(httppost);
-        setPostEntity(payload, httppost);
-        return parseResponse(doPost(httppost));
-    }
-
-    public JSONObject patch(URL targetUrl, String payload) throws Exception {
-        HttpPatch httppatch = new HttpPatch(targetUrl.toURI());
-        setHeader(httppatch);
-        setPatchEntity(payload, httppatch);
-        return parseResponse(doPatch(httppatch));
-    }
-
     public void setPostEntity(String jsonStr, HttpPost httppost) throws UnsupportedEncodingException {
         StringEntity input = new StringEntity(jsonStr);
         input.setContentType("application/json");
         httppost.addHeader("accept", "application/json");
         httppost.setEntity(input);
+    }
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc="PATCH implementation">
+    public JSONObject patch(URL targetUrl, String payload) throws Exception {
+        HttpPatch httppatch = new HttpPatch(targetUrl.toURI());
+        auth(httppatch);
+        setHeader(httppatch);
+        setPatchEntity(payload, httppatch);
+        return parseResponse(doPatch(httppatch));
+    }
+
+    /**
+     * custom header for respective client
+     *
+     * @param httppatch
+     */
+    public void setHeader(HttpPatch httppatch) {
+        httppatch.addHeader("Accept", "application/json");
     }
 
     public void setPatchEntity(String jsonStr, HttpPatch httppatch) throws UnsupportedEncodingException {
@@ -242,7 +245,9 @@ public class BasicHttpClient extends AbstractHttpClient {
         input.setContentType("application/json");
         httppatch.setEntity(input);
     }
+// </editor-fold>
 
+// <editor-fold defaultstate="collapsed" desc="GET implementation">
     /**
      * Http Get request for given url
      *
@@ -274,11 +279,21 @@ public class BasicHttpClient extends AbstractHttpClient {
         return Get(setParams(builder, jsonStr).build());
     }
 
+    /**
+     * custom header for respective client
+     *
+     * @param httpGet
+     */
+    public void setHeader(HttpGet httpGet) {
+        httpGet.addHeader("Accept", "application/json");
+    }
+
     private JSONObject Get(URI uri) throws Exception {
         HttpGet httpGet = new HttpGet(uri);
-        setHeader(httpGet);
         auth(httpGet);
+        setHeader(httpGet);
         return parseResponse(doGet(httpGet));
     }
+// </editor-fold>
 
 }

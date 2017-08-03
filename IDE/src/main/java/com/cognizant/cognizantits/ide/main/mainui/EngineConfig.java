@@ -35,8 +35,8 @@ public class EngineConfig {
         try {
             int defWaitTime = Integer.valueOf(AppSettings.get(APP_SETTINGS.DEFAULT_WAIT_TIME.getKey()));
             int elementWaitTime = Integer.valueOf(AppSettings.get(APP_SETTINGS.ELEMENT_WAIT_TIME.getKey()));
-            SystemDefaults.elementWaitTime.set(defWaitTime);
-            SystemDefaults.waitTime.set(elementWaitTime);
+            SystemDefaults.elementWaitTime.set(elementWaitTime);
+            SystemDefaults.waitTime.set(defWaitTime);
             Boolean standAlone = Boolean.valueOf(AppSettings.get(APP_SETTINGS.STANDALONE_REPORT.getKey()));
             if (standAlone) {
                 SystemDefaults.CLVars.put("createStandaloneReport", "true");

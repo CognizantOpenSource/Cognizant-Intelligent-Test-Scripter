@@ -17,39 +17,30 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcas
 
 import com.cognizant.cognizantits.datalib.component.TestStep;
 import java.awt.Color;
+import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
 import java.util.Objects;
 import javax.swing.JComponent;
 
-/**
- *
- * 
- */
 public class ConditionRenderer extends AbstractRenderer {
 
-    String objNotPresent = "Object is not present in the Object Repository";
-    String mandatorySecondObject = "Additonal Object is needed for the action";
-
     public ConditionRenderer() {
-        super("Condition Shouldn't be empty.");
+        super("Condition Shouldn't be empty. Additonal Object/Data is needed for the action");
     }
 
     @Override
     public void render(JComponent comp, TestStep step, Object value) {
-        if (!step.isCommented()) {
-            if (step.isPageObjectStep()) {
-                if (isObjectPresent(step)) {
-                    setDefault(comp);
-                } else {
-                    setNotPresent(comp, objNotPresent);
-                }
-            } else if (isValidObject(value)) {
-                setDefault(comp);
-            } else {
-                setNotPresent(comp, objNotPresent);
-            }
+        if (!step.isCommented() && isEmpty(value) && !isOptional(step)) {
+            setEmpty(comp);
         } else {
             setDefault(comp);
         }
+    }
+
+    private Boolean isOptional(TestStep step) {
+        if (MethodInfoManager.methodInfoMap.containsKey(step.getAction())) {
+            return !MethodInfoManager.methodInfoMap.get(step.getAction()).condition().isMandatory();
+        }
+        return true;
     }
 
     private Color getColor(Object value) {
@@ -64,16 +55,6 @@ public class ConditionRenderer extends AbstractRenderer {
             default:
                 return new Color(204, 0, 255);
         }
-    }
-
-    private Boolean isObjectPresent(TestStep step) {
-        return step.getProject().getObjectRepository()
-                .isObjectPresent(step.getReference(), step.getObject());
-    }
-
-    private Boolean isValidObject(Object value) {
-        return Objects.toString(value, "").trim()
-                .matches("Execute|WebService|App|Browser");
     }
 
 }

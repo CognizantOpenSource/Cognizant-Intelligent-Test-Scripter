@@ -17,40 +17,39 @@ package com.cognizant.cognizantits.engine.reporting.sync.jira;
 
 import com.cognizant.cognizantits.engine.support.DLogger;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.simple.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class JIRAClientTest {
 
     @Test(enabled = false)
+    public void testConnection() throws MalformedURLException {
+        JIRASync sync = new JIRASync(Data.server, Data.uname, Data.pass, Data.project);
+        Assert.assertTrue(sync.isConnected());
+    }
+
+    @Test(enabled = false)
     public void testUpdateResult_0args() throws Exception {
-        JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass);
+        JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass, null);
         String f = "report.txt";
-        JIRAHttpClient httpclient = new JIRAHttpClient(jc.url, Data.uname, Data.pass, null);
         int eid = jc.updateResult(ZAPIClient.status.UNEXECUTED, "buyProduct",
-                "TestSet_Demo", "Release_Demo", "DemonProject", httpclient);
-        jc.updateResult(ZAPIClient.status.PASS, eid, httpclient);
-        String out = jc.addAttachment(eid, new File(f), httpclient);
+                "TestSet_Demo", "Release_Demo", "DemonProject");
+        jc.updateResult(ZAPIClient.status.PASS, eid);
+        String out = jc.addAttachment(eid, new File(f));
         DLogger.Log(out);
     }
 
     @Test(enabled = false)
-    public void testCreateIssue_JSONObject_List() {
+    public void testCreateIssue_JSONObject_List() throws MalformedURLException {
         JSONObject res = null;
-        try {
-            JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass);
-            JIRAHttpClient httpclient = new JIRAHttpClient(
-                    jc.url, Data.uname, Data.pass, null);
-            Map issue = getIssue(Data.project);
-            List<File> attach = null;
-            res = jc.createIssue(httpclient, (JSONObject) issue, attach);
-        } catch (Exception ex) {
-            Logger.getLogger(JIRAClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JIRAClient jc = new JIRAClient(Data.server, Data.uname, Data.pass, null);
+        Map issue = getIssue(Data.project);
+        List<File> attach = null;
+        res = jc.createIssue((JSONObject) issue, attach);
     }
 
     private static JSONObject getIssue(String proj) {

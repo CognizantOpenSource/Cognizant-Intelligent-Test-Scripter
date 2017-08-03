@@ -39,9 +39,8 @@ public class ZAPIClient {
             CYCLELIST = "rest/zapi/latest/cycle?versionId=",
             EXELIST = "rest/zapi/latest/execution?cycleId=",
             EXECUTIONS = "rest/zapi/latest/execution",
-            API = "rest/zapi/latest/moduleInfo";
-    static JSONObject empty = new JSONObject();
-    static String emptyStr = empty.toString();
+            API = "rest/zapi/latest/moduleInfo",
+            UPDATERESULT = "rest/zapi/latest/execution/{{eid}}/quickExecute";
 
     class array {
 
@@ -256,8 +255,7 @@ public class ZAPIClient {
             throws Exception {
         JSONObject jobj = new JSONObject();
         jobj.put("status", status);
-        String rest = "/rest/zapi/latest/execution/" + String.valueOf(eid)
-                + "/quickExecute";
+        String rest = UPDATERESULT.replace("{{eid}}", String.valueOf(eid));
         URL targetUrl = new URL(client.url.toString() + rest);
         DLogger.Log("Updating Status with EID ", targetUrl.toString());
         Object response = client.post(targetUrl, jobj.toString());
