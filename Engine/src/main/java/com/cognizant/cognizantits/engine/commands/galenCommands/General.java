@@ -29,7 +29,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * 
+ *
  */
 public class General extends Report {
 
@@ -88,11 +88,7 @@ public class General extends Report {
         if (Element != null) {
             elementMap.put(ObjectName, Element);
         }
-        return new PageValidationWrapper(getPage(relativeElement), elementMap);
-    }
-
-    private PageWrapper getPage(RelativeElement relativeElement) {
-        return new PageWrapper(Driver, getRelativeElement(relativeElement));
+        return new PageValidationWrapper(new PageWrapper(Driver, elementMap), elementMap);
     }
 
     public void validate(Spec spec, RelativeElement relativeElement) {
