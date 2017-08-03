@@ -67,8 +67,17 @@ public class WebDriverFactory {
 
     public enum Browser {
 
-        FireFox("Firefox"), Chrome("Chrome"), IE("IE"), Edge("Edge"), HtmlUnit("HtmlUnit"), Opera("Opera"), Safari(
-                "Safari"), PhantomJS("PhantomJS"), Empty("No Browser"), Emulator("Emulator");
+        FireFox("Firefox"),
+        Chrome("Chrome"),
+        IE("IE"),
+        Edge("Edge"),
+        Opera("Opera"),
+        Safari("Safari"),
+        ChromeHeadless("Chrome Headless"),
+        HtmlUnit("HtmlUnit"),
+        PhantomJS("PhantomJS"),
+        Empty("No Browser"),
+        Emulator("Emulator");
 
         private final String browserValue;
 
@@ -81,7 +90,7 @@ public class WebDriverFactory {
         }
 
         public boolean isHeadLess() {
-            return this == HtmlUnit || this == PhantomJS || this == Empty;
+            return this == HtmlUnit || this == PhantomJS || this == Empty || this == ChromeHeadless;
         }
 
         @Override
@@ -161,6 +170,7 @@ public class WebDriverFactory {
     private static WebDriver create(String browserName, DesiredCapabilities caps, ProjectSettings settings,
             Boolean isGrid, String remoteUrl) {
         Browser browser = Browser.fromString(browserName);
+        Boolean maximize = true;
         WebDriver driver = null;
         switch (browser) {
             case FireFox:
@@ -171,9 +181,17 @@ public class WebDriverFactory {
                 }
                 break;
             case Chrome:
+                maximize = false;
                 caps = DesiredCapabilities.chrome().merge(caps);
                 if (!isGrid) {
                     driver = new ChromeDriver(withChromeOptions(caps));
+                }
+                break;
+            case ChromeHeadless:
+                maximize = false;
+                caps = DesiredCapabilities.chrome().merge(caps);
+                if (!isGrid) {
+                    driver = new ChromeDriver(withHeadlessChrome(withChromeOptions(caps)));
                 }
                 break;
             case IE:
@@ -220,7 +238,7 @@ public class WebDriverFactory {
             Boolean checkForProxy = settings.getDriverSettings().useProxy();
             driver = createRemoteDriver(remoteUrl, caps, checkForProxy, settings.getDriverSettings());
         }
-        if (driver != null) {
+        if (driver != null && maximize) {
             driver.manage().window().maximize();
         }
         return driver;
@@ -400,7 +418,6 @@ public class WebDriverFactory {
 //                fProfile.addExtension(FilePath.getFireFoxAddOnPath());
 //            }
 //        }
-
         fProfile = addFFProfile(fProfile);
         caps.setCapability(FirefoxDriver.PROFILE, fProfile);
         String binPath = System.getProperty("firefox.bin.path");
@@ -410,6 +427,19 @@ public class WebDriverFactory {
         }
         fOptions.addCapabilities(caps);
         return fOptions;
+    }
+
+    /**
+     * https://developers.google.com/web/updates/2017/04/headless-chrome
+     *
+     * @param caps
+     * @return
+     */
+    private static DesiredCapabilities withHeadlessChrome(DesiredCapabilities caps) {
+        ChromeOptions options = (ChromeOptions) caps.getCapability(ChromeOptions.CAPABILITY);
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1366,768");
+        caps.setCapability(ChromeOptions.CAPABILITY, options);
+        return caps;
     }
 
     private static DesiredCapabilities withChromeOptions(DesiredCapabilities caps) {
@@ -429,6 +459,8 @@ public class WebDriverFactory {
                 options.addExtensions(FilePath.getChromeAddOnPath());
             }
         }
+        
+        options.addArguments("--start-maximized");
         options = addChromeOptions(options);
         caps.setCapability(ChromeOptions.CAPABILITY, options);
         return caps;
