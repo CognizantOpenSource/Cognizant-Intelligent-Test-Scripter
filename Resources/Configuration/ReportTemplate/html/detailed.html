@@ -42,6 +42,17 @@
         </script>
         <style>           
             .ColVis{margin-right: 18px;}.select2{text-align: left;margin-right: 20px;}
+	    @media print {
+		.status.PASS, .PASS {
+			color: green !important;
+		}
+		.status.FAIL, .FAIL {
+			color: red !important;
+		}
+		.hideOnPrint {
+			display: none !important;
+		}
+	    }
         </style>
         <title ng-bind="Title"></title>	        
     </head>
@@ -84,7 +95,7 @@
                 <div class="exe heading">
                     <table><tr>
                             <td><p>  Detailed Report </p> </td>    
-                            <td align="right" width="300px">	 
+                            <td align="right" width="300px" class = "hideOnPrint">	 
                                 <select ng-model="view" ng-options="v for v in views" 
                                         title="View" class="form-control" > </select>
                                 <label style="display: none;" ng-bind="view" onchange="SetView(view)"></label>
