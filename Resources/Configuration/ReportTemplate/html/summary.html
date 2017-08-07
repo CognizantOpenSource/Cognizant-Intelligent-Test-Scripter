@@ -128,10 +128,10 @@
                             <tr class='exe table' ng-repeat="exe in Executions">
                                 <td>{{exe.scenarioName}}</td>
                                 <td>
-									<a class = "hideOnPrint" href='detailed.html?{{getQParamTCLink(exe)}}'>{{exe.testcaseName}}</a>
-									<span class = "showOnPrint" style = "display: none;">{{exe.testcaseName}}</span>
-								</td>
-				<td>{{exe.browser}}</td><td class='exe table col exeTime'>{{exe.exeTime}}</td>
+                                    <a class = "hideOnPrint" href='detailed.html?{{getQParamTCLink(exe)}}'>{{exe.testcaseName}}</a>
+                                    <span class = "showOnPrint" style = "display: none;">{{exe.testcaseName}}</span>
+                                </td>
+                                <td>{{exe.browser}}</td><td class='exe table col exeTime'>{{exe.exeTime}}</td>
                                 <td class='exe table {{exe.status}}'>{{exe.status}}</td>
                                 <td class='exe table col bv'>{{exe.bversion}}</td>
                                 <td class='exe table col platf'>{{exe.platform}}</td>
@@ -157,9 +157,9 @@
                             <tr class='exe table' ng-repeat="exe in GRPExecutions">
                                 <td>{{exe[GRPExecolsTitle[0]]}}</td>
                                 <td>
-									<a class = "hideOnPrint" href='detailed.html?{{getQParamTCLinkAll(exe)}}'>{{exe[GRPExecolsTitle[1]]}}</a>
-									<span class = "showOnPrint">{{exe[GRPExecolsTitle[1]]}}</span>
-								</td>
+                                   <a class = "hideOnPrint" href='detailed.html?{{getQParamTCLinkAll(exe)}}'>{{exe[GRPExecolsTitle[1]]}}</a>
+                                   <span class = "showOnPrint">{{exe[GRPExecolsTitle[1]]}}</span>
+                                </td>
                                 <td ng-repeat="browser in GRPBrowsers" align="center" class="exe table res">
                         <label ng-if="getResStatus(exe, browser) === NA" >{{getResStatus(exe, browser)}}</label>
                         <a class = "hideOnPrint" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}' 
