@@ -174,56 +174,64 @@ public class WebDriverFactory {
         WebDriver driver = null;
         switch (browser) {
             case FireFox:
-                caps = DesiredCapabilities.firefox().merge(caps);
                 if (!isGrid) {
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
                     addGeckoDriverAddon((FirefoxDriver) driver);
+                } else {
+                    caps = DesiredCapabilities.firefox().merge(withFirefoxProfile(caps).toCapabilities());
                 }
                 break;
             case Chrome:
                 maximize = false;
-                caps = DesiredCapabilities.chrome().merge(caps);
                 if (!isGrid) {
                     driver = new ChromeDriver(withChromeOptions(caps));
+                } else {
+                    caps = DesiredCapabilities.chrome().merge(withChromeOptions(caps));
                 }
                 break;
             case ChromeHeadless:
                 maximize = false;
-                caps = DesiredCapabilities.chrome().merge(caps);
                 if (!isGrid) {
                     driver = new ChromeDriver(withHeadlessChrome(withChromeOptions(caps)));
+                } else {
+                    caps = DesiredCapabilities.chrome().merge(withHeadlessChrome(withChromeOptions(caps)));
                 }
                 break;
             case IE:
-                caps = DesiredCapabilities.internetExplorer().merge(caps);
                 if (!isGrid) {
                     driver = new InternetExplorerDriver(caps);
+                } else {
+                    caps = DesiredCapabilities.internetExplorer().merge(caps);
                 }
                 break;
             case Edge:
-                caps = DesiredCapabilities.edge().merge(caps);
                 if (!isGrid) {
                     driver = new EdgeDriver(caps);
+                } else {
+                    caps = DesiredCapabilities.edge().merge(caps);
                 }
                 break;
             case HtmlUnit:
                 return new ExtendedHtmlUnitDriver(BrowserVersion.BEST_SUPPORTED);
             case Opera:
-                caps = DesiredCapabilities.operaBlink().merge(caps);
                 if (!isGrid) {
                     driver = new OperaDriver(caps);
+                } else {
+                    caps = DesiredCapabilities.operaBlink().merge(caps);
                 }
                 break;
             case Safari:
-                caps = DesiredCapabilities.safari().merge(caps);
                 if (!isGrid) {
                     driver = new SafariDriver(caps);
+                } else {
+                    caps = DesiredCapabilities.safari().merge(caps);
                 }
                 break;
             case PhantomJS:
-                caps = DesiredCapabilities.phantomjs().merge(caps);
                 if (!isGrid) {
                     driver = new PhantomJSDriver(caps);
+                } else {
+                    caps = DesiredCapabilities.phantomjs().merge(caps);
                 }
                 break;
             case Empty:
@@ -459,7 +467,7 @@ public class WebDriverFactory {
                 options.addExtensions(FilePath.getChromeAddOnPath());
             }
         }
-        
+
         options.addArguments("--start-maximized");
         options = addChromeOptions(options);
         caps.setCapability(ChromeOptions.CAPABILITY, options);
