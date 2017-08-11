@@ -280,7 +280,7 @@ var setupSNGLExeFilter = function(table) {
     try {
         $('#exeTAB thead th').each(function() {
             var title = $(this).text();
-            $(this).append('<br><input type="text" placeholder="Search ' + title + '"/>');
+            $(this).append('<br><input class = "hideOnPrint" type="text" placeholder="Search ' + title + '"/>');
         });
         table.columns().eq(0).each(function(colIdx) {
             $('input', table.column(colIdx).header()).on('keyup change', function() {
@@ -313,7 +313,7 @@ var setupGRPExeFilter = function(table) {
 
     $('#exeTABGRP thead th').each(function() {
         var title = $(this).text().trim();
-        $(this).append('<br><input type="text" placeholder="Search ' + title + '" />');
+        $(this).append('<br><input class = "hideOnPrint" type="text" placeholder="Search ' + title + '" />');
     });
     table.columns().indexes().each(function(idx) {
         $('input', table.column(idx).header()).on('keyup change', function() {

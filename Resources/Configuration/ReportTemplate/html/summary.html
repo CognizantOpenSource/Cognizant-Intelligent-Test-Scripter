@@ -46,6 +46,23 @@
             .vubdd {               
                 right: 110px;
             }
+            @media print {
+                .status.PASS, .PASS {
+                    color: green !important;
+                }
+                .status.FAIL, .FAIL {
+                    color: red !important;
+                }
+                .hideOnPrint, .ColVis {
+                    display: none !important;
+                }
+                .showOnPrint span{
+                    color: #337ab7 !important;
+                }
+                .showOnPrint {
+                    display: block !important;
+                }
+            }
         </style>
     </head>
     <body ng-cloak>
@@ -89,7 +106,7 @@
                     <br><br><br>
                     <table><tr>
                             <td><p>  Detailed Report </p> </td>    
-                            <td align="right" width="270px">	 
+                            <td align="right" width="270px" class = "hideOnPrint">	 
                                 <select ng-model="view" ng-options="v for v in ['Single View', 'Group View']" 
                                         title="View" > </select>
                             </td>
@@ -110,8 +127,11 @@
                         <tbody class='exe table'>
                             <tr class='exe table' ng-repeat="exe in Executions">
                                 <td>{{exe.scenarioName}}</td>
-                                <td><a href='detailed.html?{{getQParamTCLink(exe)}}'>{{exe.testcaseName}}</a></td>
-                                <td >{{exe.browser}}</td><td class='exe table col exeTime'>{{exe.exeTime}}</td>
+                                <td>
+                                    <a class = "hideOnPrint" href='detailed.html?{{getQParamTCLink(exe)}}'>{{exe.testcaseName}}</a>
+                                    <span class = "showOnPrint" style = "display: none;">{{exe.testcaseName}}</span>
+                                </td>
+                                <td>{{exe.browser}}</td><td class='exe table col exeTime'>{{exe.exeTime}}</td>
                                 <td class='exe table {{exe.status}}'>{{exe.status}}</td>
                                 <td class='exe table col bv'>{{exe.bversion}}</td>
                                 <td class='exe table col platf'>{{exe.platform}}</td>
@@ -136,12 +156,19 @@
                         <tbody class='exe table'>
                             <tr class='exe table' ng-repeat="exe in GRPExecutions">
                                 <td>{{exe[GRPExecolsTitle[0]]}}</td>
-                                <td><a href='detailed.html?{{getQParamTCLinkAll(exe)}}'>{{exe[GRPExecolsTitle[1]]}}</a></td>
+                                <td>
+                                   <a class = "hideOnPrint" href='detailed.html?{{getQParamTCLinkAll(exe)}}'>{{exe[GRPExecolsTitle[1]]}}</a>
+                                   <span class = "showOnPrint" style = "display: none;">{{exe[GRPExecolsTitle[1]]}}</span>
+                                </td>
                                 <td ng-repeat="browser in GRPBrowsers" align="center" class="exe table res">
                         <label ng-if="getResStatus(exe, browser) === NA" >{{getResStatus(exe, browser)}}</label>
-                        <a ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}' 
+                        <a class = "hideOnPrint" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}' 
                            href='detailed.html?{{getQParamTCLinkFor(exe, browser)}}' >{{getResStatus(exe, browser)}}
-                        </a> <br><label class='exe table time'>{{getResTime(exe, browser)}}</label>                                                                     
+                        </a>
+			<span class = "showOnPrint" style = "display: none;" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}'>
+			    {{getResStatus(exe, browser)}}
+                        </span>
+			<br><label class='exe table time'>{{getResTime(exe, browser)}}</label>                                                                     
                         </td>
                         </tr>
                         </tbody>
@@ -158,7 +185,7 @@
             </div>                
         </div>
 		
-        <div class="footer-icons">
+        <div class="footer-icons hideOnPrint">
 			<a ng-show="Details.bddReport" ng-href="{{Details.bddLink}}" target="_blank" class="footer-bdd" title="BDD Report"></a>
 			<a ng-show="Details.axeReport" href="aXe/aXe.html" target="_blank" class="footer-axe" title="AXE Accessibility Report"></a>
 			<a href="console.txt" target="_blank" class="footer-log" title="Console Log"></a>
