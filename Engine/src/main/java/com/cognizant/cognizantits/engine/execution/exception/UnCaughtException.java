@@ -15,27 +15,16 @@
  */
 package com.cognizant.cognizantits.engine.execution.exception;
 
-import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
-import com.cognizant.cognizantits.engine.support.Status;
+public class UnCaughtException extends RuntimeException {
 
-public class UnCaughtException extends Exception {
-
-    private static final long serialVersionUID = 1L;
-    public String errorName = "Error";
-
-    public UnCaughtException(String errorDescription, TestCaseReport r) {
-        super(errorDescription);
-        r.updateTestLog("Exception", errorDescription, Status.FAIL);
-    }
-
-    public UnCaughtException(String errorName, String errorDescription, TestCaseReport r) {
-        super(errorDescription);
-        this.errorName = errorName;
-        r.updateTestLog(errorName + " Exception", errorDescription, Status.FAIL);
-    }
+    public String errorName = "UnCaughtException";
 
     public UnCaughtException(String errorDescription) {
         super(errorDescription);
+    }
+
+    public UnCaughtException(Throwable ex) {
+        super(ex);
     }
 
     public UnCaughtException(String errorName, String errorDescription) {
