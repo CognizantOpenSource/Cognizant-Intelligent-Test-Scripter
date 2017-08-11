@@ -53,7 +53,7 @@
                 .status.FAIL, .FAIL {
                     color: red !important;
                 }
-                .hideOnPrint {
+                .hideOnPrint, .ColVis {
                     display: none !important;
                 }
                 .showOnPrint span{
@@ -185,7 +185,7 @@
             </div>                
         </div>
 		
-        <div class="footer-icons">
+        <div class="footer-icons hideOnPrint">
 			<a ng-show="Details.bddReport" ng-href="{{Details.bddLink}}" target="_blank" class="footer-bdd" title="BDD Report"></a>
 			<a ng-show="Details.axeReport" href="aXe/aXe.html" target="_blank" class="footer-axe" title="AXE Accessibility Report"></a>
 			<a href="console.txt" target="_blank" class="footer-log" title="Console Log"></a>
