@@ -158,14 +158,14 @@
                                 <td>{{exe[GRPExecolsTitle[0]]}}</td>
                                 <td>
                                    <a class = "hideOnPrint" href='detailed.html?{{getQParamTCLinkAll(exe)}}'>{{exe[GRPExecolsTitle[1]]}}</a>
-                                   <span class = "showOnPrint">{{exe[GRPExecolsTitle[1]]}}</span>
+                                   <span class = "showOnPrint" style = "display: none;">{{exe[GRPExecolsTitle[1]]}}</span>
                                 </td>
                                 <td ng-repeat="browser in GRPBrowsers" align="center" class="exe table res">
                         <label ng-if="getResStatus(exe, browser) === NA" >{{getResStatus(exe, browser)}}</label>
                         <a class = "hideOnPrint" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}' 
                            href='detailed.html?{{getQParamTCLinkFor(exe, browser)}}' >{{getResStatus(exe, browser)}}
                         </a>
-			<span class = "showOnPrint" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}'>
+			<span class = "showOnPrint" style = "display: none;" ng-if="getResStatus(exe, browser) !== NA" class='exe table {{getResStatus(exe, browser)}}'>
 			    {{getResStatus(exe, browser)}}
                         </span>
 			<br><label class='exe table time'>{{getResTime(exe, browser)}}</label>                                                                     
