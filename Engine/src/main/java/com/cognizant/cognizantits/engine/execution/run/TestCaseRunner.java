@@ -25,7 +25,8 @@ import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.data.StepSet;
 import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
-import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
+import com.cognizant.cognizantits.engine.execution.exception.TestFailedException;
+import com.cognizant.cognizantits.engine.execution.exception.UnCaughtException;
 import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
 import com.cognizant.cognizantits.engine.execution.exception.data.GlobalDataNotFoundException;
 import com.cognizant.cognizantits.engine.execution.exception.data.TestDataNotFoundException;
@@ -33,6 +34,7 @@ import com.cognizant.cognizantits.engine.execution.exception.element.ElementExce
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.Step;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
@@ -273,52 +275,62 @@ public class TestCaseRunner {
 
     //<editor-fold defaultstate="collapsed" desc="error handling">
     private void onError(Throwable ex) {
+        reportOnError(getStepName(), ex.getMessage(), Status.FAIL);
         if (exe.isContinueOnError()) {
             LOG.log(Level.SEVERE, ex.getMessage(), Optional.ofNullable(ex.getCause()).orElse(ex));
-            updateReportOnError(getControl().Action, ex.getMessage());
         } else {
             if (ex instanceof RuntimeException) {
-                throw (RuntimeException) ex;
+                throw new TestFailedException(scenario(), testcase(), ex);
             }
-            throw new UnKnownError(ex);
+            throw new UnCaughtException(ex);
         }
     }
 
     private void onRuntimeException(RuntimeException ex) {
+        reportOnError(getStepName(), ex.getMessage(), Status.FAIL);
         if (exe.isContinueOnError()) {
             LOG.log(Level.SEVERE, ex.getMessage(), ex);
-            updateReportOnError(getControl().Action, ex.getMessage());
         } else {
-            throw ex;
+            throw new TestFailedException(scenario(), testcase(), ex);
         }
     }
 
-    private void onDataNotFoundException(DataNotFoundException ex) throws DataNotFoundException {
+    private String getStepName() {
+        return Objects.nonNull(getControl().Action) ? getControl().Action : "Error";
+    }
+
+    private void onDataNotFoundException(DataNotFoundException ex) throws TestFailedException {
         if (ex instanceof TestDataNotFoundException) {
             if (ex.cause.isIter()) {
-                throw ex;
+                reportOnError("DataNotFound", ex.toString(), Status.DEBUG);
+                throw new TestFailedException(scenario(), testcase(), ex);
             } else if (!this.stepStack.isEmpty() && !this.stepStack.peek().isSubIterDynamic) {
                 System.out.println(ex.toString() + ", Breaking subIteration!!");
-                getReport().updateTestLog("Error", ex.getMessage(), Status.DEBUG);
+                reportOnError("DataNotFound", ex.toString(), Status.DEBUG);
                 LOG.log(Level.SEVERE, ex.getMessage(), ex);
             } else {
+                /**
+                 * its a dynamic sub-iteration(number of sub-iterations is not
+                 * known in script) and at the end of data so break from it
+                 */
                 System.out.println("Breaking subIteration, End Of Input!!");
             }
 
         } else if (ex instanceof GlobalDataNotFoundException) {
-            throw ex;
+            reportOnError("DataNotFound", ex.toString(), Status.DEBUG);
+            throw new TestFailedException(scenario(), testcase(), ex);
         }
     }
 
-    private void updateReportOnError(String err, String desc) {
-        if (getReport() != null) {
-            getReport().updateTestLog(err, desc, Status.FAIL);
-        }
+    private void reportOnError(String err, String desc, Status status) {
+        Optional.ofNullable(getReport()).ifPresent(
+                (report) -> report.updateTestLog(err, desc, status));
     }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="run">
-    public void run(CommandControl cc, int iter) throws DataNotFoundException, DriverClosedException {
+    public void run(CommandControl cc, int iter)
+            throws DriverClosedException, TestFailedException {
         parameter.setIteration(iter);
         setControl(cc);
         if (testcase != null) {
@@ -332,15 +344,22 @@ public class TestCaseRunner {
                     checkForStartLoop(testStep, currStep);
                     try {
                         runStep(testStep);
-                    } catch (DriverClosedException dex) {
-                        throw dex;
+                    } catch (DriverClosedException | TestFailedException | UnCaughtException ex) {
+                        throw ex;
                     } catch (DataNotFoundException ex) {
                         onDataNotFoundException(ex);
                         currStep = breakSubIteration();
                         if (currStep >= 0) {
+                            /**
+                             * break out of sub-iteration and continue the
+                             * execution
+                             */
                             continue;
                         } else {
-                            throw ex;
+                            /**
+                             * error while breaking the execution
+                             */
+                            throw new TestFailedException(scenario(), testcase(), ex);
                         }
                     } catch (ForcedException | ElementException ex) {
                         onRuntimeException(ex);
@@ -391,9 +410,8 @@ public class TestCaseRunner {
     public void runAction(String action) {
         try {
             new TestStepRunner().executeAction(this, action);
-        } catch (Throwable ex) {
-            getReport().updateTestLog(action, ex.getMessage(),
-                    Status.FAIL);
+        } catch (Throwable ex) {            
+            reportOnError(action, ex.getMessage(), Status.FAIL);
             throw new RuntimeException("Error executing " + action);
         }
     }

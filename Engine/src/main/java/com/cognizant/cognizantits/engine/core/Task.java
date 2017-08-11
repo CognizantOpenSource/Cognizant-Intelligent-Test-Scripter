@@ -18,16 +18,14 @@ package com.cognizant.cognizantits.engine.core;
 import com.cognizant.cognizantits.datalib.component.Project;
 import com.cognizant.cognizantits.datalib.component.Scenario;
 import com.cognizant.cognizantits.datalib.component.TestCase;
+import com.cognizant.cognizantits.datalib.settings.RunSettings;
 import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.execution.data.Parameter;
 import com.cognizant.cognizantits.engine.execution.data.UserDataAccess;
 import com.cognizant.cognizantits.engine.execution.exception.DriverClosedException;
-import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
+import com.cognizant.cognizantits.engine.execution.exception.TestFailedException;
 import com.cognizant.cognizantits.engine.execution.exception.UnCaughtException;
-import com.cognizant.cognizantits.engine.execution.exception.UnKnownError;
-import com.cognizant.cognizantits.engine.execution.exception.data.DataNotFoundException;
-import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.execution.run.TestCaseRunner;
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
 import com.cognizant.cognizantits.engine.reporting.util.DateTimeUtils;
@@ -50,6 +48,10 @@ public class Task implements Runnable {
 
     public Project project() {
         return Control.exe.getProject();
+    }
+
+    private static RunSettings getRunSettings() {
+        return Control.exe.getExecSettings().getRunSettings();
     }
 
     @Override
@@ -112,35 +114,25 @@ public class Task implements Runnable {
 
     public boolean runIteration(int iter) {
         boolean success = false;
-        CommandControl cc = null;
         seleniumDriver = getSeDriver();
         try {
             SystemDefaults.reportComplete.set(true);
             report.startIteration(iter);
             launchBrowser();
             SystemDefaults.stopCurrentIteration.set(false);
-            cc = createControl();
-            runner.run(cc, iter);
+            runner.run(createControl(), iter);
             success = true;
-        } catch (DriverClosedException dex) {
-            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, dex.getMessage(), dex);
-            report.updateTestLog("DriverClosedException", dex.getMessage(), Status.FAILNS);
-        } catch (ForcedException ex) {
-            onError(ex, ex.getName(), ex.getMessage(), Status.FAIL);
-        } catch (ElementException ex) {
-            onError(ex, (cc != null ? cc.ObjectName : "Element Exception"),
-                    ex.getMessage(), Status.FAIL);
-        } catch (DataNotFoundException ex) {
-            onError(ex, "DataNotFound", ex.toString());
+        } catch (DriverClosedException ex) {
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
+            report.updateTestLog("DriverClosedException", ex.getMessage(), Status.FAILNS);
+        } catch (TestFailedException ex) {
+            onFail(ex, ex.getMessage(), Status.DEBUG);
         } catch (UnCaughtException ex) {
             onError(ex, "Unhandled Error", ex.getMessage());
-        } catch (UnKnownError ex) {
-            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-            onError(ex, "Error", ex.getMessage());
         } catch (Throwable ex) {
             onError(ex, "Error", ex.getMessage());
         } finally {
-            if (seleniumDriver != null && !Control.exe.getExecSettings().getRunSettings().useExistingDriver()) {
+            if (seleniumDriver != null && !getRunSettings().useExistingDriver()) {
                 try {
                     seleniumDriver.closeBrowser();
                 } catch (Exception ex) {
@@ -155,7 +147,7 @@ public class Task implements Runnable {
     }
 
     private void launchBrowser() throws UnCaughtException {
-        if (!Control.exe.getExecSettings().getRunSettings().useExistingDriver() || seleniumDriver.driver == null) {
+        if (!getRunSettings().useExistingDriver() || seleniumDriver.driver == null) {
             seleniumDriver.launchDriver(runContext);
         }
         report.setDriver(seleniumDriver);
@@ -184,19 +176,22 @@ public class Task implements Runnable {
         onError(ex, err, desc, Status.DEBUG);
     }
 
+    private void onFail(Throwable ex, String desc, Status s) {
+        onError(ex, "[Breaking execution!]", desc, s);
+    }
+
     private void onError(Throwable ex, String err, String desc, Status s) {
         if (ex != null) {
             LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
         if (report != null) {
-            report.updateTestLog(err, desc
-                    + System.lineSeparator() + "[Breaking execution!]", s);
+            report.updateTestLog(err, desc, s);
         }
     }
 
     private SeleniumDriver getSeDriver() {
         SeleniumDriver seDriver;
-        if (!Control.exe.getExecSettings().getRunSettings().useExistingDriver()
+        if (!getRunSettings().useExistingDriver()
                 || Control.getSeDriver() == null) {
             seDriver = new SeleniumDriver();
             Control.setSeDriver(seDriver);
