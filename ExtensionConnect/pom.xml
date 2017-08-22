@@ -19,19 +19,6 @@
             <artifactId>websocket-server</artifactId>
             <version>${jetty.version}</version>
         </dependency>
-        <!-- For Selenium Compatibility -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-io</artifactId>
-            <version>9.4.1.v20170120</version>
-            <classifier/>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>9.4.1.v20170120</version>
-            <classifier/>
-        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
