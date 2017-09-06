@@ -22,14 +22,16 @@ import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.SwipeElementDirection;
+import io.appium.java_client.TouchAction;
+import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 
 /**
  *
- * 
+ *
  */
 public class Gesture extends MobileNativeCommand {
 
@@ -40,12 +42,16 @@ public class Gesture extends MobileNativeCommand {
     /**
      * swipe right(from left)
      */
-    @Action(object = ObjectType.BROWSER, desc ="Swipe right [<Data>]", input =InputType.OPTIONAL)
-    
+    @Action(object = ObjectType.BROWSER, desc = "Swipe right [<Data>]", input = InputType.OPTIONAL)
+
     public void swipeRight() {
         try {
             if (Element != null) {
-                ((MobileElement) Element).swipe(SwipeElementDirection.RIGHT, getInt(Data, 1000));
+                TouchAction action = new TouchAction(((MobileDriver) Driver));
+                int distance = 100;
+                Point c = ((MobileElement) Element).getCenter();
+                action.longPress((MobileElement) Element)
+                        .moveTo(c.x + distance, c.y).waitAction(Duration.ofMillis(500)).perform();
                 Report.updateTestLog(Action, "Sucessfully swiped towards right", Status.DONE);
             } else {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
@@ -58,7 +64,7 @@ public class Gesture extends MobileNativeCommand {
                     endX = (int) (size.width * 0.80);
                 }
                 int Y = size.height / 2;
-                ((MobileDriver) Driver).swipe(startX, Y, endX, Y, getInt(Data, 1000));
+                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, 1000)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards right", Status.DONE);
             }
         } catch (Exception ex) {
@@ -70,12 +76,16 @@ public class Gesture extends MobileNativeCommand {
     /**
      * swipe left (from right)
      */
-    @Action(object = ObjectType.BROWSER, desc ="Swipe left [<Data>]", input =InputType.OPTIONAL)
-    
+    @Action(object = ObjectType.BROWSER, desc = "Swipe left [<Data>]", input = InputType.OPTIONAL)
+
     public void swipeLeft() {
         try {
             if (Element != null) {
-                ((MobileElement) Element).swipe(SwipeElementDirection.LEFT, getInt(Data, 1000));
+                TouchAction action = new TouchAction(((MobileDriver) Driver));
+                int distance = 100;
+                Point c = ((MobileElement) Element).getCenter();
+                action.longPress((MobileElement) Element)
+                        .moveTo(c.x - distance, c.y).waitAction(Duration.ofMillis(500)).perform();
                 Report.updateTestLog(Action, "Sucessfully swiped towards left", Status.DONE);
             } else {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
@@ -88,7 +98,7 @@ public class Gesture extends MobileNativeCommand {
                     endX = (int) (size.width * 0.10);
                 }
                 int Y = size.height / 2;
-                ((MobileDriver) Driver).swipe(startX, Y, endX, Y, getInt(Data, 1000));
+                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, 1000)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards left", Status.DONE);
             }
         } catch (Exception ex) {
@@ -97,15 +107,25 @@ public class Gesture extends MobileNativeCommand {
         }
     }
 
+    private void swipe(int startX, int startY, int endX, int endY, Duration wt) {
+        TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
+        touchAction.press(startX, startY).waitAction(wt).moveTo(endX, endY)
+                .release().perform();
+    }
+
     /**
      * swipe Down (from up)
      */
-    @Action(object = ObjectType.BROWSER, desc ="Swipe down [<Data>]", input =InputType.OPTIONAL)
-    
+    @Action(object = ObjectType.BROWSER, desc = "Swipe down [<Data>]", input = InputType.OPTIONAL)
+
     public void swipeDown() {
         try {
             if (Element != null) {
-                ((MobileElement) Element).swipe(SwipeElementDirection.DOWN, getInt(Data, 1000));
+                TouchAction action = new TouchAction(((MobileDriver) Driver));
+                int distance = 100;
+                Point c = ((MobileElement) Element).getCenter();
+                action.longPress((MobileElement) Element)
+                        .moveTo(c.x, c.y + distance).waitAction(Duration.ofMillis(500)).perform();
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             } else {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
@@ -118,7 +138,7 @@ public class Gesture extends MobileNativeCommand {
                     endY = (int) (size.width * 0.80);
                 }
                 int X = size.width / 2;
-                ((MobileDriver) Driver).swipe(X, startY, X, endY, getInt(Data, 1000));
+                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, 1000)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             }
         } catch (Exception ex) {
@@ -130,12 +150,16 @@ public class Gesture extends MobileNativeCommand {
     /**
      * swipe Up (from Down)
      */
-    @Action(object = ObjectType.BROWSER, desc ="Swipe up [<Data>]", input =InputType.OPTIONAL)
-    
+    @Action(object = ObjectType.BROWSER, desc = "Swipe up [<Data>]", input = InputType.OPTIONAL)
+
     public void swipeUp() {
         try {
             if (Element != null) {
-                ((MobileElement) Element).swipe(SwipeElementDirection.UP, getInt(Data, 1000));
+                TouchAction action = new TouchAction(((MobileDriver) Driver));
+                int distance = 100;
+                Point c = ((MobileElement) Element).getCenter();
+                action.longPress((MobileElement) Element)
+                        .moveTo(c.x, c.y - distance).waitAction(Duration.ofMillis(500)).perform();
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             } else {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
@@ -148,7 +172,7 @@ public class Gesture extends MobileNativeCommand {
                     endY = (int) (size.width * 0.10);
                 }
                 int X = size.width / 2;
-                ((MobileDriver) Driver).swipe(X, startY, X, endY, getInt(Data, 1000));
+                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, 1000)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             }
         } catch (Exception ex) {

@@ -11,7 +11,6 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 package com.cognizant.cognizantits.engine.commands.mobile.nativ;
 
@@ -22,14 +21,17 @@ import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
+import io.appium.java_client.MultiTouchAction;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public class Basic extends MobileNativeCommand {
@@ -70,7 +72,11 @@ public class Basic extends MobileNativeCommand {
             if (Element != null) {
                 int nof = this.getInt(Data, 0, 1);
                 int time = this.getInt(Data, 1, 0);
-                ((AppiumDriver) Driver).tap(nof, Element, time);
+                TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
+                do {
+                    touchAction.tap(Element).waitAction(Duration.ofMillis(time));
+                    touchAction.release().perform();
+                } while (--nof > 0);
                 Report.updateTestLog(Action, "Tapped on '" + ObjectName + "'", Status.PASS);
             } else {
                 Report.updateTestLog(Action, "Unable tap on'" + ObjectName + "'", Status.FAIL);
@@ -94,7 +100,11 @@ public class Basic extends MobileNativeCommand {
             int x = this.getInt(Data, 1, 10);
             int y = this.getInt(Data, 2, 10);
             int time = this.getInt(Data, 3, 1);
-            ((AppiumDriver) Driver).tap(nof, x, y, time);
+            TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
+            do {
+                touchAction.tap(x, y).waitAction(Duration.ofMillis(time));
+                touchAction.release().perform();
+            } while (--nof > 0);
             Report.updateTestLog(Action, "Tapped at co-ordinates '" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
@@ -112,7 +122,12 @@ public class Basic extends MobileNativeCommand {
     public void zoom() {
         try {
             if (Element != null) {
-                ((AppiumDriver) Driver).zoom(Element);
+                int l = 50;
+                TouchAction action0 = new TouchAction(((MobileDriver) Driver));
+                TouchAction action1 = new TouchAction(((MobileDriver) Driver));
+                action0.longPress(Element).moveTo(0, l).waitAction(Duration.ofMillis(500)).perform();
+                action1.longPress(Element).moveTo(0, -l).waitAction(Duration.ofMillis(500)).perform();
+                new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Zoomed in '" + ObjectName + "'", Status.PASS);
             } else {
                 Report.updateTestLog(Action, "Unable to Zoom '" + ObjectName + "'", Status.FAIL);
@@ -133,7 +148,12 @@ public class Basic extends MobileNativeCommand {
         try {
             int x = this.getInt(Data, 0, 10);
             int y = this.getInt(Data, 1, 10);
-            ((AppiumDriver) Driver).zoom(x, y);
+            int l = 50;
+            TouchAction action0 = new TouchAction(((MobileDriver) Driver));
+            TouchAction action1 = new TouchAction(((MobileDriver) Driver));
+            action0.longPress(x, y).moveTo(0, l).waitAction(Duration.ofMillis(500)).perform();
+            action1.longPress(x, y).moveTo(0, -l).waitAction(Duration.ofMillis(500)).perform();
+            new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Zoomed at '" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
@@ -150,7 +170,12 @@ public class Basic extends MobileNativeCommand {
     public void pinch() {
         try {
             if (Element != null) {
-                ((AppiumDriver) Driver).pinch(Element);
+                int l = 50;
+                TouchAction action0 = new TouchAction(((MobileDriver) Driver));
+                TouchAction action1 = new TouchAction(((MobileDriver) Driver));
+                action0.longPress(Element).moveTo(0, l).waitAction(Duration.ofMillis(500)).perform();
+                action1.longPress(Element).moveTo(0, -l).waitAction(Duration.ofMillis(500)).perform();
+                new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Pinched '" + ObjectName + "'", Status.PASS);
             } else {
                 Report.updateTestLog(Action, "Unable pinch'" + ObjectName + "'", Status.FAIL);
@@ -171,14 +196,19 @@ public class Basic extends MobileNativeCommand {
         try {
             int x = this.getInt(Data, 0, 10);
             int y = this.getInt(Data, 1, 10);
-            ((AppiumDriver) Driver).pinch(x, y);
+            int l = 50;
+            TouchAction action0 = new TouchAction(((MobileDriver) Driver));
+            TouchAction action1 = new TouchAction(((MobileDriver) Driver));
+            action0.longPress(x, y - l).moveTo(0, l).waitAction(Duration.ofMillis(500)).perform();
+            action1.longPress(x, y + l).moveTo(0, -l).waitAction(Duration.ofMillis(500)).perform();
+            new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Pinched at'" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
+
     /**
      * Lock the device (bring it to the lock screen) for a given number of
      * seconds
@@ -192,7 +222,7 @@ public class Basic extends MobileNativeCommand {
                 ((AndroidDriver) Driver).lockDevice();
             } else {
                 int time = this.getInt(Data, 5);
-                ((IOSDriver) Driver).lockDevice(time);
+                ((IOSDriver) Driver).lockDevice(Duration.ofSeconds(time));
             }
             Report.updateTestLog(Action, "Screen locked", Status.PASS);
         } catch (Exception ex) {
