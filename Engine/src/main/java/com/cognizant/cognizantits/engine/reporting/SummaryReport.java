@@ -29,8 +29,12 @@ import com.cognizant.cognizantits.engine.reporting.util.DateTimeUtils;
 import com.cognizant.cognizantits.engine.reporting.util.TestInfo;
 import com.cognizant.cognizantits.engine.support.Status;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -101,7 +105,8 @@ public final class SummaryReport implements OverviewReport {
                     runContext.BrowserName, runContext.BrowserVersion, runContext.PlatformValue);
             List<File> attach = new ArrayList<>();
             attach.add(new File(FilePath.getCurrentResultsPath(), report.getFile().getName()));
-            attach.add(new File(FilePath.getCurrentResultsPath(), "console.txt"));
+            File tmpConsole = createTmpConsole(new File(FilePath.getCurrentResultsPath(), "console.txt"));
+            Optional.ofNullable(tmpConsole).ifPresent(attach::add);
             String prefix = tc.testScenario + "_" + tc.testCase + "_Step-";
             File imgFolder = new File(FilePath.getCurrentResultsPath() + File.separator + "img");
             if (imgFolder.exists()) {
@@ -116,9 +121,21 @@ public final class SummaryReport implements OverviewReport {
                 report.updateTestLog(sync.getModule(), "Unable to Update Results to "
                         + sync.getModule(), Status.DEBUG);
             }
+            Optional.ofNullable(tmpConsole).ifPresent(File::delete);
         } else {
             System.out.println("[ERROR:UNABLE TO REACH TEST MANAGEMENT MODULE!!!]");
             report.updateTestLog("Error", "Unable to Connect to TM Module", Status.DEBUG);
+        }
+    }
+
+    public File createTmpConsole(File console) {
+        try {
+            File tmpConsole = File.createTempFile("console", ".txt");
+            Files.copy(console.toPath(), tmpConsole.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            tmpConsole.deleteOnExit();
+            return tmpConsole;
+        } catch (IOException ex) {
+            return null;
         }
     }
 
@@ -185,8 +202,8 @@ public final class SummaryReport implements OverviewReport {
             REPORT_HANDLERS.add(summaryHandler);
         }
     }
-    
-    public static void reset(){
+
+    public static void reset() {
         REPORT_HANDLERS.clear();
     }
 
