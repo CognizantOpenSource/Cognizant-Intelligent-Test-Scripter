@@ -105,6 +105,9 @@ public final class SummaryReport implements OverviewReport {
                     runContext.BrowserName, runContext.BrowserVersion, runContext.PlatformValue);
             List<File> attach = new ArrayList<>();
             attach.add(new File(FilePath.getCurrentResultsPath(), report.getFile().getName()));
+            /*
+            * create temp. console to avoid error from jira server on sending a open stream
+            */
             File tmpConsole = createTmpConsole(new File(FilePath.getCurrentResultsPath(), "console.txt"));
             Optional.ofNullable(tmpConsole).ifPresent(attach::add);
             String prefix = tc.testScenario + "_" + tc.testCase + "_Step-";
