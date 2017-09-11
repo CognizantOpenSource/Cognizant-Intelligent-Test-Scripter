@@ -35,6 +35,8 @@ import org.openqa.selenium.Point;
  */
 public class Gesture extends MobileNativeCommand {
 
+    private final int defWaitTimeOut = 1000;
+    
     public Gesture(CommandControl cc) {
         super(cc);
     }
@@ -64,7 +66,7 @@ public class Gesture extends MobileNativeCommand {
                     endX = (int) (size.width * 0.80);
                 }
                 int Y = size.height / 2;
-                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, 1000)));
+                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards right", Status.DONE);
             }
         } catch (Exception ex) {
@@ -98,7 +100,7 @@ public class Gesture extends MobileNativeCommand {
                     endX = (int) (size.width * 0.10);
                 }
                 int Y = size.height / 2;
-                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, 1000)));
+                swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards left", Status.DONE);
             }
         } catch (Exception ex) {
@@ -116,7 +118,7 @@ public class Gesture extends MobileNativeCommand {
     /**
      * swipe Down (from up)
      */
-    @Action(object = ObjectType.BROWSER, desc = "Swipe down [<Data>]", input = InputType.OPTIONAL)
+    @Action(object = ObjectType.ANY, desc = "Swipe down [<Data>]", input = InputType.OPTIONAL)
 
     public void swipeDown() {
         try {
@@ -138,7 +140,7 @@ public class Gesture extends MobileNativeCommand {
                     endY = (int) (size.width * 0.80);
                 }
                 int X = size.width / 2;
-                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, 1000)));
+                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             }
         } catch (Exception ex) {
@@ -150,7 +152,7 @@ public class Gesture extends MobileNativeCommand {
     /**
      * swipe Up (from Down)
      */
-    @Action(object = ObjectType.BROWSER, desc = "Swipe up [<Data>]", input = InputType.OPTIONAL)
+    @Action(object = ObjectType.ANY, desc = "Swipe up [<Data>]", input = InputType.OPTIONAL)
 
     public void swipeUp() {
         try {
@@ -172,7 +174,7 @@ public class Gesture extends MobileNativeCommand {
                     endY = (int) (size.width * 0.10);
                 }
                 int X = size.width / 2;
-                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, 1000)));
+                swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
                 Report.updateTestLog(Action, "Sucessfully swiped towards down", Status.DONE);
             }
         } catch (Exception ex) {
