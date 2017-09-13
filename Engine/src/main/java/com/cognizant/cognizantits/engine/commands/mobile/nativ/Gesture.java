@@ -59,10 +59,10 @@ public class Gesture extends MobileNativeCommand {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
                 int startX, endX;
                 if (Data != null && Data.contains(",")) {
-                    startX = (int) (size.width * (getInt(Data, 0, 10) / 100d));
+                    startX = (int) (size.width * (getInt(Data, 0, 20) / 100d));
                     endX = (int) (size.width * (getInt(Data, 1, 80) / 100d));
                 } else {
-                    startX = (int) (size.width * 0.10);
+                    startX = (int) (size.width * 0.20);
                     endX = (int) (size.width * 0.80);
                 }
                 int Y = size.height / 2;
@@ -94,10 +94,10 @@ public class Gesture extends MobileNativeCommand {
                 int startX, endX;
                 if (Data != null && Data.contains(",")) {
                     startX = (int) (size.width * (getInt(Data, 0, 80) / 100d));
-                    endX = (int) (size.width * (getInt(Data, 1, 10) / 100d));
+                    endX = (int) (size.width * (getInt(Data, 1, 20) / 100d));
                 } else {
                     startX = (int) (size.width * 0.80);
-                    endX = (int) (size.width * 0.10);
+                    endX = (int) (size.width * 0.20);
                 }
                 int Y = size.height / 2;
                 swipe(startX, Y, endX, Y, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
@@ -133,10 +133,10 @@ public class Gesture extends MobileNativeCommand {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
                 int startY, endY;
                 if (Data != null && Data.contains(",")) {
-                    startY = (int) (size.width * (getInt(Data, 0, 10) / 100d));
+                    startY = (int) (size.width * (getInt(Data, 0, 20) / 100d));
                     endY = (int) (size.width * (getInt(Data, 1, 80) / 100d));
                 } else {
-                    startY = (int) (size.width * 0.10);
+                    startY = (int) (size.width * 0.20);
                     endY = (int) (size.width * 0.80);
                 }
                 int X = size.width / 2;
@@ -168,10 +168,10 @@ public class Gesture extends MobileNativeCommand {
                 int startY, endY;
                 if (Data != null && Data.contains(",")) {
                     startY = (int) (size.width * (getInt(Data, 0, 80) / 100d));
-                    endY = (int) (size.width * (getInt(Data, 1, 10) / 100d));
+                    endY = (int) (size.width * (getInt(Data, 1, 20) / 100d));
                 } else {
                     startY = (int) (size.width * 0.80);
-                    endY = (int) (size.width * 0.10);
+                    endY = (int) (size.width * 0.20);
                 }
                 int X = size.width / 2;
                 swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));

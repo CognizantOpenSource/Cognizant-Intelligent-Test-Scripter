@@ -71,10 +71,9 @@ public class Basic extends MobileNativeCommand {
         try {
             if (Element != null) {
                 int nof = this.getInt(Data, 0, 1);
-                int time = this.getInt(Data, 1, 0);
                 TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
                 do {
-                    touchAction.tap(Element).waitAction(Duration.ofMillis(time));
+                    touchAction.tap(Element);
                     touchAction.release().perform();
                 } while (--nof > 0);
                 Report.updateTestLog(Action, "Tapped on '" + ObjectName + "'", Status.PASS);
@@ -99,10 +98,9 @@ public class Basic extends MobileNativeCommand {
             int nof = this.getInt(Data, 0, 1);
             int x = this.getInt(Data, 1, 10);
             int y = this.getInt(Data, 2, 10);
-            int time = this.getInt(Data, 3, 1);
             TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
             do {
-                touchAction.tap(x, y).waitAction(Duration.ofMillis(time));
+                touchAction.tap(x, y);
                 touchAction.release().perform();
             } while (--nof > 0);
             Report.updateTestLog(Action, "Tapped at co-ordinates '" + x + "','" + y + "'", Status.PASS);
@@ -151,10 +149,10 @@ public class Basic extends MobileNativeCommand {
             int l = 100;
             TouchAction action0 = new TouchAction(((MobileDriver) Driver));
             TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-            action0.longPress(x, y+l).waitAction(Duration.ofMillis(1000)).moveTo(-50, 200)
-                    .waitAction(Duration.ofMillis(100)).release();
-            action1.longPress(x, y-l).waitAction(Duration.ofMillis(1000)).moveTo(50, -200)
-                    .waitAction(Duration.ofMillis(100)).release();
+            action0.longPress(x, y + l).waitAction(Duration.ofMillis(100))
+                    .moveTo(0, 200).waitAction(Duration.ofMillis(100)).release();
+            action1.longPress(x + 50, y - l).waitAction(Duration.ofMillis(100))
+                    .moveTo(0, -200).waitAction(Duration.ofMillis(100)).release();
             new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Zoomed at '" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
@@ -175,8 +173,10 @@ public class Basic extends MobileNativeCommand {
                 int l = 150;
                 TouchAction action0 = new TouchAction(((MobileDriver) Driver));
                 TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-                action0.longPress(Element).moveTo(0, l).waitAction(Duration.ofMillis(500)).release();
-                action1.longPress(Element).moveTo(0, -l).waitAction(Duration.ofMillis(500)).release();
+                action0.longPress(Element).waitAction(Duration.ofMillis(100))
+                        .moveTo(0, l).waitAction(Duration.ofMillis(500)).release();
+                action1.longPress(Element).waitAction(Duration.ofMillis(100))
+                        .moveTo(0, -l).waitAction(Duration.ofMillis(500)).release();
                 new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Pinched '" + ObjectName + "'", Status.PASS);
             } else {
@@ -202,9 +202,9 @@ public class Basic extends MobileNativeCommand {
             TouchAction action0 = new TouchAction(((MobileDriver) Driver));
             TouchAction action1 = new TouchAction(((MobileDriver) Driver));
             action0.longPress(x, y - l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, l-200).waitAction(Duration.ofMillis(500)).release();
+                    .moveTo(0, l - 200).waitAction(Duration.ofMillis(500)).release();
             action1.longPress(x, y + l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, 200-l).waitAction(Duration.ofMillis(500)).release();
+                    .moveTo(0, 200 - l).waitAction(Duration.ofMillis(500)).release();
             new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Pinched at'" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
