@@ -295,7 +295,7 @@ public class Basic extends MobileNativeCommand {
      *
      * @see AppiumDriver#toggleLocationServices()
      */
-    @Action(object = ObjectType.BROWSER, desc = "Toggle the Location Services")
+    @Action(object = ObjectType.BROWSER, desc = "Toggle the Location Services(android)")
 
     public void toggleLocationServices() {
         try {
@@ -344,7 +344,7 @@ public class Basic extends MobileNativeCommand {
      *
      * @see AppiumDriver#hideKeyboard()
      */
-    @Action(object = ObjectType.BROWSER, desc = "Open the Notifications")
+    @Action(object = ObjectType.BROWSER, desc = "Open the Notifications(android)")
     public void openNotifications() {
         try {
             ((AndroidDriver) Driver).openNotifications();
