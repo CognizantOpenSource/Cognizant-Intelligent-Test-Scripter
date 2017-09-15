@@ -39,27 +39,7 @@ public class Basic extends MobileNativeCommand {
     public Basic(CommandControl cc) {
         super(cc);
     }
-
-    /**
-     * method for clearing the element value on the screen
-     *
-     */
-    @Action(object = ObjectType.SELENIUM, desc = "clear  the [<Object>] text if any")
-
-    public void clear() {
-        try {
-            if (Element != null) {
-                (Element).clear();
-                Report.updateTestLog(Action, "Cleared'" + ObjectName + "'", Status.PASS);
-            } else {
-                Report.updateTestLog(Action, "Unable clear '" + ObjectName + "'", Status.FAIL);
-            }
-        } catch (Exception ex) {
-            Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
-            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+  
     /**
      * method for tapping the center of an element on the screen
      *
