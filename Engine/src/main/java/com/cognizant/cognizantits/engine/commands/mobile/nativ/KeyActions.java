@@ -60,7 +60,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press search key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press search key")
+    @Action(object = ObjectType.BROWSER, desc = "Press search key(android)")
     public void search() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.KEYCODE_SEARCH);
@@ -75,7 +75,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press back key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press search key")
+    @Action(object = ObjectType.BROWSER, desc = "Press search key(android)")
     public void back() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.BACK);
@@ -90,7 +90,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press home key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press home key")
+    @Action(object = ObjectType.BROWSER, desc = "Press home key(android)")
     public void home() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.HOME);
@@ -105,7 +105,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press home key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press menu key")
+    @Action(object = ObjectType.BROWSER, desc = "Press menu key(android)")
     public void menu() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.MENU);
@@ -120,7 +120,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press settings key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press settings key")
+    @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
     
     public void settings() {
         try {
@@ -136,7 +136,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press the given key in input
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press  key [<Data>]", input = InputType.YES)
+    @Action(object = ObjectType.BROWSER, desc = "Press  key [<Data>](android)", input = InputType.YES)
     public void setKey() {
         try {
             Field f = AndroidKeyCode.class.getDeclaredField(Data);
