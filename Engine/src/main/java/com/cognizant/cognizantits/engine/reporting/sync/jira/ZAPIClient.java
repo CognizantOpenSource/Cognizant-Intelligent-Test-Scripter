@@ -40,7 +40,7 @@ public class ZAPIClient {
             EXELIST = "rest/zapi/latest/execution?cycleId=",
             EXECUTIONS = "rest/zapi/latest/execution",
             API = "rest/zapi/latest/moduleInfo",
-            UPDATERESULT = "rest/zapi/latest/execution/{{eid}}/quickExecute";
+            UPDATERESULT = "rest/zapi/latest/execution/{{eid}}/execute";
 
     class array {
 
@@ -258,7 +258,7 @@ public class ZAPIClient {
         String rest = UPDATERESULT.replace("{{eid}}", String.valueOf(eid));
         URL targetUrl = new URL(client.url.toString() + rest);
         DLogger.Log("Updating Status with EID ", targetUrl.toString());
-        Object response = client.post(targetUrl, jobj.toString());
+        Object response = client.put(targetUrl, jobj.toString());
         if (response == null) {
             DLogger.Log("Unknown Response : Check TestCase name");
         }
