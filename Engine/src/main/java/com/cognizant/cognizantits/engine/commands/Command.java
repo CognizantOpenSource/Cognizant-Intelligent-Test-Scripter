@@ -138,4 +138,8 @@ public class Command {
     public void executeTestCase(String scenarioName, String testCaseName) {
         executeTestCase(scenarioName, testCaseName, userData.getSubIterationAsNumber());
     }
+
+    public boolean browserAction() {
+        return "browser".equalsIgnoreCase(ObjectName);
+    }
 }

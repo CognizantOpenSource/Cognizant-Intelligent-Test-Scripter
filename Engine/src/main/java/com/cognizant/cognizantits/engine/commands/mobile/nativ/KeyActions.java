@@ -16,6 +16,7 @@
 package com.cognizant.cognizantits.engine.commands.mobile.nativ;
 
 import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
@@ -29,7 +30,7 @@ import org.openqa.selenium.Keys;
 
 /**
  *
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public class KeyActions extends MobileNativeCommand {
@@ -44,9 +45,14 @@ public class KeyActions extends MobileNativeCommand {
     @Action(object = ObjectType.BROWSER, desc = "Press enter key")
     public void enter() {
         try {
-            if (Element != null) {
-                (Element).sendKeys(Keys.ENTER);
-                Report.updateTestLog(Action, "Enter pressed", Status.PASS);
+            if (!browserAction()) {
+                if (Element != null) {
+                    (Element).sendKeys(Keys.ENTER);
+                    Report.updateTestLog(Action, "Enter pressed", Status.PASS);
+                } else {
+                    throw new ElementException(
+                            ElementException.ExceptionType.Element_Not_Found, Condition);
+                }
             } else {
                 ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.KEYCODE_ENTER);
                 Report.updateTestLog(Action, "Enter pressed", Status.PASS);
@@ -121,7 +127,7 @@ public class KeyActions extends MobileNativeCommand {
      * press settings key
      */
     @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
-    
+
     public void settings() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);

@@ -18,6 +18,7 @@ package com.cognizant.cognizantits.engine.commands;
 import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.core.CommandControl;
 import com.cognizant.cognizantits.engine.execution.exception.ForcedException;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
@@ -64,7 +65,7 @@ public class WaitFor extends Command {
             Report.updateTestLog(Action, "Click and wait for page load is done",
                     Status.DONE);
         } else {
-            Report.updateTestLog(Action, "Object[" + ObjectName + "] not found", Status.FAIL);
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
         }
     }
 
@@ -173,14 +174,10 @@ public class WaitFor extends Command {
             Element = AObject.findElement(ObjectName, Reference);
             AObject.resetWaitTime();
             if (Element != null) {
-                Report.updateTestLog(Action, "'"
-                        + this.ObjectName
-                        + "' Element Present in the stipulated time",
-                        Status.PASS);
+                Report.updateTestLog(Action, "'" + this.ObjectName
+                        + "' Element Present in the stipulated time", Status.PASS);
             } else {
-                throw new ForcedException(Action, "'"
-                        + this.ObjectName
-                        + "' Element not present in the stipulated time");
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
 
         } catch (Exception ex) {
@@ -200,22 +197,18 @@ public class WaitFor extends Command {
         }
     }
 
-    @Action(object = ObjectType.ANY,
-            desc = "Wait for Frame To Be Available and Switch to it",
+    @Action(object = ObjectType.ANY, desc = "Wait for Frame To Be Available and Switch to it",
             condition = InputType.OPTIONAL)
     public void waitForFrameAndSwitch() {
         if (Element != null) {
-            waitFor(WaitType.FRAME_EL,
-                    "Switched to Frame By Object '"
+            waitFor(WaitType.FRAME_EL, "Switched to Frame By Object '"
                     + ObjectName + "' in stipulated Time");
         } else if (Data != null) {
             if (Data.matches("[0-9]+")) {
-                waitFor(WaitType.FRAME_IND,
-                        "Switched to Frame By Index '"
+                waitFor(WaitType.FRAME_IND, "Switched to Frame By Index '"
                         + Data + "' in stipulated Time");
             } else {
-                waitFor(WaitType.FRAME_STR,
-                        "Switched to Frame By Value '"
+                waitFor(WaitType.FRAME_STR, "Switched to Frame By Value '"
                         + Data + "' in stipulated Time");
             }
         }
@@ -225,7 +218,7 @@ public class WaitFor extends Command {
         if (Element != null) {
             waitFor(command, message);
         } else {
-            throw new ForcedException(Action, "Object [" + ObjectName + "] not found");
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
         }
     }
 
