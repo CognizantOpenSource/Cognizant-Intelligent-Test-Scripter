@@ -63,13 +63,15 @@ import com.galenframework.specs.SpecWidth;
 import com.galenframework.specs.colors.ColorRange;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
  *
- * 
+ *
  */
 public class SpecReader {
 
@@ -284,11 +286,28 @@ public class SpecReader {
                     case "crop-if-outside":
                         spec.setCropIfOutside(true);
                         break;
+                    case "exclude-objects":
+                        String ignoreObjects = parseExcludeObjects(parameter.getValue());
+                        Optional.ofNullable(spec.getIgnoredObjectExpressions())
+                                .orElseGet(() -> {
+                                    List<String> l = new LinkedList<>();
+                                    spec.setIgnoredObjectExpressions(l);
+                                    return l;
+                                })
+                                .add(ignoreObjects);
+                        break;
                     default:
                         throw new SyntaxException("Unknown parameter: " + parameter.getKey());
                 }
             }
         }
+    }
+
+    private String parseExcludeObjects(String value) {
+        if (value.startsWith("[") && value.endsWith("]")) {
+            return value.substring(1, value.length() - 1);
+        }
+        return value;
     }
 
     private Rect parseRect(String text) {
