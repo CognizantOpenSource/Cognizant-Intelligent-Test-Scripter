@@ -76,6 +76,7 @@ public class Gesture extends MobileNativeCommand {
         }
     }
 
+
     @Action(object = ObjectType.BROWSER, desc = "Swipe left [<Data>]", input = InputType.OPTIONAL)
     public void swipeLeft() {
         try {

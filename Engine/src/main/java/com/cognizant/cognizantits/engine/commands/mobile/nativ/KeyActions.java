@@ -127,7 +127,6 @@ public class KeyActions extends MobileNativeCommand {
      * press settings key
      */
     @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
-
     public void settings() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
