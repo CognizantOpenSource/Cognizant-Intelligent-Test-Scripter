@@ -19,12 +19,15 @@ import com.cognizant.cognizantits.engine.core.CommandControl;
 import com.cognizant.cognizantits.engine.galenWrapper.PageValidationWrapper;
 import com.cognizant.cognizantits.engine.galenWrapper.PageWrapper;
 import com.galenframework.specs.Spec;
+import com.galenframework.specs.SpecImage;
 import com.galenframework.validation.ValidationResult;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -83,6 +86,21 @@ public class General extends Report {
         return null;
     }
 
+    public PageValidationWrapper getPageValidation(Spec spec, RelativeElement relativeElement) {
+        Map<String, WebElement> elementMap = getRelativeElement(relativeElement);
+        if (Element != null) {
+            elementMap.put(ObjectName, Element);
+        }
+        if (spec instanceof SpecImage) {
+            Optional.ofNullable(((SpecImage) spec).getIgnoredObjectExpressions())
+                    .ifPresent((ioe) -> ioe.stream().flatMap((expr) -> Stream.of(expr.split(",")))
+                    .forEach((String object) -> {
+                        elementMap.put(object, AObject.findElement(object, Reference));
+                    }));
+        }
+        return new PageValidationWrapper(new PageWrapper(Driver, elementMap), elementMap);
+    }
+
     public PageValidationWrapper getPageValidation(RelativeElement relativeElement) {
         Map<String, WebElement> elementMap = getRelativeElement(relativeElement);
         if (Element != null) {
@@ -93,7 +111,7 @@ public class General extends Report {
 
     public void validate(Spec spec, RelativeElement relativeElement) {
         try {
-            PageValidationWrapper pageValidation = getPageValidation(relativeElement);
+            PageValidationWrapper pageValidation = getPageValidation(spec, relativeElement);
             ValidationResult result = pageValidation.check(ObjectName, spec);
             if (result.getError() != null) {
                 onError(spec, result);
