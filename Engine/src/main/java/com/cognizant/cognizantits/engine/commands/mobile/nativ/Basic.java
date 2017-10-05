@@ -15,6 +15,7 @@
 package com.cognizant.cognizantits.engine.commands.mobile.nativ;
 
 import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
@@ -39,7 +40,7 @@ public class Basic extends MobileNativeCommand {
     public Basic(CommandControl cc) {
         super(cc);
     }
-  
+
     /**
      * method for tapping the center of an element on the screen
      *
@@ -58,7 +59,7 @@ public class Basic extends MobileNativeCommand {
                 } while (--nof > 0);
                 Report.updateTestLog(Action, "Tapped on '" + ObjectName + "'", Status.PASS);
             } else {
-                Report.updateTestLog(Action, "Unable tap on'" + ObjectName + "'", Status.FAIL);
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
@@ -108,7 +109,7 @@ public class Basic extends MobileNativeCommand {
                 new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Zoomed in '" + ObjectName + "'", Status.PASS);
             } else {
-                Report.updateTestLog(Action, "Unable to Zoom '" + ObjectName + "'", Status.FAIL);
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
@@ -160,7 +161,7 @@ public class Basic extends MobileNativeCommand {
                 new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Pinched '" + ObjectName + "'", Status.PASS);
             } else {
-                Report.updateTestLog(Action, "Unable pinch'" + ObjectName + "'", Status.FAIL);
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
