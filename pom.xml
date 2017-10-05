@@ -22,10 +22,10 @@
       
         <com4j.version>20110320</com4j.version>
         
-        <selenium.version>3.5.2</selenium.version>
+        <selenium.version>3.5.3</selenium.version>
         <sikuli.version>1.1.0</sikuli.version>
         <galen.version>2.3.4</galen.version>
-        <javaclient.version>4.1.2</javaclient.version>
+        <javaclient.version>5.0.3</javaclient.version>
         <ngwebdriver.version>1.0</ngwebdriver.version>
         <ashot.version>1.5.2</ashot.version>
         <commons-cli.version>1.3.1</commons-cli.version>

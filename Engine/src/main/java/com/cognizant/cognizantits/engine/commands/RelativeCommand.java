@@ -16,6 +16,7 @@
 package com.cognizant.cognizantits.engine.commands;
 
 import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
@@ -24,7 +25,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * 
+ *
  */
 public class RelativeCommand extends Command {
 
@@ -46,31 +47,34 @@ public class RelativeCommand extends Command {
             WebElement parent = AObject.findElement(Condition, Reference);
             if (parent != null) {
                 Element = AObject.findElement(parent, ObjectName, Reference);
-                getCommander().Element = Element;
-                switch (action) {
-                    case CLICK:
-                        new Basic(getCommander()).Click();
-                        break;
-                    case SET:
-                        new Basic(getCommander()).Set();
-                        break;
+                if (Element != null) {
+                    getCommander().Element = Element;
+                    switch (action) {
+                        case CLICK:
+                            new Basic(getCommander()).Click();
+                            break;
+                        case SET:
+                            new Basic(getCommander()).Set();
+                            break;
+                    }
+                } else {
+                    throw new ElementException(ElementException.ExceptionType.Element_Not_Found, ObjectName);
                 }
             } else {
-                Report.updateTestLog(Action, "Relative Element[" + Condition + "] Not Found in the Page", Status.FAIL);
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
         } else {
             Report.updateTestLog(Action, "No Relative Element Found in Condition Column", Status.DEBUG);
         }
     }
 
-    @Action(object = ObjectType.SELENIUM, 
-    		desc ="Click on element based on parent [<Object>]", 
-    	condition = InputType.YES)
+    @Action(object = ObjectType.SELENIUM, desc = "Click on element based on parent [<Object>]",
+            condition = InputType.YES)
     public void click_Relative() {
         doRelative(RelativeAction.CLICK);
     }
 
-    @Action(object = ObjectType.SELENIUM, desc ="Set [<Data>] on element based on parent [<Object>]", input =InputType.YES,condition = InputType.YES)
+    @Action(object = ObjectType.SELENIUM, desc = "Set [<Data>] on element based on parent [<Object>]", input = InputType.YES, condition = InputType.YES)
     public void set_Relative() {
         doRelative(RelativeAction.SET);
     }

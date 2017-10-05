@@ -16,34 +16,24 @@
 package com.cognizant.cognizantits.engine.commands;
 
 import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 
-final class WebButton extends Command {
+final class WebButton extends General {
 
-	/*
-	 * Methods for different actions WebButton
-	 */
-	public WebButton(CommandControl cc) {
-		super(cc);
-	}
+    public WebButton(CommandControl cc) {
+        super(cc);
+    }
 
-	@Action(object = ObjectType.SELENIUM, desc ="Object [<Object> is enabled]")
-	public void isEnabled() {
-
-		if (Element != null) {
-			if (Element.isEnabled()) {
-				Report.updateTestLog("isEnabled",
-						"Web Element is enabled", Status.PASS);
-			} else {
-				Report.updateTestLog("isEnabled",
-						"Web Element is not enabled", Status.FAIL);
-			}
-		} else {
-			Report.updateTestLog("isEnabled", "Element not found", Status.FAIL);
-		}
-
-	}
+    @Action(object = ObjectType.SELENIUM, desc = "Object [<Object> is enabled]")
+    public void isEnabled() {
+        if (elementEnabled()) {
+            Report.updateTestLog(Action, "Web Element is enabled", Status.PASS);
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Enabled, Condition);
+        }
+    }
 
 }

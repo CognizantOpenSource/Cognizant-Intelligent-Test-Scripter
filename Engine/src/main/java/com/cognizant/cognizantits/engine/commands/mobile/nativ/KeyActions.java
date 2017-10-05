@@ -16,6 +16,7 @@
 package com.cognizant.cognizantits.engine.commands.mobile.nativ;
 
 import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.execution.exception.element.ElementException;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
@@ -29,7 +30,7 @@ import org.openqa.selenium.Keys;
 
 /**
  *
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public class KeyActions extends MobileNativeCommand {
@@ -44,9 +45,14 @@ public class KeyActions extends MobileNativeCommand {
     @Action(object = ObjectType.BROWSER, desc = "Press enter key")
     public void enter() {
         try {
-            if (Element != null) {
-                (Element).sendKeys(Keys.ENTER);
-                Report.updateTestLog(Action, "Enter pressed", Status.PASS);
+            if (!browserAction()) {
+                if (Element != null) {
+                    (Element).sendKeys(Keys.ENTER);
+                    Report.updateTestLog(Action, "Enter pressed", Status.PASS);
+                } else {
+                    throw new ElementException(
+                            ElementException.ExceptionType.Element_Not_Found, Condition);
+                }
             } else {
                 ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.KEYCODE_ENTER);
                 Report.updateTestLog(Action, "Enter pressed", Status.PASS);
@@ -60,7 +66,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press search key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press search key")
+    @Action(object = ObjectType.BROWSER, desc = "Press search key(android)")
     public void search() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.KEYCODE_SEARCH);
@@ -75,7 +81,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press back key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press search key")
+    @Action(object = ObjectType.BROWSER, desc = "Press search key(android)")
     public void back() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.BACK);
@@ -90,7 +96,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press home key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press home key")
+    @Action(object = ObjectType.BROWSER, desc = "Press home key(android)")
     public void home() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.HOME);
@@ -105,7 +111,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press home key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press menu key")
+    @Action(object = ObjectType.BROWSER, desc = "Press menu key(android)")
     public void menu() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.MENU);
@@ -120,8 +126,8 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press settings key
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press settings key")
-    
+    @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
+
     public void settings() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
@@ -136,7 +142,7 @@ public class KeyActions extends MobileNativeCommand {
     /**
      * press the given key in input
      */
-    @Action(object = ObjectType.BROWSER, desc = "Press  key [<Data>]", input = InputType.YES)
+    @Action(object = ObjectType.BROWSER, desc = "Press  key [<Data>](android)", input = InputType.YES)
     public void setKey() {
         try {
             Field f = AndroidKeyCode.class.getDeclaredField(Data);
