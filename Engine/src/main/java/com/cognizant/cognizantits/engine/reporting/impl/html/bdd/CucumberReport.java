@@ -29,8 +29,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,14 +38,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
 
 public class CucumberReport {
-
-    public static SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss.sss");
 
     private static final CucumberReport INS = new CucumberReport();
 
@@ -81,7 +78,7 @@ public class CucumberReport {
     /**
      * convert report to cucumber-json report
      *
-     * @param reportData -  report data
+     * @param reportData - report data
      * @param bddReport - destination file
      * @throws Exception
      */
@@ -93,7 +90,7 @@ public class CucumberReport {
     /**
      * convert report to cucumber-json report
      *
-     * @param report -  report file
+     * @param report - report file
      * @param bddReport - destination file
      * @throws Exception
      */
@@ -205,11 +202,16 @@ public class CucumberReport {
         }
 
         private static Stream<Report.Data> dataStream(Object o) {
-            return ((List<Object>) o).stream().map(To::Data);
+            return ((List<Object>) o).stream().flatMap(To::Data);
         }
-         
-        private static Report.Data Data(Object o) {
-            return gson().fromJson(gson().toJson(((AbstractMap) o).get("data")), Report.Data.class);
+
+        private static Stream<Report.Data> Data(Object o) {
+            Object data = ((Map) o).get("data");
+            if (data instanceof List) {
+                return dataStream(data);
+            } else {
+                return Stream.of(gson().fromJson(gson().toJson(data), Report.Data.class));
+            }
         }
 
         private static FeatureReport.Tag Tag(Tag t) {
@@ -233,7 +235,7 @@ public class CucumberReport {
         }
 
         public static String Pure(String s) {
-            return s.replace("#CTAG", "");
+            return Objects.toString(s, "").replace("#CTAG", "");
         }
 
         public static String Base64(byte[] d) {
@@ -267,7 +269,7 @@ public class CucumberReport {
         private static long getDuration(Report.Step s) {
             try {
                 if (s.startTime != null && s.endTime != null) {
-                    return Math.max(1, formatter.parse(s.endTime).getTime() - formatter.parse(s.startTime).getTime());
+                    return Math.max(1, parseTime(s.endTime) - parseTime(s.startTime));
                 } else {
                     return calcDuration(s);
                 }
@@ -277,19 +279,23 @@ public class CucumberReport {
         }
 
         @SuppressWarnings("unchecked")
-        private static long calcDuration(Report.Step s) throws Exception {
-            List<Object> data = (List<Object>) s.data;
+        private static long calcDuration(Report.Step step) throws Exception {
+            List<Map<String, Object>> data = (List<Map<String, Object>>) step.data;
             if (data.size() > 1) {
-                List<String> tmp;
-                Stream.of(data.get(0), data.get(data.size() - 1));
-                tmp = ((List<Object>) s.data).stream().map(step -> ((Map<String, Object>) step).get("data")).map(
-                        stepdata -> ((Map<String, String>) stepdata).get(Report.Step.StepInfo.tStamp.name()))
-                        .collect(Collectors.toList());
                 return Math.max(1,
-                        formatter.parse(tmp.get(0)).getTime() - formatter.parse(tmp.get(tmp.size() - 1)).getTime());
+                        getTime(data.get(data.size() - 1)) - getTime(data.get(0)));
             } else {
                 return 1l;
             }
+        }
+
+        private static long getTime(Map<String, Object> step) throws ParseException {
+            return parseTime(((Map<String, String>) step.get("data"))
+                    .get(Report.Step.StepInfo.tStamp.name()));
+        }
+
+        private static long parseTime(String val) throws ParseException {
+            return new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss.sss").parse(val).getTime();
         }
 
     }
