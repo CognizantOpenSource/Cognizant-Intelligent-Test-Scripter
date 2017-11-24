@@ -129,7 +129,7 @@ public class BddParser {
                             .setDescription(getDescription(step));
                 }
                 testCase.addNewStep()
-                        .asReusableStep(scenario.getName(), reusableName)
+                        .asReusableStep("StepDefinitions", reusableName)
                         .setDescription(getDescription(step));
             }
             if (scenarioDef instanceof ScenarioOutline) {
