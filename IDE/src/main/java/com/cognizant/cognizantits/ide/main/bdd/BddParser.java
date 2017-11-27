@@ -122,14 +122,14 @@ public class BddParser {
             testCase.clearSteps();
             for (Step step : scenarioDef.getSteps()) {
                 String reusableName = convert(step.getText());
-                TestCase reusable = updateInfo(createReusable(scenario, reusableName), step);
+                TestCase reusable = updateInfo(createReusable(create("StepDefinitions"), reusableName), step);
                 if (reusable != null) {
                     reusable.addNewStep()
                             .setInput(getInputField(testCase.getName(), step.getText()))
                             .setDescription(getDescription(step));
                 }
                 testCase.addNewStep()
-                        .asReusableStep(scenario.getName(), reusableName)
+                        .asReusableStep("StepDefinitions", reusableName)
                         .setDescription(getDescription(step));
             }
             if (scenarioDef instanceof ScenarioOutline) {
