@@ -5,6 +5,12 @@
 
 Cognizant Intelligent Test Scripter is an open-source script-less test automation solution that provides a unified interface for all the “day-to-day” test automation activities such as test design, development, execution, reporting and maintenance.
 
+## Customer engagement Survey
+
+Thank you for agreeing to take part in this survey, your inputs/thoughts will help us to serve you better in the future. This survey should take only 4-5 minutes to complete.
+
+[Cognizant ITS Survey](https://docs.google.com/forms/d/e/1FAIpQLSdpsW2MqlPkfAwLTl9-ih5Bgi3oiDATgKaMbRpiy19Ysy5qNA/viewform?usp=sf_link)
+
 ## Download
 
 Download the latest version from the [Releases](../../releases/latest). After extracting the zip, follow the steps from [Installation.md](Resources/Installation.md)
