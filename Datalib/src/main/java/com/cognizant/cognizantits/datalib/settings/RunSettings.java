@@ -17,7 +17,7 @@ package com.cognizant.cognizantits.datalib.settings;
 
 /**
  *
- * 
+ *
  */
 public class RunSettings extends AbstractPropSettings {
 
@@ -133,4 +133,11 @@ public class RunSettings extends AbstractPropSettings {
         setProperty("SendMail", String.valueOf(value));
     }
 
+    public Boolean isExcelReport() {
+        return Boolean.valueOf(getProperty("excelReport", "false"));
+    }
+
+    public void setExcelReport(Boolean value) {
+        setProperty("excelReport", String.valueOf(value));
+    }
 }
