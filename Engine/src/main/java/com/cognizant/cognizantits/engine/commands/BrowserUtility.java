@@ -44,7 +44,7 @@ public class BrowserUtility extends Command {
         }
     }
 
-    @Action(object = ObjectType.BROWSER, desc = "To authenticate using the given credentials.", input = InputType.YES, condition = InputType.OPTIONAL)
+    /*@Action(object = ObjectType.BROWSER, desc = "To authenticate using the given credentials.", input = InputType.YES, condition = InputType.OPTIONAL)
     public void authenticate() {
         Boolean skip = Condition != null && Condition.equals("optional");
         switch (getCurrentBrowserName()) {
@@ -57,7 +57,7 @@ public class BrowserUtility extends Command {
                 Report.updateTestLog(Action, "Action not supported for Browser " + getCurrentBrowserName(),
                         skip ? Status.DONE : Status.DEBUG);
         }
-    }
+    }*/
 
     private void authenticateIE() {
         if (Data != null) {
