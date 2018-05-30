@@ -42,12 +42,76 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
-        </dependency>         
+        </dependency>    
+		<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-jexl</artifactId>
+		<version>2.1.1</version>
+		</dependency>		
         <dependency>
             <groupId>com.sikulix</groupId>
             <artifactId>sikulixapi</artifactId>
             <version>${sikuli.version}</version>
+			<exclusions>
+			<exclusion>
+			<groupId>com.github.vidstige</groupId>
+			<artifactId>jadb</artifactId>
+			</exclusion>
+		</exclusions>
         </dependency>
+		
+		<dependency>
+			<groupId>com.github.virtuald</groupId>
+			<artifactId>curvesapi</artifactId>
+			<version>1.03</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jagg</groupId>
+			<artifactId>jagg-core</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>net.sf.jett</groupId>
+			<artifactId>jett-core</artifactId>
+			<version>0.10.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>stax</groupId>
+			<artifactId>stax-api</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
        
         <dependency>
             <groupId>com.sikulix</groupId>
@@ -110,8 +174,20 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.11</version>
+            <version>6.14.3</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.30</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>2.30.1</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     
