@@ -236,6 +236,8 @@ public final class SummaryReport implements OverviewReport {
 		String case_check = Control.getCurrentProject().getProjectSettings()
 				.getExecSettings(current_release, current_testset).getRunSettings().getProperty("excelReport");
 
+		if(!RunManager.getGlobalSettings().isTestRun())
+{
 		if (case_check.equalsIgnoreCase("true")) {
 
 			String openexcel = "cmd /c start excel";
@@ -411,7 +413,7 @@ public final class SummaryReport implements OverviewReport {
 			}
 			
 		}
-
+		}
 	}
 	public void launchexcel() throws IOException
 	{	
