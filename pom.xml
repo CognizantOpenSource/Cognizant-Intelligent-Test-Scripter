@@ -20,25 +20,25 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       
-        <com4j.version>20110320</com4j.version>
+        <com4j.version>2.1</com4j.version>
         
-        <selenium.version>3.8.1</selenium.version>
+        <selenium.version>3.12.0</selenium.version>
         <sikuli.version>1.1.1</sikuli.version>
-        <galen.version>2.3.4</galen.version>
-        <javaclient.version>5.0.3</javaclient.version>
-        <ngwebdriver.version>1.0</ngwebdriver.version>
-        <ashot.version>1.5.2</ashot.version>
-        <commons-cli.version>1.3.1</commons-cli.version>
+        <galen.version>2.3.6</galen.version>
+        <javaclient.version>5.0.4</javaclient.version>
+        <ngwebdriver.version>1.1.3</ngwebdriver.version>
+        <ashot.version>1.5.4</ashot.version>
+        <commons-cli.version>1.4</commons-cli.version>
         <javamail.version>1.4.7</javamail.version>
         <json-simple.version>1.1.1</json-simple.version>
         <jcsv.version>1.4.0</jcsv.version>         
         
-        <jackson.version>2.8.8</jackson.version>
-        <commonscsv.version>1.4</commonscsv.version>
+        <jackson.version>2.9.5</jackson.version>
+        <commonscsv.version>1.5</commonscsv.version>
         <annon.detect>3.0.5</annon.detect>
-        <jetty.version>9.4.5.v20170502</jetty.version>
+        <jetty.version>9.4.10.v20180503</jetty.version>
         
-        <geherkin.version>4.0.0</geherkin.version>
+        <geherkin.version>5.0.0</geherkin.version>
         <autocomplete.version>2.6.1</autocomplete.version>
         
         <setupDir>../Dist/release</setupDir>
