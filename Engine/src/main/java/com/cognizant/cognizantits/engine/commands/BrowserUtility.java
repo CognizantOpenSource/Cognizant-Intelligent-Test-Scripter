@@ -59,7 +59,7 @@ public class BrowserUtility extends Command {
         }
     }*/
 
-    private void authenticateIE() {
+   /* private void authenticateIE() {
         if (Data != null) {
             try {
                 String userName = Data.split("##")[0];
@@ -73,6 +73,6 @@ public class BrowserUtility extends Command {
         } else {
             Report.updateTestLog(Action, "Invalid Credentials " + Data, Status.DEBUG);
         }
-    }
+    }*/
 
 }
