@@ -106,4 +106,10 @@ class SimpleHttpClientFactory implements HttpClient.Factory {
     public org.openqa.selenium.remote.http.HttpClient createClient(URL url) {
         return new ApacheHttpClient(builder.build(), url);
     }
+
+    @Override
+    public void cleanupIdleClients() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
 }
