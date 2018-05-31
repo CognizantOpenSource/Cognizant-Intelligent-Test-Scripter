@@ -22,7 +22,7 @@ import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openqa.selenium.security.UserAndPassword;
+//import org.openqa.selenium.security.UserAndPassword;
 
 public class BrowserUtility extends Command {
 
@@ -43,36 +43,6 @@ public class BrowserUtility extends Command {
             Logger.getLogger(BrowserUtility.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /*@Action(object = ObjectType.BROWSER, desc = "To authenticate using the given credentials.", input = InputType.YES, condition = InputType.OPTIONAL)
-    public void authenticate() {
-        Boolean skip = Condition != null && Condition.equals("optional");
-        switch (getCurrentBrowserName()) {
-            case "IE":
-                authenticateIE();
-                break;
-            case "Chrome":
-            case "Firefox":
-            default:
-                Report.updateTestLog(Action, "Action not supported for Browser " + getCurrentBrowserName(),
-                        skip ? Status.DONE : Status.DEBUG);
-        }
-    }*/
-
-   /* private void authenticateIE() {
-        if (Data != null) {
-            try {
-                String userName = Data.split("##")[0];
-                String password = Data.split("##")[1];
-                Driver.switchTo().alert().authenticateUsing(new UserAndPassword(userName, password));
-                Report.updateTestLog(Action, "Authenticated using " + Data, Status.DONE);
-            } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                Report.updateTestLog(Action, "Couldn't Authenticate" + ex.getMessage(), Status.FAIL);
-            }
-        } else {
-            Report.updateTestLog(Action, "Invalid Credentials " + Data, Status.DEBUG);
-        }
-    }*/
+    
 
 }
