@@ -178,7 +178,7 @@ public class WebDriverFactory {
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
                     addGeckoDriverAddon((FirefoxDriver) driver);
                 } else {
-                    caps = DesiredCapabilities.firefox().merge(withFirefoxProfile(caps).toCapabilities());
+                    caps = DesiredCapabilities.firefox().merge(withFirefoxProfile(caps));
                 }
                 break;
             case Chrome:
@@ -433,7 +433,8 @@ public class WebDriverFactory {
         if (binPath != null && !binPath.isEmpty()) {
             fOptions.setBinary(binPath);
         }
-        fOptions.addCapabilities(caps);
+        //fOptions.addCapabilities(caps);
+        fOptions.merge(caps);
         return fOptions;
     }
 
