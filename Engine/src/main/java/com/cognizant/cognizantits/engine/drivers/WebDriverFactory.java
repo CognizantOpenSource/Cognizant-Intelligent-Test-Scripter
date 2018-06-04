@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.engine.constants.FilePath;
 import com.cognizant.cognizantits.engine.constants.SystemDefaults;
 import com.cognizant.cognizantits.engine.core.Control;
 import com.cognizant.cognizantits.engine.core.RunContext;
+import static com.cognizant.cognizantits.engine.drivers.WebDriverFactory.Browser.values;
 import com.cognizant.cognizantits.engine.drivers.customWebDriver.EmptyDriver;
 import com.cognizant.cognizantits.engine.drivers.customWebDriver.ExtendedHtmlUnitDriver;
 import com.cognizant.cognizantits.engine.drivers.findObjectBy.support.ByObjectProp;
@@ -55,6 +56,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -199,7 +201,7 @@ public class WebDriverFactory {
                 break;
             case IE:
                 if (!isGrid) {
-                    driver = new InternetExplorerDriver(caps);
+                    driver = new InternetExplorerDriver(new InternetExplorerOptions(caps));
                 } else {
                     caps = DesiredCapabilities.internetExplorer().merge(caps);
                 }
@@ -433,7 +435,6 @@ public class WebDriverFactory {
         if (binPath != null && !binPath.isEmpty()) {
             fOptions.setBinary(binPath);
         }
-        //fOptions.addCapabilities(caps);
         fOptions.merge(caps);
         return fOptions;
     }
@@ -444,14 +445,19 @@ public class WebDriverFactory {
      * @param caps
      * @return
      */
-    private static DesiredCapabilities withHeadlessChrome(DesiredCapabilities caps) {
-        ChromeOptions options = (ChromeOptions) caps.getCapability(ChromeOptions.CAPABILITY);
+    private static ChromeOptions withHeadlessChrome(ChromeOptions options) {
+        Object obj = options.getCapability(ChromeOptions.CAPABILITY);
+        if (obj != null && obj instanceof ChromeOptions) {
+            options = (ChromeOptions) obj;
+        } else {
+            options = new ChromeOptions();
+        }
         options.addArguments("--headless", "--disable-gpu", "--window-size=1366,768");
-        caps.setCapability(ChromeOptions.CAPABILITY, options);
-        return caps;
+        options.setCapability(ChromeOptions.CAPABILITY, options);
+        return options;
     }
 
-    private static DesiredCapabilities withChromeOptions(DesiredCapabilities caps) {
+    private static ChromeOptions withChromeOptions(DesiredCapabilities caps) {
         ChromeOptions options;
         Object obj = caps.getCapability(ChromeOptions.CAPABILITY);
         if (obj != null && obj instanceof ChromeOptions) {
@@ -468,11 +474,10 @@ public class WebDriverFactory {
                 options.addExtensions(FilePath.getChromeAddOnPath());
             }
         }
-
         options.addArguments("--start-maximized");
         options = addChromeOptions(options);
         caps.setCapability(ChromeOptions.CAPABILITY, options);
-        return caps;
+        return options;
     }
 
     private static FirefoxProfile addFFProfile(FirefoxProfile fProfile) {
