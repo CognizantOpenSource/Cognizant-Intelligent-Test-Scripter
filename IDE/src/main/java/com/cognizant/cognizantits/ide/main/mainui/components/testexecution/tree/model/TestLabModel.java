@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.datalib.component.Release;
 import com.cognizant.cognizantits.datalib.component.TestSet;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonTreeModel;
 import java.util.Collections;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /**
@@ -70,7 +71,7 @@ public class TestLabModel extends CommonTreeModel {
 
     public TestSetNode addTestSet(TestSet testset) {
         if (getRoot().getChildCount() > 0) {
-            for (ReleaseNode releaseNode : Collections.list(getRoot().children())) {
+            for (ReleaseNode releaseNode : ReleaseNode.toList(getRoot().children())) {
                 if (releaseNode.getRelease().equals(testset.getRelease())) {
                     return addTestSet(releaseNode, testset);
                 }
