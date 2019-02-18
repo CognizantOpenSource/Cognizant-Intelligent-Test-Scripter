@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@ import com.cognizant.cognizantits.datalib.component.TestCase;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -48,7 +51,7 @@ public class ScenarioNode extends CommonNode {
     }
 
     public TestCaseNode getTestCaseNodeBy(TestCase testCaseName) {
-        for (TestCaseNode testCase : Collections.list(children())) {
+        for (TestCaseNode testCase : TestCaseNode.toList(children())) {
             if (testCase.getTestCase().equals(testCaseName)) {
                 return testCase;
             }
@@ -65,9 +68,8 @@ public class ScenarioNode extends CommonNode {
         return scenario.getName();
     }
 
-    @Override
-    public Enumeration<TestCaseNode> children() {
-        return super.children(); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   public static List<ScenarioNode> toList(Enumeration<TreeNode> children){
+       return Collections.list(children).stream().map(tsNode -> (ScenarioNode) tsNode).collect(Collectors.toList());
+       
+   }
 }
