@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,15 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.tree.mo
 
 import com.cognizant.cognizantits.datalib.component.TestCase;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.tree.TreeNode;
 
 /**
  *
- * 
+ *
  */
 public class TestCaseNode extends CommonNode {
 
@@ -49,4 +54,7 @@ public class TestCaseNode extends CommonNode {
         return testCase.getName();
     }
 
+    public static List<TestCaseNode> toList(Enumeration<TreeNode> children) {
+        return Collections.list(children).stream().map(tsNode -> (TestCaseNode) tsNode).collect(Collectors.toList());
+    }
 }
