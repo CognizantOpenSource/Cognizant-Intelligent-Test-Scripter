@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.tree.mo
 import com.cognizant.cognizantits.datalib.component.Project;
 import com.cognizant.cognizantits.datalib.component.Scenario;
 import com.cognizant.cognizantits.datalib.component.TestCase;
-import java.util.Collections;
 
 /**
  *
@@ -58,7 +57,7 @@ public class TestPlanTreeModel extends ProjectTreeModel<TestPlanNode> {
     @Override
     public TestCaseNode addTestCase(TestCase testCase) {
         if (getRoot().getChildCount() > 0) {
-            for (ScenarioNode scenarioNode : Collections.list(getRoot().children())) {
+            for (ScenarioNode scenarioNode : ScenarioNode.toList(getRoot().children())) {
                 if (scenarioNode.getScenario().equals(testCase.getScenario())) {
                     return addTestCase(scenarioNode, testCase);
                 }
