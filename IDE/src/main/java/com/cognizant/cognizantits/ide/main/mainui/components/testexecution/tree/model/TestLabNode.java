@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.datalib.component.TestSet;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
 import java.util.Collections;
 import java.util.Enumeration;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -59,9 +60,9 @@ public class TestLabNode extends CommonNode {
     }
 
     public ReleaseNode getReleaseBy(Release release) {
-        for (ReleaseNode releaseNode : Collections.list(children())) {
-            if (releaseNode.getRelease().equals(release)) {
-                return releaseNode;
+        for (TreeNode releaseNode : Collections.list(children())) {
+            if (((ReleaseNode)releaseNode).getRelease().equals(release)) {
+                return (ReleaseNode)releaseNode;
             }
         }
         return null;
@@ -72,8 +73,4 @@ public class TestLabNode extends CommonNode {
         return project != null ? project.getName() : "Reusable";
     }
 
-    @Override
-    public Enumeration<ReleaseNode> children() {
-        return super.children();
-    }
 }
