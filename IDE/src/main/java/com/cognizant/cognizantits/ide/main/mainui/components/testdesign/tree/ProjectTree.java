@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public class ProjectTree implements ActionListener {
                 LOGGER.log(Level.INFO, "Delete Scenarios approved for {0}; {1}",
                         new Object[]{scenarioNodes.size(), scenarioNodes});
                 for (ScenarioNode scenarioNode : scenarioNodes) {
-                    deleteTestCases(Collections.list(scenarioNode.children()));
+                    deleteTestCases(TestCaseNode.toList(scenarioNode.children()));
                     scenarioNode.getScenario().delete();
                     getTreeModel().removeNodeFromParent(scenarioNode);
                 }
