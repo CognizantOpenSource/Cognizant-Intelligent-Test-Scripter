@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@ import com.cognizant.cognizantits.datalib.component.TestSet;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -51,8 +54,8 @@ public class ReleaseNode extends CommonNode {
         return null;
     }
 
-    public TestSetNode getTestSetBy(TestSet testSet) {
-        for (TestSetNode testSetNode : Collections.list(children())) {
+     public TestSetNode getTestSetBy(TestSet testSet) {
+        for (TestSetNode testSetNode : TestSetNode.toList(children())) {
             if (testSetNode.getTestSet().equals(testSet)) {
                 return testSetNode;
             }
@@ -61,13 +64,12 @@ public class ReleaseNode extends CommonNode {
     }
 
     @Override
-    public Enumeration<TestSetNode> children() {
-        return super.children();
-    }
-
-    @Override
     public String toString() {
         return release.getName();
     }
 
+   public static List<ReleaseNode> toList(Enumeration<TreeNode> children){
+       return Collections.list(children).stream().map(tsNode -> (ReleaseNode) tsNode).collect(Collectors.toList());
+       
+   }
 }
