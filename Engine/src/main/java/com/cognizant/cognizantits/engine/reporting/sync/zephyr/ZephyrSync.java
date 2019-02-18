@@ -31,9 +31,10 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPMessage;
+
 import javax.xml.xpath.XPathExpressionException;
+import org.apache.xmlbeans.impl.soap.SOAPException;
+import org.apache.xmlbeans.impl.soap.SOAPMessage;
 import org.json.simple.JSONObject;
 
 /**
