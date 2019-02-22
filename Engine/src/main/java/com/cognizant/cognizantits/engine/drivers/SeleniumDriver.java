@@ -265,6 +265,7 @@ public class SeleniumDriver {
     }
 
     public String getPlatformName() {
+        Platform platform = null;
         String mode = Control.exe.getExecSettings().getRunSettings().getExecutionMode();
         boolean isLocal = mode.equalsIgnoreCase("Local");
         if (runContext.Platform.equals(Platform.ANY) || runContext.Platform.equals(Platform.getCurrent())) {
@@ -302,10 +303,10 @@ public class SeleniumDriver {
                     case "6.3":
                         return "WIN8.1";
                     default:
-                        return p.name();
+                        return platform.name();
                 }
             } else {
-                return p.toString();
+                return platform.toString();
             }
         } else if (runContext.PlatformValue.equals("WINDOWS")) {
             return "WIN";
