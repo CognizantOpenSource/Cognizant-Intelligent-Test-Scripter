@@ -175,6 +175,7 @@ public class WebDriverFactory {
         switch (browser) {
             case FireFox:
                 if (!isGrid) {
+                    caps.setPlatform(Platform.ANY);
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
                     addGeckoDriverAddon((FirefoxDriver) driver);
                 } else {
