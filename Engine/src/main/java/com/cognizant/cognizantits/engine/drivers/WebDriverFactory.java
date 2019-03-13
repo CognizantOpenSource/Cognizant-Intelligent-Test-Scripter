@@ -179,7 +179,10 @@ public class WebDriverFactory {
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
                     addGeckoDriverAddon((FirefoxDriver) driver);
                 } else {
-                    caps = DesiredCapabilities.firefox().merge(withFirefoxProfile(caps).toCapabilities());
+                    Platform platform = caps.getPlatform();
+                    caps.merge(DesiredCapabilities.firefox());
+                    caps.merge(withFirefoxProfile(caps).toCapabilities());
+                    caps.setPlatform(platform);
                 }
                 break;
             case Chrome:
@@ -414,12 +417,7 @@ public class WebDriverFactory {
     private static FirefoxOptions withFirefoxProfile(DesiredCapabilities caps) {
         FirefoxOptions fOptions = new FirefoxOptions();
         FirefoxProfile fProfile;
-        Object obj = caps.getCapability(FirefoxDriver.PROFILE);
-        if (obj != null && obj instanceof FirefoxProfile) {
-            fProfile = (FirefoxProfile) obj;
-        } else {
-            fProfile = new FirefoxProfile();
-        }
+        fProfile = new FirefoxProfile();
 
 //        Patch provided in addGeckoDriverAddon
 //        if (SystemDefaults.getClassesFromJar.get() && SystemDefaults.debugMode.get()) {
@@ -427,14 +425,12 @@ public class WebDriverFactory {
 //                fProfile.addExtension(FilePath.getFireFoxAddOnPath());
 //            }
 //        }
-        fProfile = addFFProfile(fProfile);
-        caps.setCapability(FirefoxDriver.PROFILE, fProfile);
+        //fProfile = addFFProfile(fProfile);
+        //caps.setCapability(FirefoxDriver.PROFILE, fProfile);
         String binPath = System.getProperty("firefox.bin.path");
-
         if (binPath != null && !binPath.isEmpty()) {
             fOptions.setBinary(binPath);
         }
-        fOptions.addCapabilities(caps);
         return fOptions;
     }
 
