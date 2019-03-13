@@ -281,7 +281,7 @@ public class SeleniumDriver {
                     return (driver instanceof AndroidDriver) ? "Android" : "IOS";
                 }
             } else if (driver instanceof EmptyDriver) {
-                return "Any";
+                return Platform.getCurrent().name();
             } else {
                 cap = ((RemoteWebDriver) driver).getCapabilities();
             }
