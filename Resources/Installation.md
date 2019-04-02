@@ -75,6 +75,11 @@ If you see **It's Downloaded From Internet Warning** then enter the following co
 
 `xattr -d -r com.apple.quarantine /path/to/cognizant-intelligent-test-scripter`
 
+In case of Mac, replace the drivers in `/path/to/cognizant-intelligent-test-scripter/lib/Drivers` location with the corresponding binaries for Mac OS. Also mention the path of the same in the `Configuration --> Browser Configuration` window in CITS IDE. 
+
+For example, in case of chrome driver, please remove the `.exe` from the `ChromeDriverPath` property in the `Configure Browsers` window.
+
+
 ### Sikuli OCR support
 
 If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files as explained below.
@@ -111,4 +116,32 @@ Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) 
 
 ~~~Check out this [sikuli issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.~~~
 
+### Demo Project Details
 
+**AccessibilityActions Test case:**  Execute this test case against chrome browser to understand the accessibility actions supported by CITS, out of the box
+
+**AngularJS_Test:** Execute this test case against any browser. Objects in this test case are identified through "ngwebdriver" api integrated with CITS
+
+**DemoTestcase:** Covers basic automation flow in the URL "http://toolsqa.com/automation-practice-form/"
+
+**Iterations&SubIterations:** Demonstrates the usage of iterating the same test steps for multiple sets of test data from datasheet
+
+**LayoutTesting:** Demonstrates basic Galen actions that can be executed against any web browser
+
+**DBTest:** Demonstrates database testing actions available in CITS
+
+**ChromeEmulator_Iphone5:** Execute against the browser "Emulator_Iphone5". Navigate to "Configure Browsers" to know about this emulator
+
+**Iphone5_UserAgent:** Execute against the browser "Iphone5_UA". Navigate to "Configure Browsers" to know about this emulator
+
+**WebFlow_ChromeRWD:**  Execute against the browser "ChromeRWD". Navigate to "Configure Browsers" to know about this emulator
+
+**image_Web:** Demonstrates the usage of basic image actions in CITS. Execute this test case against a browser and there are chances of failure due to resolution mismatches, hence please update the corresponding image object taken from your machine.
+
+**WindowsAppUsingSikuli:** Covers a basic flow in calculator app. Execute this test case against "No browser" option and there are chances of failure due to resolution mismatches, hence please update the corresponding image object taken from your machine.
+
+**Mobile_Browser:** Covers a basic smoke flow to test mobile browsers. Create an emulator for mobile browser execution employing the necessary desired capabilities required by Appium in order to execute this test case.
+
+**Mobile_Native:** Covers a basic smoke flow to test Android Calculator application. Create an emulator for mobile native app execution employing the necessary desired capabilities required by Appium in order to execute this test case.
+
+**WebPagePerformanceTesting:** Demonstrates the use of the action "capturePageTimings" to perform web page performance testing
