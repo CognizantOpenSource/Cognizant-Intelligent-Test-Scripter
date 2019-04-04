@@ -416,6 +416,7 @@ public class WebDriverFactory {
 
     private static FirefoxOptions withFirefoxProfile(DesiredCapabilities caps) {
         FirefoxOptions fOptions = new FirefoxOptions();
+        fOptions.addCapabilities(caps);
         FirefoxProfile fProfile;
         fProfile = new FirefoxProfile();
 
