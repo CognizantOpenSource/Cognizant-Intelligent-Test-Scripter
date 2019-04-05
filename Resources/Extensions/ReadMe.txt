@@ -1,6 +1,22 @@
+Steps to install CITS Chrome and IE Add-on:
+==========================================
+
+Chrome
+========
+
+1- launch this link "https://chrome.google.com/webstore/detail/cognizant-intelligent-tes/eghfogfdhadandcigjcccdfhlohcgljn" in chrome and click on "Add to Chrome"
+
+CITS IE Add-on
+================
+
+1- Download the latest release from this GitHub link "https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases" and install
+
+
 Steps to install certificate:
+============================
 
 Chrome and Internet Explorer
+================================
 
 1-launch Ext_Certificate.cert file.
 
@@ -15,6 +31,7 @@ Chrome and Internet Explorer
 
 
 Firefox
+========
 
 1-Launch Cognizant Intelligent Test Scripter and open either Spy,Heal or Recorder.
 
