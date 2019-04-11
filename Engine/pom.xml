@@ -190,7 +190,7 @@
                         </replacement> 
                         <replacement> 
                             <token>org.eclipse.jdt.launching.JRE_CONTAINER"</token> 
-                            <value>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.9"</value> 
+                            <value>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9"</value> 
                         </replacement> 
                     </replacements> 
                 </configuration> 
