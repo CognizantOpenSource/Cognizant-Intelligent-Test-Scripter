@@ -44,8 +44,8 @@
         <setupDir>../Dist/release</setupDir>
         <resourceDir>../Resources</resourceDir>  
         
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>        
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>        
              
     </properties>
     <name>Cognizant Intelligent Test Scripter</name>
