@@ -27,9 +27,11 @@ import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.main.utils.table.XTable;
 import com.cognizant.cognizantits.ide.util.Notification;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -39,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * 
+ *
  */
 public class TMSettings extends javax.swing.JFrame {
 
@@ -419,6 +421,9 @@ public class TMSettings extends javax.swing.JFrame {
         if (moduleCombo.getSelectedIndex() != -1) {
             String moduleName = moduleCombo.getSelectedItem().toString();
             TestMgModule module = testMgmtModule.getModule(moduleName);
+            Properties properties;
+            properties = encryptpassword(PropUtils.getPropertiesFromTable(moduleTable));
+            PropUtils.loadPropertiesInTable(properties, moduleTable, "");
             if (moduleTable.isEditing()) {
                 moduleTable.getCellEditor().stopCellEditing();
             }
@@ -432,6 +437,16 @@ public class TMSettings extends javax.swing.JFrame {
                 }
             }
         }
+    }
+
+    private Properties encryptpassword(Properties properties) {
+        properties.entrySet().forEach((e) -> {
+            String key = (String) e.getKey();
+            if (key.toLowerCase().contains("passw")) {
+                properties.setProperty(key, TMIntegration.encrypt((String) e.getValue()));
+            }
+        });
+        return properties;
     }
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed

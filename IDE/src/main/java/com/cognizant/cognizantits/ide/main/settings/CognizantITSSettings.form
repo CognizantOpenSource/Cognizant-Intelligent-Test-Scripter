@@ -198,6 +198,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="reportPerformanceLog" min="-2" max="-2" attributes="0"/>
                                       <Component id="useExistingDriver" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <Component id="excelReporting" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -207,7 +208,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -268,12 +269,14 @@
                           <Component id="useExistingDriver" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="sendMail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bddReport" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="reportPerformanceLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bddReport" min="-2" max="-2" attributes="0"/>
+                          <Component id="reportPerformanceLog" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="53" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="excelReporting" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -513,6 +516,12 @@
                   <Font name="sansserif" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Send Mail after Execution"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="excelReporting">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Excel Reporting"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
           </SubComponents>

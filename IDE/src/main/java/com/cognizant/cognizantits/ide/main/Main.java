@@ -25,6 +25,7 @@ import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import com.cognizant.cognizantits.ide.main.mainui.Splash;
 import com.cognizant.cognizantits.ide.main.ui.About;
 import com.cognizant.cognizantits.ide.util.logging.UILogger;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -71,6 +72,7 @@ public class Main {
     private static void initCommonDependencies() {
         TestDataFactory.load();
         About.init();
+        Encryption.getInstance();
         SystemDefaults.getClassesFromJar.set(true);
     }
 

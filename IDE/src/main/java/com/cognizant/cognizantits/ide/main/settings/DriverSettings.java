@@ -19,6 +19,7 @@ import com.cognizant.cognizantits.datalib.component.Project;
 import com.cognizant.cognizantits.datalib.settings.ProjectSettings;
 import com.cognizant.cognizantits.datalib.settings.emulators.Emulator;
 import com.cognizant.cognizantits.datalib.util.data.LinkedProperties;
+import com.cognizant.cognizantits.engine.core.TMIntegration;
 import com.cognizant.cognizantits.engine.drivers.ChromeEmulators;
 import com.cognizant.cognizantits.engine.drivers.WebDriverFactory;
 import com.cognizant.cognizantits.ide.main.help.Help;
@@ -26,6 +27,8 @@ import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.main.utils.table.XTable;
 import com.cognizant.cognizantits.ide.util.Notification;
+import com.cognizant.cognizantits.ide.util.Utility;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -37,6 +40,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Properties;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -313,6 +317,9 @@ public class DriverSettings extends javax.swing.JFrame {
         if (driverPropTable.isEditing()) {
             driverPropTable.getCellEditor().stopCellEditing();
         }
+        Properties driveProps = encryptpassword(PropUtils.getPropertiesFromTable(driverPropTable));
+        PropUtils.loadPropertiesInTable(driveProps, driverPropTable, "");
+        
         DefaultTableModel model = (DefaultTableModel) driverPropTable.getModel();
         settings.getDriverSettings().clear();
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -322,6 +329,16 @@ public class DriverSettings extends javax.swing.JFrame {
                 settings.getDriverSettings().setProperty(prop, value);
             }
         }
+    }
+
+    private Properties encryptpassword(Properties properties) {
+        properties.entrySet().forEach((e) -> {
+            String key = (String) e.getKey();
+            if (key.toLowerCase().contains("passw")) {
+                properties.setProperty(key, Utility.encrypt((String) e.getValue()));
+            }
+        });
+        return properties;
     }
 
     private void resFilter() {
@@ -351,8 +368,6 @@ public class DriverSettings extends javax.swing.JFrame {
 
         customDeviceGroup = new javax.swing.ButtonGroup();
         emulatorGroup = new javax.swing.ButtonGroup();
-        simpleMenu = new javax.swing.JPopupMenu();
-        encrypt = new javax.swing.JMenuItem();
         mainTab = new javax.swing.JTabbedPane();
         commonPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -406,14 +421,6 @@ public class DriverSettings extends javax.swing.JFrame {
         resetSettings = new javax.swing.JButton();
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
 
-        encrypt.setText("Encrypt");
-        encrypt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                encryptActionPerformed(evt);
-            }
-        });
-        simpleMenu.add(encrypt);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configure Browsers");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -435,7 +442,6 @@ public class DriverSettings extends javax.swing.JFrame {
                 "Property", "Value"
             }
         ));
-        driverPropTable.setComponentPopupMenu(simpleMenu);
         jScrollPane3.setViewportView(driverPropTable);
 
         commonPanel.add(jScrollPane3, java.awt.BorderLayout.CENTER);
@@ -929,27 +935,12 @@ public class DriverSettings extends javax.swing.JFrame {
         model.addRow(new Object[]{"proxyPassword", "urp@55w0rb"});
     }//GEN-LAST:event_configProxyActionPerformed
 
-    private void encryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptActionPerformed
-        DefaultTableModel model = (DefaultTableModel) driverPropTable.getModel();
-        Arrays.stream(driverPropTable.getSelectedRows())
-                .filter((row) -> Optional.ofNullable(model.getValueAt(row, 1)).isPresent())
-                .forEach((row) -> {
-                    model.setValueAt(encrypt(model.getValueAt(row, 1).toString()), row, 1);
-                });
-    }//GEN-LAST:event_encryptActionPerformed
-
     private void syncChromeEmulatorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncChromeEmulatorsActionPerformed
         ChromeEmulators.sync();
         loadChromeEmulators();
     }//GEN-LAST:event_syncChromeEmulatorsActionPerformed
 
-    private String encrypt(String value) {
-        if (!value.isEmpty() && !value.matches(".*  Enc")) {
-            return Base64.encodeBase64String(value.getBytes()) + " Enc";
-        }
-        return value;
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCap;
     private javax.swing.JButton addNewEmulator;
@@ -976,7 +967,6 @@ public class DriverSettings extends javax.swing.JFrame {
     private javax.swing.JTabbedPane emCapTab;
     private javax.swing.ButtonGroup emulatorGroup;
     private javax.swing.JPanel emulatorPanel;
-    private javax.swing.JMenuItem encrypt;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -1003,7 +993,6 @@ public class DriverSettings extends javax.swing.JFrame {
     private javax.swing.JButton resetSettings;
     private javax.swing.JComboBox<String> resolution;
     private javax.swing.JButton saveSettings;
-    private javax.swing.JPopupMenu simpleMenu;
     private javax.swing.JButton syncChromeEmulators;
     private javax.swing.JRadioButton uaEmulator;
     private javax.swing.JTextArea userAgent;

@@ -15,7 +15,6 @@
  */
 package com.cognizant.cognizantits.ide.main.settings;
 
-
 import com.cognizant.cognizantits.datalib.component.Project;
 import com.cognizant.cognizantits.datalib.settings.ExecutionSettings;
 import com.cognizant.cognizantits.datalib.settings.testmgmt.Option;
@@ -29,6 +28,8 @@ import com.cognizant.cognizantits.ide.main.utils.table.XTable;
 import com.cognizant.cognizantits.ide.main.utils.table.XTablePanel;
 import com.cognizant.cognizantits.ide.settings.IconSettings;
 import com.cognizant.cognizantits.ide.util.Notification;
+import com.cognizant.cognizantits.ide.util.Utility;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.sql.DriverManager;
@@ -51,7 +52,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * 
+ *
  */
 public class CognizantITSSettings extends javax.swing.JFrame {
 
@@ -86,20 +87,18 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     }
 
     private void initTabs() {
-        uDPanel = new XTablePanel();
+        uDPanel = new XTablePanel(false);
         runSettingsTab.addTab("UserDefined", uDPanel);
-        mailSettingsPanel = new XTablePanel();
+        mailSettingsPanel = new XTablePanel(true);
         runSettingsTab.addTab("Mail Settings", mailSettingsPanel);
-        databaseSettingsPanel = new XTablePanel();
+        databaseSettingsPanel = new XTablePanel(true);
         runSettingsTab.addTab("Database Settings", databaseSettingsPanel);
 
         mailConnect = new ConnectButton() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    if (Mailer.connect(
-                            PropUtils.getPropertiesFromTable(
-                                    ((XTablePanel) mailSettingsPanel).table))) {
+                    if (Mailer.connect(PropUtils.getPropertiesFromTable(((XTablePanel) mailSettingsPanel).table))) {
                         success();
                     }
                 } catch (Exception ex) {
@@ -112,8 +111,9 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         dbConnect = new ConnectButton() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Properties prop = PropUtils.getPropertiesFromTable(
+                Properties encrypted = PropUtils.getPropertiesFromTable(
                         ((XTablePanel) databaseSettingsPanel).table);
+                Properties prop = Mailer.decryptValues(encrypted);
                 Optional.ofNullable(prop)
                         .filter((p) -> {
                             return Optional
@@ -123,11 +123,11 @@ public class CognizantITSSettings extends javax.swing.JFrame {
                                     })
                                     .isPresent()
                                     && Optional
-                                    .ofNullable(p.getProperty("db.connection.string"))
-                                    .filter((val) -> {
-                                        return !val.trim().isEmpty();
-                                    })
-                                    .isPresent();
+                                            .ofNullable(p.getProperty("db.connection.string"))
+                                            .filter((val) -> {
+                                                return !val.trim().isEmpty();
+                                            })
+                                            .isPresent();
                         })
                         .ifPresent((p) -> {
                             String driver = p.getProperty("db.driver");
@@ -214,6 +214,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         reportPerformanceLog.setSelected(execSettings.getRunSettings().isPerformanceLogEnabled());
         bddReport.setSelected(execSettings.getRunSettings().isBddReportEnabled());
         sendMail.setSelected(execSettings.getRunSettings().isMailSend());
+        excelReporting.setSelected(execSettings.getRunSettings().isExcelReport());
         /**
          * loading environments
          */
@@ -281,6 +282,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         execSettings.getRunSettings().setReportPerformanceLog(reportPerformanceLog.isSelected());
         execSettings.getRunSettings().setBddReport(bddReport.isSelected());
         execSettings.getRunSettings().setMailSend(sendMail.isSelected());
+        execSettings.getRunSettings().setExcelReport(excelReporting.isSelected());
         execSettings.getRunSettings().setTestEnv(testEnv.getSelectedItem().toString());
         execSettings.getRunSettings().save();
         sMainFrame.reloadSettings();
@@ -310,12 +312,28 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     }
 
     private void saveTestSetTMSettings() {
+        Properties properties = encryptpassword(PropUtils.getPropertiesFromTable(tsTMTable), "TMENC:");
+        PropUtils.loadPropertiesInTable(properties, tsTMTable, "");
         if (updateresultscheckbox.isSelected()) {
             execSettings.getTestMgmgtSettings().set(PropUtils.getPropertiesFromTable(tsTMTable));
             execSettings.getTestMgmgtSettings().setUpdateResultsToTM(testMgmtModuleCombo.getSelectedItem().toString());
         } else {
             execSettings.getTestMgmgtSettings().setUpdateResultsToTM("None");
         }
+    }
+
+    private Properties encryptpassword(Properties properties, String feature) {
+        properties.entrySet().forEach((e) -> {
+            String key = (String) e.getKey();
+            if (key.toLowerCase().contains("passw")) {
+                if (feature.equals("TMENC:")) {
+                    properties.setProperty(key, TMIntegration.encrypt((String)e.getValue()));
+                } else {
+                    properties.setProperty(key, Utility.encrypt((String)e.getValue()));
+                }
+            }
+        });
+        return properties;
     }
 
     private void saveTMSettings() {
@@ -329,14 +347,16 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     }
 
     private void saveMailSettings() {
-        sProject.getProjectSettings().getMailSettings().set(
-                PropUtils.getPropertiesFromTable(((XTablePanel) mailSettingsPanel).table));
+        Properties properties = encryptpassword(PropUtils.getPropertiesFromTable(((XTablePanel) mailSettingsPanel).table), " Enc");
+        PropUtils.loadPropertiesInTable(properties, mailSettingsPanel.table, "");
+        sProject.getProjectSettings().getMailSettings().set(properties);
         sProject.getProjectSettings().getMailSettings().save();
     }
 
     private void saveDBSettings() {
-        sProject.getProjectSettings().getDatabaseSettings().set(
-                PropUtils.getPropertiesFromTable(((XTablePanel) databaseSettingsPanel).table));
+        Properties properties = encryptpassword(PropUtils.getPropertiesFromTable(((XTablePanel) databaseSettingsPanel).table), " Enc");
+        PropUtils.loadPropertiesInTable(properties, databaseSettingsPanel.table, "");
+        sProject.getProjectSettings().getDatabaseSettings().set(properties);
         sProject.getProjectSettings().getDatabaseSettings().save();
     }
 
@@ -419,6 +439,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         whatsEnvironment = new javax.swing.JLabel();
         bddReport = new javax.swing.JCheckBox();
         sendMail = new javax.swing.JCheckBox();
+        excelReporting = new javax.swing.JCheckBox();
         qcrunSettings = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tsTMTable = new XTable();
@@ -576,6 +597,9 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         sendMail.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
         sendMail.setText("Send Mail after Execution");
 
+        excelReporting.setText("Excel Reporting");
+        excelReporting.setToolTipText("");
+
         javax.swing.GroupLayout globalSettingsLayout = new javax.swing.GroupLayout(globalSettings);
         globalSettings.setLayout(globalSettingsLayout);
         globalSettingsLayout.setHorizontalGroup(
@@ -632,12 +656,13 @@ public class CognizantITSSettings extends javax.swing.JFrame {
                             .addGap(4, 4, 4)
                             .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(reportPerformanceLog)
-                                .addComponent(useExistingDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(useExistingDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(excelReporting))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(sendMail)
                                 .addComponent(bddReport)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         globalSettingsLayout.setVerticalGroup(
             globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -686,11 +711,13 @@ public class CognizantITSSettings extends javax.swing.JFrame {
                 .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(useExistingDriver)
                     .addComponent(sendMail))
-                .addGap(18, 18, 18)
-                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bddReport)
                     .addComponent(reportPerformanceLog))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(excelReporting)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         runSettingsTab.addTab("Run Settings", globalSettings);
@@ -860,6 +887,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     private javax.swing.JCheckBox bddReport;
     private javax.swing.ButtonGroup eModeBgroup;
     private javax.swing.JLabel envLabel;
+    private javax.swing.JCheckBox excelReporting;
     private javax.swing.JTextField executionTimeOut;
     private javax.swing.JCheckBox failCheckBox;
     private javax.swing.Box.Filler filler3;

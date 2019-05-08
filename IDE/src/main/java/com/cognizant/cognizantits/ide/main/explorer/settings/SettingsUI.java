@@ -20,6 +20,8 @@ import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRASync;
 import com.cognizant.cognizantits.ide.main.utils.table.JtableUtils;
 import com.cognizant.cognizantits.ide.main.utils.table.TableCheckBoxColumn;
 import com.cognizant.cognizantits.ide.util.Notification;
+import com.cognizant.cognizantits.ide.util.Utility;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  *
- * 
+ *
  */
 public class SettingsUI extends javax.swing.JFrame {
 
@@ -244,11 +246,17 @@ public class SettingsUI extends javax.swing.JFrame {
     }
 
     String getEncoded(String val) {
-        return Base64.encodeBase64String(val.getBytes());
+        return Utility.encrypt(val);
+        //return Base64.encodeBase64String(val.getBytes());
     }
 
     String getDecoded(String val) {
-        byte[] valueDecoded = Base64.decodeBase64(val);
+        byte[] valueDecoded = val.getBytes();
+        if (val.matches((".* Enc"))) {
+            val = val.replace(" Enc", "");
+            valueDecoded = Encryption.getInstance().decrypt(val).getBytes();
+        }
+        //byte[] valueDecoded = Base64.decodeBase64(val);
         return new String(valueDecoded);
     }
 
