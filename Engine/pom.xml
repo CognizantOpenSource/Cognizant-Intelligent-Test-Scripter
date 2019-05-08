@@ -50,6 +50,38 @@
         </dependency>
        
         <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${apache.poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache.poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>${apache.poi.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>stax</groupId>
+            <artifactId>stax-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.sikulix</groupId>
             <artifactId>sikulixlibswin</artifactId>
             <version>${sikuli.version}</version>
@@ -110,14 +142,20 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.11</version>
+            <version>6.14.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>2.6.0</version>
-            <type>jar</type>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thed.zephyr.connect</groupId>
+            <artifactId>zfj-cloud-rest-client</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/jwt-generator.jar</systemPath>
         </dependency>
     </dependencies>
     
@@ -138,6 +176,7 @@
                         <exclude>org.testng:testng</exclude>
                         <exclude>com.beust:jcommander</exclude>
                         <exclude>org.yaml:snakeyaml</exclude>                        
+                        <exclude>org.apache-extras.beanshell:bsh</exclude>                       
                     </excludes>
                 </configuration>
                 <executions> 
@@ -163,7 +202,11 @@
                 </executions> 
                 <configuration> 
                     <file>${project.basedir}/.classpath</file> 
-                    <replacements> 
+                    <replacements>
+                        <replacement> 
+                            <token>path="jwt-generator.jar"</token> 
+                            <value>path="${app.root}lib/zfj-cloud-rest-client-1.0.jar"</value> 
+                        </replacement>
                         <replacement> 
                             <token>path=".*/.*/(.*).jar"</token> 
                             <value>path="${app.root}lib/$1.jar"</value> 
@@ -172,7 +215,7 @@
                             <token>sourcepath=.*.jar"</token> 
                             <value></value> 
                         </replacement> 
-                         <replacement> 
+                        <replacement> 
                             <token>.*target/test-classes.*</token> 
                             <value></value> 
                         </replacement> 
@@ -183,6 +226,14 @@
                         <replacement> 
                             <token>kind="src" path="/cognizant-intelligent-test-scripter-datalib"</token> 
                             <value>kind="lib" path="${app.root}lib/cognizant-intelligent-test-scripter-datalib-${project.version}.jar"</value> 
+                        </replacement> 
+                        <replacement> 
+                            <token>kind="src" path="/cognizant-intelligent-test-scripter-testdata-csv"</token> 
+                            <value>kind="lib" path="${app.root}lib/cognizant-intelligent-test-scripter-testdata-csv-${project.version}.jar"</value> 
+                        </replacement> 
+                        <replacement> 
+                            <token>kind="src" path="/cognizant-intelligent-test-scripter-qc-connection"</token> 
+                            <value>kind="lib" path="${app.root}lib/cognizant-intelligent-test-scripter-qc-connection-${project.version}.jar"</value> 
                         </replacement> 
                         <replacement> 
                             <token>-sources.jar</token> 
