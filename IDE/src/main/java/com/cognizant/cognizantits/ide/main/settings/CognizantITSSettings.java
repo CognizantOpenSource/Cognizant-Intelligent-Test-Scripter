@@ -598,7 +598,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         sendMail.setText("Send Mail after Execution");
 
         excelReporting.setText("Excel Reporting");
-        excelReporting.setToolTipText("");
+        excelReporting.setToolTipText("Excel Reporting");
 
         javax.swing.GroupLayout globalSettingsLayout = new javax.swing.GroupLayout(globalSettings);
         globalSettings.setLayout(globalSettingsLayout);
