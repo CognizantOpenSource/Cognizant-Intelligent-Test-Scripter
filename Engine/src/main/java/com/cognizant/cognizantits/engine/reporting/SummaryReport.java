@@ -309,12 +309,9 @@ public final class SummaryReport implements OverviewReport {
 
                             XSSFRow roww = sheet.createRow(atomicInteger.getAndIncrement());
                             roww.createCell(1).setCellValue(i.name);
-                            System.out.println("iter data name" + i.name);
-                            System.out.println("iter data name" + i.type);
 
                             for (Report.Step s : i.data) {
                                 if ("reusable".equals(s.type)) {
-                                    System.out.println("step reusable data" + s.data);
 
                                     parsereportsteps((List<LinkedTreeMap>) s.data, atomicInteger, sheet);
 
@@ -342,7 +339,6 @@ public final class SummaryReport implements OverviewReport {
 
                     XSSFRow header = sheet.getRow(0);
                     XSSFCell cellvalue = header.getCell(0);
-                    System.out.println("cell value " + cellvalue.getStringCellValue());
                     if (cellvalue.getStringCellValue().equalsIgnoreCase("ReleaseName-Testsetname")) {
                         cellvalue.setCellValue(r.releaseName + " - " + r.testsetName);
                     }
@@ -370,7 +366,7 @@ public final class SummaryReport implements OverviewReport {
                     FileOutputStream outputStreamrp = new FileOutputStream(excelreport_tm);
                     workbook.write(outputStreamrp);
                     workbook.close();
-                    System.out.println("Latest excel report path " + FilePath.getLatestResultsLocation());
+                    System.out.println("Latest Excel Report Path " + FilePath.getLatestResultsLocation());
                     // launch excel sheet in case of Windows OS
                     if (OS.contains("Windows")) {
                         launchexcel();
