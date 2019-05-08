@@ -38,14 +38,15 @@
         <annon.detect>3.0.5</annon.detect>
         <jetty.version>9.4.5.v20170502</jetty.version>
         
-        <geherkin.version>4.0.0</geherkin.version>
+        <geherkin.version>5.0.0</geherkin.version>
         <autocomplete.version>2.6.1</autocomplete.version>
+        <apache.poi.version>4.0.1</apache.poi.version>
         
         <setupDir>../Dist/release</setupDir>
         <resourceDir>../Resources</resourceDir>  
         
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>        
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>        
              
     </properties>
     <name>Cognizant Intelligent Test Scripter</name>
