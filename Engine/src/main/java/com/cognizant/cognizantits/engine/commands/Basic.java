@@ -24,6 +24,8 @@ import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
+import com.cognizant.cognizantits.util.encryption.Encryption;
+
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -147,7 +149,7 @@ public class Basic extends General {
                 try {
                     Element.clear();
                     Data = Data.substring(0, Data.lastIndexOf(" Enc"));
-                    byte[] valueDecoded = Base64.decodeBase64(Data);
+                    byte[] valueDecoded = Encryption.getInstance().decrypt(Data).getBytes();
                     Element.sendKeys(new String(valueDecoded));
                     Report.updateTestLog(Action, "Entered Encrypted Text " + Data + " on " + ObjectName, Status.DONE);
                 } catch (Exception ex) {

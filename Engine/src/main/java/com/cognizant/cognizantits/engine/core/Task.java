@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ import com.cognizant.cognizantits.engine.execution.run.TestCaseRunner;
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
 import com.cognizant.cognizantits.engine.reporting.util.DateTimeUtils;
 import com.cognizant.cognizantits.engine.support.Status;
+
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,6 +70,7 @@ public class Task implements Runnable {
         report.createReport(runContext, DateTimeUtils.DateTimeNow());
 
         int iter = 1;
+        Date startexecDate = new Date();
         if (RunManager.getGlobalSettings().isTestRun()) {
             runner.setMaxIter(1);
         } else {
@@ -83,9 +86,12 @@ public class Task implements Runnable {
                 LOG.log(Level.SEVERE, ex.getMessage(), ex);
             }
         }
-
+        Date endEexcDate = new Date();
+        
         if (report != null) {
             Status s = report.finalizeReport();
+            Control.ReportManager.startDate = startexecDate;
+            Control.ReportManager.endDate = endEexcDate;
             Control.ReportManager.updateTestCaseResults(runContext, report, s, runTime.timeRun());
             SystemDefaults.reportComplete.set(false);
         }

@@ -48,6 +48,8 @@ public class AppResourcePath {
 
     private final static String EXPLORER_CONFIG = "ExplorerConfig.properties";
 
+    private final static String ENC = ".enc";
+
     private final static String CHROME_EMULATOR_FILE = "chrome-emulators.json";
 
     private final static String ADDON_LOCATION = "Extensions";
@@ -116,6 +118,10 @@ public class AppResourcePath {
 
     public static String getPageDumpResourcePath() {
         return getConfigurationPath() + File.separator + "PageDump";
+    }
+
+    public static String getEncFile() {
+        return getConfigurationPath() + File.separator + ENC;
     }
 
     public static String getSummaryHTMLPath() {

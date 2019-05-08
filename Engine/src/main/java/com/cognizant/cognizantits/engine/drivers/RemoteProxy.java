@@ -34,6 +34,8 @@ import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.http.HttpClient;
 import org.openqa.selenium.remote.internal.ApacheHttpClient;
 
+import com.cognizant.cognizantits.util.encryption.Encryption;
+
 public class RemoteProxy {
 
     public static HttpCommandExecutor getProxyExecutor(URL url, Properties prop) {
@@ -68,7 +70,7 @@ public class RemoteProxy {
         dprop.putAll(prop);
         dprop.forEach((key, val) -> {
             if (val.toString().matches((".* Enc"))) {
-                dprop.put(key, new String(Base64.decodeBase64(val.toString().replace(" Enc", ""))));
+                dprop.put(key, new String(Encryption.getInstance().decrypt(val.toString().replace(" Enc", ""))));
             }
         });
         return dprop;

@@ -24,6 +24,8 @@ import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
+import com.cognizant.cognizantits.util.encryption.Encryption;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -267,7 +269,7 @@ public class CommonImageMethods extends ImageCommand {
         try {
             if (Data.endsWith(" Enc")) {
                 Data = Data.substring(0, Data.lastIndexOf(" Enc"));
-                byte[] valueDecoded = Base64.decodeBase64(Data);
+                byte[] valueDecoded = Encryption.getInstance().decrypt(Data).getBytes();
                 Data = new String(valueDecoded);
             }
             target = findTarget(imageObjectGroup, Flag.SET_OFFSET, Flag.MATCH_ONLY);

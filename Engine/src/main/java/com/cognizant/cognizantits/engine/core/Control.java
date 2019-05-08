@@ -32,8 +32,10 @@ import com.cognizant.cognizantits.engine.reporting.util.DateTimeUtils;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
 import com.cognizant.cognizantits.engine.support.reflect.MethodExecutor;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +51,8 @@ public class Control {
     public static SummaryReport ReportManager;
     public Boolean executionFinished = false;
     public static ProjectRunner exe;
-
+    public static String triggerId;
+    
     private static SeleniumDriver seleniumDriver;
 
     private static void start() {
@@ -123,6 +126,7 @@ public class Control {
         RunManager.loadRunManager();
         System.out.println("Initializing Report");
         ReportManager = new SummaryReport();
+        triggerId = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0,15);
     }
 
     private void startRun() {
@@ -205,6 +209,7 @@ public class Control {
     private static void initDeps() {
         TestDataFactory.load();
         MethodInfoManager.load();
+        Encryption.getInstance();
     }
 
     public static void main(String[] args) throws UnCaughtException {

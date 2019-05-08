@@ -30,6 +30,6 @@ public interface OverviewReport {
     public void updateTestCaseResults(RunContext runContext,
             TestCaseReport report, Status state, String executionTime);
 
-    public void finalizeReport();
+    public void finalizeReport() throws Exception;
 
 }

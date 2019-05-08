@@ -27,23 +27,23 @@ import java.net.URLStreamHandler;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+//import javax.xml.parsers.DocumentBuilder;
+//import javax.xml.parsers.DocumentBuilderFactory;
 
 import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
+//import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.*;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
+//import javax.xml.xpath.XPath;
+//import javax.xml.xpath.XPathConstants;
+//import javax.xml.xpath.XPathFactory;
 import org.apache.xmlbeans.impl.soap.MessageFactory;
 import org.apache.xmlbeans.impl.soap.MimeHeaders;
 import org.apache.xmlbeans.impl.soap.SOAPConnection;
 import org.apache.xmlbeans.impl.soap.SOAPConnectionFactory;
 import org.apache.xmlbeans.impl.soap.SOAPException;
 import org.apache.xmlbeans.impl.soap.SOAPMessage;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
+//import org.w3c.dom.Document;
+//import org.w3c.dom.NodeList;
 
 public class SoapZephyrUtil {
 
@@ -154,7 +154,7 @@ public class SoapZephyrUtil {
     }
 
     public static String parseSOAPResponse(SOAPMessage soapResponse, String expression) {
-        String retStr = null;
+      /*  String retStr = null;
         try {
             final StringWriter writer = new StringWriter();
             TransformerFactory.newInstance().newTransformer().transform(new DOMSource(soapResponse.getSOAPPart()),
@@ -174,7 +174,7 @@ public class SoapZephyrUtil {
             Logger.getLogger(SoapZephyrUtil.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             Logger.getLogger(SoapZephyrUtil.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return retStr;
+        }*/
+        return null;
     }
 }

@@ -324,6 +324,67 @@ public class WebDriverFactory {
             if (url == null) {
                 return new RemoteWebDriver(caps);
             }
+
+            if ((url != null && !url.isEmpty() && url.contains("fastest.cognizant.com")) || caps.toString().contains("IP_Fastest")) {
+                String browserName = caps.getBrowserName();
+                boolean localTesting = false;
+                DesiredCapabilities cap = new DesiredCapabilities();
+                cap.setCapability("packagename", caps.getPlatform() + "_" + caps.getBrowserName() + "_" + caps.getVersion() + Control.triggerId + ".jar");
+                cap.setCapability("triggerId", Control.triggerId);
+                cap.setCapability("executionType", "false");
+                cap.setCapability("consoleSessionId", "CITS");
+                cap.setCapability("seleniumVersion", caps.getCapability("seleniumVersion"));
+                cap.setPlatform(caps.getPlatform());
+                cap.setVersion(caps.getVersion());
+                cap.setCapability("username", caps.getCapability("username"));
+                cap.setCapability("password", caps.getCapability("password"));
+                cap.setCapability("servicerequestid", caps.getCapability("servicerequestid"));
+                if (caps.toString().contains("fastpaas.local")) {
+                    cap.setCapability("fastpaas.local", caps.getCapability("fastpaas.local"));
+                    localTesting = (boolean) caps.getCapability("fastpaas.local");
+                }
+                if (caps.getPlatform().is(Platform.MAC)) {
+                    if (browserName.equalsIgnoreCase("firefox")) {
+                        caps = DesiredCapabilities.firefox();
+                        FirefoxOptions fOptions = new FirefoxOptions();
+                        String binPath = "/Applications/Firefox" + cap.getVersion() + ".app/Contents/MacOs/firefox";
+                        if (binPath != null && !binPath.isEmpty()) {
+                            fOptions.setBinary(binPath);
+                        }
+                        caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, fOptions);
+                    } else if (browserName.equalsIgnoreCase("chrome")) {
+                        caps = DesiredCapabilities.chrome();
+                        ChromeOptions cOptions = new ChromeOptions();
+                        String binPath = "/Applications/Google Chrome " + cap.getVersion() + ".app/Contents/MacOS/Google Chrome";
+                        if (binPath != null && !binPath.isEmpty()) {
+                            cOptions.setBinary(binPath);
+                        }
+                        caps.setCapability(ChromeOptions.CAPABILITY, cOptions);
+                    }
+                } else if (caps.getPlatform().toString().contains("WIN") || caps.getPlatform().toString().contains("VISTA")) {
+                    if (browserName.equalsIgnoreCase("firefox")) {
+                        caps = DesiredCapabilities.firefox();
+                        FirefoxOptions fOptions = new FirefoxOptions();
+                        String binPath = "C:\\Mozilla\\" + cap.getVersion() + "\\firefox.exe";
+                        if (binPath != null && !binPath.isEmpty()) {
+                            fOptions.setBinary(binPath);
+                        }
+                        caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, fOptions);
+                    } else if (browserName.equalsIgnoreCase("chrome")) {
+                        caps = DesiredCapabilities.chrome();
+                        ChromeOptions cOptions = new ChromeOptions();
+                        String binPath = "C:\\Chrome\\" + cap.getVersion() + "\\chrome.exe";
+                        if (binPath != null && !binPath.isEmpty()) {
+                            cOptions.setBinary(binPath);
+                        }
+                        caps.setCapability(ChromeOptions.CAPABILITY, cOptions);
+                    }
+                }
+                caps.merge(cap);
+                System.out.println("[Capabilities]: [Platform:" + caps.getPlatform() + "]\n [BrowserName:" + caps.getBrowserName() + "]\n [BrowserVersion:" + caps.getVersion() + "]\n"
+                        + " [TriggerId:" + Control.triggerId + "]\n [PackageName:" + caps.getPlatform() + "_" + caps.getBrowserName() + "_" + caps.getVersion() + Control.triggerId + ".jar" + "]"
+                        + "\n [SeleniumVersion:" + caps.getCapability("seleniumVersion") + "]\n [Local Testing:" + localTesting + "]");
+            }
             if (checkForProxy) {
                 return new RemoteWebDriver(RemoteProxy.getProxyExecutor(new URL(url), props), caps);
             }

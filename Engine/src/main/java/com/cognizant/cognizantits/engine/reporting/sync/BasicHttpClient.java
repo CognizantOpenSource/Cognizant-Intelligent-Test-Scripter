@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -27,9 +28,11 @@ import java.util.logging.Logger;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
@@ -40,7 +43,9 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.protocol.HttpContext;
@@ -121,14 +126,32 @@ public class BasicHttpClient extends AbstractHttpClient {
         setHeader(httpput);
         return parseResponse(doPut(httpput));
     }
+    
+    public JSONObject put(URL targetUrl, String data, String accessKey, String value) throws Exception {
+        HttpPut httpput = new HttpPut(targetUrl.toURI());
+        setPutEntity(data, httpput);
+        auth(httpput);
+        setHeader(httpput);
+        addHeader(httpput, accessKey, value);
+        return parseResponse(doPut(httpput));
+    }
+    
 
-    /**
+    private void addHeader(HttpPut httpput, String accessKey, String value) {
+    	httpput.addHeader(accessKey, value);
+	}
+
+	/**
      * custom header for respective client
      *
      * @param httpput
      */
     public void setHeader(HttpPut httpput) {
         httpput.addHeader("Accept", "application/json");
+    }
+    
+    public void addHeader(HttpGet httpGet, String Key, String Value) {
+        httpGet.addHeader(Key, Value);
     }
 
     public void setPutEntity(String xmlstr, HttpPut httpput) throws UnsupportedEncodingException {
@@ -154,6 +177,20 @@ public class BasicHttpClient extends AbstractHttpClient {
         setPostEntity(payload, httppost);
         return parseResponse(doPost(httppost));
     }
+    
+    /**
+     * Http Post request for given data as JSON string
+     *
+     * @param targetUrl
+     * @param payload
+     * @return
+     * @throws Exception
+     */
+    public JSONObject post(URL targetUrl, File toUplod, String key, String value) throws Exception {
+        HttpPost httppost = new HttpPost(targetUrl.toURI());
+        setPostEntityJ(toUplod, httppost);
+        return parseResponse(doPost(httppost, key, value));
+    }
 
     /**
      * Http Post request for uploading files
@@ -166,6 +203,13 @@ public class BasicHttpClient extends AbstractHttpClient {
     public JSONObject post(URL targetUrl, File toUplod) throws Exception {
         HttpPost httppost = new HttpPost(targetUrl.toURI());
         setPostEntity(toUplod, httppost);
+        return parseResponse(doPost(httppost));
+    }
+    
+
+    public JSONObject post(URL targetUrl, List<NameValuePair> parameters) throws Exception {
+        HttpPost httppost = new HttpPost(targetUrl.toURI());
+        setPostEntity(parameters, httppost);
         return parseResponse(doPost(httppost));
     }
 
@@ -199,12 +243,29 @@ public class BasicHttpClient extends AbstractHttpClient {
         setHeader(httpPost);
         return super.doPost(httpPost);
     }
+    
+   public HttpResponse doPost(HttpPost httpPost, String key, String value) throws Exception {
+        auth(httpPost);
+        setHeader(httpPost);
+        addHeader(httpPost, key, value);
+        return super.doPost(httpPost);
+    }
 
-    public void setPostEntity(File toUplod, HttpPost httppost) {
+    private void addHeader(HttpPost httpPost, String key, String value) {
+    	httpPost.addHeader(key, value);
+    }
+
+	public void setPostEntity(File toUplod, HttpPost httppost) {
         final MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.addBinaryBody("file", toUplod,
                 ContentType.APPLICATION_OCTET_STREAM, toUplod.getName());
         httppost.setEntity(builder.build());
+    }
+	
+	public void setPostEntityJ(File toUplod, HttpPost httppost) {
+		MultipartEntity entity = new MultipartEntity();
+		entity.addPart("attachment", new FileBody(toUplod));
+		httppost.setEntity(entity);
     }
 
     public void setPostEntity(String data, File file, HttpPost httppost) {
@@ -219,6 +280,15 @@ public class BasicHttpClient extends AbstractHttpClient {
         input.setContentType("application/json");
         httppost.addHeader("accept", "application/json");
         httppost.setEntity(input);
+    }
+
+    public void setPostEntity(List<NameValuePair> params, HttpPost httppost) {
+        try {
+            final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
+            httppost.setEntity(entity);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(BasicHttpClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 // </editor-fold>
 
@@ -264,6 +334,20 @@ public class BasicHttpClient extends AbstractHttpClient {
         builder.setParameter(key, val);
         return Get(builder.build());
     }
+    
+    public JSONObject Get(URL targetUrl, String key, String val, String empty) throws Exception {
+        URIBuilder builder = new URIBuilder(targetUrl.toString());
+        builder.setParameter(key, val);
+        return Get(builder.build(), key, val);
+    }
+    
+    public JSONObject Get(URL targetUrl, boolean isJwtToken, String key, String val ) throws Exception {
+        URIBuilder builder = new URIBuilder(targetUrl.toString());
+        return Get(builder.build(), key, val);
+    }
+    
+   
+    
 
     /**
      * Http Get request for given params as JSON string
@@ -275,7 +359,7 @@ public class BasicHttpClient extends AbstractHttpClient {
      */
     public JSONObject Get(URL targetUrl, String jsonStr) throws Exception {
         URIBuilder builder = new URIBuilder(targetUrl.toString());
-        setParams(builder, jsonStr);
+         setParams(builder, jsonStr);
         return Get(setParams(builder, jsonStr).build());
     }
 
@@ -294,6 +378,15 @@ public class BasicHttpClient extends AbstractHttpClient {
         setHeader(httpGet);
         return parseResponse(doGet(httpGet));
     }
+    
+    private JSONObject Get(URI uri, String Key, String Value) throws Exception {
+        HttpGet httpGet = new HttpGet(uri);
+        auth(httpGet);
+        setHeader(httpGet);
+        addHeader(httpGet, Key, Value);
+        return parseResponse(doGet(httpGet));
+    }
+    
 // </editor-fold>
 
 }

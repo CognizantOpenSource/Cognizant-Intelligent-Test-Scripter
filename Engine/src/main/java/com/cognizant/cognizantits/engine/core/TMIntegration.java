@@ -20,10 +20,15 @@ import com.cognizant.cognizantits.engine.reporting.SummaryReport;
 import com.cognizant.cognizantits.engine.reporting.sync.Sync;
 import com.cognizant.cognizantits.engine.reporting.sync.Unknown;
 import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRASync;
+import com.cognizant.cognizantits.engine.reporting.sync.jiracloud.JIRACloudSync;
 import com.cognizant.cognizantits.engine.reporting.sync.qc.QCSync;
 import com.cognizant.cognizantits.engine.reporting.sync.qc.rest.QCRestSync;
+import com.cognizant.cognizantits.engine.reporting.sync.qtest.QTestSync;
+import com.cognizant.cognizantits.engine.reporting.sync.testrail.TestRailSync;
 import com.cognizant.cognizantits.engine.reporting.sync.tfs.VStsSync;
 import com.cognizant.cognizantits.engine.reporting.sync.zephyr.ZephyrSync;
+import com.cognizant.cognizantits.util.encryption.Encryption;
+
 import java.util.Properties;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -35,16 +40,16 @@ import org.slf4j.LoggerFactory;
  */
 public class TMIntegration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TMIntegration.class.getName());
+	private static final Logger LOG = LoggerFactory.getLogger(TMIntegration.class.getName());
 
-    public static void init(SummaryReport ReportManager) {
-        LOG.debug("Trying to Initialize TestManagement Integration");
-        if (!RunManager.getGlobalSettings().isTestRun()) {
-            ReportManager.sync = getInstance(Control.exe.getExecSettings().getTestMgmgtSettings());
-        } else {
-            LOG.warn("TM integration disabled for testcases running via design mode");
-        }
-    }
+	public static void init(SummaryReport ReportManager) {
+		LOG.debug("Trying to Initialize TestManagement Integration");
+		if (!RunManager.getGlobalSettings().isTestRun()) {
+			ReportManager.sync = getInstance(Control.exe.getExecSettings().getTestMgmgtSettings());
+		} else {
+			LOG.warn("TM integration disabled for testcases running via design mode");
+		}
+	}
 
     public static Sync getInstance(TestMgmtSettings testMgmgtSettings) {
         try {
@@ -62,6 +67,12 @@ public class TMIntegration {
                     return new VStsSync(decryptValues(testMgmgtSettings));
                 case "Zephyr":
                     return new ZephyrSync(decryptValues(testMgmgtSettings));
+                case "QTest":
+                	return new QTestSync(decryptValues(testMgmgtSettings));
+                case "JiraCloud":
+                	return new JIRACloudSync(decryptValues(testMgmgtSettings));
+                case "TestRail":
+                	return new TestRailSync(decryptValues(testMgmgtSettings));
                 default:
                     LOG.warn("Initializing TM integration with Unknown - " + testMgmgtSettings.getUpdateResultsToTM());
                     return new Unknown();
@@ -73,47 +84,48 @@ public class TMIntegration {
         return null;
     }
 
-    public static boolean isEnabled() {
-        return !RunManager.getGlobalSettings().isTestRun()
-                && !Control.exe.getExecSettings().getTestMgmgtSettings().getUpdateResultsToTM()
-                .equals("None");
-    }
+	public static boolean isEnabled() {
+		return !RunManager.getGlobalSettings().isTestRun()
+				&& !Control.exe.getExecSettings().getTestMgmgtSettings().getUpdateResultsToTM().equals("None");
+	}
 
-    public static String decrypt(String v) {
-        if (isEnc(v)) {
-            v = v.replaceFirst("TMENC:", "");
-            return doDecrypt(v);
-        } else {
-            return v;
-        }
-    }
+	public static String decrypt(String v) {
+		if (isEnc(v)) {
+			v = v.replaceFirst("TMENC:", "");
+			return doDecrypt(v);
+		} else {
+			return v;
+		}
+	}
 
-    public static String encrypt(String v) {
-        if (!isEnc(v)) {
-            return "TMENC:" + doEncrypt(v);
-        }
-        return v;
-    }
+	public static String encrypt(String v) {
+		if (!isEnc(v)) {
+			return "TMENC:" + doEncrypt(v);
+		}
+		return v;
+	}
 
-    private static String doDecrypt(String v) {
-        // do implement ur owm crypto
-        return new String(Base64.decodeBase64(v));
-    }
+	private static String doDecrypt(String v) {
+		// do implement ur owm crypto
+		// return new String(Base64.decodeBase64(v));
+		return Encryption.getInstance().decrypt(v);
+	}
 
-    private static String doEncrypt(String v) {
-        // do implement ur owm crypto
-        return new String(Base64.encodeBase64(v.getBytes()));
-    }
+	private static String doEncrypt(String v) {
+		// do implement ur owm crypto
+		// return new String(Base64.encodeBase64(v.getBytes()));
+		return Encryption.getInstance().encrypt(v);
+	}
 
-    public static boolean isEnc(String v) {
-        return v != null && v.startsWith("TMENC:");
-    }
+	public static boolean isEnc(String v) {
+		return v != null && v.startsWith("TMENC:");
+	}
 
-    private static Properties decryptValues(Properties ops) {
-        for (String key : ops.stringPropertyNames()) {
-            ops.put(key, decrypt(ops.getProperty(key, "")));
-        }
-        return ops;
-    }
+	private static Properties decryptValues(Properties ops) {
+		for (String key : ops.stringPropertyNames()) {
+			ops.put(key, decrypt(ops.getProperty(key, "")));
+		}
+		return ops;
+	}
 
 }
