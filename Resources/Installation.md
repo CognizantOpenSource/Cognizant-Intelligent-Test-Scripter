@@ -114,7 +114,7 @@ Extract `tesseract-ocr-3.02.eng.tar.gz`
 
 Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
 
-~~~Check out this [sikuli issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.~~~
+Check out this [sikuli issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.
 
 ### Demo Project Details
 
