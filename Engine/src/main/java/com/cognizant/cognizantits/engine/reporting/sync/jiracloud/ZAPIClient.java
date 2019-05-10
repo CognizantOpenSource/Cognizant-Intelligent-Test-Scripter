@@ -17,8 +17,6 @@ import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.cognizant.cognizantits.engine.reporting.sync.jiracloud.ZephyrHttpClient;
-import com.cognizant.cognizantits.engine.reporting.sync.jiracloud.ZAPIClient;
 import com.cognizant.cognizantits.engine.support.DLogger;
 import com.thed.zephyr.cloud.rest.ZFJCloudRestClient;
 import com.thed.zephyr.cloud.rest.client.JwtGenerator;
@@ -131,7 +129,7 @@ public class ZAPIClient {
     private static String generateJWTToken(String url, Map options, String httpMethod) {
         ZFJCloudRestClient client = ZFJCloudRestClient
                 .restBuilder(options.get("ZephyrBaseURL").toString(), options.get("AccessKey").toString(),
-                        options.get("SecretKey").toString(), options.get("Password").toString())
+                        options.get("SecretKey").toString(), options.get("API Token").toString())
                 .build();
         JwtGenerator jwtGenerator = client.getJwtGenerator();
         // API to which the JWT token has to be generated
