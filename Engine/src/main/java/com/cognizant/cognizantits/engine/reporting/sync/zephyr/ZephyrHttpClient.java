@@ -16,11 +16,17 @@
 package com.cognizant.cognizantits.engine.reporting.sync.zephyr;
 
 import com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient;
+
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.Map;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 
 /**
  *
@@ -28,34 +34,34 @@ import org.apache.http.client.methods.HttpPost;
  */
 public class ZephyrHttpClient extends BasicHttpClient {
 
-    String TOKEN;
+	String TOKEN;
 
-    public ZephyrHttpClient(URL urL, String userName, String password) {
-        super(urL, userName, password);
-        encodeCredentials(userName, password);
-    }
+	public ZephyrHttpClient(URL urL, String userName, String password, Map options) {
+		super(urL, userName, password, options);
+		encodeCredentials(userName, password);
+	}
 
-    @Override
-    public void setHeader(HttpGet httpget) {
-        httpget.setHeader("Authorization", "Basic " + TOKEN);
-        httpget.setHeader("Accept", "application/json");
-    }
+	@Override
+	public void setHeader(HttpGet httpget) {
+		httpget.setHeader("Authorization", "Basic " + TOKEN);
+		httpget.setHeader("Accept", "application/json");
+	}
 
-    @Override
-    public void setHeader(HttpPost httppost) {
-        httppost.setHeader("Authorization", "Basic " + TOKEN);
-        httppost.setHeader("Content-Type", "application/json");
-    }
+	@Override
+	public void setHeader(HttpPost httppost) {
+		httppost.setHeader("Authorization", "Basic " + TOKEN);
+		httppost.setHeader("Content-Type", "application/json");
+	}
 
-    @Override
-    public void setHeader(HttpPatch httppatch) {
-        httppatch.setHeader("Authorization", "Basic " + TOKEN);
-        httppatch.setHeader("Content-Type", "application/json");
-    }
+	@Override
+	public void setHeader(HttpPatch httppatch) {
+		httppatch.setHeader("Authorization", "Basic " + TOKEN);
+		httppatch.setHeader("Content-Type", "application/json");
+	}
 
-    private void encodeCredentials(String userName, String password) {
-        String creds = userName + ":" + password;
-        TOKEN = new String(Base64.encodeBase64(creds.getBytes()));
-    }
+	private void encodeCredentials(String userName, String password) {
+		String creds = userName + ":" + password;
+		TOKEN = new String(Base64.encodeBase64(creds.getBytes()));
+	}
+
 }
-

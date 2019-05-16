@@ -206,6 +206,11 @@ public class BasicHttpClient extends AbstractHttpClient {
         return parseResponse(doPost(httppost));
     }
     
+    public JSONObject put(URL targetUrl, File toUplod) throws Exception {
+        HttpPut httpput = new HttpPut(targetUrl.toURI());
+        setPutEntity(toUplod, httpput);
+        return parseResponse(doPut(httpput));
+    }
 
     public JSONObject post(URL targetUrl, List<NameValuePair> parameters) throws Exception {
         HttpPost httppost = new HttpPost(targetUrl.toURI());
@@ -260,6 +265,13 @@ public class BasicHttpClient extends AbstractHttpClient {
         builder.addBinaryBody("file", toUplod,
                 ContentType.APPLICATION_OCTET_STREAM, toUplod.getName());
         httppost.setEntity(builder.build());
+    }
+	
+	public void setPutEntity(File toUplod, HttpPut httpput) {
+        final MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        builder.addBinaryBody("file", toUplod,
+                ContentType.APPLICATION_OCTET_STREAM, toUplod.getName());
+        httpput.setEntity(builder.build());
     }
 	
 	public void setPostEntityJ(File toUplod, HttpPost httppost) {
