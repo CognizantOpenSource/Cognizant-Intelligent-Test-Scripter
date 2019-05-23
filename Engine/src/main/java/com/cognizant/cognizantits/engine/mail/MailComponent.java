@@ -28,7 +28,7 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * 
+ *
  */
 public class MailComponent {
 
@@ -38,29 +38,31 @@ public class MailComponent {
             File file = new File(FilePath.getMailReportTemplatePath(), "mailBody.html");
             String str = FileUtils.readFileToString(file, Charset.defaultCharset());
 
-            str = str.replace("{releaseName}", testData.get("releaseName").toString()).
-                    replace("{testSetName}", testData.get("testsetName").toString()).
-                    replace("{parallelThreads}", testData.get("maxThreads").toString()).
-                    replace("{runConfig}", testData.get("runConfiguration").toString()).
-                    replace("{startTime}", testData.get("startTime").toString()).
-                    replace("{endTime}", testData.get("endTime").toString()).
-                    replace("{totalDuration}", testData.get("exeTime").toString()).
-                    replace("{passedTests}", testData.get("nopassTests").toString()).
-                    replace("{failedTests}", testData.get("nofailTests").toString());
+            str = str.replace("{releaseName}", get(testData, "releaseName")).
+                    replace("{testSetName}", get(testData, "testsetName")).
+                    replace("{parallelThreads}", get(testData, "maxThreads")).
+                    replace("{runConfig}", get(testData, "runConfiguration")).
+                    replace("{startTime}", get(testData, "startTime")).
+                    replace("{endTime}", get(testData, "endTime")).
+                    replace("{totalDuration}", get(testData, "exeTime")).
+                    replace("{passedTests}", get(testData, "nopassTests")).
+                    replace("{failedTests}", get(testData, "nofailTests"));
 
             StringBuilder html = new StringBuilder();
             for (Object tc : (JSONArray) testData.get("EXECUTIONS")) {
-                JSONObject json = (JSONObject) tc;
-                html.append("</tr>")
-                        .append("<td>").append(json.get("scenarioName")).append("</td>\n")
-                        .append("<td>").append(json.get("testcaseName")).append("</td>\n")
-                        .append("<td>").append(json.get("browser")).append("</td>\n")
-                        .append("<td>").append(json.get("exeTime")).append("</td>\n")
-                        .append("<td>").append(json.get("status")).append("</td>\n")
-                        .append("<td>").append(json.get("bversion")).append("</td>\n")
-                        .append("<td>").append(json.get("platform")).append("</td>\n")
-                        .append("<td>").append(json.get("iterations")).append("</td>\n")
-                        .append("</tr>");
+                if (tc != null) {
+                    JSONObject json = (JSONObject) tc;
+                    html.append("</tr>")
+                            .append("<td>").append(json.get("scenarioName")).append("</td>\n")
+                            .append("<td>").append(json.get("testcaseName")).append("</td>\n")
+                            .append("<td>").append(json.get("browser")).append("</td>\n")
+                            .append("<td>").append(json.get("exeTime")).append("</td>\n")
+                            .append("<td>").append(json.get("status")).append("</td>\n")
+                            .append("<td>").append(json.get("bversion")).append("</td>\n")
+                            .append("<td>").append(json.get("platform")).append("</td>\n")
+                            .append("<td>").append(json.get("iterations")).append("</td>\n")
+                            .append("</tr>");
+                }
             }
             str = str.replace("{reportData}", html.toString());
             return str;
@@ -68,5 +70,16 @@ public class MailComponent {
             Logger.getLogger(MailComponent.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    private static String get(JSONObject testData, String value) {
+        String data = "";
+        Object get = testData.get(value);
+        if (get == null) {
+            return data;
+        } else {
+            data = get.toString();
+        }
+        return data;
     }
 }
