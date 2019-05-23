@@ -43,7 +43,7 @@ public class ChromeEmulatorsTest {
     /**
      * Test of getPrefLocation method, of class ChromeEmulators.
      */
-    @Test
+    @Test(enabled = false)
     public void testGetPrefLocation() {
         System.out.println("getPrefLocation");
         File file = new File(ChromeEmulators.getPrefLocation(), "Preferences");
@@ -59,7 +59,7 @@ public class ChromeEmulatorsTest {
     /**
      * Test of sync method, of class ChromeEmulators.
      */
-    @Test
+    @Test(enabled = false)
     public void testSync() {
         System.out.println("sync");
         ChromeEmulators.sync();
@@ -70,7 +70,7 @@ public class ChromeEmulatorsTest {
     /**
      * Test of getEmulatorsList method, of class ChromeEmulators.
      */
-    @Test
+    @Test(enabled = false)
     public void testGetEmulatorsList() {
         System.out.println("getEmulatorsList");
         List<String> result = ChromeEmulators.getEmulatorsList();
