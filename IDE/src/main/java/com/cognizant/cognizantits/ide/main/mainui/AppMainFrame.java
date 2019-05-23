@@ -16,6 +16,19 @@
 package com.cognizant.cognizantits.ide.main.mainui;
 
 import com.cognizant.cognizantits.datalib.component.Project;
+import com.cognizant.cognizantits.datalib.component.Release;
+import com.cognizant.cognizantits.datalib.component.Scenario;
+import com.cognizant.cognizantits.datalib.component.TestCase;
+import com.cognizant.cognizantits.datalib.component.TestData;
+import com.cognizant.cognizantits.datalib.component.TestSet;
+import com.cognizant.cognizantits.datalib.component.TestStep;
+import com.cognizant.cognizantits.datalib.settings.testmgmt.Option;
+import com.cognizant.cognizantits.datalib.settings.testmgmt.TestMgModule;
+import com.cognizant.cognizantits.datalib.testdata.model.AbstractDataModel;
+import com.cognizant.cognizantits.datalib.testdata.model.GlobalDataModel;
+import com.cognizant.cognizantits.datalib.testdata.model.TestDataModel;
+import com.cognizant.cognizantits.datalib.util.data.FileScanner;
+import com.cognizant.cognizantits.engine.core.TMIntegration;
 import com.cognizant.cognizantits.ide.main.Main;
 import com.cognizant.cognizantits.ide.main.dashboard.server.DashBoardManager;
 import com.cognizant.cognizantits.ide.main.mainui.components.DashBoard;
@@ -30,6 +43,8 @@ import com.cognizant.cognizantits.ide.main.utils.recentItem.RecentItems;
 import com.cognizant.cognizantits.ide.settings.AppSettings;
 import com.cognizant.cognizantits.ide.util.Notification;
 import com.cognizant.cognizantits.ide.util.SystemInfo;
+import com.cognizant.cognizantits.ide.util.Utility;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
@@ -37,14 +52,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
+import org.apache.commons.codec.binary.Base64;
 
 public class AppMainFrame extends JFrame {
 
@@ -279,10 +301,196 @@ public class AppMainFrame extends JFrame {
             @Override
             public void run() {
                 sProject = new Project(location);
+                if (sProject.getInfo().getVersion() == null) {
+                    migrate(sProject);
+                    Notification.show("CITS Project Migration is done");
+                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migration is Done ");
+                }
                 load();
                 afterProjectChange();
             }
         });
+    }
+
+    private boolean migrate(Project project) {
+        final String _Enc = " Enc";
+        boolean isMigrted = true;
+        try {
+            //Mail Settings updated
+            project.getProjectSettings().getMailSettings().put("mail.smtp.starttls.required", "true");
+            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Mail setting are copied ");
+
+            //Updating new TM Properties
+            List<TestMgModule> modules = project.getProjectSettings().getTestMgmtModule().getModules();
+            for (TestMgModule module : modules) {
+                List<Option> options = module.getOptions();
+                for (Option option : options) {
+                    String value = option.getValue();
+                    if (value.contains("TMENC:")) {
+                        value = value.replaceFirst("TMENC:", "");
+                        byte[] encoded = Base64.decodeBase64(value);
+                        String encrypt = TMIntegration.encrypt(new String(encoded));
+                        option.setValue(encrypt);
+                    }
+                }
+            }
+
+            ObjectMapper objMapper = new ObjectMapper();
+            List<TestMgModule> modules13 = objMapper.readValue(FileScanner.getResourceString("TMModules.json"),
+                    objMapper.getTypeFactory().constructCollectionType(List.class, TestMgModule.class));
+            modules13.forEach((module) -> {
+                String modulename = module.getModule();
+                if (modulename.equals("QTest") || modulename.equals("JiraCloud") || modulename.equals("TestRail")) {
+                    project.getProjectSettings().getTestMgmtModule().putValues(module.getModule(), module.getOptions());
+                }
+            });
+            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Test Management setting are copied ");
+
+            //Modify Encoding to Encryption in TestData and GlobalData
+            Set<String> envs = project.getTestData().getEnvironments();
+            envs.forEach((environments) -> {
+                TestData testDataFor = project.getTestData().getTestDataFor(environments);
+                GlobalDataModel gbData = testDataFor.getGlobalData();
+                gbData.load();
+                int row_size = gbData.getRowCount();
+                int col_size = gbData.getColumnCount();
+
+                for (int row = 0; row < row_size; row++) {
+                    for (int col = 0; col < col_size; col++) {
+                        if (col == 0) {
+                            continue;
+                        }
+                        String value = (String) gbData.getValueAt(row, col);
+                        if (value != null && !value.trim().isEmpty()) {
+                            if (value.endsWith(_Enc)) {
+                                value = value.substring(0, value.lastIndexOf(_Enc));
+                                Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Global Data {0} in the row {1} and column {2}", new Object[]{gbData.getName(), row, col});
+                                enableEncrypt(value, gbData, row, col);
+                            }
+                        }
+                    }
+                }
+                gbData.saveChanges();
+                List<TestDataModel> testDataList = testDataFor.getTestDataList();
+                for (TestDataModel model : testDataList) {
+                    model.load();
+                    row_size = model.getRowCount();
+                    col_size = model.getColumnCount();
+                    for (int row = 0; row < row_size; row++) {
+                        for (int col = 0; col < col_size; col++) {
+                            if (col < 4) {
+                                continue;
+                            }
+                            String value = (String) model.getValueAt(row, col);
+                            if (value != null && !value.trim().isEmpty()) {
+                                if (value.endsWith(_Enc)) {
+                                    value = value.substring(0, value.lastIndexOf(_Enc));
+                                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Test Data {0} in the row {1} and column {2}", new Object[]{model.getName(), row, col});
+                                    enableEncrypt(value, model, row, col);
+                                }
+                            }
+                        }
+                    }
+                    model.saveChanges();
+                }
+            });
+
+            //Migrating Encrypted Actions 
+            List<Scenario> scenarios = project.getScenarios();
+            for (Scenario scenario : scenarios) {
+                List<TestCase> cases = scenario.getTestCases();
+                enableEncryptTC(cases);
+
+                List<TestCase> reuse = scenario.getReusables();
+                enableEncryptTC(reuse);
+            }
+
+            //Migrating Driver Settings
+            Enumeration<Object> keysObj = project.getProjectSettings().getDriverSettings().keys();
+            Iterator<Object> keys = keysObj.asIterator();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                String property = project.getProjectSettings().getDriverSettings().getProperty(key);
+                if (property != null && !property.isEmpty() && property.endsWith(_Enc)) {
+                    property = property.substring(0, property.lastIndexOf(_Enc));
+                    byte[] encoded = Base64.decodeBase64(property);
+                    String encrypted = new String(encoded);
+                    if (key.equals("proxyPassword")) {
+                        encrypted = Utility.encrypt(new String(encoded));
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Driver settings key{0} and value{1}", new Object[]{key, encrypted});
+                    }
+                    project.getProjectSettings().getDriverSettings().put(key, encrypted);
+                }
+            }
+
+            //Migarting Test Management settings
+            List<Release> releases = project.getReleases();
+            for (Release release : releases) {
+                List<TestSet> testsets = release.getTestSets();
+                for (TestSet testset : testsets) {
+                    Enumeration<Object> keys1 = project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().keys();
+                    Iterator<Object> keysls = keys1.asIterator();
+                    while (keysls.hasNext()) {
+                        String key = (String) keysls.next();
+                        String property = project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().getProperty(key);
+                        if (property != null && !property.isEmpty() && property.contains("TMENC:")) {
+                            property = property.replaceFirst("TMENC:", "");
+                            byte[] encoded = Base64.decodeBase64(property);
+                            String encrypt = TMIntegration.encrypt(new String(encoded));
+                            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Execution settings key{0} and value{1}", new Object[]{key, encrypt});
+                            project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
+                        }
+                    }
+                }
+            }
+
+            Enumeration<Object> keys1 = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().keys();
+            Iterator<Object> keysls = keys1.asIterator();
+            while (keysls.hasNext()) {
+                String key = (String) keysls.next();
+                String property = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().getProperty(key);
+                if (property != null && !property.isEmpty() && property.contains("TMENC:")) {
+                    property = property.replaceFirst("TMENC:", "");
+                    byte[] encoded = Base64.decodeBase64(property);
+                    String encrypt = TMIntegration.encrypt(new String(encoded));
+                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Execution settings key{0} and value{1}", new Object[]{key, encrypt});
+                    project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
+                }
+            }
+        } catch (Exception ex) {
+            Notification.show("CITS Project Migration is not successful. Refer logs");
+            Logger.getLogger(AppMainFrame.class.getName()).log(Level.SEVERE, "Migration is not successful", ex.getMessage());
+            return false;
+        }
+        project.getInfo().setVersion(About.getBuildVersion());
+        project.save();
+        return isMigrted;
+    }
+
+    private void enableEncryptTC(List<TestCase> cases) {
+        for (TestCase tcase : cases) {
+            tcase.loadTableModel();
+            List<TestStep> steps = tcase.getTestSteps();
+            for (TestStep step : steps) {
+                if (step.getAction().contains("Encrypted")) {
+                    String input = step.getInput();
+                    if (input != null && input.startsWith("@")) {
+                        input = input.substring(1);
+                        input = input.substring(0, input.lastIndexOf(" Enc"));
+                        byte[] decode = Base64.decodeBase64(input);
+                        String encrypted = Utility.encrypt(new String(decode));
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Encrypting the data in the step {0} ", new Object[]{step});
+                        step.setInput("@" + encrypted);
+                    }
+                }
+            }
+        }
+    }
+
+    private void enableEncrypt(String value, AbstractDataModel model, int row, int col) {
+        byte[] decode = Base64.decodeBase64(value);
+        String encrypted = Utility.encrypt(new String(decode));
+        model.setValueAt(encrypted, row, col);
     }
 
     public void createProject(final String name, final String location, final String testDatatype) {

@@ -36,7 +36,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.apache.commons.codec.binary.Base64;
 
 /**
  *
