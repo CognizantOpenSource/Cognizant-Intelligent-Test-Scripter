@@ -163,11 +163,7 @@
                                           <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="threadCount" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="testEnv" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="whatsEnvironment" min="-2" pref="26" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="testEnv" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
@@ -232,14 +228,11 @@
                           <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="whatsEnvironment" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="envLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="testEnv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="envLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="testEnv" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -486,21 +479,6 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="whatsEnvironment">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/resources/ask.png"/>
-                </Property>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="whatsEnvironmentMouseClicked"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="bddReport">
               <Properties>

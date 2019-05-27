@@ -436,7 +436,6 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         reportPerformanceLog = new javax.swing.JCheckBox();
         envLabel = new javax.swing.JLabel();
         testEnv = new javax.swing.JComboBox<>();
-        whatsEnvironment = new javax.swing.JLabel();
         bddReport = new javax.swing.JCheckBox();
         sendMail = new javax.swing.JCheckBox();
         excelReporting = new javax.swing.JCheckBox();
@@ -581,16 +580,6 @@ public class CognizantITSSettings extends javax.swing.JFrame {
 
         testEnv.setToolTipText("Select the execution Environment");
 
-        whatsEnvironment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        whatsEnvironment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/ask.png"))); // NOI18N
-        whatsEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        whatsEnvironment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        whatsEnvironment.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                whatsEnvironmentMouseClicked(evt);
-            }
-        });
-
         bddReport.setFont(new java.awt.Font("sansserif", 0, 11)); // NOI18N
         bddReport.setText("Bdd Reporting");
 
@@ -630,10 +619,7 @@ public class CognizantITSSettings extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jRadioButton4))
                                 .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(globalSettingsLayout.createSequentialGroup()
-                                    .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(whatsEnvironment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(56, 56, 56))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, globalSettingsLayout.createSequentialGroup()
                             .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,12 +667,10 @@ public class CognizantITSSettings extends javax.swing.JFrame {
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton4))
                 .addGap(18, 18, 18)
-                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(whatsEnvironment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(envLabel)
-                        .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(envLabel)
+                    .addComponent(testEnv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(globalSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jRadioButton1)
@@ -844,10 +828,6 @@ public class CognizantITSSettings extends javax.swing.JFrame {
         testConnection(tm);
     }//GEN-LAST:event_testConnActionPerformed
 
-    private void whatsEnvironmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_whatsEnvironmentMouseClicked
-        Help.openEnvBasedExec();
-    }//GEN-LAST:event_whatsEnvironmentMouseClicked
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         sMainFrame.getTestExecution().getTestSetComp().reloadSettings();
     }//GEN-LAST:event_formWindowClosing
@@ -929,6 +909,5 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     private javax.swing.JTable tsTMTable;
     private javax.swing.JCheckBox updateresultscheckbox;
     private javax.swing.JCheckBox useExistingDriver;
-    private javax.swing.JLabel whatsEnvironment;
     // End of variables declaration//GEN-END:variables
 }

@@ -318,19 +318,23 @@ public class AppMainFrame extends JFrame {
         try {
             //Mail Settings updated
             project.getProjectSettings().getMailSettings().put("mail.smtp.starttls.required", "true");
-            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Mail setting are copied ");
+            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Mail setting new property is copied ");
 
             //Updating new TM Properties
             List<TestMgModule> modules = project.getProjectSettings().getTestMgmtModule().getModules();
             for (TestMgModule module : modules) {
                 List<Option> options = module.getOptions();
                 for (Option option : options) {
+                    String key = option.getName();
                     String value = option.getValue();
-                    if (value.contains("TMENC:")) {
+                    if (value != null && !value.isEmpty() && value.contains("TMENC:")) {
                         value = value.replaceFirst("TMENC:", "");
                         byte[] encoded = Base64.decodeBase64(value);
-                        String encrypt = TMIntegration.encrypt(new String(encoded));
-                        option.setValue(encrypt);
+                        TMEncrypt(new String(encoded), module, option);
+                    } else {
+                        if (key.toLowerCase().contains("passw")) {
+                            TMEncrypt(value, module, option);
+                        }
                     }
                 }
             }
@@ -341,10 +345,12 @@ public class AppMainFrame extends JFrame {
             modules13.forEach((module) -> {
                 String modulename = module.getModule();
                 if (modulename.equals("QTest") || modulename.equals("JiraCloud") || modulename.equals("TestRail")) {
+                    Logger.getLogger(AppMainFrame.class.getName()).
+                            log(Level.INFO, "Adding 1.3 TM Module {0}  ", new Object[]{module.getModule()});
                     project.getProjectSettings().getTestMgmtModule().putValues(module.getModule(), module.getOptions());
                 }
             });
-            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Test Management setting are copied ");
+            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Test Management settings are copied ");
 
             //Modify Encoding to Encryption in TestData and GlobalData
             Set<String> envs = project.getTestData().getEnvironments();
@@ -364,7 +370,8 @@ public class AppMainFrame extends JFrame {
                         if (value != null && !value.trim().isEmpty()) {
                             if (value.endsWith(_Enc)) {
                                 value = value.substring(0, value.lastIndexOf(_Enc));
-                                Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Global Data {0} in the row {1} and column {2}", new Object[]{gbData.getName(), row, col});
+                                Logger.getLogger(AppMainFrame.class.getName()).
+                                        log(Level.INFO, "Migrating the {0} Environment {1} Global Data in the {2} row and {3} column", new Object[]{environments, gbData.getName(), row, col});
                                 enableEncrypt(value, gbData, row, col);
                             }
                         }
@@ -385,7 +392,8 @@ public class AppMainFrame extends JFrame {
                             if (value != null && !value.trim().isEmpty()) {
                                 if (value.endsWith(_Enc)) {
                                     value = value.substring(0, value.lastIndexOf(_Enc));
-                                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Test Data {0} in the row {1} and column {2}", new Object[]{model.getName(), row, col});
+                                    Logger.getLogger(AppMainFrame.class.getName()).
+                                            log(Level.INFO, "Migrating the {0} Environment and {1} Test Data in the {2} row and {3} column", new Object[]{environments, model.getName(), row, col});
                                     enableEncrypt(value, model, row, col);
                                 }
                             }
@@ -400,9 +408,6 @@ public class AppMainFrame extends JFrame {
             for (Scenario scenario : scenarios) {
                 List<TestCase> cases = scenario.getTestCases();
                 enableEncryptTC(cases);
-
-                List<TestCase> reuse = scenario.getReusables();
-                enableEncryptTC(reuse);
             }
 
             //Migrating Driver Settings
@@ -417,13 +422,19 @@ public class AppMainFrame extends JFrame {
                     String encrypted = new String(encoded);
                     if (key.equals("proxyPassword")) {
                         encrypted = Utility.encrypt(new String(encoded));
-                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Driver settings key{0} and value{1}", new Object[]{key, encrypted});
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
                     }
                     project.getProjectSettings().getDriverSettings().put(key, encrypted);
+                } else {
+                    if (key.equals("proxyPassword")) {
+                        String encrypted = Utility.encrypt(property);
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
+                        project.getProjectSettings().getDriverSettings().put(key, encrypted);
+                    }
                 }
             }
 
-            //Migarting Test Management settings
+            //Migarting Test Management settings at Release level
             List<Release> releases = project.getReleases();
             for (Release release : releases) {
                 List<TestSet> testsets = release.getTestSets();
@@ -437,13 +448,22 @@ public class AppMainFrame extends JFrame {
                             property = property.replaceFirst("TMENC:", "");
                             byte[] encoded = Base64.decodeBase64(property);
                             String encrypt = TMIntegration.encrypt(new String(encoded));
-                            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Execution settings key{0} and value{1}", new Object[]{key, encrypt});
+                            Logger.getLogger(AppMainFrame.class.getName()).
+                                    log(Level.INFO, "Migrating the Execution Settings of {0} Release ->  {1} Testset . Key {2} and Value {3}", new Object[]{release.getName(), testset.getName(), key, encrypt});
                             project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
+                        } else {
+                            if (key.toLowerCase().contains("passw")) {
+                                String encrypt = TMIntegration.encrypt(property);
+                                Logger.getLogger(AppMainFrame.class.getName()).
+                                        log(Level.INFO, "Migrating the Execution Settings of {0} Release ->  {1} Testset . Key {2} and Value {3}", new Object[]{release.getName(), testset.getName(), key, encrypt});
+                                project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
+                            }
                         }
                     }
                 }
             }
 
+            //Migarting Test Management settings at Design level
             Enumeration<Object> keys1 = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().keys();
             Iterator<Object> keysls = keys1.asIterator();
             while (keysls.hasNext()) {
@@ -453,8 +473,14 @@ public class AppMainFrame extends JFrame {
                     property = property.replaceFirst("TMENC:", "");
                     byte[] encoded = Base64.decodeBase64(property);
                     String encrypt = TMIntegration.encrypt(new String(encoded));
-                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating Execution settings key{0} and value{1}", new Object[]{key, encrypt});
+                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Execution Settings Key {0} and Value {1}", new Object[]{key, encrypt});
                     project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
+                } else {
+                    if (key.toLowerCase().contains("passw")) {
+                        String encrypt = TMIntegration.encrypt(property);
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Execution Settings Key {0} and Value {1}", new Object[]{key, encrypt});
+                        project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
+                    }
                 }
             }
         } catch (Exception ex) {
@@ -462,9 +488,17 @@ public class AppMainFrame extends JFrame {
             Logger.getLogger(AppMainFrame.class.getName()).log(Level.SEVERE, "Migration is not successful", ex.getMessage());
             return false;
         }
-        project.getInfo().setVersion(About.getBuildVersion());
+
+        project.getInfo()
+                .setVersion(About.getBuildVersion());
         project.save();
         return isMigrted;
+    }
+
+    private void TMEncrypt(String value, TestMgModule module, Option option) {
+        String encrypt = TMIntegration.encrypt(value);
+        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the {0} TM Module. Property {1} value {2} ", new Object[]{module.getModule(), option.getName(), encrypt});
+        option.setValue(encrypt);
     }
 
     private void enableEncryptTC(List<TestCase> cases) {
@@ -479,8 +513,8 @@ public class AppMainFrame extends JFrame {
                         input = input.substring(0, input.lastIndexOf(" Enc"));
                         byte[] decode = Base64.decodeBase64(input);
                         String encrypted = Utility.encrypt(new String(decode));
-                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Encrypting the data in the step {0} ", new Object[]{step});
                         step.setInput("@" + encrypted);
+                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Encrypting the value in {0}_{1} -> Data in the step {2} ", new Object[]{tcase.getScenario().getName(), tcase.getName(), step});
                     }
                 }
             }
@@ -491,6 +525,7 @@ public class AppMainFrame extends JFrame {
         byte[] decode = Base64.decodeBase64(value);
         String encrypted = Utility.encrypt(new String(decode));
         model.setValueAt(encrypted, row, col);
+
     }
 
     public void createProject(final String name, final String location, final String testDatatype) {
@@ -525,6 +560,7 @@ public class AppMainFrame extends JFrame {
 
     public Project getProject() {
         return sProject;
+
     }
 
     public Boolean renameProject(String newProjName) {
@@ -563,6 +599,7 @@ public class AppMainFrame extends JFrame {
     public void adjustUI() {
         testDesign.getTestDesignUI().adjustUI();
         testExecution.getTestExecutionUI().adjustUI();
+
     }
 
     public void quit() {
@@ -619,5 +656,4 @@ public class AppMainFrame extends JFrame {
             }
         }
     }
-
 }
