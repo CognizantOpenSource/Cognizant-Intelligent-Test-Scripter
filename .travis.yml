@@ -1,12 +1,12 @@
 language: java
 jdk:
-  - oraclejdk9
+  - openjdk9
 
 sudo: false
 addons:
   apt:
     packages:
-      - oracle-java9-installer
+      - openjdk-java9-installer
 
 cache:
   directories:
