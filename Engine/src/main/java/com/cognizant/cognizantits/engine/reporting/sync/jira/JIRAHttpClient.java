@@ -28,7 +28,7 @@ public class JIRAHttpClient extends BasicHttpClient {
 
     @Override
     public void setHeader(HttpPost httppost) {
-        httppost.setHeader("X-Atlassian-Token", "nocheck");
+        httppost.setHeader("X-Atlassian-Token", "no-check");
     }
 
 }
