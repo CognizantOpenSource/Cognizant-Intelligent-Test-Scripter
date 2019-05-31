@@ -316,7 +316,7 @@ public class DriverSettings extends javax.swing.JFrame {
         }
         Properties driveProps = encryptpassword(PropUtils.getPropertiesFromTable(driverPropTable));
         PropUtils.loadPropertiesInTable(driveProps, driverPropTable, "");
-        
+
         DefaultTableModel model = (DefaultTableModel) driverPropTable.getModel();
         settings.getDriverSettings().clear();
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -331,8 +331,11 @@ public class DriverSettings extends javax.swing.JFrame {
     private Properties encryptpassword(Properties properties) {
         properties.entrySet().forEach((e) -> {
             String key = (String) e.getKey();
-            if (key.toLowerCase().contains("passw")) {
-                properties.setProperty(key, Utility.encrypt((String) e.getValue()));
+            String value = (String) e.getValue();
+            if (value != null && !value.isEmpty()) {
+                if (key.toLowerCase().contains("passw")) {
+                    properties.setProperty(key, Utility.encrypt(value));
+                }
             }
         });
         return properties;
@@ -933,7 +936,7 @@ public class DriverSettings extends javax.swing.JFrame {
         loadChromeEmulators();
     }//GEN-LAST:event_syncChromeEmulatorsActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCap;
     private javax.swing.JButton addNewEmulator;

@@ -429,8 +429,11 @@ public class TMSettings extends javax.swing.JFrame {
     private Properties encryptpassword(Properties properties) {
         properties.entrySet().forEach((e) -> {
             String key = (String) e.getKey();
-            if (key.toLowerCase().contains("passw")) {
-                properties.setProperty(key, TMIntegration.encrypt((String) e.getValue()));
+            String value = (String) e.getValue();
+            if (value != null && !value.isEmpty()) {
+                if (key.toLowerCase().contains("passw")) {
+                    properties.setProperty(key, TMIntegration.encrypt(value));
+                }
             }
         });
         return properties;

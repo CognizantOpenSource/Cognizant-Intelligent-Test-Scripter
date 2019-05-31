@@ -325,11 +325,14 @@ public class CognizantITSSettings extends javax.swing.JFrame {
     private Properties encryptpassword(Properties properties, String feature) {
         properties.entrySet().forEach((e) -> {
             String key = (String) e.getKey();
-            if (key.toLowerCase().contains("passw")) {
-                if (feature.equals("TMENC:")) {
-                    properties.setProperty(key, TMIntegration.encrypt((String)e.getValue()));
-                } else {
-                    properties.setProperty(key, Utility.encrypt((String)e.getValue()));
+            String value = (String) e.getValue();
+            if (value != null && !value.isEmpty()) {
+                if (key.toLowerCase().contains("passw")) {
+                    if (feature.equals("TMENC:")) {
+                        properties.setProperty(key, TMIntegration.encrypt(value));
+                    } else {
+                        properties.setProperty(key, Utility.encrypt(value));
+                    }
                 }
             }
         });

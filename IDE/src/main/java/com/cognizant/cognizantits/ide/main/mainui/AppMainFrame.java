@@ -327,13 +327,15 @@ public class AppMainFrame extends JFrame {
                 for (Option option : options) {
                     String key = option.getName();
                     String value = option.getValue();
-                    if (value != null && !value.isEmpty() && value.contains("TMENC:")) {
-                        value = value.replaceFirst("TMENC:", "");
-                        byte[] encoded = Base64.decodeBase64(value);
-                        TMEncrypt(new String(encoded), module, option);
-                    } else {
-                        if (key.toLowerCase().contains("passw")) {
-                            TMEncrypt(value, module, option);
+                    if (value != null && !value.isEmpty()) {
+                        if (value.contains("TMENC:")) {
+                            value = value.replaceFirst("TMENC:", "");
+                            byte[] encoded = Base64.decodeBase64(value);
+                            TMEncrypt(new String(encoded), module, option);
+                        } else {
+                            if (key.toLowerCase().contains("passw")) {
+                                TMEncrypt(value, module, option);
+                            }
                         }
                     }
                 }
@@ -416,20 +418,22 @@ public class AppMainFrame extends JFrame {
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 String property = project.getProjectSettings().getDriverSettings().getProperty(key);
-                if (property != null && !property.isEmpty() && property.endsWith(_Enc)) {
-                    property = property.substring(0, property.lastIndexOf(_Enc));
-                    byte[] encoded = Base64.decodeBase64(property);
-                    String encrypted = new String(encoded);
-                    if (key.equals("proxyPassword")) {
-                        encrypted = Utility.encrypt(new String(encoded));
-                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
-                    }
-                    project.getProjectSettings().getDriverSettings().put(key, encrypted);
-                } else {
-                    if (key.equals("proxyPassword")) {
-                        String encrypted = Utility.encrypt(property);
-                        Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
+                if (property != null && !property.isEmpty()) {
+                    if (property.endsWith(_Enc)) {
+                        property = property.substring(0, property.lastIndexOf(_Enc));
+                        byte[] encoded = Base64.decodeBase64(property);
+                        String encrypted = new String(encoded);
+                        if (key.equals("proxyPassword")) {
+                            encrypted = Utility.encrypt(new String(encoded));
+                            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
+                        }
                         project.getProjectSettings().getDriverSettings().put(key, encrypted);
+                    } else {
+                        if (key.equals("proxyPassword")) {
+                            String encrypted = Utility.encrypt(property);
+                            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Driver Settings Key {0} and Value {1}", new Object[]{key, encrypted});
+                            project.getProjectSettings().getDriverSettings().put(key, encrypted);
+                        }
                     }
                 }
             }
@@ -444,19 +448,21 @@ public class AppMainFrame extends JFrame {
                     while (keysls.hasNext()) {
                         String key = (String) keysls.next();
                         String property = project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().getProperty(key);
-                        if (property != null && !property.isEmpty() && property.contains("TMENC:")) {
-                            property = property.replaceFirst("TMENC:", "");
-                            byte[] encoded = Base64.decodeBase64(property);
-                            String encrypt = TMIntegration.encrypt(new String(encoded));
-                            Logger.getLogger(AppMainFrame.class.getName()).
-                                    log(Level.INFO, "Migrating the Execution Settings of {0} Release ->  {1} Testset . Key {2} and Value {3}", new Object[]{release.getName(), testset.getName(), key, encrypt});
-                            project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
-                        } else {
-                            if (key.toLowerCase().contains("passw")) {
-                                String encrypt = TMIntegration.encrypt(property);
+                        if (property != null && !property.isEmpty()) {
+                            if (property.contains("TMENC:")) {
+                                property = property.replaceFirst("TMENC:", "");
+                                byte[] encoded = Base64.decodeBase64(property);
+                                String encrypt = TMIntegration.encrypt(new String(encoded));
                                 Logger.getLogger(AppMainFrame.class.getName()).
                                         log(Level.INFO, "Migrating the Execution Settings of {0} Release ->  {1} Testset . Key {2} and Value {3}", new Object[]{release.getName(), testset.getName(), key, encrypt});
                                 project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
+                            } else {
+                                if (key.toLowerCase().contains("passw")) {
+                                    String encrypt = TMIntegration.encrypt(property);
+                                    Logger.getLogger(AppMainFrame.class.getName()).
+                                            log(Level.INFO, "Migrating the Execution Settings of {0} Release ->  {1} Testset . Key {2} and Value {3}", new Object[]{release.getName(), testset.getName(), key, encrypt});
+                                    project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().put(key, encrypt);
+                                }
                             }
                         }
                     }
@@ -469,17 +475,19 @@ public class AppMainFrame extends JFrame {
             while (keysls.hasNext()) {
                 String key = (String) keysls.next();
                 String property = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().getProperty(key);
-                if (property != null && !property.isEmpty() && property.contains("TMENC:")) {
-                    property = property.replaceFirst("TMENC:", "");
-                    byte[] encoded = Base64.decodeBase64(property);
-                    String encrypt = TMIntegration.encrypt(new String(encoded));
-                    Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Execution Settings Key {0} and Value {1}", new Object[]{key, encrypt});
-                    project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
-                } else {
-                    if (key.toLowerCase().contains("passw")) {
-                        String encrypt = TMIntegration.encrypt(property);
+                if (property != null && !property.isEmpty()) {
+                    if (property.contains("TMENC:")) {
+                        property = property.replaceFirst("TMENC:", "");
+                        byte[] encoded = Base64.decodeBase64(property);
+                        String encrypt = TMIntegration.encrypt(new String(encoded));
                         Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Execution Settings Key {0} and Value {1}", new Object[]{key, encrypt});
                         project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
+                    } else {
+                        if (key.toLowerCase().contains("passw")) {
+                            String encrypt = TMIntegration.encrypt(property);
+                            Logger.getLogger(AppMainFrame.class.getName()).log(Level.INFO, "Migrating the Execution Settings Key {0} and Value {1}", new Object[]{key, encrypt});
+                            project.getProjectSettings().getExecSettings().getTestMgmgtSettings().put(key, encrypt);
+                        }
                     }
                 }
             }
