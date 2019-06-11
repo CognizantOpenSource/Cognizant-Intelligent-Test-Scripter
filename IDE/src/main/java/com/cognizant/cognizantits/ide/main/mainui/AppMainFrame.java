@@ -346,7 +346,7 @@ public class AppMainFrame extends JFrame {
                     objMapper.getTypeFactory().constructCollectionType(List.class, TestMgModule.class));
             modules13.forEach((module) -> {
                 String modulename = module.getModule();
-                if (modulename.equals("QTest") || modulename.equals("JiraCloud") || modulename.equals("TestRail")) {
+                if (modulename.equals("qTestManager") || modulename.equals("JiraCloud") || modulename.equals("TestRail")) {
                     Logger.getLogger(AppMainFrame.class.getName()).
                             log(Level.INFO, "Adding 1.3 TM Module {0}  ", new Object[]{module.getModule()});
                     project.getProjectSettings().getTestMgmtModule().putValues(module.getModule(), module.getOptions());
