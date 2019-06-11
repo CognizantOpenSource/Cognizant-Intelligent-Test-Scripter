@@ -34,14 +34,14 @@ public class QTestSync implements Sync {
 	}
 
 	public QTestSync(Properties options) {
-		this(options.getProperty("QTestUrl"), options.getProperty("QTestUserName"),
-				options.getProperty("QTestPassword"), options.getProperty("QTestSiteName"),
-				options.getProperty("QTestCycleName"));
+		this(options.getProperty("qTestUrl"), options.getProperty("qTestUserName"),
+				options.getProperty("qTestPassword"), options.getProperty("qTestSiteName"),
+				options.getProperty("qTestCycleName"));
 	}
 
 	@Override
 	public String getModule() {
-		return "QTest";
+		return "qTest";
 	}
 
 	@Override

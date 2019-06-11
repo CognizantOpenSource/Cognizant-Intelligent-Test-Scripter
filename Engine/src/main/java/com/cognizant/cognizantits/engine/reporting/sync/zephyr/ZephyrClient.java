@@ -278,7 +278,7 @@ public class ZephyrClient {
 				}
 			}
 			if (executionId > 0) {
-				JSONObject payload = new JSONObject();
+				/*JSONObject payload = new JSONObject();
 				payload.put("createRTSList", null);
 				payload.put("updateRTSList", null);
 				payload.put("unassignedRtsIds", null);
@@ -299,7 +299,7 @@ public class ZephyrClient {
 					if (status == updatedStatus) {
 						DLogger.LogE("Status updated successfully");
 					}
-				}
+				}*/
 				
 				///Upload the files
 				String uploadURL = client.url+UPLOAD+ URLEncoder.encode(Integer.toString(executionId.intValue()), "UTF-8") + "?status=" + status

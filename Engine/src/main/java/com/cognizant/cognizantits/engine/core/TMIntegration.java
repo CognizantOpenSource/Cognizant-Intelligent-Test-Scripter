@@ -67,7 +67,7 @@ public class TMIntegration {
                     return new VStsSync(decryptValues(testMgmgtSettings));
                 case "Zephyr":
                     return new ZephyrSync(decryptValues(testMgmgtSettings));
-                case "QTest":
+                case "qTest":
                 	return new QTestSync(decryptValues(testMgmgtSettings));
                 case "JiraCloud":
                 	return new JIRACloudSync(decryptValues(testMgmgtSettings));
