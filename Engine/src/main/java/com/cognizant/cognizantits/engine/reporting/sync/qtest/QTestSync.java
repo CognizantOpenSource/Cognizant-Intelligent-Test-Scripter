@@ -41,7 +41,7 @@ public class QTestSync implements Sync {
 
 	@Override
 	public String getModule() {
-		return "qTest";
+		return "qTestManager";
 	}
 
 	@Override
