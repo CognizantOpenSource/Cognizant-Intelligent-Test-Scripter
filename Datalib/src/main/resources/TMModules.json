@@ -193,26 +193,26 @@
         ]
     },
 	{
-        "module": "QTest",
+        "module": "qTestManager",
         "options": [
             {
-                "name": "QTestUrl",
+                "name": "qTestUrl",
                 "value": ""
             },
             {
-                "name": "QTestUserName",
+                "name": "qTestUserName",
                 "value": ""
             },
             {
-                "name": "QTestPassword",
+                "name": "qTestPassword",
                 "value": ""
             },
             {
-                "name": "QTestSiteName",
+                "name": "qTestSiteName",
                 "value": ""
             },
             {
-                "name": "QTestCycleName",
+                "name": "qTestCycleName",
                 "value": ""
             },
 	    {
