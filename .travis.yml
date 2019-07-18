@@ -17,7 +17,17 @@ script: "mvn clean install"
 
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
-  
+
+notifications:
+  email: false
+  slack: citsglobal:jw1ACmJoGVkBadc1QLJmk2WW
+  on_success: always  # change: send a notification when the build status changes.
+  on_failure: always  # always: always send a notification.
+  template:
+      - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+      - "Execution time: *%{duration}*"
+      - "Message: %{message}"
+
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
