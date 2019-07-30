@@ -58,6 +58,7 @@ public class Task implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("Inside Task Run");
         runTime = new DateTimeUtils();
         report = new TestCaseReport();
         TestCase stc = getTestCase();
