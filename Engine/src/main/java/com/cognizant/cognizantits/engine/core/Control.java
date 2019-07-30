@@ -138,6 +138,8 @@ public class Control {
                     exe.getExecSettings().getRunSettings().getThreadCount(),
                     exe.getExecSettings().getRunSettings().getExecutionTimeOut(),
                     exe.getExecSettings().getRunSettings().isGridExecution());
+            System.out.println("Run Manager " + !RunManager.queue().isEmpty());
+            System.out.println("Stop Execution " + !SystemDefaults.stopExecution.get());
             while (!RunManager.queue().isEmpty() && !SystemDefaults.stopExecution.get()) {
                 Task t = null;
                 try {
