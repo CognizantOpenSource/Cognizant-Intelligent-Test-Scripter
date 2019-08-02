@@ -106,12 +106,12 @@ public class TestMgmtModule {
         return null;
     }
 
-    public void putValues(String moduleName, Properties prop) {
+    public void putValues(String moduleName, List<Option> prop) {
         addModule(moduleName);
         TestMgModule module = getModule(moduleName);
         module.getOptions().clear();
-        for (String key : prop.stringPropertyNames()) {
-            module.getOptions().add(new Option(key, prop.getProperty(key)));
+        for (Option key : prop) {
+            module.getOptions().add(new Option(key.getName(), key.getValue()));
         }
     }
 

@@ -19,6 +19,7 @@ import com.cognizant.cognizantits.engine.constants.FilePath;
 import com.cognizant.cognizantits.engine.core.Control;
 import com.cognizant.cognizantits.engine.core.RunManager;
 import com.cognizant.cognizantits.engine.reporting.impl.ConsoleReport;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -72,12 +73,13 @@ public class Mailer {
 
     public static Boolean connect(Properties props)
             throws MessagingException, IOException {
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+        Properties properties = decryptValues(props);
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
-                        props.getProperty("username"),
-                        props.getProperty("password"));
+                        properties.getProperty("username"),
+                        properties.getProperty("password"));
             }
         });
         Transport transport = session.getTransport("smtp");
@@ -198,7 +200,7 @@ public class Mailer {
         File reportPath = new File(folderLoc);
         File reportZipPath = new File(reportPath.getPath() + ".zip");
         try {
-            try (ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(reportZipPath))) {
+            try ( ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(reportZipPath))) {
                 addFolderToZip(reportPath, fexFilter, zip, reportPath.getParentFile().getAbsolutePath());
             }
             return reportZipPath;
@@ -233,7 +235,7 @@ public class Mailer {
     }
 
     private static Properties getMailProps() {
-        return Control.exe.getProject().getProjectSettings().getMailSettings();
+        return Mailer.decryptValues(Control.exe.getProject().getProjectSettings().getMailSettings());
     }
 
     private static Boolean iCanSend() {
@@ -243,5 +245,29 @@ public class Mailer {
 
     private static void clearTempZips() {
         TEMP_ZIP.stream().forEach(FileUtils::deleteQuietly);
+    }
+
+    public static Properties decryptValues(Properties ops) {
+        for (String key : ops.stringPropertyNames()) {
+            ops.put(key, Mailer.decrypt(ops.getProperty(key, "")));
+        }
+        return ops;
+    }
+
+    public static String decrypt(String v) {
+        if (isEnc(v)) {
+            v = v.substring(0, v.lastIndexOf(" Enc"));
+            return Mailer.doDecrypt(v);
+        } else {
+            return v;
+        }
+    }
+
+    private static String doDecrypt(String v) {
+        return Encryption.getInstance().decrypt(v);
+    }
+
+    private static boolean isEnc(String v) {
+        return v != null && v.matches(".* Enc");
     }
 }

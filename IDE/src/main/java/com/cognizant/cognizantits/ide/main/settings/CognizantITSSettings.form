@@ -163,11 +163,7 @@
                                           <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="threadCount" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="testEnv" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="whatsEnvironment" min="-2" pref="26" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="testEnv" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
@@ -198,6 +194,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="reportPerformanceLog" min="-2" max="-2" attributes="0"/>
                                       <Component id="useExistingDriver" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <Component id="excelReporting" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -207,7 +204,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -231,14 +228,11 @@
                           <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="whatsEnvironment" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="envLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="testEnv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="envLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="testEnv" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -268,12 +262,14 @@
                           <Component id="useExistingDriver" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="sendMail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bddReport" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="reportPerformanceLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bddReport" min="-2" max="-2" attributes="0"/>
+                          <Component id="reportPerformanceLog" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="53" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="excelReporting" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -484,21 +480,6 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="whatsEnvironment">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/resources/ask.png"/>
-                </Property>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="whatsEnvironmentMouseClicked"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JCheckBox" name="bddReport">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -513,6 +494,12 @@
                   <Font name="sansserif" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Send Mail after Execution"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="excelReporting">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Excel Reporting"/>
+                <Property name="toolTipText" type="java.lang.String" value="Excel Reporting"/>
               </Properties>
             </Component>
           </SubComponents>

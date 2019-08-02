@@ -106,6 +106,9 @@ public class ZAPIClient {
             JSONObject versionInfo = client.Get(projListUrl);
             DLogger.Log("Looking for [", versionName, "] in", versionInfo);
             for (Object versionType : versionInfo.keySet()) {
+                if (!(versionInfo.get(versionType) instanceof Iterable)) {
+                    continue;
+                }
                 for (Object version : (Iterable<? extends Object>) versionInfo
                         .get(versionType)) {
                     // for diff. type of VERSIONS groups., array.VERSIONS changed 

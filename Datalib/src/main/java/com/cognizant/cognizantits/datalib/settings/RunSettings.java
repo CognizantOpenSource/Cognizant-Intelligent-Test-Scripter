@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package com.cognizant.cognizantits.datalib.settings;
 
 /**
  *
- * 
+ *
  */
 public class RunSettings extends AbstractPropSettings {
 
@@ -133,4 +133,11 @@ public class RunSettings extends AbstractPropSettings {
         setProperty("SendMail", String.valueOf(value));
     }
 
+    public Boolean isExcelReport() {
+        return Boolean.valueOf(getProperty("excelReport", "false"));
+    }
+
+    public void setExcelReport(Boolean value) {
+        setProperty("excelReport", String.valueOf(value));
+    }
 }

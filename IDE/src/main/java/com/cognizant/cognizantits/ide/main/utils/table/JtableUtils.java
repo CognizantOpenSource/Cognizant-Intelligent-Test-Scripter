@@ -669,27 +669,6 @@ public class JtableUtils {
     }
 
     /**
-     * Delete a single column from the table model
-     *
-     * @param table target table
-     * @param col target column
-     * @deprecated
-     */
-    static void deletecol(JTable table, int col) {
-        DefaultTableModel tmodel = (DefaultTableModel) table.getModel();
-        DefaultTableModel tmodel1 = new DefaultTableModel();
-        TableModelListener[] listeners = tmodel.getTableModelListeners();
-
-        Vector<?> v = tmodel.getDataVector();
-        Vector<?> v1 = newvector(v, col);
-        tmodel1.setDataVector(v1, getColumnIdentifiersremovecol(table, col));
-        table.setModel(tmodel1);
-        for (TableModelListener l : listeners) {
-            tmodel1.addTableModelListener(l);
-        }
-    }
-
-    /**
      * create new header vector for modified tableModel * @param table target
      * table
      *

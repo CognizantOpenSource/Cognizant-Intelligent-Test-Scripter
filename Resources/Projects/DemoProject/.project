@@ -1,6 +1,7 @@
 {
   "id" : "DemoProject",
   "name" : "DemoProject",
+  "version" : "1.3",
   "attributes" : [ ],
   "tags" : [ ],
   "_meta" : [ {

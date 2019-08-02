@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,8 +58,8 @@ public class ReusableTreeModel extends ProjectTreeModel {
     }
 
     public void toggleAllTestCasesFrom(GroupNode groupNode) {
-        for (ScenarioNode scenarioNode : Collections.list(groupNode.children())) {
-            for (TestCaseNode testCaseNode : Collections.list(scenarioNode.children())) {
+        for (ScenarioNode scenarioNode : ScenarioNode.toList(groupNode.children())) {
+            for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) {
                 testCaseNode.getTestCase().toggleAsReusable();
             }
         }
@@ -69,8 +69,8 @@ public class ReusableTreeModel extends ProjectTreeModel {
     public TestCaseNode addTestCase(TestCase testCase) {
         GroupNode groupNode;
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : Collections.list(getRoot().children())) {
-                for (ScenarioNode scenarioNode : Collections.list(group.children())) {
+            for (GroupNode group : GroupNode.toList(getRoot().children())) {
+                for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) {
                     if (scenarioNode.getScenario().equals(testCase.getScenario())) {
                         return addTestCase(scenarioNode, testCase);
                     }
@@ -98,7 +98,7 @@ public class ReusableTreeModel extends ProjectTreeModel {
     @Override
     public void onScenarioRename(Scenario scenario) {
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : Collections.list(getRoot().children())) {
+            for (GroupNode group : GroupNode.toList(getRoot().children())) {
                 ScenarioNode sNode = group.getScenarioNodeBy(scenario);
                 if (sNode != null) {
                     reload(sNode);
@@ -120,11 +120,11 @@ public class ReusableTreeModel extends ProjectTreeModel {
 
     private void saveProjectXML(Element rootElement) {
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : Collections.list(getRoot().children())) {
+            for (GroupNode group : GroupNode.toList(getRoot().children())) {
                 Element groupElement = createAndSetAttribute(rootElement, group);
-                for (ScenarioNode scenarioNode : Collections.list(group.children())) {
+                for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) {
                     Element scenarioElement = createAndSetAttribute(groupElement, scenarioNode.scenario);
-                    for (TestCaseNode testCaseNode : Collections.list(scenarioNode.children())) {
+                    for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) {
                         createAndSetAttribute(scenarioElement, testCaseNode.testCase);
                     }
                 }

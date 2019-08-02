@@ -21,6 +21,7 @@ import com.cognizant.cognizantits.engine.core.CommandControl;
 import com.cognizant.cognizantits.engine.drivers.AutomationObject;
 import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.execution.data.UserDataAccess;
+import com.cognizant.cognizantits.engine.mail.Mailer;
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
 import java.util.Stack;
 import org.openqa.selenium.WebDriver;
@@ -80,7 +81,9 @@ public class Command {
     }
 
     public String getDataBaseData(String key) {
-        return Commander.getDataBaseProperty(key);
+        String data = Commander.getDataBaseProperty(key);
+        data = Mailer.decrypt(data);
+        return data;
     }
 
     public Stack<WebElement> getRunTimeElement() {

@@ -148,7 +148,6 @@ public class SchedulerUI extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         addnlArguments = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        help = new javax.swing.JLabel();
 
         statusPanel.setBackground(new Color(0,0,0,.5f));
         statusPanel.setLayout(new java.awt.BorderLayout());
@@ -254,14 +253,6 @@ public class SchedulerUI extends javax.swing.JDialog {
 
         jLabel6.setText("Arguments");
 
-        help.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/ask.png"))); // NOI18N
-        help.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        help.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                helpMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,10 +285,8 @@ public class SchedulerUI extends javax.swing.JDialog {
                                     .addComponent(taskName)
                                     .addComponent(dateSpinner)
                                     .addComponent(timeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(help)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1))))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,9 +309,7 @@ public class SchedulerUI extends javax.swing.JDialog {
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(help)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(taskName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,10 +372,6 @@ public class SchedulerUI extends javax.swing.JDialog {
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
         hideStatus();
     }//GEN-LAST:event_noButtonActionPerformed
-
-    private void helpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMouseClicked
-        Help.openSchedulerHelp();
-    }//GEN-LAST:event_helpMouseClicked
 
     private Boolean isConditionMet() {
         return !taskName.getText().trim().isEmpty()
@@ -470,7 +453,6 @@ public class SchedulerUI extends javax.swing.JDialog {
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
-    private javax.swing.JLabel help;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

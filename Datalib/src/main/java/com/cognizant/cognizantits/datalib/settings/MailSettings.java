@@ -43,6 +43,7 @@ public class MailSettings extends AbstractPropSettings {
         put("mail.smtp.port", "");
         put("mail.smtp.ssl.trust", "Same as mail.smtp.host");
         put("mail.smtp.starttls.enable", "true");
+        put("mail.smtp.starttls.required", "true");
         put("mail.smtp.auth", "true");
         put("mail.smtp.connectiontimeout", "10000");
         put("mail.debug", "false");

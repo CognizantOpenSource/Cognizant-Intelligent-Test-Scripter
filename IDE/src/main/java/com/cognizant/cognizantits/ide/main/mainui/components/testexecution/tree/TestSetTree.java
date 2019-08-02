@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JComponent;
@@ -53,6 +54,7 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /**
@@ -368,21 +370,21 @@ public class TestSetTree implements ActionListener {
                     JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 LOGGER.log(Level.INFO, "Delete TestSets approved for {0}; {1}",
-                        new Object[]{testsets.size(), testsets});
-                deleteTestSets(testsets);
+                        new Object[]{testsets.size(), testsets});              
+                deleteTestSets(testsets.stream().map(tsNode -> (TreeNode) tsNode).collect(Collectors.toList()));
             }
         }
     }
 
-    private void deleteTestSets(List<TestSetNode> testsets) {
+    private void deleteTestSets(List<TreeNode> testsets) {
         TestSet loadedTestSet = testExecution.getTestSetComp().getCurrentTestSet();
         Boolean shouldRemove = false;
-        for (TestSetNode testsetNode : testsets) {
+        for (TreeNode testsetNode : testsets) {
             if (!shouldRemove) {
-                shouldRemove = Objects.equals(loadedTestSet, testsetNode.getTestSet());
+                shouldRemove = Objects.equals(loadedTestSet,(((TestSetNode)testsetNode).getTestSet()));
             }
-            testsetNode.getTestSet().delete();
-            treeModel.removeNodeFromParent(testsetNode);
+            ((TestSetNode)testsetNode).getTestSet().delete();
+            treeModel.removeNodeFromParent((TestSetNode)testsetNode);
         }
         if (shouldRemove) {
             testExecution.getTestSetComp().resetTable();

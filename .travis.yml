@@ -1,12 +1,11 @@
 language: java
-jdk:
-  - oraclejdk8
-
 sudo: false
+dist: trusty
+jdk: oraclejdk9
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+      - oracle-java9-installer
 
 cache:
   directories:
@@ -18,7 +17,7 @@ script: "mvn clean install"
 
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
-  
+
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN

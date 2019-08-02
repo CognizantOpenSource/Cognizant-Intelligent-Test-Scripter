@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import java.util.List;
 public class Report {
 
     String projectName;
-    String releaseName;
-    String testsetName;
-    String iterationMode;
+    public String releaseName;
+    public String testsetName;
+    public String iterationMode;
     String runConfiguration;
     String maxThreads;
     String startTime;
@@ -34,7 +34,7 @@ public class Report {
     String theme;
     List<String> themes;
     String testRun;
-    List<Execution> EXECUTIONS;
+    public List<Execution> EXECUTIONS;
 
     public List<Execution> getEXECUTIONS() {
         return EXECUTIONS;
@@ -56,38 +56,40 @@ public class Report {
             return status;
         }
 
-        String testcaseName;
+        public String testcaseName;
         String description;
-        String iterations;
+
+        public String iterations;
 
         public List<IterData> getIterData() {
             return STEPS;
         }
 
-        String iterationType;
-        String platform;
-        String bversion;
-        String startTime;
-        String endTime;
-        String exeTime;
-        String noTests;
-        String nopassTests;
-        String nofailTests;
-        String browser;
-        String status;
-        List<IterData> STEPS;
+        public String iterationType;
+        public String platform;
+        public String bversion;
+        public  String startTime;
+        public String endTime;
+        public  String exeTime;
+        public String noTests;
+        public String nopassTests;
+        public String nofailTests;
+        public String browser;
+        public String status;
+        public List<IterData> STEPS;
+		public char[] getScenarioName;
 
     }
 
     public static class IterData {
 
-        String name;
-        String type;
+    	public String name;
+    	public String type;
 
-        String startTime;
-        String endTime;
-        String description;
-        List<Step> data;
+    	public String startTime;
+    	public String endTime;
+    	public String description;
+    	public List<Step> data;
 
         public List<Step> getSteps() {
             return data;
@@ -97,19 +99,19 @@ public class Report {
 
     public static class Step {
 
-        String name;
-        String type;
-        String description;
-        String status;
-        String startTime;
-        String endTime;
-        Object data;
+    	public String name;
+    	public String type;
+    	public String description;
+    	public String status;
+    	public String startTime;
+    	public String endTime;
+    	public Object data;
 
         public String getStatus() {
             return this.status;
         }
 
-        enum StepInfo {
+       public enum StepInfo {
             stepno, stepName, action, description, status, tStamp, link,
             expected, actual, comparison, objects;
         }
@@ -118,7 +120,7 @@ public class Report {
 
     public static class Data {
 
-        String stepno;
+    	public String stepno;
         String stepName;
         String action;
         String description;

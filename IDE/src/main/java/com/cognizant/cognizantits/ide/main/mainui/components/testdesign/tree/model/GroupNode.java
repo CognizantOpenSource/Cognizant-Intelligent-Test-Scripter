@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@ import com.cognizant.cognizantits.datalib.component.Scenario;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -51,9 +54,9 @@ public class GroupNode extends CommonNode {
     }
 
     public ScenarioNode getScenarioNodeBy(Scenario scenario) {
-        for (ScenarioNode scenarioNode : Collections.list(children())) {
-            if (scenarioNode.getScenario().equals(scenario)) {
-                return scenarioNode;
+        for (TreeNode scenarioNode : Collections.list(children())) {
+            if (((ScenarioNode)scenarioNode).getScenario().equals(scenario)) {
+                return (ScenarioNode)scenarioNode;
             }
         }
         return null;
@@ -64,18 +67,14 @@ public class GroupNode extends CommonNode {
         return name;
     }
 
-    @Override
-    public Enumeration<ScenarioNode> children() {
-        return super.children(); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public boolean rename(String name) {
         ReusableNode rNode = (ReusableNode) getParent();
         if (rNode.getGroupByName(name) == null) {
             setName(name);
-            for (ScenarioNode scenarioNode : Collections.list(children())) {
-                for (TestCaseNode testCaseNode : Collections.list(scenarioNode.children())) {
-                    testCaseNode.getTestCase().getReusable().setGroup(name);
+            for (TreeNode scenarioNode: Collections.list(children())) {
+                for (TreeNode testCaseNode : Collections.list(scenarioNode.children())) {
+                    ((TestCaseNode)testCaseNode).getTestCase().getReusable().setGroup(name);
                 }
             }
             return true;
@@ -83,4 +82,7 @@ public class GroupNode extends CommonNode {
         return false;
     }
 
+   public static List<GroupNode> toList(Enumeration<TreeNode> children){
+       return Collections.list(children).stream().map(tsNode -> (GroupNode) tsNode).collect(Collectors.toList());       
+   }
 }

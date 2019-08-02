@@ -265,7 +265,9 @@ public class SeleniumDriver {
     }
 
     public String getPlatformName() {
-
+        Platform platform = null;
+        String mode = Control.exe.getExecSettings().getRunSettings().getExecutionMode();
+        boolean isLocal = mode.equalsIgnoreCase("Local");
         if (runContext.Platform.equals(Platform.ANY) || runContext.Platform.equals(Platform.getCurrent())) {
             Capabilities cap;
             if (driver instanceof ExtendedHtmlUnitDriver) {
@@ -279,14 +281,17 @@ public class SeleniumDriver {
                     return (driver instanceof AndroidDriver) ? "Android" : "IOS";
                 }
             } else if (driver instanceof EmptyDriver) {
-                return "Any";
+                return Platform.getCurrent().name();
             } else {
                 cap = ((RemoteWebDriver) driver).getCapabilities();
             }
-            Platform p = cap.getPlatform();
-            if (p.name().equals(Platform.VISTA.name()) || p.name().equals(Platform.XP.name())
-                    || p.name().equals(Platform.WINDOWS.name()) || p.name().equals(Platform.WIN8.name())) {
-                switch (p.getMajorVersion() + "." + p.getMinorVersion()) {
+            platform = cap.getPlatform();
+            if (isLocal) {
+                platform = Platform.getCurrent();
+            }
+            if (platform.name().equals(Platform.VISTA.name()) || platform.name().equals(Platform.XP.name())
+                    || platform.name().equals(Platform.WINDOWS.name()) || platform.name().equals(Platform.WIN8.name())) {
+                switch (platform.getMajorVersion() + "." + platform.getMinorVersion()) {
                     case "5.1":
                         return "XP";
                     case "6.0":
@@ -298,14 +303,18 @@ public class SeleniumDriver {
                     case "6.3":
                         return "WIN8.1";
                     default:
-                        return p.name();
+                        return platform.name();
                 }
             } else {
-                return p.toString();
+                return platform.toString();
             }
         } else if (runContext.PlatformValue.equals("WINDOWS")) {
             return "WIN";
         } else {
+            if (isLocal) {
+                platform = Platform.getCurrent();
+                return platform.toString();
+            }
             return runContext.PlatformValue;
         }
     }

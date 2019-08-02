@@ -21,6 +21,8 @@ import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.Action;
 import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
+import com.cognizant.cognizantits.util.encryption.Encryption;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.codec.binary.Base64;
@@ -59,7 +61,7 @@ public class JSCommands extends General {
             if (elementEnabled()) {
                 try {
                     Data = Data.substring(0, Data.lastIndexOf(" Enc"));
-                    byte[] valueDecoded = Base64.decodeBase64(Data);
+                    byte[] valueDecoded = Encryption.getInstance().decrypt(Data).getBytes();
                     JavascriptExecutor js = (JavascriptExecutor) Driver;
                     js.executeScript("arguments[0].value='" + new String(valueDecoded) + "'", Element);
                     Report.updateTestLog(Action, "Entered Text '" + Data + "' on '" + ObjectName + "'", Status.DONE);

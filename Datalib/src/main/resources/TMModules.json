@@ -191,5 +191,133 @@
                 "value": ""
             }
         ]
+    },
+	{
+        "module": "qTestManager",
+        "options": [
+            {
+                "name": "qTestUrl",
+                "value": ""
+            },
+            {
+                "name": "qTestUserName",
+                "value": ""
+            },
+            {
+                "name": "qTestPassword",
+                "value": ""
+            },
+            {
+                "name": "qTestSiteName",
+                "value": ""
+            },
+            {
+                "name": "qTestCycleName",
+                "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
+                "value": ""
+            }
+        ]
+    },
+	{
+		"module": "JiraCloud",
+        "options": [
+            {
+                "name": "JiraBaseURL",
+                "value": ""
+            },
+            {
+                "name": "Username",
+                "value": ""
+            },
+            {
+                "name": "API Token",
+                "value": ""
+            },
+            {
+                "name": "ZephyrBaseURL",
+                "value": ""
+            },
+            {
+                "name": "SecretKey",
+                "value": ""
+            },
+			{
+                "name": "AccessKey",
+                "value": ""
+            },
+			{
+                "name": "project",
+                "value": ""
+            },
+			{
+                "name": "ReleaseName",
+                "value": ""
+            },
+			{
+                "name": "CycleName",
+                "value": ""
+            },
+			{
+                "name": "useProxy",
+                "value": "true"
+            },
+			{
+                "name": "proxyHost",
+                "value": ""
+            },
+			{
+                "name": "proxyPort",
+                "value": ""
+            }
+        ]
+    },
+    
+    {
+        "module": "TestRail",
+        "options": [
+            {
+                "name": "TestRailURL",
+                "value": ""
+            },
+            {
+                "name": "Username",
+                "value": ""
+            },
+            {
+                "name": "Password",
+                "value": ""
+            },
+            {
+                "name": "Project",
+                "value": ""
+            },
+			{
+                "name": "TestSetName",
+                "value": ""
+            },
+			{
+                "name": "useProxy",
+                "value": "false"
+            },
+			{
+                "name": "proxyHost",
+                "value": ""
+            },
+			{
+                "name": "proxyPort",
+                "value": ""
+            }
+        ]
     }
 ]

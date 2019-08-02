@@ -27,9 +27,11 @@ import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.main.utils.table.XTable;
 import com.cognizant.cognizantits.ide.util.Notification;
+import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -39,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * 
+ *
  */
 public class TMSettings extends javax.swing.JFrame {
 
@@ -195,9 +197,7 @@ public class TMSettings extends javax.swing.JFrame {
         deleteModule = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         checkConnection = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
-        jLabel1 = new javax.swing.JLabel();
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
@@ -305,18 +305,7 @@ public class TMSettings extends javax.swing.JFrame {
             }
         });
         jToolBar3.add(checkConnection);
-        jToolBar3.add(jSeparator2);
         jToolBar3.add(filler2);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/ask.png"))); // NOI18N
-        jLabel1.setToolTipText("How to configure new Test Management module?");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jToolBar3.add(jLabel1);
         jToolBar3.add(filler5);
 
         getContentPane().add(jToolBar3, java.awt.BorderLayout.PAGE_START);
@@ -419,6 +408,9 @@ public class TMSettings extends javax.swing.JFrame {
         if (moduleCombo.getSelectedIndex() != -1) {
             String moduleName = moduleCombo.getSelectedItem().toString();
             TestMgModule module = testMgmtModule.getModule(moduleName);
+            Properties properties;
+            properties = encryptpassword(PropUtils.getPropertiesFromTable(moduleTable));
+            PropUtils.loadPropertiesInTable(properties, moduleTable, "");
             if (moduleTable.isEditing()) {
                 moduleTable.getCellEditor().stopCellEditing();
             }
@@ -432,6 +424,19 @@ public class TMSettings extends javax.swing.JFrame {
                 }
             }
         }
+    }
+
+    private Properties encryptpassword(Properties properties) {
+        properties.entrySet().forEach((e) -> {
+            String key = (String) e.getKey();
+            String value = (String) e.getValue();
+            if (value != null && !value.isEmpty()) {
+                if (key.toLowerCase().contains("passw")) {
+                    properties.setProperty(key, TMIntegration.encrypt(value));
+                }
+            }
+        });
+        return properties;
     }
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
@@ -456,10 +461,6 @@ public class TMSettings extends javax.swing.JFrame {
     private void checkConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConnectionActionPerformed
         checkConnection();
     }//GEN-LAST:event_checkConnectionActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Help.openTMHelp();
-    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void encryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptActionPerformed
         for (int selectedRow : moduleTable.getSelectedRows()) {
@@ -486,13 +487,11 @@ public class TMSettings extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar3;

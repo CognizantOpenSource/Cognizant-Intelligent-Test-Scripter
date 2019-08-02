@@ -32,6 +32,7 @@ import java.util.stream.Stream;
 @JsonPropertyOrder({
     "id",
     "name",
+    "version",
     "attributes",
     "tags",
     "_meta",
@@ -56,7 +57,10 @@ public class ProjectInfo {
     private Tags tags = new Tags();
     @JsonProperty("data")
     private Data data = new Data();
-
+    
+    @JsonProperty("version")
+    private String version; 
+            
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -66,7 +70,17 @@ public class ProjectInfo {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
+    }
 
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
+    }
+    
     @JsonProperty("id")
     public String getId() {
         return id;
@@ -178,6 +192,7 @@ public class ProjectInfo {
         p.setTags(new ArrayList<>());
         p.setMeta(Meta.def());
         p.setData(new ArrayList<>());
+        p.setVersion("1.3");
         return p;
     }
 

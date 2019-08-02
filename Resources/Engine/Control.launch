@@ -13,5 +13,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.cognizant.cognizantits.engine.core.Control"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="cognizant-intelligent-test-scripter-engine"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${project_loc}\..\"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${project_loc}/../"/>
 </launchConfiguration>

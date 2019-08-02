@@ -114,7 +114,10 @@ Extract `tesseract-ocr-3.02.eng.tar.gz`
 
 Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
 
+
+=======
 ###  Demo Project Details
+
 
 **AccessibilityActions Test case:**  Execute this test case against chrome browser to understand the accessibility actions supported by CITS, out of the box
 
