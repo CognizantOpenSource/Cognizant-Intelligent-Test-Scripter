@@ -115,7 +115,9 @@ Extract `tesseract-ocr-3.02.eng.tar.gz`
 Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
 
 
-### Demo Project Details
+=======
+###  Demo Project Details
+
 
 **AccessibilityActions Test case:**  Execute this test case against chrome browser to understand the accessibility actions supported by CITS, out of the box
 
@@ -144,3 +146,9 @@ Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) 
 **Mobile_Native:** Covers a basic smoke flow to test Android Calculator application. Create an emulator for mobile native app execution employing the necessary desired capabilities required by Appium in order to execute this test case.
 
 **WebPagePerformanceTesting:** Demonstrates the use of the action "capturePageTimings" to perform web page performance testing
+
+
+~~~Check out this [sikuli issue](https://answers.launchpad.net/sikuli/+faq/27090) for more details.~~~
+
+
+
