@@ -15,13 +15,15 @@
  */
 package com.cognizant.cognizantits.engine.drivers;
 
+import com.cognizant.cognizantits.util.encryption.Encryption;
+import java.net.Authenticator;
 import java.net.InetAddress;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.NTCredentials;
@@ -29,14 +31,46 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.openqa.selenium.remote.CommandInfo;
 import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.http.HttpClient;
-import org.openqa.selenium.remote.internal.ApacheHttpClient;
-
-import com.cognizant.cognizantits.util.encryption.Encryption;
 
 public class RemoteProxy {
+
+    public static void setProxy(Properties prop) {
+        prop = decrypt(prop);
+
+        String proxyHost = prop.getProperty("proxyHost");
+        String proxyPort = prop.getProperty("proxyPort");
+        String proxyUserDomain = prop.getProperty("proxyUserDomain");
+        String proxyUser = prop.getProperty("proxyUser");
+        String proxyPassword = prop.getProperty("proxyPassword");
+
+        System.setProperty("http.proxyHost", proxyHost);
+        System.setProperty("http.proxyPort", proxyPort);
+        System.setProperty("https.proxyHost", proxyHost);
+        System.setProperty("https.proxyPort", proxyPort);
+        Authenticator.setDefault(new CITSAuthenticator(proxyUser, proxyPassword));
+
+        System.setProperty("http.proxyUser", proxyUserDomain + "\\" + proxyUser);
+        System.setProperty("http.proxyPassword", proxyPassword);
+    }
+
+    static class CITSAuthenticator extends Authenticator {
+
+        String user;
+        String password;
+
+        public CITSAuthenticator(String user, String password) {
+            this.user = user;
+            this.password = password;
+        }
+
+        @Override
+        public PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(user, password.toCharArray());
+        }
+
+    }
 
     public static HttpCommandExecutor getProxyExecutor(URL url, Properties prop) {
 
@@ -60,17 +94,19 @@ public class RemoteProxy {
         }
         builder.setProxy(proxy);
         builder.setDefaultCredentialsProvider(credsProvider);
-        HttpClient.Factory factory = new SimpleHttpClientFactory(builder);
-        return new HttpCommandExecutor(new HashMap<String, CommandInfo>(), url, factory);
+        //HttpClient.Factory factory = new SimpleHttpClientFactory(builder);
+        HttpClient.Factory factory = new SimpleHttpClientFactory(new okhttp3.OkHttpClient.Builder());
+
+        return new HttpCommandExecutor(new HashMap<>(), url, factory);
 
     }
 
-    private static Properties decrypt(Properties prop) {
+   private static Properties decrypt(Properties prop) {
         Properties dprop = new Properties();
         dprop.putAll(prop);
         dprop.forEach((key, val) -> {
             if (val.toString().matches((".* Enc"))) {
-                dprop.put(key, new String(Encryption.getInstance().decrypt(val.toString().replace(" Enc", ""))));
+                dprop.put(key, Encryption.getInstance().decrypt(val.toString().replace(" Enc", "")));
             }
         });
         return dprop;
@@ -98,14 +134,24 @@ public class RemoteProxy {
 
 class SimpleHttpClientFactory implements HttpClient.Factory {
 
-    final HttpClientBuilder builder;
+    final okhttp3.OkHttpClient.Builder builder;
 
-    public SimpleHttpClientFactory(HttpClientBuilder builder) {
+    public SimpleHttpClientFactory(okhttp3.OkHttpClient.Builder builder) {
         this.builder = builder;
     }
 
     @Override
     public org.openqa.selenium.remote.http.HttpClient createClient(URL url) {
-        return new ApacheHttpClient(builder.build(), url);
+        return new org.openqa.selenium.remote.internal.OkHttpClient(builder.build(), url);
+    }
+
+    @Override
+    public HttpClient.Builder builder() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cleanupIdleClients() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
