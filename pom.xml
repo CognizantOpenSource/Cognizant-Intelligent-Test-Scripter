@@ -22,7 +22,7 @@
       
         <com4j.version>20110320</com4j.version>
         
-        <selenium.version>3.5.3</selenium.version>
+        <selenium.version>3.141.59</selenium.version>
         <sikuli.version>1.1.0</sikuli.version>
         <galen.version>2.3.4</galen.version>
         <javaclient.version>5.0.3</javaclient.version>
