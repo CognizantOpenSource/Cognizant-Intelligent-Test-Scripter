@@ -183,10 +183,7 @@ public class WebDriverFactory {
                     driver = new FirefoxDriver(withFirefoxProfile(caps));
                     addGeckoDriverAddon((FirefoxDriver) driver);
                 } else {
-                    Platform platform = caps.getPlatform();
-                    caps.merge(DesiredCapabilities.firefox());
-                    caps.merge(withFirefoxProfile(caps));
-                    caps.setPlatform(platform);
+                    caps = DesiredCapabilities.firefox().merge(withFirefoxProfile(caps));
                 }
                 break;
             case Chrome:
