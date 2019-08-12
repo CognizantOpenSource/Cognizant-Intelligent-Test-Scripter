@@ -301,7 +301,7 @@
                                 <resource>
                                     <directory>${project.basedir}</directory>
                                     <includes>
-                                        <!--<include>.classpath</include>-->
+                                        <include>.classpath</include>
                                         <include>.project</include>
                                     </includes>
                                 </resource>
