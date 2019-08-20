@@ -24,7 +24,7 @@
         
         <selenium.version>3.141.59</selenium.version>
         <sikuli.version>1.1.0</sikuli.version>
-        <galen.version>2.3.4</galen.version>
+        <galen.version>2.4.4</galen.version>
         <javaclient.version>7.0.0</javaclient.version>
         <ngwebdriver.version>1.0</ngwebdriver.version>
         <ashot.version>1.5.2</ashot.version>

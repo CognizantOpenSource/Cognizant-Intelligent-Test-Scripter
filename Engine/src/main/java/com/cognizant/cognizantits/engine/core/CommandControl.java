@@ -104,7 +104,6 @@ public abstract class CommandControl {
             switch (Action) {
                 case "waitForElementToBePresent":
                 case "setObjectProperty":
-                case "clickInputByLabel":
                     return false;
                 default:
                     return true;

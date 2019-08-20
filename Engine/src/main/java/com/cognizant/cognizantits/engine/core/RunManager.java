@@ -182,7 +182,12 @@ public class RunManager {
 
     static Platform getPlatform(String platform) {
         if (platform != null && !platform.trim().isEmpty()) {
-            return Platform.fromString(platform.toUpperCase());
+            if (platform.contains("_")) {
+                platform = platform.replace("_", " ");
+                return Platform.fromString(platform.toUpperCase());
+            } else {
+                return Platform.fromString(platform.toUpperCase());
+            }
         }
         return Platform.ANY;
     }

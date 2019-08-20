@@ -315,7 +315,7 @@ public class CommonMethods extends General {
             Report.updateTestLog(Action, "Message '" + setAlertText
                     + "' is set in the alert window", Status.DONE);
         } catch (Exception e) {
-            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Report.updateTestLog(Action, e.getMessage(), Status.FAILNS);
             Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -326,7 +326,7 @@ public class CommonMethods extends General {
             Driver.switchTo().alert().accept();
             Report.updateTestLog(Action, "Alert is accepted", Status.DONE);
         } catch (Exception e) {
-            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Report.updateTestLog(Action, e.getMessage(), Status.FAILNS);
             Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -338,7 +338,7 @@ public class CommonMethods extends General {
             Report.updateTestLog(Action, "Alert is dismissed",
                     Status.DONE);
         } catch (Exception e) {
-            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Report.updateTestLog(Action, e.getMessage(), Status.FAILNS);
             Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
         }
     }

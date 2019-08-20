@@ -187,7 +187,7 @@ public class WaitFor extends Command {
         }
     }
 
-    @Action(object = ObjectType.BROWSER, desc = "Wait  for the angular requests to finish",input = InputType.OPTIONAL, condition = InputType.OPTIONAL)
+    @Action(object = ObjectType.BROWSER, desc = "Wait  for the angular requests to finish", condition = InputType.OPTIONAL)
     public void waitForAngularRequestsToFinish() {
         try {
             new NgWebDriver((JavascriptExecutor) Driver).waitForAngularRequestsToFinish();

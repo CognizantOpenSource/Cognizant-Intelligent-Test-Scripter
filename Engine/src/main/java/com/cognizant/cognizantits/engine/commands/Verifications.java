@@ -159,14 +159,14 @@ public class Verifications extends Command {
                 System.out.println(Action + " Passed");
                 Report.updateTestLog(Action,
                         "Alert text is matched with the expected result",
-                        Status.PASS);
+                        Status.PASSNS);
             } else {
                 Report.updateTestLog(Action,
                         "Alert text doesn't match with the expected result",
-                        Status.FAIL);
+                        Status.FAILNS);
             }
         } catch (Exception e) {
-            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Report.updateTestLog(Action, e.getMessage(), Status.FAILNS);
             Logger.getLogger(Verifications.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -184,15 +184,15 @@ public class Verifications extends Command {
                 System.out.println(Action + " Passed");
                 Report.updateTestLog(Action,
                         "Alert is present",
-                        Status.PASS);
+                        Status.PASSNS);
             } else {
                 Report.updateTestLog(Action,
                         "Alert is not present",
-                        Status.FAIL);
+                        Status.FAILNS);
             }
         } catch (Exception e) {
             Report.updateTestLog(Action, e.getMessage(),
-                    Status.FAIL);
+                    Status.FAILNS);
             Logger.getLogger(Verifications.class.getName()).log(Level.SEVERE, null, e);
         }
     }

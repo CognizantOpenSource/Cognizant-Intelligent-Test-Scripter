@@ -111,9 +111,13 @@ public class Report extends Command {
 
     private ArrayList<String> saveImageComparison(ImageComparison imageComparison) {
         ArrayList<String> imageList = new ArrayList<>();
-        imageList.add(saveImageComparison(ObjectName + "-expected", imageComparison.getSampleFilteredImage()));
-        imageList.add(saveImageComparison(ObjectName + "-actual", imageComparison.getOriginalFilteredImage()));
-        imageList.add(saveImageComparison(ObjectName + "-map", imageComparison.getComparisonMap()));
+        try {
+            imageList.add(saveImageComparison(ObjectName + "-expected", Rainbow4J.loadImage(imageComparison.getSampleFilteredImage().getAbsolutePath())));
+            imageList.add(saveImageComparison(ObjectName + "-actual", Rainbow4J.loadImage(imageComparison.getOriginalFilteredImage().getAbsolutePath())));
+            imageList.add(saveImageComparison(ObjectName + "-map", Rainbow4J.loadImage(imageComparison.getComparisonMap().getAbsolutePath())));
+        } catch (IOException e) {
+            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, e);
+        }
         return imageList;
     }
 

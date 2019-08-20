@@ -302,6 +302,20 @@ public class WebDriverFactory {
         return null;
     }
 
+    private static WebDriver create(String browserName, ChromeOptions chromeEmulatorCaps, ProjectSettings settings,
+            Boolean isGrid, String remoteUrl) {
+        WebDriver driver = null;
+        if (!isGrid) {
+            driver = new ChromeDriver(chromeEmulatorCaps);
+        } else {
+            DesiredCapabilities caps = DesiredCapabilities.chrome();
+            caps.merge(chromeEmulatorCaps);
+            Boolean checkForProxy = settings.getDriverSettings().useProxy();
+            driver = createRemoteDriver(remoteUrl, caps, checkForProxy, settings.getDriverSettings());
+        }
+        return driver;
+    }
+
     private static boolean isAppiumNative(String remoteUrl, Map props) {
         return toLString(remoteUrl).matches(".*/wd/hub.*") && props != null
                 && props.containsKey("platformName") && toLString(props.get("platformName")).matches("android|ios")
@@ -402,22 +416,22 @@ public class WebDriverFactory {
         return null;
     }
 
-    private static DesiredCapabilities getChromeEmulatorCaps(DesiredCapabilities caps, String deviceName) {
+    private static ChromeOptions getChromeEmulatorCaps(DesiredCapabilities caps, String deviceName) {
         Map<String, String> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceName", deviceName);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        return caps;
+        //caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+        return chromeOptions;
     }
 
-    private static DesiredCapabilities getChromeUAECaps(DesiredCapabilities caps, Emulator emulator) {
+    private static ChromeOptions getChromeUAECaps(DesiredCapabilities caps, Emulator emulator) {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (!emulator.getUserAgent().trim().isEmpty()) {
             chromeOptions.addArguments("--user-agent=" + emulator.getUserAgent());
         }
-        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        return caps;
+        //caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+        return chromeOptions;
     }
 
     private static DesiredCapabilities getFFUAECaps(DesiredCapabilities caps, Emulator emulator) {
@@ -483,7 +497,7 @@ public class WebDriverFactory {
     }
 
     private static FirefoxOptions withFirefoxProfile(DesiredCapabilities caps) {
-         FirefoxOptions fOptions = new FirefoxOptions();
+        FirefoxOptions fOptions = new FirefoxOptions();
         FirefoxProfile fProfile;
         Object obj = caps.getCapability(FirefoxDriver.PROFILE);
         if (obj != null && obj instanceof FirefoxProfile) {
