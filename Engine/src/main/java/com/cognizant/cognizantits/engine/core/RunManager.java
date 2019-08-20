@@ -182,6 +182,9 @@ public class RunManager {
 
     static Platform getPlatform(String platform) {
         if (platform != null && !platform.trim().isEmpty()) {
+            if (platform.contains("WIN8_1")) {
+				return Platform.fromString("WIN8.1");
+			}
             if (platform.contains("_")) {
                 platform = platform.replace("_", " ");
                 return Platform.fromString(platform.toUpperCase());
