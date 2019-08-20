@@ -421,6 +421,7 @@ public class WebDriverFactory {
         mobileEmulation.put("deviceName", deviceName);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+		chromeOptions.merge(caps);
         //caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         return chromeOptions;
     }
@@ -430,6 +431,7 @@ public class WebDriverFactory {
         if (!emulator.getUserAgent().trim().isEmpty()) {
             chromeOptions.addArguments("--user-agent=" + emulator.getUserAgent());
         }
+		chromeOptions.merge(caps);
         //caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         return chromeOptions;
     }
