@@ -23,6 +23,8 @@ import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import java.lang.reflect.Field;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -129,9 +131,9 @@ public class KeyActions extends MobileNativeCommand {
     @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
     public void settings() {
         try {
-            ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
+            //((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
+            ((AndroidDriver) Driver).pressKey(new KeyEvent(AndroidKey.SETTINGS));
             Report.updateTestLog(Action, "settings pressed", Status.PASS);
-
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(KeyActions.class.getName()).log(Level.SEVERE, null, ex);
