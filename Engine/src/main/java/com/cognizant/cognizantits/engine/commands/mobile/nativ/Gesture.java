@@ -144,11 +144,11 @@ public class Gesture extends MobileNativeCommand {
                 Dimension size = ((MobileDriver) Driver).manage().window().getSize();
                 int startY, endY;
                 if (Data != null && Data.contains(",")) {
-                    startY = (int) (size.width * (getInt(Data, 0, 20) / 100d));
-                    endY = (int) (size.width * (getInt(Data, 1, 80) / 100d));
+                    startY = (int) (size.height * (getInt(Data, 0, 20) / 100d));
+                    endY = (int) (size.height * (getInt(Data, 1, 80) / 100d));
                 } else {
-                    startY = (int) (size.width * 0.20);
-                    endY = (int) (size.width * 0.80);
+                    startY = (int) (size.height * 0.20);
+                    endY = (int) (size.height * 0.80);
                 }
                 int X = size.width / 2;
                 swipe(X, startY, X, endY, Duration.ofMillis(getInt(Data, 2, defWaitTimeOut)));
