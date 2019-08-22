@@ -132,7 +132,8 @@ public class KeyActions extends MobileNativeCommand {
     public void settings() {
         try {
             //((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
-            ((AndroidDriver) Driver).pressKey(new KeyEvent(AndroidKey.SETTINGS));
+            //referring the stack over flow link https://stackoverflow.com/questions/57592569/java-client-presskey-method-works-fine-but-the-key-is-not-pressed-in-mobile/57593263#57593263
+            ((AndroidDriver) Driver).startActivity(new io.appium.java_client.android.Activity("com.android.settings", ".Settings"));
             Report.updateTestLog(Action, "settings pressed", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
