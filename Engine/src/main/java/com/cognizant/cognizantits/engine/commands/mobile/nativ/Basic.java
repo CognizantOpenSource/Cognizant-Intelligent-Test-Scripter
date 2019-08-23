@@ -215,11 +215,11 @@ public class Basic extends MobileNativeCommand {
         try {
             if (Driver instanceof AndroidDriver) {
                 ((AndroidDriver) Driver).lockDevice();
+                Report.updateTestLog(Action, "Screen locked", Status.PASS);
             } else {
-                int time = this.getInt(Data, 5);
-                ((IOSDriver) Driver).lockDevice(Duration.ofSeconds(time));
+                //int time = this.getInt(Data, 5);
+                //((IOSDriver) Driver).lockDevice(Duration.ofSeconds(time));
             }
-            Report.updateTestLog(Action, "Screen locked", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
