@@ -3,8 +3,8 @@ Steps to install CITS Chrome and IE Add-on:
 
 Chrome
 ========
-
-1- launch this link "https://chrome.google.com/webstore/detail/cognizant-intelligent-tes/eghfogfdhadandcigjcccdfhlohcgljn" in chrome and click on "Add to Chrome"
+1- cognizantits.crx file is used only for Test case debugging.
+2- launch this link "https://chrome.google.com/webstore/detail/cognizant-intelligent-tes/eghfogfdhadandcigjcccdfhlohcgljn" in chrome and click on "Add to Chrome"
 
 CITS IE Add-on
 ================
