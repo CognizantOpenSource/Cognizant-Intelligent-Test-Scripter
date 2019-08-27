@@ -407,7 +407,9 @@ public class WebDriverFactory {
                         + "\n [SeleniumVersion:" + caps.getCapability("seleniumVersion") + "]\n [Local Testing:" + localTesting + "]");
             }
             if (checkForProxy) {
-                return new RemoteWebDriver(RemoteProxy.getProxyExecutor(new URL(url), props), caps);
+		  RemoteProxy.setProxy(props);  
+		  return new RemoteWebDriver(new URL(url), caps);  
+                //return new RemoteWebDriver(RemoteProxy.getProxyExecutor(new URL(url), props), caps);
             }
             return new RemoteWebDriver(new URL(url), caps);
         } catch (MalformedURLException ex) {
