@@ -166,7 +166,7 @@ public class Assertions extends General {
                     System.out.println("assertAlertText Passed");
                     Report.updateTestLog("assertAlertText",
                             "Alert text matched with provided data",
-                            Status.PASS);
+                            Status.PASSNS);
                 } else {
                     throw new Exception(
                             "Alert text did not match with the provided data");
@@ -193,7 +193,7 @@ public class Assertions extends General {
             if ((isAlertPresent())) {
                 System.out.println("assertAIertPresent Passed");
                 Report.updateTestLog("assertAIertPresent", "Alert present",
-                        Status.PASS);
+                        Status.PASSNS);
             } else {
                 throw new Exception("Alert not present");
             }

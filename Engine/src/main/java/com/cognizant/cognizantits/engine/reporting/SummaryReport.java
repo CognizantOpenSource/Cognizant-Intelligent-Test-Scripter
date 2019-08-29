@@ -22,7 +22,6 @@ import com.cognizant.cognizantits.engine.core.RunContext;
 import com.cognizant.cognizantits.engine.core.RunManager;
 import com.cognizant.cognizantits.engine.reporting.impl.html.bdd.Report;
 import com.cognizant.cognizantits.engine.reporting.impl.html.bdd.Report.Execution;
-import com.cognizant.cognizantits.engine.reporting.impl.html.bdd.Report.Step;
 import com.cognizant.cognizantits.engine.core.TMIntegration;
 import com.cognizant.cognizantits.engine.reporting.impl.handlers.PrimaryHandler;
 import com.cognizant.cognizantits.engine.reporting.impl.handlers.SummaryHandler;
@@ -33,40 +32,27 @@ import com.cognizant.cognizantits.engine.reporting.performance.har.Har;
 import com.cognizant.cognizantits.engine.reporting.sync.Sync;
 import com.cognizant.cognizantits.engine.reporting.util.DateTimeUtils;
 import com.cognizant.cognizantits.engine.reporting.util.TestInfo;
-import com.cognizant.cognizantits.engine.support.DesktopApi;
 import com.cognizant.cognizantits.engine.support.Status;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 
-import org.apache.poi.hssf.util.HSSFColor;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 

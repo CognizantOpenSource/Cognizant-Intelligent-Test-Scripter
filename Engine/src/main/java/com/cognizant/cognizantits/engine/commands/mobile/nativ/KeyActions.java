@@ -23,6 +23,8 @@ import com.cognizant.cognizantits.engine.support.methodInf.InputType;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import java.lang.reflect.Field;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -129,9 +131,10 @@ public class KeyActions extends MobileNativeCommand {
     @Action(object = ObjectType.BROWSER, desc = "Press settings key(android)")
     public void settings() {
         try {
-            ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
+            //((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.SETTINGS);
+            //referring the stack over flow link https://stackoverflow.com/questions/57592569/java-client-presskey-method-works-fine-but-the-key-is-not-pressed-in-mobile/57593263#57593263
+            ((AndroidDriver) Driver).startActivity(new io.appium.java_client.android.Activity("com.android.settings", ".Settings"));
             Report.updateTestLog(Action, "settings pressed", Status.PASS);
-
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(KeyActions.class.getName()).log(Level.SEVERE, null, ex);
