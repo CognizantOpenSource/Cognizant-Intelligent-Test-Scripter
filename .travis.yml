@@ -1,11 +1,11 @@
 language: java
 sudo: false
 dist: trusty
-jdk: oraclejdk11
+jdk: openjdk11
 addons:
   apt:
     packages:
-      - oracle-java11-installer
+      - openjdk-java11-installer
 
 cache:
   directories:
