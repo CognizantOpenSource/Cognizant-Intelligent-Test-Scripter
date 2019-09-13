@@ -8,7 +8,10 @@ jobs:
   - stage: 🚫 jdk.java.net - Archived OpenJDK General-Availability Releases
     env: JDK=11 🚫
     script: source ./install-jdk.sh --feature 11
-
+  
+  - stage: Run Build
+    script: "mvn clean install" 
+    
 after_script:
 - echo JAVA_HOME = ${JAVA_HOME}
 - echo PATH = ${PATH}
@@ -20,8 +23,6 @@ cache:
   - $HOME/.m2
   
 install: true
-
-script: "mvn clean install"
 
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
