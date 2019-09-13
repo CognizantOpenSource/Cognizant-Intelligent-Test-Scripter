@@ -16,7 +16,7 @@ script:
   - echo PATH = ${PATH}
   - echo JAVA_HOME = ${JAVA_HOME}
   - java -version
-  - "mvn clean install"
+  - "mvn -q clean install"
 
 cache:
   directories:
