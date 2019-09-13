@@ -1,11 +1,19 @@
 language: java
-sudo: false
-dist: trusty
-jdk: oraclejdk11
-addons:
-  apt:
-    packages:
-      - openjdk11
+before_script:
+- wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+
+jobs:
+  include:
+  
+  - stage: 🚫 jdk.java.net - Archived OpenJDK General-Availability Releases
+    env: JDK=11 🚫
+    script: source ./install-jdk.sh --feature 11
+
+after_script:
+- echo JAVA_HOME = ${JAVA_HOME}
+- echo PATH = ${PATH}
+- ls ${JAVA_HOME}
+- java -version
 
 cache:
   directories:
