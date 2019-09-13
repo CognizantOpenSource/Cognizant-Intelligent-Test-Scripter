@@ -19,20 +19,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONWriter;
@@ -46,28 +36,23 @@ import org.json.simple.parser.ParseException;
 
 public class ParseJSON {
 
-    final String jsonFile = "nodeConfig.json";
+    final String jsonFile = "nodeconfig.json";
     private static String jsonString;
-    public TextArea tArea;
     JSONParser parser = new JSONParser();
 
-    public ObservableList<Browsers> getBrData() {
-
+    public ArrayList<Browsers> getBrData() {
         try {
             if (new File(jsonFile).exists()) {
                 Object obj = parser.parse(new FileReader(jsonFile));
                 JSONObject jsonObject = (JSONObject) obj;
                 JSONArray caps = (JSONArray) jsonObject.get("capabilities");
                 Iterator<JSONObject> iterator = caps.iterator();
-                List<Browsers> brList = new ArrayList<>();
-
+                ArrayList<Browsers> brList = new ArrayList<>();
                 while (iterator.hasNext()) {
                     JSONObject objt = iterator.next();
                     brList.add(new Browsers(objt.get("browserName").toString(), objt.get("maxInstances").toString()));
                 }
-
-                ObservableList<Browsers> data = FXCollections.observableArrayList(brList);
-                return data;
+                return brList;
             }
         } catch (IOException | ParseException ex) {
             Logger.getLogger(ParseJSON.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,7 +61,6 @@ public class ParseJSON {
     }
 
     public String readJSON() {
-
         try {
             Object obj = parser.parse(new FileReader(jsonFile));
             JSONObject jsonObject = (JSONObject) obj;
@@ -87,7 +71,7 @@ public class ParseJSON {
         return jsonString;
     }
 
-    public void saveJson(ObservableList<Browsers> data, String svrIP, String srvPort, long clientPort, long mxBrInst) {
+    public void saveJson(ArrayList<Browsers> data, String svrIP, String srvPort, long clientPort, long mxBrInst) {
         JSONObject mainObj = new JSONObject();
         JSONArray capList = new JSONArray();
         for (int i = 0; i < data.size(); i++) {
@@ -109,7 +93,7 @@ public class ParseJSON {
         mainObj.put("registerCycle", 5000);
         mainObj.put("hub", "http://" + svrIP + ":" + srvPort);
 
-        try (FileWriter file = new FileWriter(jsonFile)) {
+        try ( FileWriter file = new FileWriter(jsonFile)) {
             file.write(JSONWriter.getJSONString(mainObj));
             file.flush();
         } catch (IOException ex) {
@@ -117,21 +101,8 @@ public class ParseJSON {
         }
     }
 
-    public VBox jsonHandler(Stage stage) {
-        VBox vb = new VBox();
-        vb.setPadding(new Insets(10, 20, 10, 20));
-        vb.setSpacing(10);
-
-        Label label = new Label("Edit :");
-        label.setFont(Font.font("San-serif", 13));
-        tArea = new TextArea(readJSON());
-        tArea.setMinHeight(300);
-        vb.getChildren().addAll(label, tArea);
-        return vb;
-    }
-
     public void saveTA(String ta) {
-        try (FileWriter file = new FileWriter(jsonFile)) {
+        try ( FileWriter file = new FileWriter(jsonFile)) {
             if (!ta.trim().isEmpty()) {
                 file.write(ta);
             } else {

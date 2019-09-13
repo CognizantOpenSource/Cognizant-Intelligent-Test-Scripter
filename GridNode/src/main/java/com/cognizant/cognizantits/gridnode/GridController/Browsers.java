@@ -15,37 +15,35 @@
  */
 package com.cognizant.cognizantits.gridnode.GridController;
 
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  *
  * @author 499538
  */
 public class Browsers {
 
-    private final SimpleStringProperty browser;
-    private final SimpleStringProperty maxInst;
+    private String browser;
+    private String maxInst;
 
     public Browsers(String bName, String maxInstance) {
-        
-        this.browser = new SimpleStringProperty(bName);
-        this.maxInst = new SimpleStringProperty(maxInstance);
+
+        this.browser = bName;
+        this.maxInst = maxInstance;
     }
 
     public String getBrowser() {
-        return browser.get();
+        return browser;
     }
 
     public void setBrowser(String bName) {
-        browser.set(bName);
+        this.browser = bName;
     }
 
     public String getMaxInst() {
-        return maxInst.get();
+        return maxInst;
     }
 
     public void setMaxInst(String maxInstance) {
-        maxInst.set(maxInstance);
+        this.maxInst = maxInstance;
     }
-    
+
 }
