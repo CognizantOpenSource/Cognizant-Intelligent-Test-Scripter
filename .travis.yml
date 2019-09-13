@@ -1,29 +1,27 @@
 language: java
-before_script:
-- wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+sudo: false
+dist: trusty
+jdk: oraclejdk11
 
-jobs:
+before_install:
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+
+matrix:
   include:
   
-  - stage: 🚫 jdk.java.net - Archived OpenJDK General-Availability Releases
-    env: JDK=11 🚫
-    script: source ./install-jdk.sh --feature 11
-  
-  - stage: Run Build
-    script: "mvn clean install" 
-    
-after_script:
-- echo JAVA_HOME = ${JAVA_HOME}
-- echo PATH = ${PATH}
-- ls ${JAVA_HOME}
-- java -version
+  - env: JDK='Oracle JDK 11'
+      install: . ./install-jdk.sh -F 11 -L BCL
+
+script:
+  - echo PATH = ${PATH}
+  - echo JAVA_HOME = ${JAVA_HOME}
+  - java -version
+  - "mvn clean install"
 
 cache:
   directories:
   - $HOME/.m2
   
-install: true
-
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
 
