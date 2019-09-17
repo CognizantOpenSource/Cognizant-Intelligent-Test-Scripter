@@ -273,7 +273,7 @@ public class GridNode extends javax.swing.JFrame {
 
         Pattern IPV4_PATTERN = Pattern.compile(IPV4_REGEX);
 
-        if (ipAdd.getText().trim().isEmpty() || !(IPV4_PATTERN.matcher(ipAdd.getText()).matches())) {
+        if (ipAdd.getText().trim().isEmpty() || !(IPV4_PATTERN.matcher(ipAdd.getText()).matches()) || ipAdd.getText().toLowerCase().equals("localhost")) {
             return false;
         }
         if (serverP.getText().trim().isEmpty() || !PORT_PATTERN.matcher(serverP.getText()).matches()) {
@@ -282,10 +282,7 @@ public class GridNode extends javax.swing.JFrame {
         if (clientP.getText().trim().isEmpty() || !PORT_PATTERN.matcher(clientP.getText()).matches()) {
             return false;
         }
-        if (clientP.getText().equals(serverP.getText())) {
-            return false;
-        }
-        return true;
+        return !clientP.getText().equals(serverP.getText());
     }
 
     // End of variables declaration                   
