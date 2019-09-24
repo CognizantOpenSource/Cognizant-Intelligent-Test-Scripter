@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,7 +124,7 @@ public class GridNode extends javax.swing.JFrame {
                     } else {
                         Runtime.getRuntime().exec("/usr/bin/open -a Terminal init.command");
                     }
-                } catch (Exception e) {
+                } catch (IOException e) {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Input", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -273,7 +274,7 @@ public class GridNode extends javax.swing.JFrame {
 
         Pattern IPV4_PATTERN = Pattern.compile(IPV4_REGEX);
 
-        if (ipAdd.getText().trim().isEmpty() || !(IPV4_PATTERN.matcher(ipAdd.getText()).matches()) || ipAdd.getText().toLowerCase().equals("localhost")) {
+        if (ipAdd.getText().trim().isEmpty() || !(IPV4_PATTERN.matcher(ipAdd.getText()).matches() || ipAdd.getText().toLowerCase().equals("localhost"))) {
             return false;
         }
         if (serverP.getText().trim().isEmpty() || !PORT_PATTERN.matcher(serverP.getText()).matches()) {
