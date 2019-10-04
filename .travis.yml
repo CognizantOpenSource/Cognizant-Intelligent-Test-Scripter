@@ -13,7 +13,7 @@ cache:
   
 install: true
 
-script: "mvn clean install"
+script: "mvn -q clean install"
 
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
