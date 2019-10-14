@@ -3,25 +3,14 @@ sudo: false
 dist: trusty
 jdk: oraclejdk11
 
-before_install:
-  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-
-matrix:
-  include:
-  
-  - env: JDK='Oracle JDK 11'
-    install: . ./install-jdk.sh --feature 11
-
-script:
-  - echo PATH = ${PATH}
-  - echo JAVA_HOME = ${JAVA_HOME}
-  - java -version
-  - "mvn -q clean install"
-
 cache:
   directories:
   - $HOME/.m2
   
+install: true
+
+script: "mvn -q clean install"
+
 before_deploy:
   - export RELEASE_FILE=$(ls Dist/target/cognizant-intelligent-test-scripter-*.zip)
 
