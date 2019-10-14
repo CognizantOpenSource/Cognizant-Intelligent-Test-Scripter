@@ -10,7 +10,7 @@ matrix:
   include:
   
   - env: JDK='Oracle JDK 11'
-    install: . ./install-jdk.sh -F 11 
+    install: . ./install-jdk.sh -F 11 -L BCL
 
 script:
   - echo PATH = ${PATH}
