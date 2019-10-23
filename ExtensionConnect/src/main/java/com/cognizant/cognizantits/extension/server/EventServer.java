@@ -92,6 +92,7 @@ public class EventServer {
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStoreResource(keyStoreResource);
         String secret = readresource(Resource.newResource(ClassLoader.getSystemResource("util.PROPERTIES")));
+        System.out.println("Decrypted "+Encrypt.getInstance().decrypt(secret));
         sslContextFactory.setKeyStorePassword(Encrypt.getInstance().decrypt(secret));
         sslContextFactory.setKeyManagerPassword(Encrypt.getInstance().decrypt(secret));
         return new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString());
