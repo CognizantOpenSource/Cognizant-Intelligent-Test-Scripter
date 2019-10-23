@@ -89,7 +89,6 @@ public class EventServer {
         } catch (Exception ex) {
             Logger.getLogger(EventServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStoreResource(keyStoreResource);
         sslContextFactory.setKeyStorePassword(keyStorePassword);
