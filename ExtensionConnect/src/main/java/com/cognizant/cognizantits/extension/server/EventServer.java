@@ -26,6 +26,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.cognizant.cognizantits.extension.logger.LogUtil;
+import com.cognizant.cognizantits.extension.util.Encrypt;
+import java.io.InputStream;
+import java.util.Properties;
 import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -41,8 +44,6 @@ public class EventServer {
 
     private static final Logger LOG = LogUtil.getLogger(EventServer.class.getName());
 
-    private String keyStorePassword = "ss-shr-cert";
-    private String keyManagerPassword = "ss-shr-cert";
     private int port = 8887;
     private Server server;
     private final List<EventSocket> websocketClients = new CopyOnWriteArrayList<>();
@@ -89,10 +90,12 @@ public class EventServer {
         } catch (Exception ex) {
             Logger.getLogger(EventServer.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStoreResource(keyStoreResource);
-        sslContextFactory.setKeyStorePassword(keyStorePassword);
-        sslContextFactory.setKeyManagerPassword(keyManagerPassword);
+        String secret = readresource();
+        sslContextFactory.setKeyStorePassword(Encrypt.getInstance().decrypt(secret));
+        sslContextFactory.setKeyManagerPassword(Encrypt.getInstance().decrypt(secret));
         return new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString());
     }
 
@@ -149,27 +152,27 @@ public class EventServer {
         }
     }
 
-    public String getKeyStorePassword() {
-        return keyStorePassword;
-    }
-
-    public void setKeyStorePassword(String keyStorePassword) {
-        this.keyStorePassword = keyStorePassword;
-    }
-
-    public String getKeyManagerPassword() {
-        return keyManagerPassword;
-    }
-
-    public void setKeyManagerPassword(String keyManagerPassword) {
-        this.keyManagerPassword = keyManagerPassword;
-    }
-
     public int getPort() {
         return port;
     }
 
     public void setPort(int newPort) {
         port = newPort;
+    }
+
+    private String readresource() {
+        InputStream in = EventServer.class.getClassLoader().getResourceAsStream("util.PROPERTIES");
+        try {
+            if (in == null) {
+                Logger.getLogger(EventServer.class.getName()).log(Level.SEVERE, "Property file not exist");
+            } else {
+                Properties prop = new Properties();
+                prop.load(in);
+                return prop.getProperty("extn.connect");
+            }
+        } catch (IOException e) {
+            Logger.getLogger(EventServer.class.getName()).log(Level.SEVERE, e.getMessage());
+        }
+        return null;
     }
 }
