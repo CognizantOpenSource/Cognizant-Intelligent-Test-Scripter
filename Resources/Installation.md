@@ -82,38 +82,25 @@ For example, in case of chrome driver, please remove the `.exe` from the `Chrome
 
 ### Sikuli OCR support
 
-If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files as explained below.
+If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files for Mac and Linux Platform
 
-To enable Sikuli OCR support, required Tesseract language files should be added.
-
-Download data files form here,
-* [Data file for English v3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/tesseract-ocr-3.02.eng.tar.gz/download)
-
-* [For other languages](https://github.com/tesseract-ocr/tesseract/wiki/Data-Files)
-
+To enable Sikuli OCR support, required Tesseract 4 OCR files should be added.
 
 Create the below folder structure if not present
-
-Windows :   
-```
-%APPDATA%\Sikulix\SikulixTesseract\tessdata
-```
 
 Mac :
 ```
 ~/Library/Application Support/Sikulix/SikulixTesseract/tessdata
 ```
+* [Refer the link to install Tesseract 4](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
 
 Linux: 
 
 ```
 ~/.Sikulix/SikulixTesseract/tessdata
 ```
-
-Extract `tesseract-ocr-3.02.eng.tar.gz`  
-
-Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
-
+* [Refer these link to install opencv](https://sikulix-2014.readthedocs.io/en/latest/newslinux.html#getting-the-opencv-support-ready)
+* [Refer the link to install Tesseract 4](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
 
 =======
 ###  Demo Project Details
