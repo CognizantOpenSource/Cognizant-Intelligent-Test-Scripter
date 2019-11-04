@@ -84,23 +84,36 @@ For example, in case of chrome driver, please remove the `.exe` from the `Chrome
 
 If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files for Mac and Linux Platform
 
-To enable Sikuli OCR support, required Tesseract 4 OCR files should be added.
-
-Create the below folder structure if not present
+To enable Sikuli OCR support, required Tesseract 4.1.0 OCR files should be added.
 
 Mac :
+
+* [Refer the link to install Tesseract 4.1.0](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
+
+The Tesseract files will be available in the below location
+
 ```
 ~/Library/Application Support/Sikulix/SikulixTesseract/tessdata
 ```
-* [Refer the link to install Tesseract 4](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
 
 Linux: 
+
+* [Refer these link to install opencv](https://sikulix-2014.readthedocs.io/en/latest/newslinux.html#getting-the-opencv-support-ready)
+* [Refer the link to install Tesseract 4.1.0](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
+
+The Tesseract files will be available in the below location
 
 ```
 ~/.Sikulix/SikulixTesseract/tessdata
 ```
-* [Refer these link to install opencv](https://sikulix-2014.readthedocs.io/en/latest/newslinux.html#getting-the-opencv-support-ready)
-* [Refer the link to install Tesseract 4](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
+
+Windows :
+
+In Windows, tesseract 4.1.0 files will be automatically loaded in the below location
+
+```	
+%APPDATA%\Sikulix\SikulixTesseract\tessdata	
+```
 
 =======
 ###  Demo Project Details
