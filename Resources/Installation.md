@@ -81,7 +81,7 @@ For example, in case of chrome driver, please remove the `.exe` from the `Chrome
 
 For Linux
 
-* [Refer this link to work with CITS tool in Linux Platform](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/faq/linux.html)
+* [Refer this link to work with CITS tool on Linux Platform](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/faq/linux.html)
 
 ### Sikuli OCR support
 
