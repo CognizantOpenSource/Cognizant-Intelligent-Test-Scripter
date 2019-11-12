@@ -79,6 +79,9 @@ In case of Mac, replace the drivers in `/path/to/cognizant-intelligent-test-scri
 
 For example, in case of chrome driver, please remove the `.exe` from the `ChromeDriverPath` property in the `Configure Browsers` window.
 
+For Linux
+
+* [Refer this link to work with CITS tool in Linux Platform](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/faq/linux.html)
 
 ### Sikuli OCR support
 
