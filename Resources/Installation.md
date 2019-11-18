@@ -17,8 +17,17 @@ Firefox
 
  * Open Firefox
  * Drag and drop the `cognizantits.xpi` which is located in `installation_location/Extensions/FireFox` into `Firefox` Browser
- * If Add-on failed to install and you get `Add-on corrupt error`, Refer this link to resolve [Add-on Error](https://blog.mozilla.org/addons/2019/05/04/update-regarding-add-ons-in-firefox)
+ * If Add-on installation failed and you get `Add-on corrupt error`, Refer the below table to add the Firefox Patch Fix
  
+ Firefox Version | Patch Fix link
+ ----------------|----------------
+ 47-56 | [Patch Fix for 47-56](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-52-56/)
+ 57-60 | [Patch Fox for 57-60](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-57-60/)
+ 61-65 | [Patch Fix for 61-65](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-61-65/)
+  
+  > [Refer this link for more details](https://blog.mozilla.org/addons/2019/05/04/update-regarding-add-ons-in-firefox/)
+  
+  * Again try installing the `cognizantits.xpi` into `Firefox` Browser
   
 Internet Explorer
 
