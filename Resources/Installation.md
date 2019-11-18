@@ -15,9 +15,9 @@ Chrome
 
 Firefox
 
- * Open Firefox
- * Drag and drop the `cognizantits.xpi` which is located in `installation_location/Extensions/FireFox` into `Firefox` Browser
- * If Add-on installation failed and you get `Add-on corrupt error`, Refer the below table to add the Firefox Patch Fix
+ * Open Firefox and check the version
+ * If Firefox Version >= 66, Drag and drop the `cognizantits.xpi` which is located in `installation_location/Extensions/FireFox` into `Firefox` Browser
+ * For Firefox older version, install the Patch Fix and Drag and drop the `cognizantits.xpi`
  
  Firefox Version | Patch Fix link
  ----------------|----------------
@@ -27,8 +27,7 @@ Firefox
   
   > [Refer this link for more details](https://blog.mozilla.org/addons/2019/05/04/update-regarding-add-ons-in-firefox/)
   
-  * Again try installing the `cognizantits.xpi` into `Firefox` Browser
-  
+ 
 Internet Explorer
 
  * Download the Latest version of [CITS_IE_Toolbar from here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases/latest)
