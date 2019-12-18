@@ -29,7 +29,9 @@ Firefox
   
  
 Internet Explorer
-
+ 
+ * If you have older version of CITS IE Toolbar installed in the machine, uninstall the older version of CITS IE Toolbar.
+ 
  * Download the Latest version of [CITS_IE_Toolbar from here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases/latest)
 
  * Follow the Installation docs from [here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar#requirements)
