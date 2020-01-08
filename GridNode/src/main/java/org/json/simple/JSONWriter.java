@@ -16,8 +16,7 @@ import java.util.logging.Logger;
  * @author Elad Tabak
  * @author Maciej Komosinski, minor improvements, 2015
  * @since 28-Nov-2011
- * @version 0.2
- * Modified 
+ * @version 0.2 Modified
  */
 public class JSONWriter extends StringWriter {
 

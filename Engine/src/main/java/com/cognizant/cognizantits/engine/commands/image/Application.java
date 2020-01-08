@@ -201,7 +201,7 @@ public class Application extends ImageCommand {
     public void clickOn() {
         try {
             if (!Data.isEmpty()) {
-                SCREEN.click(Data);
+                SCREEN.findText(Data).click();
                 Report.updateTestLog(Action, "Clicke on text " + Data, Status.DONE);
                 Thread.sleep(500);
             } else {

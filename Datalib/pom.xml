@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.cognizant</groupId>
         <artifactId>cognizant-intelligent-test-scripter</artifactId>
-        <version>1.3</version>
+        <version>1.4</version>
     </parent>
     <artifactId>cognizant-intelligent-test-scripter-datalib</artifactId>
     <packaging>jar</packaging>
@@ -38,8 +38,8 @@
         </dependency>
     </dependencies>
     <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <name>Datalib</name>
 </project>

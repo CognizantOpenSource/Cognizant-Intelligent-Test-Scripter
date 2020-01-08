@@ -15,9 +15,7 @@
  */
 package com.cognizant.cognizantits.gridnode.GridController;
 
-import java.util.Collections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,38 +26,36 @@ public class Methods {
     private String getOsName() {
         return System.getProperty("os.name");
     }
-    
+
     public boolean isWindows() {
         return getOsName().startsWith("Windows");
     }
-    public boolean validate(TextField br, TextField inst) {
-        ObservableList<String> brStyleClass, instStyleClass;
-        brStyleClass = br.getStyleClass();
-        instStyleClass = inst.getStyleClass();
+
+    public boolean validate(JTextField br, JTextField inst) {
         boolean brState = br.getText().trim().length() == 0;
         boolean instState = inst.getText().trim().length() == 0;
         boolean result;
 
         if (brState || instState) {
             if (brState) {
-                if (!brStyleClass.contains("error")) {
-                    brStyleClass.add("error");
-                }
+//                if (!brStyleClass.contains("error")) {
+//                    brStyleClass.add("error");
+//                }
             } else {
-                brStyleClass.removeAll(Collections.singleton("error"));
+//                brStyleClass.removeAll(Collections.singleton("error"));
             }
 
             if (instState) {
-                if (!instStyleClass.contains("error")) {
-                    instStyleClass.add("error");
-                }
+//                if (!instStyleClass.contains("error")) {
+//                    instStyleClass.add("error");
+//                }
             } else {
-                instStyleClass.removeAll(Collections.singleton("error"));
+//                instStyleClass.removeAll(Collections.singleton("error"));
             }
             result = false;
         } else {
-            brStyleClass.removeAll(Collections.singleton("error"));
-            instStyleClass.removeAll(Collections.singleton("error"));
+//            brStyleClass.removeAll(Collections.singleton("error"));
+//            instStyleClass.removeAll(Collections.singleton("error"));
             result = true;
         }
         return result;

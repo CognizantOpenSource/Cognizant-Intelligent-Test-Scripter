@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cognizant</groupId>
     <artifactId>cognizant-intelligent-test-scripter</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <packaging>pom</packaging>
     <modules>            
         <module>QcConnection</module>        
@@ -45,8 +45,8 @@
         <setupDir>../Dist/release</setupDir>
         <resourceDir>../Resources</resourceDir>  
         
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>        
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>        
              
     </properties>
     <name>Cognizant Intelligent Test Scripter</name>

@@ -34,28 +34,9 @@ public class BasicHttpClientTest {
 
     private JSONObject getArgs;
     private static final int PORT = 3210;
-    private static LocalServer server;
-
+    
     public BasicHttpClientTest() throws Exception {
 
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-        new Thread(() -> {
-            try {
-                server = new LocalServer(PORT);
-                server.start();
-            } catch (Exception ex) {
-                Logger.getLogger(BasicHttpClientTest.class.getName())
-                        .log(Level.SEVERE, ex.getMessage(), ex);
-            }
-        }).start();
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        server.stop();
     }
 
     @BeforeMethod
@@ -70,7 +51,7 @@ public class BasicHttpClientTest {
      * Test of Get method, of class BasicHttpClient.
      * @throws java.lang.Exception
      */
-    @Test(description = "http-get of remote address")
+    @Test(enabled = false,description = "http-get of remote address")
     public void testGetHttp() throws Exception {
         System.out.println("Get-http");
         URL targetUrl = new URL("http://postman-echo.com/get");
@@ -83,7 +64,7 @@ public class BasicHttpClientTest {
      * Test of Get method, of class BasicHttpClient.
      * @throws java.lang.Exception
      */
-    @Test(description = "https-get of remote address")
+    @Test(enabled = false,description = "https-get of remote address")
     public void testGetHttps() throws Exception {
         System.out.println("Get-https");
         URL targetUrl = new URL("https://postman-echo.com/get");
@@ -96,48 +77,13 @@ public class BasicHttpClientTest {
      * Test of Get method, of class BasicHttpClient.
      * @throws java.lang.Exception
      */
-    @Test(description = "http-get of local address")
+    @Test(enabled = false,description = "http-get of local address")
     public void testGetHttpLocal() throws Exception {
         System.out.println("Get-http-local");
         URL targetUrl = new URL("http://127.0.0.1:" + PORT);
         BasicHttpClient instance = new BasicHttpClient(targetUrl, "anon", "anon");        
         JSONObject result = instance.Get(targetUrl, "data", "vola");
         assertEquals(result.toString(), "{\"data\":\"vola\"}");
-    }
-
-    public static class LocalServer {
-
-        private final ServerSocket server;
-        private final AtomicBoolean stopped = new AtomicBoolean(false);
-
-        public LocalServer(int port) throws Exception {
-            server = new ServerSocket(port);
-        }
-
-        public void start() throws Exception {
-            System.out.println("local server started");
-            while (!stopped.get()) {
-                try (Socket client = server.accept();
-                        OutputStreamWriter writer = new OutputStreamWriter(client.getOutputStream());
-                        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
-                    String req = in.readLine();
-                    System.out.println(req);
-                    JSONObject res = new JSONObject();
-                    Matcher m = Pattern.compile("GET /\\?(.*?)=(.*?) HTTP/1.1").matcher(req);
-                    if (m.find()) {
-                        res.put(m.group(1), m.group(2));
-                    }
-                    writer.write("HTTP/1.1 200 OK\nContent-Type: text/html\n\n");
-                    writer.write(res.toJSONString());
-                    writer.flush();
-                }
-            }
-        }
-
-        public void stop() throws Exception {
-            System.out.println("local server stopping");
-            stopped.set(true);
-        }
     }
 
 }

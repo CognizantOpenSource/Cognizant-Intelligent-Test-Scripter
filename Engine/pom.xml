@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.cognizant</groupId>
         <artifactId>cognizant-intelligent-test-scripter</artifactId>
-        <version>1.3</version>
+        <version>1.4</version>
     </parent>
     <artifactId>cognizant-intelligent-test-scripter-engine</artifactId>
     <packaging>jar</packaging>
     <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>            
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>            
         <timestamp>${maven.build.timestamp} UTC</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <app.root>../</app.root>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>com.sikulix</groupId>
             <artifactId>sikulixapi</artifactId>
-            <version>1.1.2</version>
+            <version>1.1.4-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.github.vidstige</groupId>
@@ -170,7 +170,13 @@
             <systemPath>${basedir}/jwt-generator.jar</systemPath>
         </dependency>
     </dependencies>
-    
+    <repositories>
+		<repository>
+			<id>sikuli</id>
+			<name>sikuli_repo</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
+		</repository>
+	</repositories>
     <build>
         <resources>
             <resource>
@@ -253,7 +259,7 @@
                         </replacement> 
                         <replacement> 
                             <token>org.eclipse.jdt.launching.JRE_CONTAINER"</token> 
-                            <value>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9"</value> 
+                            <value>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"</value> 
                         </replacement> 
                     </replacements> 
                 </configuration> 

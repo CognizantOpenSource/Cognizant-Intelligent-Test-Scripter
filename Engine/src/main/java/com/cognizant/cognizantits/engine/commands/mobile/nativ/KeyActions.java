@@ -84,7 +84,7 @@ public class KeyActions extends MobileNativeCommand {
      * press back key
      */
     @Action(object = ObjectType.BROWSER, desc = "Press search key(android)")
-    public void back() {
+    public void mobile_back() {
         try {
             ((AndroidDriver) Driver).pressKeyCode(AndroidKeyCode.BACK);
             Report.updateTestLog(Action, "Back pressed", Status.PASS);
