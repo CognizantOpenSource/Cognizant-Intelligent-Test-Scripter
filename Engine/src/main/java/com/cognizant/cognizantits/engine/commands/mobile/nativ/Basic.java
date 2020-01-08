@@ -26,6 +26,11 @@ import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
 import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,21 +52,21 @@ public class Basic extends MobileNativeCommand {
      * @see AppiumDriver#tap(int, org.openqa.selenium.WebElement, int)
      */
     @Action(object = ObjectType.MOBILE, desc = "Tap on the [<Object>]", input = InputType.OPTIONAL)
-
     public void tap() {
         try {
             if (Element != null) {
                 int nof = this.getInt(Data, 0, 1);
                 TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
                 do {
-                    touchAction.tap(Element);
+                    TapOptions tap = new TapOptions().withElement(new ElementOption().withElement(Element));
+                    touchAction.tap(tap);
                     touchAction.release().perform();
                 } while (--nof > 0);
                 Report.updateTestLog(Action, "Tapped on '" + ObjectName + "'", Status.PASS);
             } else {
                 throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
-        } catch (Exception ex) {
+        } catch (ElementException ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,7 +86,8 @@ public class Basic extends MobileNativeCommand {
             int y = this.getInt(Data, 2, 10);
             TouchAction touchAction = new TouchAction(((MobileDriver) Driver));
             do {
-                touchAction.tap(x, y);
+                TapOptions tap = new TapOptions().withPosition(new PointOption().withCoordinates(x, y));
+                touchAction.tap(tap);
                 touchAction.release().perform();
             } while (--nof > 0);
             Report.updateTestLog(Action, "Tapped at co-ordinates '" + x + "','" + y + "'", Status.PASS);
@@ -104,20 +110,20 @@ public class Basic extends MobileNativeCommand {
                 int l = 150;
                 TouchAction action0 = new TouchAction(((MobileDriver) Driver));
                 TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-                action0.longPress(Element).moveTo(0, l).waitAction(Duration.ofMillis(500)).release();
-                action1.longPress(Element).moveTo(0, -l).waitAction(Duration.ofMillis(500)).release();
+                action0.longPress(new LongPressOptions().withElement(new ElementOption().withElement(Element))).moveTo(new PointOption().withCoordinates(0, l)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
+                action1.longPress(new LongPressOptions().withElement(new ElementOption().withElement(Element))).moveTo(new PointOption().withCoordinates(0, -l)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
                 new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Zoomed in '" + ObjectName + "'", Status.PASS);
             } else {
                 throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
-        } catch (Exception ex) {
+        } catch (ElementException ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
+   /**
      * method for "zooming in" on an element on the screen.
      *
      * @see AppiumDriver#zoom(int, int)
@@ -130,10 +136,10 @@ public class Basic extends MobileNativeCommand {
             int l = 100;
             TouchAction action0 = new TouchAction(((MobileDriver) Driver));
             TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-            action0.longPress(x, y + l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, 200).waitAction(Duration.ofMillis(100)).release();
-            action1.longPress(x + 50, y - l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, -200).waitAction(Duration.ofMillis(100)).release();
+            action0.longPress(new LongPressOptions().withPosition(new PointOption().withCoordinates(x, y + l))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                    .moveTo(new PointOption().withCoordinates(0, 200)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100))).release();
+            action1.longPress(new LongPressOptions().withPosition(new PointOption().withCoordinates(x + 50, y - l))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                    .moveTo(new PointOption().withCoordinates(0, -200)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100))).release();
             new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Zoomed at '" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
@@ -154,38 +160,42 @@ public class Basic extends MobileNativeCommand {
                 int l = 150;
                 TouchAction action0 = new TouchAction(((MobileDriver) Driver));
                 TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-                action0.longPress(Element).waitAction(Duration.ofMillis(100))
-                        .moveTo(0, l).waitAction(Duration.ofMillis(500)).release();
-                action1.longPress(Element).waitAction(Duration.ofMillis(100))
-                        .moveTo(0, -l).waitAction(Duration.ofMillis(500)).release();
+                LongPressOptions lop = new LongPressOptions();
+                lop.withElement(new ElementOption().withElement(Element));
+                action0.longPress(lop).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                        .moveTo(new PointOption().withCoordinates(0, l)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
+                action1.longPress(new LongPressOptions().withElement(new ElementOption().withElement(Element))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                        .moveTo(new PointOption().withCoordinates(0, -l)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
                 new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
                 Report.updateTestLog(Action, "Pinched '" + ObjectName + "'", Status.PASS);
             } else {
                 throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
             }
-        } catch (Exception ex) {
+        } catch (ElementException ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
+   /**
      * method for pinching an element on the screen.
      *
      * @see AppiumDriver#pinch(int, int)
      */
     @Action(object = ObjectType.BROWSER, desc = "Pinch at [<Data>]", input = InputType.YES)
     public void pinchAt() {
-        try {
+       try {
             int x = this.getInt(Data, 0, 10);
             int y = this.getInt(Data, 1, 10);
             int l = 350;
             TouchAction action0 = new TouchAction(((MobileDriver) Driver));
             TouchAction action1 = new TouchAction(((MobileDriver) Driver));
-            action0.longPress(x, y - l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, l - 200).waitAction(Duration.ofMillis(500)).release();
-            action1.longPress(x, y + l).waitAction(Duration.ofMillis(100))
-                    .moveTo(0, 200 - l).waitAction(Duration.ofMillis(500)).release();
+            LongPressOptions lop = new LongPressOptions();
+            lop.withPosition(new PointOption().withCoordinates(x, y - 1));
+            action0.longPress(lop).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                    .moveTo(new PointOption().withCoordinates(0, l - 200)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
+            action1.longPress(new LongPressOptions().withPosition(new PointOption().withCoordinates(x, y + l))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+                    .moveTo(new PointOption().withCoordinates(0, 200 - l)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))).release();
             new MultiTouchAction(((MobileDriver) Driver)).add(action0).add(action1).perform();
             Report.updateTestLog(Action, "Pinched at'" + x + "','" + y + "'", Status.PASS);
         } catch (Exception ex) {
@@ -205,11 +215,11 @@ public class Basic extends MobileNativeCommand {
         try {
             if (Driver instanceof AndroidDriver) {
                 ((AndroidDriver) Driver).lockDevice();
+                Report.updateTestLog(Action, "Screen locked", Status.PASS);
             } else {
-                int time = this.getInt(Data, 5);
-                ((IOSDriver) Driver).lockDevice(Duration.ofSeconds(time));
+                //int time = this.getInt(Data, 5);
+                //((IOSDriver) Driver).lockDevice(Duration.ofSeconds(time));
             }
-            Report.updateTestLog(Action, "Screen locked", Status.PASS);
         } catch (Exception ex) {
             Report.updateTestLog(Action, ex.getMessage(), Status.DEBUG);
             Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);

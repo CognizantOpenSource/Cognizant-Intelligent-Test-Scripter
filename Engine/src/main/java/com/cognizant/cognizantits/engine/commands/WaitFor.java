@@ -197,7 +197,7 @@ public class WaitFor extends Command {
         }
     }
 
-    @Action(object = ObjectType.ANY, desc = "Wait for Frame To Be Available and Switch to it",
+    @Action(object = ObjectType.ANY, desc = "Wait for Frame To Be Available and Switch to it",input=InputType.OPTIONAL,
             condition = InputType.OPTIONAL)
     public void waitForFrameAndSwitch() {
         if (Element != null) {
