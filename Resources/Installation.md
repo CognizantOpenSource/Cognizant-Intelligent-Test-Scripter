@@ -127,7 +127,7 @@ Windows :
 In Windows, tesseract 4.1.0 files will be automatically loaded in the below location
 
 ```	
-%APPDATA%\Sikulix\SikulixTesseract\tessdata	
+%APPDATA%\Roaming\Sikulix\SikulixTesseract\tessdata	
 ```
 
 =======
