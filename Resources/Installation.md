@@ -15,11 +15,23 @@ Chrome
 
 Firefox
 
- * Open Firefox
- * Drag and drop the `cognizantits.xpi` which is located in `installation_location/Extensions/FireFox` into `Firefox` Browser
+ * Open Firefox and check the version
+ * If Firefox Version >= 66, Drag and drop the `cognizantits.xpi` which is located in `installation_location/Extensions/FireFox` into `Firefox` Browser
+ * For Firefox older version, install the Patch Fix and Drag and drop the `cognizantits.xpi`
+ 
+ Firefox Version | Patch Fix link
+ ----------------|----------------
+ 47-56 | [Patch Fix for 47-56](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-52-56/)
+ 57-60 | [Patch Fox for 57-60](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-57-60/)
+ 61-65 | [Patch Fix for 61-65](https://addons.mozilla.org/en-US/firefox/addon/disabled-add-on-fix-61-65/)
+  
+  > [Refer this link for more details](https://blog.mozilla.org/addons/2019/05/04/update-regarding-add-ons-in-firefox/)
+  
  
 Internet Explorer
-
+ 
+ * If you have older version of CITS IE Toolbar installed in the machine, uninstall the older version of CITS IE Toolbar.
+ 
  * Download the Latest version of [CITS_IE_Toolbar from here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases/latest)
 
  * Follow the Installation docs from [here](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar#requirements)
@@ -79,41 +91,44 @@ In case of Mac, replace the drivers in `/path/to/cognizant-intelligent-test-scri
 
 For example, in case of chrome driver, please remove the `.exe` from the `ChromeDriverPath` property in the `Configure Browsers` window.
 
+For Linux
+
+* [Refer this link to work with CITS tool on Linux Platform](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/faq/linux.html)
 
 ### Sikuli OCR support
 
-If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files as explained below.
+If you are using Image Based Automation of `Cognizant Intelligent Test Scripter` and want to perform [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) related actions, then you have to download and configure the dependent files for Mac and Linux Platform
 
-To enable Sikuli OCR support, required Tesseract language files should be added.
-
-Download data files form here,
-* [Data file for English v3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/tesseract-ocr-3.02.eng.tar.gz/download)
-
-* [For other languages](https://github.com/tesseract-ocr/tesseract/wiki/Data-Files)
-
-
-Create the below folder structure if not present
-
-Windows :   
-```
-%APPDATA%\Sikulix\SikulixTesseract\tessdata
-```
+To enable Sikuli OCR support, required Tesseract 4.1.0 OCR files should be added.
 
 Mac :
+
+* [Refer the link to install Tesseract 4.1.0](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
+
+The Tesseract files will be available in the below location
+
 ```
 ~/Library/Application Support/Sikulix/SikulixTesseract/tessdata
 ```
 
 Linux: 
 
+* [Refer these link to install opencv](https://sikulix-2014.readthedocs.io/en/latest/newslinux.html#getting-the-opencv-support-ready)
+* [Refer the link to install Tesseract 4.1.0](https://github.com/RaiMan/SikuliX1/wiki/macOS-Linux:-Support-libraries-for-Tess4J-Tesseract-4-OCR)
+
+The Tesseract files will be available in the below location
+
 ```
 ~/.Sikulix/SikulixTesseract/tessdata
 ```
 
-Extract `tesseract-ocr-3.02.eng.tar.gz`  
+Windows :
 
-Copy the data-files from the extracted directory( `zip/tesseract-ocr/tessdata`) to the above created folder.
+In Windows, tesseract 4.1.0 files will be automatically loaded in the below location
 
+```	
+%APPDATA%\Roaming\Sikulix\SikulixTesseract\tessdata	
+```
 
 =======
 ###  Demo Project Details
