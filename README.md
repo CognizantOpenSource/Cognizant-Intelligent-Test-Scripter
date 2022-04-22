@@ -37,4 +37,4 @@ To ask specific questions on project development, to discuss future improvements
 
 Cognizant Intelligent Test Scripter is licensed under [Apache License, Version 2.0](LICENSE)
 
-This is for testing purpose
+
