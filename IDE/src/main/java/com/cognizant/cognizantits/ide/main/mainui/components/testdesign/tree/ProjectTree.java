@@ -43,6 +43,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -295,8 +296,15 @@ public class ProjectTree implements ActionListener {
                 showDetails();
                 break;
             case "Manual Testcase":
-                convertToManual();
+            {
+                try {
+                    convertToManual();
+                } catch (IOException ex) {
+                    Logger.getLogger(ProjectTree.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
+
             case "Get Impacted TestCases":
                 getImpactedTestCases();
                 break;
@@ -574,7 +582,7 @@ public class ProjectTree implements ActionListener {
         getTestDesign().getReusableTree().getTreeModel().addTestCase(testCase);
     }
 
-    private void convertToManual() {
+    private void convertToManual() throws IOException {
         if (!getSelectedScenarios().isEmpty()) {
             testDesign.getsMainFrame().getStepMap().convertScenarios(
                     Utils.saveDialog("Manual TestCase.csv"), getSelectedScenarios());

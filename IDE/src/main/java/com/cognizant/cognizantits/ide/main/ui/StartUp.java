@@ -27,6 +27,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -140,7 +142,6 @@ public class StartUp extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         projName = new javax.swing.JTextField();
         projLocation = new javax.swing.JTextField();
-        browseProject = new javax.swing.JButton();
         createNewProject = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
@@ -159,6 +160,7 @@ public class StartUp extends javax.swing.JDialog {
             }
         });
 
+        jToolBar1.setBackground(new java.awt.Color(51, 51, 255));
         jToolBar1.setFloatable(false);
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
@@ -177,6 +179,7 @@ public class StartUp extends javax.swing.JDialog {
         });
         jToolBar1.add(recentToggle);
 
+        appToggle.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(appToggle);
         appToggle.setText("Application");
         appToggle.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -267,12 +270,11 @@ public class StartUp extends javax.swing.JDialog {
             }
         });
 
+        projLocation.setEditable(false);
         projLocation.setText(new File("Projects").getAbsolutePath());
-
-        browseProject.setText("...");
-        browseProject.addActionListener(new java.awt.event.ActionListener() {
+        projLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseProjectActionPerformed(evt);
+                projLocationActionPerformed(evt);
             }
         });
 
@@ -299,13 +301,11 @@ public class StartUp extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(newProjPanelLayout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(newProjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(projLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projName, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(browseProject)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 61, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newProjPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(createNewProject)
@@ -322,25 +322,28 @@ public class StartUp extends javax.swing.JDialog {
                 .addComponent(projName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addGap(21, 21, 21)
-                .addGroup(newProjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseProject))
-                .addGap(40, 40, 40)
+                .addGap(22, 22, 22)
+                .addComponent(projLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(createNewProject)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         cardPanel.add(newProjPanel, "New");
 
         getContentPane().add(cardPanel, java.awt.BorderLayout.CENTER);
 
+        jToolBar2.setBackground(new java.awt.Color(51, 51, 255));
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
         jToolBar2.setMinimumSize(new java.awt.Dimension(233, 40));
         jToolBar2.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        filler1.setBackground(new java.awt.Color(51, 51, 255));
+        filler1.setForeground(new java.awt.Color(51, 51, 255));
         jToolBar2.add(filler1);
 
+        openLastOpened.setBackground(new java.awt.Color(204, 204, 204));
         openLastOpened.setText("Always Open the Last Opened Project");
         openLastOpened.setToolTipText("You can change this setting on File-> Configuration-> Options");
         openLastOpened.setFocusable(false);
@@ -408,24 +411,15 @@ public class StartUp extends javax.swing.JDialog {
         recentChanged = true;
     }//GEN-LAST:event_openLastOpenedItemStateChanged
 
-    private void browseProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseProjectActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int val = chooser.showOpenDialog(this);
-        if (val == JFileChooser.APPROVE_OPTION) {
-            projLocation.setText(chooser.getSelectedFile().getAbsolutePath());
-        }
-    }//GEN-LAST:event_browseProjectActionPerformed
-
     private void createNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewProjectActionPerformed
         if (Validator.isValidName(projName.getText().trim())) {
-            String location;
-            if (projLocation.getText().trim().isEmpty()) {
+            String location = System.getProperty("user.dir") + File.separator + "Projects";
+          /*  if (projLocation.getText().trim().isEmpty()) {
                 location = System.getProperty("user.dir") + File.separator + "Projects";
             } else {
                 location = projLocation.getText().trim();
             }
+          */
             createProject(location);
         } else {
             error.setText("Invalid Project Name");
@@ -436,8 +430,17 @@ public class StartUp extends javax.swing.JDialog {
         createNewProject.doClick();
     }//GEN-LAST:event_projNameActionPerformed
 
+    private void projLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projLocationActionPerformed
+        projLocation.setText(System.getProperty("user.dir") + File.separator + "Projects");
+    }//GEN-LAST:event_projLocationActionPerformed
+
+    private static String sanitizePathTraversal(String filename) {
+        Path p = Paths.get(filename);
+        return p.getFileName().toString();
+    }
+    
     private void createProject(String location) {
-        File file = new File(location + File.separator + projName.getText());
+        File file = new File(location + File.separator + sanitizePathTraversal(projName.getText()));
         if (!file.exists()) {
             if (recentChanged) {
                 AppSettings.store("Options Changed");
@@ -493,7 +496,6 @@ public class StartUp extends javax.swing.JDialog {
     private javax.swing.JList<String> appItems;
     private javax.swing.JPanel appPanel;
     private javax.swing.JToggleButton appToggle;
-    private javax.swing.JButton browseProject;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JButton createNewProject;

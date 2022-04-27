@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class CLI {
         } else {
             /*
             * handle as a flag if it doesn't match key=var
-            */
+             */
             SystemDefaults.CLVars.put(val, "true");
         }
     }
@@ -113,6 +113,13 @@ public class CLI {
         if (execution.containsKey(Op.RS_NAME)) {
             gSettings.setRelease(execution.get(Op.RS_NAME).getValue());
             gSettings.setTestSet(execution.get(Op.TS_NAME).getValue());
+            if (execution.containsKey(Op.BROWSER_NAME)) {
+                gSettings.setBrowser(execution.get(Op.BROWSER_NAME).getValue());
+            } else {
+                gSettings.setBrowser("");
+            }
+            if(execution.containsKey(Op.TAGS))
+              gSettings.setTags(execution.get(Op.TAGS).getValue());
             gSettings.setTestRun(false);
         } else {
             gSettings.setScenario(execution.get(Op.SC_NAME).getValue());
@@ -320,6 +327,7 @@ public class CLI {
         public static final String SC_NAME = "scenario";
         public static final String RS_NAME = "release";
         public static final String TS_NAME = "testset";
+        public static final String TAGS = "tags";
         public static final String BROWSER_NAME = "browser";
         public static final String VERSION = "version";
         public static final String V = "v";

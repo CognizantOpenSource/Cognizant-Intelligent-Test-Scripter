@@ -34,6 +34,8 @@ import com.cognizant.cognizantits.engine.execution.exception.element.ElementExce
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
 import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.Step;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -57,7 +59,7 @@ public class TestCaseRunner {
     private final Parameter parameter;
     private final TestRunner exe;
     private DataIterator iterater;
-
+    private final Map<String,Object> varMap= new HashMap<>();
     private int iter = -1;
 
     private TestCaseRunner context;
@@ -410,7 +412,7 @@ public class TestCaseRunner {
     public void runAction(String action) {
         try {
             new TestStepRunner().executeAction(this, action);
-        } catch (Throwable ex) {            
+        } catch (Throwable ex) {
             reportOnError(action, ex.getMessage(), Status.FAIL);
             throw new RuntimeException("Error executing " + action);
         }
@@ -455,5 +457,9 @@ public class TestCaseRunner {
     public String toString() {
         return String.format("[%s:%s] [%s] [%s]", testcase.getScenario(), testcase,
                 parameter, getRoot().iterater);
+    }
+
+    public Map<String, Object> getVarMap() {
+        return varMap;
     }
 }

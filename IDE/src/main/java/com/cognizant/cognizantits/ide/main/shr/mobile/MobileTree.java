@@ -47,7 +47,11 @@ public abstract class MobileTree {
 
     protected void setAttributes(Node node, MobileTreeNode treeNode) {
         NamedNodeMap nodemap = node.getAttributes();
-        for (int i = 0; i < nodemap.getLength(); i++) {
+        int maxcount = 2000;
+        int loopcount = nodemap.getLength();
+        if(loopcount>maxcount)
+            loopcount = maxcount;
+        for (int i = 0; i < loopcount; i++) {
             Node attrnode = nodemap.item(i);
             treeNode.setAttribute(attrnode.getNodeName(), attrnode.getTextContent());
         }

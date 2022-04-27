@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -43,6 +45,10 @@ import org.xml.sax.SAXException;
  */
 public class XMLOperation {
 
+    private static String sanitizePathTraversal(String filepath) {
+        Path p = Paths.get(filepath);
+        return p.toAbsolutePath().toString();
+    }
     public static Document initTreeOp() {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -57,9 +63,12 @@ public class XMLOperation {
 
     public static Document initTreeOp(String xmlPath) {
         try {
-            if (new File(xmlPath).exists()) {
+            if (new File(sanitizePathTraversal(xmlPath)).exists()) {
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+          
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                
                 return docBuilder.parse(xmlPath);
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
@@ -71,6 +80,7 @@ public class XMLOperation {
     public static Document initTreeOpFromString(String xml) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             return docBuilder.parse(new InputSource(new StringReader(xml)));
         } catch (ParserConfigurationException | SAXException | IOException ex) {

@@ -40,7 +40,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * 
+ *
  */
 public class Report extends Command {
 

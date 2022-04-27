@@ -172,7 +172,7 @@ tr{
     max-height: 10px;  
     text-align: left; 
 }
-.exe.table.PASS,.exe.table.PASSED,.exe.table.DONE,.exe.table.FAIL,.exe.table.FAILED,.exe.table.DEBUG,.exe.table.WARNING{
+.exe.table.PASS,.exe.table.PASSED,.exe.table.DONE,.exe.table.FAIL,.exe.table.FAILED,.exe.table.DEBUG,.exe.table.WARNING,.exe.table.COMPLETE{
     max-width: 100px;
     font-size: 12px;
     text-align: center;   
@@ -181,7 +181,7 @@ tr{
 .exe.table.res{
     text-align: center;   
 }
-.exe.table.PASS,.exe.table.PASSED {
+.exe.table.PASS,.exe.table.PASSED,.exe.table.COMPLETE {
     color:green;  
 }
 .exe.table.DONE,.exe.table.DEBUG,.exe.table.WARNING{
@@ -296,4 +296,93 @@ thead input{
 }
 table.dataTable.no-footer {
     border-bottom: 1px solid #8B8B8B;
+}
+/* Added for displaying request and response*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.tabcontent {
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@
+keyframes fadeEffect {
+	from {opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
 }

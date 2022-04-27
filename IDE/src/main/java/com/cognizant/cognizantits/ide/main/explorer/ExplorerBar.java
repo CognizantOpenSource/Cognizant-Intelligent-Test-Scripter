@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -48,7 +49,7 @@ public class ExplorerBar extends javax.swing.JFrame {
 
     public TestCase testCase;
 
-    public static void showExplorerBar(AppMainFrame sMainFrame) {
+    public static void showExplorerBar(AppMainFrame sMainFrame) throws IOException {
         if (expBar == null) {
             expBar = new ExplorerBar(sMainFrame);
         }
@@ -76,7 +77,7 @@ public class ExplorerBar extends javax.swing.JFrame {
         sMainFrame.getTestDesign().getTestCaseComp().loadTableModelForSelection(testCase);
     }
 
-    public ExplorerBar(AppMainFrame sMainFrame) {
+    public ExplorerBar(AppMainFrame sMainFrame) throws IOException {
         this.sMainFrame = sMainFrame;
         icon = new ImageIcon(getClass().getResource("/explorer/explorer.png"));
         initComponents();

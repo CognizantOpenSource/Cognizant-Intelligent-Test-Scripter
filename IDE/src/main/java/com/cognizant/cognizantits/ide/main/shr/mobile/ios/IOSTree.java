@@ -19,6 +19,11 @@ import com.cognizant.cognizantits.datalib.component.utils.XMLOperation;
 import com.cognizant.cognizantits.ide.main.shr.mobile.MobileTree;
 import com.cognizant.cognizantits.ide.main.utils.fileoperation.FileOptions;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.tree.DefaultTreeModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -41,14 +46,23 @@ public class IOSTree extends MobileTree {
         return andTree;
     }
 
+    private static String sanitizePathTraversal(String filepath) throws IOException {
+       // Path p = Paths.get(filepath);
+        return new File(filepath).getCanonicalPath();
+    }
+    
     @Override
-    public void loadTree(String xml) {
+    public void loadTree (String xml)  {
         xmlContent = xml;
-        Document doc;
-        if (new File(xml).exists()) {
-            doc = XMLOperation.initTreeOp(xml);
-        } else {
-            doc = XMLOperation.initTreeOpFromString(xml);
+        Document doc = null;
+        try {
+            if (new File(sanitizePathTraversal(xml)).exists()) {
+                doc = XMLOperation.initTreeOp(xml);
+            } else {
+                doc = XMLOperation.initTreeOpFromString(xml);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(IOSTree.class.getName()).log(Level.SEVERE, null, ex);
         }
         Element rootElement = doc.getDocumentElement();
         IOSTreeNode rootNode = new IOSTreeNode(rootElement.getTagName());
@@ -60,7 +74,11 @@ public class IOSTree extends MobileTree {
 
     private IOSTreeNode loadNodes(Element parent, IOSTreeNode parentNode) {
         NodeList nodeList = parent.getChildNodes();
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        int maxcount = 2000;
+        int loopcount = nodeList.getLength();
+        if(loopcount>maxcount)
+            loopcount = maxcount;
+        for (int i = 0; i < loopcount; i++) {
             Node node = nodeList.item(i);
             if (Node.ELEMENT_NODE == node.getNodeType()) {
                 IOSTreeNode treeNode = new IOSTreeNode(getDisplayName(node));

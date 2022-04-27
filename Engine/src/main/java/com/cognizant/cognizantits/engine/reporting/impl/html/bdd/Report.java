@@ -19,21 +19,21 @@ import java.util.List;
 
 public class Report {
 
-    String projectName;
+    public String projectName;
     public String releaseName;
     public String testsetName;
     public String iterationMode;
-    String runConfiguration;
-    String maxThreads;
-    String startTime;
-    String endTime;
-    String exeTime;
-    String noTests;
-    String nopassTests;
-    String nofailTests;
-    String theme;
-    List<String> themes;
-    String testRun;
+    public String runConfiguration;
+    public String maxThreads;
+    public String startTime;
+    public String endTime;
+    public String exeTime;
+    public String noTests;
+    public String nopassTests;
+    public  String nofailTests;
+    public String theme;
+    public List<String> themes;
+    public String testRun;
     public List<Execution> EXECUTIONS;
 
     public List<Execution> getEXECUTIONS() {
@@ -57,8 +57,7 @@ public class Report {
         }
 
         public String testcaseName;
-        String description;
-
+        public String description;
         public String iterations;
 
         public List<IterData> getIterData() {
@@ -67,7 +66,7 @@ public class Report {
 
         public String iterationType;
         public String platform;
-        public String bversion;
+        public  String bversion;
         public  String startTime;
         public String endTime;
         public  String exeTime;

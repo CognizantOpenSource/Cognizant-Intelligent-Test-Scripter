@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -110,11 +111,11 @@ public class AppMainFrame extends JFrame {
 
     private Consumer<Integer> onProgress;
 
-    public AppMainFrame() {
+    public AppMainFrame() throws IOException {
         this(null);
     }
 
-    public AppMainFrame(Consumer<Integer> onProgress) {
+    public AppMainFrame(Consumer<Integer> onProgress) throws IOException {
         this.onProgress = onProgress;
         recentItems = new RecentItems(this);
         startUp = new StartUp(this);

@@ -9,9 +9,7 @@ Chrome
 CITS IE Add-on
 ================
 
-1- Uninstall the older version of CITS IE Toolbar
-
-2- Download the latest release from this GitHub link "https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases" and install
+1- Download the latest release from this GitHub link "https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases" and install
 
 
 Steps to install certificate:

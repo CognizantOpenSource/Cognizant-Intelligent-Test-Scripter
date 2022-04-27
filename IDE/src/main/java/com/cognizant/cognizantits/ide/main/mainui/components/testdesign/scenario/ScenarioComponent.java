@@ -131,12 +131,12 @@ public class ScenarioComponent extends JPanel implements ActionListener {
                 reload();
             }
         });
-        scenarioTable.setActionFor("Search", new AbstractAction() {
+     /*   scenarioTable.setActionFor("Search", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 toolBar.focusSearch();
             }
-        });
+        });*/
         scenarioTable.setTransferHandler(new ScenarioDnD());
         scenarioTable.addMouseListener(new MouseAdapter() {
 
@@ -166,9 +166,9 @@ public class ScenarioComponent extends JPanel implements ActionListener {
             case "Reload":
                 reload();
                 break;
-            case "Search":
+          /*  case "Search":
                 scenarioTable.searchFor(((JTextField) ae.getSource()).getText());
-                break;
+                break;*/
             case "GoToNextSearch":
                 scenarioTable.goToNextSearch();
                 break;

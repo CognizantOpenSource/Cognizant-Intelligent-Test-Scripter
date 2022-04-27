@@ -75,7 +75,7 @@
 
 .popup {
     position: absolute;
-    display: none;
+    display: none;	
     background: white;
     border-radius: 10px;
     box-shadow: 1px 1px 5px #000;
@@ -122,5 +122,3 @@
     color: #fff;
     font-weight: bold;
 }
-
-

@@ -39,6 +39,9 @@ public class AppResourcePath {
     private final static String EXTERNAL_COMMANDS_CONFIG = "commands";
 
     private final static String SUMMARY_HTML = "summary.html";
+    private final static String EXTENT_HTML = "extent.html";
+    private final static String AZURE_XML = "azure.xml";
+    private final static String EXTENT_PDF = "extent.pdf";
     private final static String TC_REPORT_HTML = "testCase.html";
     private final static String DETAILED_HTML = "detailed.html";
     private final static String PERF_HTML = "perfReport.html";
@@ -64,9 +67,16 @@ public class AppResourcePath {
     private static String date;
     private static String time;
 
-    public static String getAppRoot() {
-        return System.getProperty("user.dir");
+    public static String getAppRoot(){
+        try {
+            // return System.getProperty("user.dir");
+            return new File(System.getProperty("user.dir")).getCanonicalPath();
+        } catch (IOException ex) {
+            Logger.getLogger(AppResourcePath.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
+    
 
     public static String getExternalCommandsConfig() {
         return getLibPath() + File.separator + EXTERNAL_COMMANDS_CONFIG;
@@ -127,7 +137,7 @@ public class AppResourcePath {
     public static String getSummaryHTMLPath() {
         return getReportTemplatePath() + File.separator + SUMMARY_HTML;
     }
-
+    
     public static String getDetailedHTMLPath() {
         return getReportTemplatePath() + File.separator + DETAILED_HTML;
     }
@@ -165,6 +175,10 @@ public class AppResourcePath {
     public static String getCurrentResultsLocation() {
         return getResultsPath() + getResultPath();
     }
+    
+    public static String getCurrentTestCaseLogsLocation() {
+        return getCurrentResultsLocation() + File.separator + date + " " + time+ File.separator + "logs";
+    }
 
     public static String getLatestResultsLocation() {
         return getCurrentResultsLocation() + File.separator + "Latest";
@@ -174,6 +188,18 @@ public class AppResourcePath {
         return getCurrentResultsPath() + File.separator + DETAILED_HTML;
     }
 
+    public static String getCurrentExtentReportPath() {
+        return getCurrentResultsPath() + File.separator + EXTENT_HTML;
+    }
+    
+    public static String getCurrentAzureReportPath() {
+        return getCurrentResultsPath() + File.separator + AZURE_XML;
+    }
+    
+    public static String getCurrentExtentPDFReportPath() {
+        return getCurrentResultsPath() + File.separator + EXTENT_PDF;
+    }
+    
     public static String getCurrentSummaryHTMLPath() {
         return getCurrentResultsPath() + File.separator + SUMMARY_HTML;
     }

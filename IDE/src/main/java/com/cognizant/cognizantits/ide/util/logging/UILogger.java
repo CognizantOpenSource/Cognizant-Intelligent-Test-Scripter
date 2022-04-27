@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.logging.Level;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.impl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,13 +46,13 @@ public final class UILogger {
 
     static {
         com.cognizant.cognizantits.engine.constants.SystemDefaults.getClassesFromJar.set(true);
-        System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, AppSettings.get("defaultLogLevel"));
-        System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_DATE_TIME_KEY, AppSettings.get("showDateTime"));
-        System.setProperty(org.slf4j.impl.SimpleLogger.DATE_TIME_FORMAT_KEY, AppSettings.get("dateTimeFormat"));
+       // System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, AppSettings.get("defaultLogLevel"));
+      //  System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_DATE_TIME_KEY, AppSettings.get("showDateTime"));
+      //  System.setProperty(org.slf4j.impl.SimpleLogger.DATE_TIME_FORMAT_KEY, AppSettings.get("dateTimeFormat"));
         LOG_BKP_LOC = AppSettings.get("logBackupLoc");
         LOG_FILE = AppSettings.get("logfile");
-        System.setProperty(org.slf4j.impl.SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
-        System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_THREAD_NAME_KEY, "true");
+     //   System.setProperty(org.slf4j.impl.SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
+     //   System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_THREAD_NAME_KEY, "true");
         try {
             maxFileSize = Double.valueOf(AppSettings.get("maxFileSize"));
         } catch (NumberFormatException ex) {

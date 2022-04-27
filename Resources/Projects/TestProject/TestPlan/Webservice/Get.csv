@@ -1,0 +1,15 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+"//1",Webservice,"Set End Point ",setEndPoint,@https://json-server.azurewebsites.net/users/3,,
+"//2",Webservice,"GET Rest Request ",getRestRequest,,,
+"//3",Webservice,"Assert Response Code ",assertResponseCode,@200,,
+"//4",Webservice,"Close the connection ",closeConnection,,,
+"//5",Webservice,"Set End Point ",setEndPoint,@https://json-server.azurewebsites.net/users/3,,
+"//6",Webservice,"GET Rest Request ",getRestRequest,,,
+"//7",Webservice,"Assert Response Code ",assertResponseCode,@200,,
+"//8",Webservice,"Close the connection ",closeConnection,,,
+9,Webservice,"POST Rest Request ",setEndPoint,@https://json-server.azurewebsites.net/users/,,
+10,Webservice,"POST Rest Request ",postRestRequest,"{
+    ""first_name"": ""ash"",
+    ""last_name"": ""xyz"",
+    ""email"": ""ash@gmail.com""
+}",,

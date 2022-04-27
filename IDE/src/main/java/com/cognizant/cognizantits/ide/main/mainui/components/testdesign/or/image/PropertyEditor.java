@@ -343,7 +343,6 @@ public class PropertyEditor extends javax.swing.JFrame {
         });
         referencePopup.add(modifyReference);
 
-        imageChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         imageChooser.setDialogTitle("Open Image");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

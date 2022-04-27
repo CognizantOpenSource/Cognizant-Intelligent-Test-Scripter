@@ -129,7 +129,7 @@ public class ZAPIClient {
     private static String generateJWTToken(String url, Map options, String httpMethod) {
         ZFJCloudRestClient client = ZFJCloudRestClient
                 .restBuilder(options.get("ZephyrBaseURL").toString(), options.get("AccessKey").toString(),
-                        options.get("SecretKey").toString(), options.get("API Token").toString())
+                        options.get("ZephyrToken").toString(), options.get("API Token").toString())
                 .build();
         JwtGenerator jwtGenerator = client.getJwtGenerator();
         // API to which the JWT token has to be generated

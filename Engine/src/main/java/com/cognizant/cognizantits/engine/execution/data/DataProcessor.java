@@ -54,9 +54,9 @@ public class DataProcessor {
             String subIter) throws DataNotFoundException {
         String inp = Objects.toString(raw, "");
         //resolveKeyMapVars(Objects.toString(raw, ""), 2, context.getControl().getRunTimeVars());
-        if (inp.matches("(^@|=|>|%)(.*)")) {
+        if (inp.matches("(^@|=|>|%)(.*)") || inp.startsWith("<") || inp.startsWith("[")|| inp.startsWith("{")) {
             inp = resolveDynamic(resolveIn(inp), context);
-        } else if (inp.contains(":")) {
+        } else if ((!inp.startsWith("<") || !inp.startsWith("[")|| !inp.startsWith("{") ) && inp.contains(":")) {
             String[] args = inp.split(":");
             if (!context.isIterResolved(args[0])) {
                 context.setIter(args[0], DataAccess.getIterations(context, args[0]));

@@ -1,6 +1,6 @@
 {
-  "id" : "DemoProject",
-  "name" : "DemoProject",
+  "id" : "Project Name",
+  "name" : "Project Name",
   "version" : "1.3",
   "attributes" : [ ],
   "tags" : [ ],
@@ -32,140 +32,21 @@
     "tags" : [ ]
   }, {
     "type" : "scenario",
-    "name" : "AccessibilityTesting",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "AngularJS_Support",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "DatabaseActions",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "ImageBasedTesting",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "MobileBasedTesting",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "BasicFeatures",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "Emulators",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "WebPagePerformanceTesting",
+    "name" : "NewScenario",
     "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
     "attributes" : [ ],
     "tags" : [ ]
   } ],
   "data" : [ {
-    "id" : "AccessibilityTesting#AccessibilityActions",
-    "name" : "AccessibilityActions",
+    "id" : "NewScenario#NewTestCase",
+    "name" : "NewTestCase",
     "tags" : [ ],
     "attributes" : [ {
       "name" : "type",
       "value" : "testcase"
     }, {
       "name" : "scenario",
-      "value" : "AccessibilityTesting"
-    } ]
-  }, {
-    "id" : "AngularJS_Support#AngularJS_Test",
-    "name" : "AngularJS_Test",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "AngularJS_Support"
-    } ]
-  }, {
-    "id" : "DatabaseActions#DBTest",
-    "name" : "DBTest",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "DatabaseActions"
-    } ]
-  }, {
-    "id" : "ImageBasedTesting#image_Web",
-    "name" : "image_Web",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "ImageBasedTesting"
-    } ]
-  }, {
-    "id" : "ImageBasedTesting#WindowsAppUsingSikuli",
-    "name" : "WindowsAppUsingSikuli",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "ImageBasedTesting"
-    } ]
-  }, {
-    "id" : "MobileBasedTesting#Mobile_Browser",
-    "name" : "Mobile_Browser",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "MobileBasedTesting"
-    } ]
-  }, {
-    "id" : "MobileBasedTesting#Mobile_Native",
-    "name" : "Mobile_Native",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "MobileBasedTesting"
-    } ]
-  }, {
-    "id" : "WebPagePerformanceTesting#WebPagePerformanceTesting",
-    "name" : "WebPagePerformanceTesting",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "WebPagePerformanceTesting"
+      "value" : "NewScenario"
     } ]
   } ]
 }

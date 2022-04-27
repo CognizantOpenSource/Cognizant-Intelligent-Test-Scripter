@@ -1,0 +1,179 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : OpenJDK Runtime Environment
+java.version         : 11.0.7
+java.home            : C:\Program Files\RedHat\java-11-openjdk-11.0.7-1
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Wed Apr 27 21:11:10 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:Web] [TestCase: Login1] [Description: Login1] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Web] [TestCase: Login2] [Description: Login2] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[2] TestCases selected for execution from [//MyRelease/WebSet]
+----------------------------------------------------------
+Initializing Report
+[Thread-10] INFO com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for the testset
+ApiLink not available!!
+testset : WebSet
+Run Manager true
+Continue Execution true
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Starting ChromeDriver 98.0.4758.102 (273bf7ac8c909cde36982d27f66f3c70846a3718-refs/branch-heads/4758@{#1151}) on port 19216
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Starting ChromeDriver 98.0.4758.102 (273bf7ac8c909cde36982d27f66f3c70846a3718-refs/branch-heads/4758@{#1151}) on port 12174
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-04-27 21:11:14:04S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @27-Apr-2022 21:11:14.014
+2022-04-27 21:11:14:04S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @27-Apr-2022 21:11:14.014
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @27-Apr-2022 21:11:17.017
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @27-Apr-2022 21:11:17.017
+Using @id [user-name], Using @id [user-name], Object 'UserID' Found in 110 ms
+Object 'UserID' Found in 111 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @27-Apr-2022 21:11:18.018
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @27-Apr-2022 21:11:18.018
+Using @id [password], Using @id [password], Object 'Password' Found in 97 ms
+Object 'Password' Found in 111 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Login] Button | Action: Click | Input:  | Conditon:  | @27-Apr-2022 21:11:18.018
+Using @id [login-button], [DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Invalid Object] | Action: assertElementPresent | Input:  | Conditon:  | @27-Apr-2022 21:11:18.018
+Object '[Login] Button' Found in 87 ms
+[DONE]   | Clicking on [Login] Button
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @27-Apr-2022 21:11:18.018
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login1
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:09
+-----------------------------------------------------
+
+Shutting Down Thread as there is no IE Browser to do SelectiveThreading
+Element could not be identified with [name] : [q]
+Expected condition failed: waiting for presence of any elements located by By.name: q (tried for 10 second(s) with 500 milliseconds interval)
+
+2022-04-27 21:11:29:04S +0530 [OFF ] com.cognizant.cognizantits.engine.drivers.AutomationObject getElements:null
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.cognizant.cognizantits.engine.drivers.AutomationObject$$Lambda$672/0x00000001008c1040@4cd515f2 (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LTIN290923', ip: '192.168.1.19', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.102, chrome: {chromedriverVersion: 98.0.4758.102 (273bf7ac8c90..., userDataDir: C:\Users\586126\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:53696}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5aca2952d2b539c484e323f3848d19ff
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getElements(AutomationObject.java:322)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getWElements(AutomationObject.java:273)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElements(AutomationObject.java:260)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:136)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:129)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:98)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:183)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:160)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Couldn't find Object '[Invalid Object]' in stipulated Time '10' Seconds
+[FAIL]   | Element [[Invalid Object]] is not Present
+
+===================================================================================================
+
+2022-04-27 21:11:29:04S +0530 [SEVERE] com.cognizant.cognizantits.engine.execution.run.TestCaseRunner onRuntimeException:Element [[Invalid Object]] is not Present
+com.cognizant.cognizantits.engine.execution.exception.ForcedException: Element [[Invalid Object]] is not Present
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:82)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:87)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElementPresent(AssertElement.java:57)
+	at com.cognizant.cognizantits.engine.support.reflect.MethodExecutor.executeMethod(MethodExecutor.java:39)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeAction(TestStepRunner.java:165)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:161)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login2
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 1
+Time Taken           : 00:00:19
+-----------------------------------------------------
+
+Shutting Down Thread as there is no IE Browser to do SelectiveThreading
+Run Finished on Wed Apr 27 21:11:30 IST 2022
+[Thread-10] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\586126\Work\CITS\CITS2.0\Gitlab\master\cognizant-intelligent-test-scripter\cognizant-intelligent-test-scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\27-Apr-2022 21-11-10\extent.html
+[Thread-10] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\586126\Work\CITS\CITS2.0\Gitlab\master\cognizant-intelligent-test-scripter\cognizant-intelligent-test-scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\27-Apr-2022 21-11-10\extent.html]
+-----------------------------------------------------
+ExecutionDate        : 27-Apr-2022 21-11-10
+Executed TestCases   : 2
+Passed TestCases     : 1
+Failed TestCases     : 1
+Time Taken           : 00:00:20
+ReportPath           : file:///C:\Users\586126\Work\CITS\CITS2.0\Gitlab\master\cognizant-intelligent-test-scripter\cognizant-intelligent-test-scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\27-Apr-2022 21-11-10\summary.html
+-----------------------------------------------------
+Latest Excel Report Path C:\Users\586126\Work\CITS\CITS2.0\Gitlab\master\cognizant-intelligent-test-scripter\cognizant-intelligent-test-scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\Latest
+-----------------------------------------------------
+EXCEL REPORT CREATED SUCCESSFULLY
+-----------------------------------------------------
+2022-04-27 21:11:32:04S +0530 [INFO] com.cognizant.cognizantits.engine.reporting.impl.excel.ExcelSummaryHandler launchexcel:Trying To Open Excel
+2022-04-27 21:11:32:04S +0530 [INFO] com.cognizant.cognizantits.engine.reporting.impl.excel.ExcelSummaryHandler launchexcel:Opened Excel Report Successfully

@@ -54,6 +54,18 @@
 			display: none !important;
 		}
 	    }
+		.button {
+		  background-color: #4CAF50;
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+		}
         </style>
         <title ng-bind="Title"></title>	        
     </head>
@@ -132,7 +144,29 @@
                 <div class="popup-content"></div>
             </div>
         </div>
-
+		 <div id="popup-web" class="popup">	    
+            <div class="popup-wrapper">
+                <a class="popup-close-link" href="#">close</a>
+                <div class="popup-content">
+					<br>
+					<table align="center">
+						<tr>
+							<td><p>To view the detailed request body click here :</p></td>
+							<td>&emsp;&emsp;&emsp;</td>
+							<td><p>To view the detailed response body click here :</p></td>
+						</tr>
+						<tr>
+							<td align="center"><a id="Request" target="_blank" rel="noopener noreferrer" style="background-color: #008CBA" class="button" align="center">Request</a></td>
+							<td>&emsp;&emsp;&emsp;</td>
+							<td align="center"><a id="Response" target="_blank" rel="noopener noreferrer" class="button" align="center">Response</a></td>
+						</tr>
+					</table>
+				</div>
+            </div>
+        </div>
+		<script>
+			document.getElementById("defaultOpen").click();
+		</script>
         <div class="image-comparison">
             <h5>Actual</h5>
             <img id="actual" src=""/>
@@ -150,6 +184,7 @@
 		
 		 <div class="footer-icons hideOnPrint">
 		 	<a ng-show="perfReport" ng-href="perfReport.html?SC={{Details[view].scenarioName}}&TC={{Details[view].testcaseName}}" target="_blank" class="footer-perf" title="Performance Report"></a>
+                        <a href="" id="logs" target="_blank" class="footer-log" title="Individual TestCaseLog"></a>
 			<a href="#" class="footer-scroll"></a>
 		</div>
         <script>

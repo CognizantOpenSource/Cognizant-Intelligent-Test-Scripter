@@ -1,0 +1,9 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,ProtractorJS,initialise the protractorjs script,protractor_initialize,,,
+2,ProtractorJS,Command to open an url,protractor_open,%Prot_url%,,
+3,uname,Command to send text to web element,protractor_set,ProtractorJS:uname,,ProtractorJS
+4,pwd,Command to send text to web element,protractor_set,ProtractorJS:pwd,,ProtractorJS
+5,login,Command to click on web element,protractor_click,,,ProtractorJS
+6,ProtractorJS,Take screenshot of the current page,protractor_takeScreenshot,@myscreenshot.png,,
+7,ProtractorJS,Terminate the protractorjs script,protractor_terminate,@tes.js,,
+8,ProtractorJS,Command to execute the given spec file through ProtractorJS,RunSpec,@tes.js,,

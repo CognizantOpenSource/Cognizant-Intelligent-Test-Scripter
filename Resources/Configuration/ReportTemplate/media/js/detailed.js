@@ -35,6 +35,7 @@ var toggleImg = {
     "true": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAuklEQVQ4T+3SMQ4BQRQG4I9CNDqNA+hcQO0IWiUnEIkjKJxA1AqHULqBygFUKo0okE2GbNauHaE01WT2n+/NvpmKH4/Kjz1/8PuOxvSwilkoNcX1XdkYcIFRQJapea5bBo4xz+yc5Kw9I+/APtZIfjk9bhhglXfEIrCLDeoF/Tqjh232ex7YDsFmyZ0fkRTep3NZsBGwTuQD2gX09MhnwRaSm6xFghcMcSgCI53iWNmz+bjAH/y4ZS8b7qUTFRUHsobWAAAAAElFTkSuQmCC",
     "false": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACBSURBVDhPYxgFIwAwQmkYkATi5UDMA+YRBp+BOAqIn4N5WAAvEF8B4v9E4ktADNKDF0gB8SMgxmYAMn4AxCAfEQW0gfgDEGMzCITfA7EWEJME3IH4NxCjG/YTiB2AmCyQDMToBiYBMUWgA4hhhrWCBCgFTEDcDcSdUPYoGOGAgQEAwoowLhjiyB4AAAAASUVORK5CYII="
 };
+var logFileLoc="./logs/";
 /**
  * prototype for String.replaceAll()
  * @param {type} find string to replace
@@ -180,6 +181,7 @@ var isTCMatched = function(exe) {
             $scope.browsers = browserHeaders;
             $scope.views = views;
             $scope.Title = Params.SC + " : " + Params.TC;
+		logFileLoc=logFileLoc+Params.SC + "_" + Params.TC+".txt";
             $scope.cDetails = ($scope.Details[$scope.view]);
             $scope.cRowsGRP = $sce.trustAsHtml(renderTableGRP($scope.GRPSteps));
             $scope.setView = function(v) {
@@ -328,13 +330,26 @@ var getExeData = function() {
 function renderTableSNGL(data, browser) {
     var browserID = browser.escape();
     function getRowHtm(row) {
+		try{
         var stat = row[exeDetails_ID[3]];
+		if(stat=="COMPLETE"){
+			var flag=1;
+			if (row[exeDetails_ID[1]].charAt(0)=='p'){ //put, post
+				flag=0;
+			}
+			var statElem = setStatusLinkWeb(stat, row[exeDetails_ID[0]], row['link'],flag);
+		} else{
         var statElem = setStatusLink(stat, row['actual'], row['expected'], row['comparison'], row['objects'], row['link']);
+		}
         var data = "<td class='exe table col stepno'>" + row[exeDetails_ID[0]] + "</td>";
         data += "<td >" + row[exeDetails_ID[1]] + "</td>";
         data += "<td>" + (row[exeDetails_ID[2]]).escapeTags() + "</td>";
         data += "<td style='width: 10%' class='exe table " + stat + "'>" + statElem + "</td>";
         data += "<td style='width: 15%' class='exe table time'>" + row[exeDetails_ID[4]] + "</td>";
+		}catch(ex){
+		console.log("Error "+ data);
+		console.log(ex);
+	}
         return   data;
     }
     function getRClass(step) {
@@ -410,7 +425,7 @@ function renderTableSNGL(data, browser) {
 }
 function renderTableGRP(data) {
     function getRowHtm(row) {
-
+	try{
         var data = "<td class='exe table col stepno'>" + row[exeDetails_ID[0]] + "</td>";
         data += "<td >" + row[ID.STEP.action] + "</td>";
         data += "<td>" + (row[exeDetails_ID[2]]).escapeTags() + "</td>";
@@ -422,8 +437,13 @@ function renderTableGRP(data) {
                 var statElem = setStatusLink(stat, res['actual'], res['expected'], res['comparison'], res['objects'], res['link']);
                 statVal = statElem + "<br><lable class='exe table time'>  " + res[ID.STEP.time] + "<lable>";
             }
+			
             data += "<td style='width: 10%' class='exe table res'>" + statVal + "</td>";
         });
+	}catch(ex){
+		LOG("Error "+ data);
+		LOGE(ex);
+	}
         return   data;
     }
 
@@ -552,6 +572,8 @@ var setupGRPExeFilter = function(table) {
             var title = $(this).text();
             $(this).append('<br><input class = "hideOnPrint" type="text"  placeholder="Search ' + title + '"/>');
         });
+//	Log file
+	document.getElementById("logs").setAttribute("href",logFileLoc);
         table.columns().indexes().each(function(colIdx) {
             $('input', table.column(colIdx).header()).on('keyup change', function() {
                 table.column(colIdx).search(this.value).draw();
@@ -737,5 +759,3 @@ function initGalenReport()
     $('div.image-comparison').hide();
     $('div.screenshot-canvas').hide();
 }
-
-

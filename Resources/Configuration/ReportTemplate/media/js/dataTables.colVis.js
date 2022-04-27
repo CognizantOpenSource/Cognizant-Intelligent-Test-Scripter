@@ -474,7 +474,6 @@ ColVis.prototype = {
 			nButton.className += " ColVis_ShowNone";
 			this.dom.buttons.push( nButton );
 		}
-
 		$(this.dom.collection).append( this.dom.buttons );
 	},
 

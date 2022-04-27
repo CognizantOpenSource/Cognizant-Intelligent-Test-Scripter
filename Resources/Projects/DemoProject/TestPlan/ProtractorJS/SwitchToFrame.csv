@@ -1,0 +1,13 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,ProtractorJS,initialise the protractorjs script,protractor_initialize,,,
+2,ProtractorJS,Enable/Disable Protractor to wait for Angular $http and $timeout tasks,protractor_waitForAngularEnabled,@false,,
+3,ProtractorJS,Command to open an url,protractor_open,@https://demoqa.com/iframe-practice-page/,,
+4,parent_element,Get the attribute value of element,protractor_getElementAttribute,@class,,ProtractorJS
+5,frame,,protractor_switchToFrame,,,ProtractorJS
+6,frameelement,Get the attribute value of element,protractor_getElementAttribute,@class,,ProtractorJS
+7,ProtractorJS,,protractor_switchToDefaultContent,,,
+8,parent_element,Get the attribute value of element,protractor_getElementAttribute,@class,,ProtractorJS
+9,ProtractorJS,,protractor_executeScript,@return 10+15;,,
+10,parent_element,,protractor_executeScript,@return arguments[0].tagName;,,ProtractorJS
+11,ProtractorJS,Terminate the protractorjs script,protractor_terminate,@frame.js,,
+12,ProtractorJS,Command to execute the given spec file through ProtractorJS,RunSpec,@frame.js,,

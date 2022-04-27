@@ -21,6 +21,8 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -142,11 +144,16 @@ public class FileUtils {
         return null;
     }
 
+    private static String sanitizePathTraversal(String filename) {
+        Path p = Paths.get(filename);
+        return p.getFileName().toString();
+    }
+    
     public static Boolean renameFile(String fromFile, String toName) {
         try {
             File src = new File(fromFile);
             if (src.exists()) {
-                File target = new File(src.getParent(), toName);
+                File target = new File(src.getParent(), sanitizePathTraversal(toName));
                 if (target.exists()) {
                     LOGGER.log(Level.INFO, "A File with Name '{1}' already exists, failed to rename '{0}'",
                             new Object[]{fromFile, toName});

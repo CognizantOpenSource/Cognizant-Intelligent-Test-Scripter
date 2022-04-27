@@ -140,13 +140,13 @@ public class Utils {
         return null;
     }
 
-    public static File saveDialog() {
+    public static File saveDialog() throws IOException {
         return saveDialog("");
     }
 
-    public static File saveDialog(String fileName) {
+    public static File saveDialog(String fileName) throws IOException {
         JFileChooser fileChooser = createFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setCurrentDirectory(new File(new File(System.getProperty("user.dir")).getCanonicalPath()));
         fileChooser.setSelectedFile(new File(fileName));
         int option = fileChooser.showSaveDialog(null);
         if (option == JFileChooser.APPROVE_OPTION) {
@@ -155,13 +155,13 @@ public class Utils {
         return null;
     }
 
-    public static File openDialog() {
+    public static File openDialog() throws IOException {
         return openDialog("Open File");
     }
 
-    public static File openDialog(String desc, String... fileFormat) {
+    public static File openDialog(String desc, String... fileFormat) throws IOException {
         JFileChooser fileChooser = createFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setCurrentDirectory(new File(new File(System.getProperty("user.dir")).getCanonicalPath()));
         if (fileFormat != null && fileFormat.length > 0) {
             fileChooser.setFileFilter(new FileNameExtensionFilter(desc, fileFormat));
         }
@@ -232,7 +232,7 @@ public class Utils {
         return JAVAC_FILTER;
     }
 
-    public static File getAppRoot() {
-        return new File(System.getProperty("user.dir"));
+    public static File getAppRoot() throws IOException {
+        return new File(new File(System.getProperty("user.dir")).getCanonicalPath());
     }
 }

@@ -1,0 +1,3 @@
+Execute,TestScenario,TestCase,Iteration,Status,Browser,BrowserVersion,Platform
+true,Web,Login1,Single,Passed,Chrome Headless,Default,Any
+true,Web,Login2,Single,Failed,Chrome Headless,Default,Any

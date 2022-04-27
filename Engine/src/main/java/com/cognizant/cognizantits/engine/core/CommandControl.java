@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.engine.core;
 
 import com.cognizant.cognizantits.datalib.or.common.ObjectGroup;
 import com.cognizant.cognizantits.datalib.or.image.ImageORObject;
+import com.cognizant.cognizantits.datalib.settings.DriverSettings;
 import com.cognizant.cognizantits.engine.drivers.AutomationObject;
 import com.cognizant.cognizantits.engine.drivers.AutomationObject.FindType;
 import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
@@ -79,6 +80,10 @@ public abstract class CommandControl {
         this.Input = curr.Input;
         this.Data = curr.Data;
 
+        /********** Updates the Action for NLP_locator****************/
+        AutomationObject.Action = this.Action;
+        /**************************************************************/
+        
         if (curr.Condition != null && curr.Condition.length() > 0) {
             this.Condition = curr.Condition;
         }
@@ -101,12 +106,18 @@ public abstract class CommandControl {
 
     private Boolean canIFindElement() {
         if (seDriver.isAlive()) {
-            switch (Action) {
-                case "waitForElementToBePresent":
-                case "setObjectProperty":
-                    return false;
-                default:
-                    return true;
+            // In case of ProtractorJS execution, bypass the default "findelement" logic
+
+            if (seDriver.getCurrentBrowser().equalsIgnoreCase("ProtractorJS")) {
+                return false;
+            } else {
+                switch (Action) {
+                    case "waitForElementToBePresent":
+                    case "setObjectProperty":
+                        return false;
+                    default:
+                        return true;
+                }
             }
         }
         return false;
@@ -165,7 +176,10 @@ public abstract class CommandControl {
     }
 
     public void sync(Step curr, String subIter) throws Exception {
-        curr.Data = DataProcessor.resolve(curr.Input, (TestCaseRunner) context(), subIter);
+        // For ProtractorJS execution, bypass the test data resolve logic
+        if (!seDriver.getCurrentBrowser().equalsIgnoreCase("ProtractorJS")) {
+            curr.Data = DataProcessor.resolve(curr.Input, (TestCaseRunner) context(), subIter);
+        }
         sync(curr);
     }
 
@@ -175,5 +189,16 @@ public abstract class CommandControl {
 
     public String getDataBaseProperty(String key) {
         return Control.getCurrentProject().getProjectSettings().getDatabaseSettings().getProperty(key);
+    }
+    
+    public Map<String, String> getProxySettings() {
+        Map<String, String> systemSettings = new HashMap<>();
+        DriverSettings settings = Control.getCurrentProject().getProjectSettings().getDriverSettings();
+        systemSettings.put("proxySet", "true");            
+        systemSettings.put("http.proxyHost", settings.getProperty("proxyHost"));            
+        systemSettings.put("http.proxyPort", settings.getProperty("proxyPort"));
+        systemSettings.put("http.proxyUser", settings.getProperty("proxyUser"));
+        systemSettings.put("http.proxyPassword", settings.getProperty("proxyPassword"));
+        return systemSettings;
     }
 }

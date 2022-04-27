@@ -33,6 +33,8 @@ import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
 import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
 import com.cognizant.cognizantits.engine.util.data.fx.FParser;
 import com.cognizant.cognizantits.ide.main.utils.table.SQLTextArea;
+import com.cognizant.cognizantits.ide.main.utils.table.WebservicePayloadArea;
+import com.cognizant.cognizantits.ide.main.utils.table.EndPointTextArea;
 import com.cognizant.cognizantits.ide.main.utils.table.autosuggest.AutoSuggest;
 import com.cognizant.cognizantits.ide.main.utils.table.autosuggest.AutoSuggestCellEditor;
 import com.cognizant.cognizantits.ide.main.utils.table.autosuggest.ComboSeparatorsRenderer;
@@ -59,7 +61,7 @@ import javax.swing.Timer;
 
 /**
  *
- * 
+ *
  */
 public class TestCaseAutoSuggest {
 
@@ -136,6 +138,8 @@ public class TestCaseAutoSuggest {
         objectList.add("Execute");
         objectList.add("App");
         objectList.add("Database");
+       // objectList.add("ProtractorJS");
+        objectList.add("Webservice");
         return objectList;
     }
 
@@ -170,6 +174,26 @@ public class TestCaseAutoSuggest {
                 && (step.getAction().contains("execute") || step.getAction().contains("storeResult"));
     }
 
+    private boolean isProtractorjsStep(TestStep step) {
+        return step != null
+                && (step.getAction().contains("protractor_customSpec"));
+    }
+
+    private boolean isRestWebservicePostStep(TestStep step) {
+        return step != null && step.isWebserviceStep()
+                && (step.getAction().contains("postRest") || step.getAction().contains("putRest") || step.getAction().contains("patchRest"));
+    }
+
+    private boolean isSetEndPointStep(TestStep step) {
+        return step != null && step.isWebserviceStep()
+                && (step.getAction().contains("setEndPoint"));
+    }
+
+    private boolean isSOAPWebservicePostStep(TestStep step) {
+        return step != null && step.isWebserviceStep()
+                && step.getAction().contains("postSoap");
+    }
+
     class ActionAutoSuggest extends AutoSuggest {
 
         private List<String> getActionBasedOnObject() {
@@ -187,6 +211,10 @@ public class TestCaseAutoSuggest {
                     return MethodInfoManager.getMethodListFor(ObjectType.APP, ObjectType.ANY);
                 case "Database":
                     return MethodInfoManager.getMethodListFor(ObjectType.DATABASE, ObjectType.DATABASE);
+                case "ProtractorJS":
+                    return MethodInfoManager.getMethodListFor(ObjectType.PROTRACTORJS, ObjectType.PROTRACTORJS);
+                case "Webservice":
+                    return MethodInfoManager.getMethodListFor(ObjectType.WEBSERVICE, ObjectType.WEBSERVICE);
                 default:
                     if (isImageObject(objectName, pageName)) {
                         return MethodInfoManager.getMethodListFor(ObjectType.IMAGE, ObjectType.ANY);
@@ -388,11 +416,21 @@ public class TestCaseAutoSuggest {
 
         @Override
         public void mouseClicked(MouseEvent me) {
+            boolean isInputclicked = table.columnAtPoint(me.getPoint()) == Input.getIndex();
             if (me.isAltDown()) {
                 if (table.rowAtPoint(me.getPoint()) != -1 && getTestCase(table) != null) {
                     TestStep step = getTestCase(table).getTestSteps().get(table.rowAtPoint(me.getPoint()));
-                    if (isDataBaseQueryStep(step) && table.columnAtPoint(me.getPoint()) == Input.getIndex()) {
+                    if ((isDataBaseQueryStep(step) && table.columnAtPoint(me.getPoint()) == Input.getIndex()) || (isProtractorjsStep(step) && table.columnAtPoint(me.getPoint()) == Input.getIndex())) {
                         new SQLTextArea(null, step, getInputs());
+                    }
+                    if ((isRestWebservicePostStep(step) && isInputclicked)) {
+                        new WebservicePayloadArea(null, step, "REST", getInputs());
+                    }
+                    if ((isSOAPWebservicePostStep(step) && isInputclicked)) {
+                        new WebservicePayloadArea(null, step, "SOAP", getInputs());
+                    }
+                    if ((isSetEndPointStep(step) && isInputclicked)) {
+                        new EndPointTextArea(null, step, getInputs());
                     }
                 }
             }
@@ -408,39 +446,113 @@ public class TestCaseAutoSuggest {
     class MouseMotionAdapterImpl extends MouseMotionAdapter {
 
         Point hintCell;
-        Timer showTimer;
-        Timer disposeTimer;
-        JPopupMenu popup;
+        Timer showTimerp;
+        Timer showTimerd;
+        Timer showTimerw;
+        Timer disposeTimerp;
+        Timer disposeTimerd;
+        Timer disposeTimerw;
+        JPopupMenu popupp;
+        JPopupMenu popupd;
+        JPopupMenu popupw;
         TestStep step;
 
         public MouseMotionAdapterImpl() {
-            popup = new JPopupMenu();
-            final JMenuItem jMenuItem = new JMenuItem("Click to Open SQL Query Editor ");
-            popup.add(jMenuItem);
-            jMenuItem.addActionListener((ActionEvent ae) -> {
-                if (step != null) {
+            popupp = new JPopupMenu();
+            popupd = new JPopupMenu();
+            popupw = new JPopupMenu();
+            final JMenuItem jMenuItemp = new JMenuItem("Click to open ProtractorJS command editor");
+            final JMenuItem jMenuItemd = new JMenuItem("Click to Open SQL Query Editor ");
+            final JMenuItem jMenuItemw = new JMenuItem("Click to Open Webservice Editor ");
+            popupp.add(jMenuItemp);
+            popupd.add(jMenuItemd);
+            popupw.add(jMenuItemw);
+            jMenuItemp.addActionListener((ActionEvent ae) -> {
+                if (step != null && (isProtractorjsStep(step))) {
                     new SQLTextArea(null, step, getInputs());
                 }
             });
-            showTimer = new Timer(1000, (ActionEvent ae) -> {
+
+            jMenuItemd.addActionListener((ActionEvent ae) -> {
+                if (step != null && (isDataBaseQueryStep(step))) {
+                    new SQLTextArea(null, step, getInputs());
+                }
+            });
+            jMenuItemw.addActionListener((ActionEvent ae) -> {
+                if (step.isWebserviceStep() && step.getAction().contains("postSoap")) {
+                    new WebservicePayloadArea(null, step, "SOAP", getInputs());
+                }
+                if (isRestWebservicePostStep(step)) {
+                    new WebservicePayloadArea(null, step, "REST", getInputs());
+                }
+                if (isSetEndPointStep(step)) {
+                    new EndPointTextArea(null, step, getInputs());
+                }
+            });
+
+            // Timer p
+            showTimerp = new Timer(1000, (ActionEvent ae) -> {
                 if (hintCell != null) {
-                    disposeTimer.stop();
-                    popup.setVisible(false);
+                    disposeTimerp.stop();
+                    popupp.setVisible(false);
                     Rectangle bounds = table.getCellRect(hintCell.y, hintCell.x, true);
                     int x = bounds.x;
                     int y = bounds.y + bounds.height;
-                    popup.show(table, x, y);
-                    disposeTimer.start();
+                    popupp.show(table, x, y);
+                    disposeTimerp.start();
                 }
             });
-            showTimer.setRepeats(false);
-            showTimer.setCoalesce(true);
+            showTimerp.setRepeats(false);
+            showTimerp.setCoalesce(true);
 
-            disposeTimer = new Timer(2000, (ActionEvent ae) -> {
-                popup.setVisible(false);
+            disposeTimerp = new Timer(2000, (ActionEvent ae) -> {
+                popupp.setVisible(false);
             });
-            disposeTimer.setRepeats(false);
-            disposeTimer.setCoalesce(true);
+            disposeTimerp.setRepeats(false);
+            disposeTimerp.setCoalesce(true);
+
+            // Timer D
+            showTimerd = new Timer(1000, (ActionEvent ae) -> {
+                if (hintCell != null) {
+                    disposeTimerd.stop();
+                    popupd.setVisible(false);
+
+                    Rectangle bounds = table.getCellRect(hintCell.y, hintCell.x, true);
+                    int x = bounds.x;
+                    int y = bounds.y + bounds.height;
+                    popupd.show(table, x, y);
+                    disposeTimerd.start();
+                }
+            });
+            showTimerd.setRepeats(false);
+            showTimerd.setCoalesce(true);
+
+            disposeTimerd = new Timer(2000, (ActionEvent ae) -> {
+                popupd.setVisible(false);
+            });
+            disposeTimerd.setRepeats(false);
+            disposeTimerd.setCoalesce(true);
+            
+            // Timer p
+            showTimerw = new Timer(1000, (ActionEvent ae) -> {
+                if (hintCell != null) {
+                    disposeTimerp.stop();
+                    popupw.setVisible(false);
+                    Rectangle bounds = table.getCellRect(hintCell.y, hintCell.x, true);
+                    int x = bounds.x;
+                    int y = bounds.y + bounds.height;
+                    popupw.show(table, x, y);
+                    disposeTimerp.start();
+                }
+            });
+            showTimerw.setRepeats(false);
+            showTimerw.setCoalesce(true);
+
+            disposeTimerw = new Timer(2000, (ActionEvent ae) -> {
+                popupw.setVisible(false);
+            });
+            disposeTimerw.setRepeats(false);
+            disposeTimerw.setCoalesce(true);
         }
 
         @Override
@@ -453,18 +565,33 @@ public class TestCaseAutoSuggest {
                 if (isDataBaseQueryStep(step) && col == Input.getIndex()) {
                     if (hintCell == null || (hintCell.x != col || hintCell.y != row)) {
                         hintCell = new Point(col, row);
-                        showTimer.restart();
+                        showTimerd.restart();
+                    }
+                } else if (isProtractorjsStep(step) && col == Input.getIndex()) {
+                    if (hintCell == null || (hintCell.x != col || hintCell.y != row)) {
+                        hintCell = new Point(col, row);
+                        //System.out.println("inside P + before restart" +popup.isVisible());
+                        showTimerp.restart();
+                        //System.out.println("inside P + after restart" +popup.isVisible());
+                    }
+                } else if ((isSOAPWebservicePostStep(step) && col == Input.getIndex()) || (isRestWebservicePostStep(step) && col == Input.getIndex())) {
+                    if (hintCell == null || (hintCell.x != col || hintCell.y != row)) {
+                        hintCell = new Point(col, row);
+                        showTimerw.restart();
+                    }
+                } else if ((isSetEndPointStep(step) && col == Input.getIndex())) {
+                    if (hintCell == null || (hintCell.x != col || hintCell.y != row)) {
+                        hintCell = new Point(col, row);
+                        showTimerw.restart();
                     }
                 } else {
                     hintCell = null;
-                    if (popup.isVisible()) {
-                        popup.setVisible(false);
+                    if (popupp.isVisible() || popupd.isVisible()||popupw.isVisible()) {
+                        popupp.setVisible(false);
+                        popupd.setVisible(false);
+                        popupw.setVisible(false);
                     }
-                }
-            } else {
-                hintCell = null;
-                if (popup.isVisible()) {
-                    popup.setVisible(false);
+
                 }
             }
         }

@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testdat
 
 import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -30,9 +31,9 @@ public class ImportTestData {
 
     JFileChooser tdFileChooser;
 
-    public ImportTestData(AppMainFrame sMainFrame) {
+    public ImportTestData(AppMainFrame sMainFrame) throws IOException {
         this.sMainFrame = sMainFrame;
-        tdFileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
+        tdFileChooser = new JFileChooser(new File(new File(System.getProperty("user.dir")).getCanonicalPath()));
         tdFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         tdFileChooser.setFileFilter(new FileNameExtensionFilter("TestData Files", "csv"));
     }

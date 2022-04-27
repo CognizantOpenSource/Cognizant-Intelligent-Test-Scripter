@@ -15,7 +15,7 @@
  */
 package com.cognizant.cognizantits.ide.main.explorer;
 
-import com.cognizant.cognizantits.ide.main.explorer.report.defect.ReportDefect;
+//import com.cognizant.cognizantits.ide.main.explorer.report.defect.ReportDefect;
 import com.cognizant.cognizantits.ide.main.explorer.settings.Settings;
 import com.cognizant.cognizantits.ide.main.explorer.settings.SettingsUI;
 import com.cognizant.cognizantits.ide.main.shr.image.crop.CropUIController;
@@ -53,7 +53,8 @@ public class ExplorerController {
     private BaseEditor bedit;
     private ExplorerBar explorerBar;
     private SettingsUI settingsUI;
-    private final JFileChooser export = new JFileChooser(System.getProperty("user.dir"));
+    private String userDir="";
+    private final JFileChooser export = new JFileChooser(this.userDir);
     private Image latestCroped;
     private ImageGallery igalllery = new ImageGallery(FORMAT) {
         @Override
@@ -80,7 +81,8 @@ public class ExplorerController {
      *
      * @param frame
      */
-    public ExplorerController(ExplorerBar frame) {
+    public ExplorerController(ExplorerBar frame) throws IOException {
+        this.userDir = new File(System.getProperty("user.dir")).getCanonicalPath();
         explorerBar = frame;
         WindowMover.register(frame, frame, WindowMover.MOVE_VERTICAL);
         bedit = BaseEditor.getEditor();
@@ -139,11 +141,11 @@ public class ExplorerController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel p = ReportDefect.getreportDefectPanel(bedit);
-                ReportDefect.setSelectedImages(igalllery.getSelectedImages());
-                ReportDefect.setExplorer(explorerBar);
-                bedit.setComponent(p);
-                bedit.setIconImage(Canvas.iconToImage(((JButton) e.getSource()).getIcon()));
+//                JPanel p = ReportDefect.getreportDefectPanel(bedit);
+//                ReportDefect.setSelectedImages(igalllery.getSelectedImages());
+//                ReportDefect.setExplorer(explorerBar);
+//                bedit.setComponent(p);
+//                bedit.setIconImage(Canvas.iconToImage(((JButton) e.getSource()).getIcon()));
             }
 
         };

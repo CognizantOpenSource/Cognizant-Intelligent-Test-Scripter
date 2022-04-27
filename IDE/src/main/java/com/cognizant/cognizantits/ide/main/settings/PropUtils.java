@@ -26,6 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 /**
  *
@@ -100,6 +102,22 @@ public class PropUtils {
     public static void saveProperties(Properties prop, String location) {
         try (FileOutputStream fout = new FileOutputStream(location)) {
             prop.store(fout, null);
+            /*********************************/
+//                Scanner sc = new Scanner(new File(location));
+//		String firstline = sc.nextLine();
+//		System.out.println(firstline);
+//		String content="";
+//		if(firstline.startsWith("#")) 
+//		{
+//			while (sc.hasNextLine()) {
+//				content+=sc.nextLine()+"\n";
+//			}
+//		}	
+//		System.out.println(content);
+//		PrintWriter prw= new PrintWriter(new File(location)); 
+//		prw.println(content);
+//		prw.close();
+            /*********************************/
         } catch (IOException ex) {
             Logger.getLogger(PropUtils.class.getName()).log(Level.SEVERE, null, ex);
         }

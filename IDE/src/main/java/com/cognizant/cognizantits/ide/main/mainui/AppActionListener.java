@@ -20,8 +20,8 @@ import com.cognizant.cognizantits.ide.main.bdd.BddParser;
 import com.cognizant.cognizantits.ide.main.explorer.ExplorerBar;
 import com.cognizant.cognizantits.ide.main.help.Help;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testdata.ImportTestData;
-import com.cognizant.cognizantits.ide.main.scheduler.SchedulerUI;
-import com.cognizant.cognizantits.ide.main.server.SeleniumServer;
+//import com.cognizant.cognizantits.ide.main.scheduler.SchedulerUI;
+//import com.cognizant.cognizantits.ide.main.server.SeleniumServer;
 import com.cognizant.cognizantits.ide.main.settings.CognizantITSSettings;
 import com.cognizant.cognizantits.ide.main.settings.DriverSettings;
 import com.cognizant.cognizantits.ide.main.settings.TMSettings;
@@ -35,6 +35,9 @@ import com.cognizant.cognizantits.ide.util.logging.UILogger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AppActionListener implements ActionListener {
 
@@ -50,7 +53,7 @@ public class AppActionListener implements ActionListener {
 
     private final Options options;
 
-    private final SchedulerUI scheduler;
+ //   private final SchedulerUI scheduler;
 
     private final BddParser bddParser;
 
@@ -58,14 +61,14 @@ public class AppActionListener implements ActionListener {
 
     private final ImportTestData importTestData;
 
-    public AppActionListener(AppMainFrame sMainFrame) {
+    public AppActionListener(AppMainFrame sMainFrame) throws IOException {
         this.sMainFrame = sMainFrame;
         nProject = new NewProject(sMainFrame);
         cogITSSettings = new CognizantITSSettings(sMainFrame);
         driverSettings = new DriverSettings(sMainFrame);
         tmSettings = new TMSettings(sMainFrame);
         options = new Options();
-        scheduler = new SchedulerUI();
+//        scheduler = new SchedulerUI();
         bddParser = new BddParser(sMainFrame);
         injectScript = new InjectScript();
         importTestData = new ImportTestData(sMainFrame);
@@ -105,8 +108,15 @@ public class AppActionListener implements ActionListener {
                 sMainFrame.getSpyHealReco().showMobileSpy();
                 break;
             case "Exploratory":
-                ExplorerBar.showExplorerBar(sMainFrame);
+            {
+                try {
+                    ExplorerBar.showExplorerBar(sMainFrame);
+                } catch (IOException ex) {
+                    Logger.getLogger(AppActionListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
+
             case "Multiple Environment":
                 sMainFrame.getTestDesign().getTestDatacomp().switchEnvView();
                 break;
@@ -114,8 +124,15 @@ public class AppActionListener implements ActionListener {
                 importTestData.importTestData();
                 break;
             case "Inject Script":
-                injectScript.load();
+            {
+                try {
+                    injectScript.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AppActionListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
+
             case "Run Settings":
                 openSettings();
                 break;
@@ -128,15 +145,22 @@ public class AppActionListener implements ActionListener {
             case "Options":
                 options.showOptions();
                 break;
-            case "Schedule Run":
-                scheduler.showScheduler(sMainFrame.getProject());
-                break;
-            case "Start Server":
-                SeleniumServer.get().loadFor(sMainFrame.getProject());
-                break;
+ //           case "Schedule Run":
+ //               scheduler.showScheduler(sMainFrame.getProject());
+ //               break;
+ //           case "Start Server":
+ //               SeleniumServer.get().loadFor(sMainFrame.getProject());
+ //               break;
             case "Import Feature File":
-                bddParser.parse(Utils.openDialog("Feature File", "feature"));
+            {
+                try {
+                    bddParser.parse(Utils.openDialog("Feature File", "feature"));
+                } catch (IOException ex) {
+                    Logger.getLogger(AppActionListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
+
             case "Open Feature Editor":
                 bddParser.openEditor();
                 break;

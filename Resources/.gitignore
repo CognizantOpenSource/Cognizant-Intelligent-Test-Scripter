@@ -1,0 +1,10 @@
+logs
+log.txt
+Installation.md
+!lib/cognizant-intelligent-test-scripter-datalib-2.0.jar
+!lib/cognizant-intelligent-test-scripter-engine-2.0.jar
+!lib/cognizant-intelligent-test-scripter-extensionconnect-2.0.jar
+!lib/cognizant-intelligent-test-scripter-qc-connection-2.0.jar
+!lib/cognizant-intelligent-test-scripter-testdata-csv-2.0.jar
+!lib/zfj-cloud-rest-client-1.0.jar
+lib/*.jar

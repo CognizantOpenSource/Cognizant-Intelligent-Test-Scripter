@@ -97,7 +97,19 @@ public class KeyMap {
      * @return resolved string
      */
     public static String replaceKeys(String in, Pattern p) {
-        return replaceKeys(in, p, false, 1, System.getProperties(), System.getenv());
+        String properties = System.getProperties().toString().replace("{", "").replace("}", "");
+        Map <String,String> props = new HashMap<String, String>();
+        for (String prop : properties.split(",")){
+          if(prop.split("=").length == 2)
+          props.put(prop.split("=")[0].trim(), prop.split("=")[1].trim());
+        }
+        String environmentVars = System.getenv().toString().replace("{", "").replace("}", "");
+        Map <String,String> envs = new HashMap<String, String>();
+        for (String env : environmentVars.split(",")){
+          if(env.split("=").length == 2)
+          envs.put(env.split("=")[0].trim(), env.split("=")[1].trim());
+        }
+        return replaceKeys(in, p, false, 1, props, envs);
     }
 
     public static String resolveSystemVars(String in) {
