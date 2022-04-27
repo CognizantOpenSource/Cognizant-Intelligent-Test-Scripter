@@ -49,8 +49,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -164,6 +162,16 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         mapToPage = new javax.swing.JMenuItem();
         loadFromPage = new javax.swing.JMenuItem();
+        fileChooserDialog = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jFileChooser1 = new javax.swing.JFileChooser();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
@@ -237,7 +245,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Open");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +254,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Save");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +263,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem3.setText("Exit");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +276,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
 
         jMenu2.setText("Tools");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Load Screen");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,7 +285,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        mapToPage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mapToPage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mapToPage.setText("Map To Page");
         mapToPage.setToolTipText("Map the cuurent ScreenShot and XML to the selected Page");
         mapToPage.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +295,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         });
         jMenu2.add(mapToPage);
 
-        loadFromPage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        loadFromPage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         loadFromPage.setText("Load From Page");
         loadFromPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +305,106 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         jMenu2.add(loadFromPage);
 
         jMenuBar1.add(jMenu2);
+
+        fileChooserDialog.setTitle("Load Details From Extenal File");
+        fileChooserDialog.setMinimumSize(new java.awt.Dimension(401, 281));
+        fileChooserDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        fileChooserDialog.setType(java.awt.Window.Type.POPUP);
+
+        jLabel2.setText("Dump XML");
+
+        jTextField1.setText("Any Dump.xml");
+
+        jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ScreenShot");
+
+        jTextField2.setText("Any Dump.png");
+
+        jButton3.setText("...");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Load");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("Android");
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("IOS");
+
+        javax.swing.GroupLayout fileChooserDialogLayout = new javax.swing.GroupLayout(fileChooserDialog.getContentPane());
+        fileChooserDialog.getContentPane().setLayout(fileChooserDialogLayout);
+        fileChooserDialogLayout.setHorizontalGroup(
+            fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                .addGroup(fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton2))
+                            .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(jButton3))))
+                    .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jRadioButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton2))
+                    .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jButton5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        fileChooserDialogLayout.setVerticalGroup(
+            fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(28, 28, 28)
+                .addGroup(fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fileChooserDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel3))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(fileChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addGap(26, 26, 26)
+                .addComponent(jButton5)
+                .addContainerGap())
+        );
+
+        jFileChooser1.setCurrentDirectory(new File(System.getProperty("user.dir")).getParentFile());
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -949,6 +1057,35 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         loadAndroidXMLAndScreenShot();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String val = showFileChooser(xmlDumpFilter);
+        if (val != null) {
+            jTextField1.setText(val);
+            String screenShot = val.replaceAll("\\.(uix|xml)", ".png");
+            if (new File(screenShot).exists()) {
+                jTextField2.setText(screenShot);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jTextField2.setText(showFileChooser(screenShotFilter));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (jTextField1.getText() != null
+                && jTextField2.getText() != null
+                && !jTextField1.getText().trim().isEmpty()
+                && !jTextField2.getText().trim().isEmpty()) {
+            jToggleButton1.setSelected(jRadioButton2.isSelected());
+            mobileTree.loadTree(jTextField1.getText());
+            mobileUtils.setScreenShotImageToLabelWResize(new File(jTextField2.getText()));
+            fileChooserDialog.setVisible(false);
+        } else {
+            Notification.show("Invalid details");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void spyrHealItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_spyrHealItemStateChanged
         if (spyrHeal.isSelected()) {
             spyrHeal.setIcon(heal);
@@ -1173,9 +1310,9 @@ public class MobileObjectSpy extends javax.swing.JFrame {
     }
 
     private void showOpenDialog() {
-     //   fileChooserDialog.pack();
-     //   fileChooserDialog.setLocationRelativeTo(null);
-     //   fileChooserDialog.setVisible(true);
+        fileChooserDialog.pack();
+        fileChooserDialog.setLocationRelativeTo(null);
+        fileChooserDialog.setVisible(true);
     }
 
     private String showFileChooser(FileFilter ff) {
@@ -1214,19 +1351,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                String remoteServer = "";
-                if(appiumServerLoc.getText().equals("http://127.0.0.1:4723/wd/hub"))
-                    remoteServer = "http://127.0.0.1:4723/wd/hub";
-                else{
-                    Matcher matcher = Pattern.compile("^((http[s]?):\\/)?\\/?([^:\\/\\s]+)(:([^\\/]*))?((\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)(\\?([^#]*))?(#(.*))?$").matcher(appiumServerLoc.getText()); 
-                    if(matcher.matches()){
-                         remoteServer = matcher.group(0); 
-                    }else{
-                        Notification.show("URL is not safe!");
-                    }
-                }
-                if(remoteServer.startsWith("http") && remoteServer.endsWith("/wd/hub"))
-                IOSpy.setSettings(remoteServer, jTable3);
+                IOSpy.setSettings(appiumServerLoc.getText(), jTable3);
                 String xml = IOSpy.getXML();
                 String screenshot = IOSpy.getScreenShot();
                 if (xml != null && screenshot != null) {
@@ -1258,6 +1383,7 @@ public class MobileObjectSpy extends javax.swing.JFrame {
     private javax.swing.JPanel androidSettings;
     private javax.swing.JTextField appiumServerLoc;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JDialog fileChooserDialog;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -1265,9 +1391,14 @@ public class MobileObjectSpy extends javax.swing.JFrame {
     private javax.swing.JComboBox iosEmulatorCombo;
     private javax.swing.JPanel iosSettings;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1281,6 +1412,8 @@ public class MobileObjectSpy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1290,6 +1423,8 @@ public class MobileObjectSpy extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;

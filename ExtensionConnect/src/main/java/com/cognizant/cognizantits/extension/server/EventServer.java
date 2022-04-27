@@ -59,8 +59,7 @@ public class EventServer {
             protected void doGet(HttpServletRequest req, HttpServletResponse resp)
                     throws ServletException, IOException {
                 try {
-                    resp.setHeader("Strict-Transport-Security","max-age=31536000; includeSubDomains");
-                    resp.setContentType("text/html; charset=utf-8");                   
+                    resp.setContentType("text/html; charset=utf-8");
                     resp.setStatus(HttpServletResponse.SC_OK);
                     resp.getWriter().println("<div class=\"svg\" style=\"display: flex;align-items: center;justify-content: center;margin-top: 10%;\">\n"
                             + "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"-265 235 30 30\" >\n"
@@ -104,7 +103,6 @@ public class EventServer {
         SslConnectionFactory sslConnectionFactory = getSSLConnectionFactory();
         HttpConnectionFactory httpConnectionFactory = new HttpConnectionFactory(new HttpConfiguration());
         ServerConnector connector = new ServerConnector(server, sslConnectionFactory, httpConnectionFactory);
-        
         connector.setPort(port);
         return connector;
     }

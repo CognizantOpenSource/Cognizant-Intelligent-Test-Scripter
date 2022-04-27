@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.datalib.component.Release;
 import com.cognizant.cognizantits.datalib.component.TestSet;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonTreeModel;
 import java.util.Collections;
+import java.util.List;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
@@ -71,7 +72,9 @@ public class TestLabModel extends CommonTreeModel {
 
     public TestSetNode addTestSet(TestSet testset) {
         if (getRoot().getChildCount() > 0) {
-            for (ReleaseNode releaseNode : ReleaseNode.toList(getRoot().children())) {
+            //for (ReleaseNode releaseNode : ReleaseNode.toList(getRoot().children())) {
+        	List<ReleaseNode> releaseNodes = ReleaseNode.toList(getRoot().children());
+			for (ReleaseNode releaseNode : releaseNodes) {
                 if (releaseNode.getRelease().equals(testset.getRelease())) {
                     return addTestSet(releaseNode, testset);
                 }

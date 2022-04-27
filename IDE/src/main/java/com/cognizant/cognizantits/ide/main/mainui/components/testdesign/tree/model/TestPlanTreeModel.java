@@ -18,7 +18,7 @@ package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.tree.mo
 import com.cognizant.cognizantits.datalib.component.Project;
 import com.cognizant.cognizantits.datalib.component.Scenario;
 import com.cognizant.cognizantits.datalib.component.TestCase;
-
+import java.util.List;
 /**
  *
  * 
@@ -57,7 +57,9 @@ public class TestPlanTreeModel extends ProjectTreeModel<TestPlanNode> {
     @Override
     public TestCaseNode addTestCase(TestCase testCase) {
         if (getRoot().getChildCount() > 0) {
-            for (ScenarioNode scenarioNode : ScenarioNode.toList(getRoot().children())) {
+            //for (ScenarioNode scenarioNode : ScenarioNode.toList(getRoot().children())) {
+        	List<ScenarioNode> scenarioNodes = ScenarioNode.toList(getRoot().children());
+        	for (ScenarioNode scenarioNode :scenarioNodes) {
                 if (scenarioNode.getScenario().equals(testCase.getScenario())) {
                     return addTestCase(scenarioNode, testCase);
                 }

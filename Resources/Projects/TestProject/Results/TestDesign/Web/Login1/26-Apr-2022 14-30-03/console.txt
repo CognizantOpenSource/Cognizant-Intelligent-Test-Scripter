@@ -1,0 +1,75 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 1.8.0_281
+java.home            : C:\Program Files\Java\jdk1.8.0_281\jre
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Tue Apr 26 14:30:03 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:Web] [TestCase: Login1] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 98.0.4758.102 (273bf7ac8c909cde36982d27f66f3c70846a3718-refs/branch-heads/4758@{#1151}) on port 38550
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-04-26 14:30:07:04S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @26-Apr-2022 14:30:07.007
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @26-Apr-2022 14:30:08.008
+Using @id [user-name], Object 'UserID' Found in 54 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @26-Apr-2022 14:30:08.008
+Using @id [password], Object 'Password' Found in 18 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Login] Button | Action: Click | Input:  | Conditon:  | @26-Apr-2022 14:30:08.008
+Using @id [login-button], Object '[Login] Button' Found in 26 ms
+[DONE]   | Clicking on [Login] Button
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @26-Apr-2022 14:30:08.008
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login1
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:08
+-----------------------------------------------------
+
+Run Finished on Tue Apr 26 14:30:12 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 26-Apr-2022 14-30-03
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:08
+ReportPath           : file:///C:\Users\586126\Work\CITS\CITS2.0\Gitlab\Java8\cognizant-intelligent-test-scripter-java8\Dist\release\Projects\TestProject\Results\TestDesign\Web\Login1\26-Apr-2022 14-30-03\summary.html
+-----------------------------------------------------

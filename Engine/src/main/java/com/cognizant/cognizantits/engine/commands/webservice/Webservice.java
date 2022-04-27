@@ -617,13 +617,13 @@ public class Webservice extends General {
         String payloadFileName = "";
         String path = "";
         if (reqOrRes.equals("request")) {
-        	payloadFileName = Report.getWebserviceRequestFileName();
+            payloadFileName = Report.getWebserviceRequestFileName();
         } else if (reqOrRes.equals("response")) {
-        	payloadFileName = Report.getWebserviceResponseFileName();
-            
+            payloadFileName = Report.getWebserviceResponseFileName();
         }
         try {
-            if (!payloadFileName.isBlank()) {
+           // if (!fileName.isBlank()) {
+           if(!payloadFileName.isEmpty()){ /*Java 8 change*/
                 path = FilePath.getCurrentResultsPath() + File.separator + "webservice";
                 FileManager.mkdir(path);
                 File location = new File(FilePath.getCurrentResultsPath() + payloadFileName);

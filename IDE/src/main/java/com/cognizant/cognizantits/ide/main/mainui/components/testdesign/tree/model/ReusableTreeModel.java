@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2019 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import com.cognizant.cognizantits.datalib.component.TestCase;
 import com.cognizant.cognizantits.datalib.component.utils.XMLOperation;
 import java.io.File;
 import java.util.Collections;
+import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -58,8 +59,12 @@ public class ReusableTreeModel extends ProjectTreeModel {
     }
 
     public void toggleAllTestCasesFrom(GroupNode groupNode) {
-        for (ScenarioNode scenarioNode : ScenarioNode.toList(groupNode.children())) {
-            for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) {
+        //for (ScenarioNode scenarioNode : ScenarioNode.toList(groupNode.children())) { Java 8
+    	List<ScenarioNode> scenarioNodes = ScenarioNode.toList(groupNode.children());
+		for (ScenarioNode scenarioNode : scenarioNodes) {
+            //for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) { Java 8
+			List<TestCaseNode> testCaseNodes = TestCaseNode.toList(scenarioNode.children());
+			for (TestCaseNode testCaseNode : testCaseNodes) {
                 testCaseNode.getTestCase().toggleAsReusable();
             }
         }
@@ -69,8 +74,12 @@ public class ReusableTreeModel extends ProjectTreeModel {
     public TestCaseNode addTestCase(TestCase testCase) {
         GroupNode groupNode;
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : GroupNode.toList(getRoot().children())) {
-                for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) {
+          //  for (GroupNode group : GroupNode.toList(getRoot().children())) { Java 8
+        	List<GroupNode> groups = GroupNode.toList(getRoot().children());
+        	for (GroupNode group : groups) {
+          //      for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) { Java 8
+        		List<ScenarioNode> scenarioNodes = ScenarioNode.toList(group.children());
+        		for (ScenarioNode scenarioNode : scenarioNodes) {
                     if (scenarioNode.getScenario().equals(testCase.getScenario())) {
                         return addTestCase(scenarioNode, testCase);
                     }
@@ -98,7 +107,9 @@ public class ReusableTreeModel extends ProjectTreeModel {
     @Override
     public void onScenarioRename(Scenario scenario) {
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : GroupNode.toList(getRoot().children())) {
+           // for (GroupNode group : GroupNode.toList(getRoot().children())) { Java 8
+        	List<GroupNode> groups =  GroupNode.toList(getRoot().children());
+        	for (GroupNode group : groups) {
                 ScenarioNode sNode = group.getScenarioNodeBy(scenario);
                 if (sNode != null) {
                     reload(sNode);
@@ -120,11 +131,17 @@ public class ReusableTreeModel extends ProjectTreeModel {
 
     private void saveProjectXML(Element rootElement) {
         if (getRoot().getChildCount() > 0) {
-            for (GroupNode group : GroupNode.toList(getRoot().children())) {
+            //for (GroupNode group : GroupNode.toList(getRoot().children())) { Java 8
+        	List<GroupNode> groups = GroupNode.toList(getRoot().children());
+			for (GroupNode group : groups) {
                 Element groupElement = createAndSetAttribute(rootElement, group);
-                for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) {
+                //for (ScenarioNode scenarioNode : ScenarioNode.toList(group.children())) { Java 8
+                List<ScenarioNode> scenarioNodes = ScenarioNode.toList(group.children());
+				for (ScenarioNode scenarioNode :scenarioNodes) {
                     Element scenarioElement = createAndSetAttribute(groupElement, scenarioNode.scenario);
-                    for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) {
+                    //for (TestCaseNode testCaseNode : TestCaseNode.toList(scenarioNode.children())) { Java 8
+					List<TestCaseNode> testCaseNodes = TestCaseNode.toList(scenarioNode.children());
+					for (TestCaseNode testCaseNode : testCaseNodes) {
                         createAndSetAttribute(scenarioElement, testCaseNode.testCase);
                     }
                 }

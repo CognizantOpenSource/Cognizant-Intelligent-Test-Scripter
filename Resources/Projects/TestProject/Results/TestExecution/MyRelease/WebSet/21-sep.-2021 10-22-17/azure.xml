@@ -1,0 +1,30 @@
+<test-run id="ca502afa-58fa-4b57-bf8a-cf5ee6d17c03" name="WebSet" fullname="WebSet" testcasecount="4" passed="2" failed="2" result="Failed" time="51.000" run-date="2021-09-21" start-time="10:22:17" end-time="10:22:44">
+<test-suite id="df55b1fb-7025-41a3-b824-af379e6b4dd8" type="Assembly" name="WebSet" fullname="WebSet" testcasecount="4" passed="2" failed="2" result="Failed" time="51.000">
+<test-case id="5764639f-c1bd-422c-aaae-36d7a3e20dc5" name="Login1" fullname="Login1" result="Passed" time="9.000"><failure><message><![CDATA[This Test Case has no error. For details see the steps below:
+Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [DONE]   | Clicking on [Login] Button
+Step 5:   [PASS]   | Screenshot is taken
+]]></message></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep.-2021 10-10-15\img\Web_Login1_Step-5_10-10-22.png</filePath></attachment>
+</attachments></test-case><test-case id="247b2831-fdc0-4949-bddc-9b8c94df2a63" name="Login2" fullname="Login2" result="Failed" time="18.000"><failure><message><![CDATA[Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></message><stack-trace><![CDATA[Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></stack-trace></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep.-2021 10-10-15\img\Web_Login2_Step-4_10-10-31.png</filePath></attachment>
+</attachments></test-case><test-case id="4e1af7b1-857b-41fe-99ec-6019d6c717ee" name="Login1" fullname="Login1" result="Passed" time="7.000"><failure><message><![CDATA[This Test Case has no error. For details see the steps below:
+Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [DONE]   | Clicking on [Login] Button
+Step 5:   [PASS]   | Screenshot is taken
+]]></message><stack-trace><![CDATA[Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></stack-trace></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep.-2021 10-22-17\img\Web_Login1_Step-5_10-22-22.png</filePath></attachment>
+</attachments></test-case><test-case id="e280bb30-6b90-42d6-ace9-1fe76294f156" name="Login2" fullname="Login2" result="Failed" time="17.000"><failure><message><![CDATA[Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></message><stack-trace><![CDATA[Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></stack-trace></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep.-2021 10-22-17\img\Web_Login2_Step-4_10-22-40.png</filePath></attachment>
+</attachments></test-case></test-suite></test-run>

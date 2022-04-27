@@ -35,7 +35,6 @@ var toggleImg = {
     "true": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAuklEQVQ4T+3SMQ4BQRQG4I9CNDqNA+hcQO0IWiUnEIkjKJxA1AqHULqBygFUKo0okE2GbNauHaE01WT2n+/NvpmKH4/Kjz1/8PuOxvSwilkoNcX1XdkYcIFRQJapea5bBo4xz+yc5Kw9I+/APtZIfjk9bhhglXfEIrCLDeoF/Tqjh232ex7YDsFmyZ0fkRTep3NZsBGwTuQD2gX09MhnwRaSm6xFghcMcSgCI53iWNmz+bjAH/y4ZS8b7qUTFRUHsobWAAAAAElFTkSuQmCC",
     "false": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACBSURBVDhPYxgFIwAwQmkYkATi5UDMA+YRBp+BOAqIn4N5WAAvEF8B4v9E4ktADNKDF0gB8SMgxmYAMn4AxCAfEQW0gfgDEGMzCITfA7EWEJME3IH4NxCjG/YTiB2AmCyQDMToBiYBMUWgA4hhhrWCBCgFTEDcDcSdUPYoGOGAgQEAwoowLhjiyB4AAAAASUVORK5CYII="
 };
-var logFileLoc="./logs/";
 /**
  * prototype for String.replaceAll()
  * @param {type} find string to replace
@@ -181,7 +180,6 @@ var isTCMatched = function(exe) {
             $scope.browsers = browserHeaders;
             $scope.views = views;
             $scope.Title = Params.SC + " : " + Params.TC;
-		logFileLoc=logFileLoc+Params.SC + "_" + Params.TC+".txt";
             $scope.cDetails = ($scope.Details[$scope.view]);
             $scope.cRowsGRP = $sce.trustAsHtml(renderTableGRP($scope.GRPSteps));
             $scope.setView = function(v) {
@@ -572,8 +570,6 @@ var setupGRPExeFilter = function(table) {
             var title = $(this).text();
             $(this).append('<br><input class = "hideOnPrint" type="text"  placeholder="Search ' + title + '"/>');
         });
-//	Log file
-	document.getElementById("logs").setAttribute("href",logFileLoc);
         table.columns().indexes().each(function(colIdx) {
             $('input', table.column(colIdx).header()).on('keyup change', function() {
                 table.column(colIdx).search(this.value).draw();

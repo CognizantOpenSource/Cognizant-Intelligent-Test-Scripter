@@ -50,9 +50,6 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="jToolBar1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
-        </Property>
         <Property name="floatable" type="boolean" value="false"/>
         <Property name="orientation" type="int" value="1"/>
         <Property name="rollover" type="boolean" value="true"/>
@@ -89,9 +86,6 @@
         </Component>
         <Component class="javax.swing.JToggleButton" name="appToggle">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
@@ -281,12 +275,14 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="projLocation" alignment="1" min="-2" pref="407" max="-2" attributes="0"/>
                           <Component id="projName" alignment="1" min="-2" pref="407" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="61" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="browseProject" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -306,11 +302,14 @@
                       <Component id="projName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="projLocation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="browseProject" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="createNewProject" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="117" max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -343,13 +342,17 @@
             </Component>
             <Component class="javax.swing.JTextField" name="projLocation">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new File(&quot;Projects&quot;).getAbsolutePath()" type="code"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="browseProject">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projLocationActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseProjectActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="createNewProject">
@@ -366,9 +369,6 @@
     </Container>
     <Container class="javax.swing.JToolBar" name="jToolBar2">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
-        </Property>
         <Property name="floatable" type="boolean" value="false"/>
         <Property name="rollover" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -391,12 +391,6 @@
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[32767, 32767]"/>
             </Property>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="33" red="33" type="rgb"/>
-            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.Glue"/>
@@ -404,9 +398,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="openLastOpened">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Always Open the Last Opened Project"/>
             <Property name="toolTipText" type="java.lang.String" value="You can change this setting on File-&gt; Configuration-&gt; Options"/>
             <Property name="focusable" type="boolean" value="false"/>

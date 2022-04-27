@@ -30,23 +30,6 @@
     "ref" : "com.cognizant.cognizantits.datalib.model.Tag",
     "attributes" : [ ],
     "tags" : [ ]
-  }, {
-    "type" : "scenario",
-    "name" : "NewScenario",
-    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
-    "attributes" : [ ],
-    "tags" : [ ]
   } ],
-  "data" : [ {
-    "id" : "NewScenario#NewTestCase",
-    "name" : "NewTestCase",
-    "tags" : [ ],
-    "attributes" : [ {
-      "name" : "type",
-      "value" : "testcase"
-    }, {
-      "name" : "scenario",
-      "value" : "NewScenario"
-    } ]
-  } ]
+  "data" : [ ]
 }

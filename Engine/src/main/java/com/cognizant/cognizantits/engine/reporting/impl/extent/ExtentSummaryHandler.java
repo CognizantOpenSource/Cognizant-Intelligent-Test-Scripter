@@ -170,14 +170,15 @@ public class ExtentSummaryHandler extends SummaryHandler implements PrimaryHandl
         extentReport.sparkReporter.config().setCss(".uri-anchor, .pointer {display: none; }");
         extentReport.sparkReporter.config().setJs("var x = document.getElementsByClassName(\"badge badge-gradient-primary\");for (let i = 0; i < x.length; i++) {x[i].innerHTML = \"Click to view screenshot\";}");
         
-
         extentReport.extentReports = new ExtentReports();
         
         extentReport.extentReports.setSystemInfo("Execution Mode", Control.getCurrentProject().getProjectSettings().getExecSettings().getRunSettings().getExecutionMode());
         extentReport.extentReports.setSystemInfo("Thread count", String.valueOf(Control.exe.getExecSettings().getRunSettings().getThreadCount()));
-        extentReport.extentReports.setSystemInfo("Execution Environment", Control.exe.runEnv());
+        extentReport.extentReports.setSystemInfo("Execution Environment", Control.getCurrentProject().getProjectSettings().getExecSettings().getRunSettings().getTestEnv());
+        
         
         extentReport.extentReports.attachReporter(extentReport.sparkReporter);
+     
     }
 
 }

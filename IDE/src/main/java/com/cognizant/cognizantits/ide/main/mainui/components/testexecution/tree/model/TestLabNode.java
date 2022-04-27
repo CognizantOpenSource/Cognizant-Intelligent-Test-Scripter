@@ -20,6 +20,7 @@ import com.cognizant.cognizantits.datalib.component.Release;
 import com.cognizant.cognizantits.datalib.component.TestSet;
 import com.cognizant.cognizantits.ide.main.utils.tree.CommonNode;
 import java.util.Collections;
+import java.util.List;
 import java.util.Enumeration;
 import javax.swing.tree.TreeNode;
 
@@ -60,7 +61,9 @@ public class TestLabNode extends CommonNode {
     }
 
     public ReleaseNode getReleaseBy(Release release) {
-        for (TreeNode releaseNode : Collections.list(children())) {
+        //for (TreeNode releaseNode : Collections.list(children())) {
+    	List<TreeNode> releaseNodes = Collections.list(children());
+    	for(TreeNode releaseNode :releaseNodes) {
             if (((ReleaseNode)releaseNode).getRelease().equals(release)) {
                 return (ReleaseNode)releaseNode;
             }

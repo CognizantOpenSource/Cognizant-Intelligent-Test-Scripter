@@ -63,7 +63,10 @@ public class ReusableNode extends CommonNode {
     }
 
     public GroupNode getGroupByName(String groupName) {
-        for (GroupNode group : GroupNode.toList(children())) {
+      //  for (GroupNode group : GroupNode.toList(children())) {   Java 8 changes
+        List<GroupNode> groups = GroupNode.toList(children());
+        for (GroupNode group : groups) {
+
             if (group.toString().equals(groupName)) {
                 return group;
             }

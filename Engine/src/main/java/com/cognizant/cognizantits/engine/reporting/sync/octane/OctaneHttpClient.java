@@ -130,20 +130,18 @@ class OctaneHttpClient extends BasicHttpClient {
 
 	public JSONObject parseoctaneResponse(HttpResponse response) throws Exception {
 		HttpEntity entity = response.getEntity();
-		//StringBuffer resp = new StringBuffer();
-                String resp = "";
-		//String line = "";
+		StringBuffer resp = new StringBuffer();
+		String line = "";
 
 		try {
 
 			if (entity != null) {
-				//BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+				BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
-				//while ((line = rd.readLine()) != null) {
-				//	resp.append(line);
-				//}
+				while ((line = rd.readLine()) != null) {
+					resp.append(line);
+				}
 				// System.out.println("response " + resp);
-                                resp = EntityUtils.toString(entity);
 				JSONParser parser = new JSONParser();
 				Object data = parser.parse(resp.toString());
 				JSONObject jobj;

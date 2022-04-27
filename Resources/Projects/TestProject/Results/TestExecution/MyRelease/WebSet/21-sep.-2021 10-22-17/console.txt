@@ -1,0 +1,214 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.11
+java.home            : C:\Program Files\Java\jdk-11.0.11
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Tue Sep 21 10:22:17 CEST 2021
+Loading Browser Profile
+Loading RunManager
+[Scenario:Web] [TestCase: Login1] [Description: Login1] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Web] [TestCase: Login2] [Description: Login2] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[2] TestCases selected for execution from [//MyRelease/WebSet]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+testset : WebSet
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Starting test case exec : Login1
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 47667
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1632212539.929][WARNING]: This version of ChromeDriver has not been tested with Chrome version 93.
+2021-09-21 10:22:20:09S +0200 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @21-sep.-2021 10:22:20.020
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @21-sep.-2021 10:22:21.021
+Using @id [user-name], Object 'UserID' Found in 19 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @21-sep.-2021 10:22:22.022
+Using @id [password], Object 'Password' Found in 23 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Login] Button | Action: Click | Input:  | Conditon:  | @21-sep.-2021 10:22:22.022
+Using @id [login-button], Object '[Login] Button' Found in 23 ms
+[DONE]   | Clicking on [Login] Button
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @21-sep.-2021 10:22:22.022
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login1
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:07
+-----------------------------------------------------
+
+{"noTests":5,"iterationType":"Single","description":"Login1","platform":"WIN10","exeTime":"00:00:07","iterations":1,"testcaseName":"Login1","browser":"Chrome Headless","nopassTests":"5","startTime":"21-sep.-2021 10:22:17.017","endTime":"21-sep.-2021 10:22:25.025","scenarioName":"Web","bversion":"93","nofailTests":"0","STEPS":[{"data":[{"data":{"stepno":1,"stepName":"Open","tStamp":"21-sep.-2021 10:22:21.021","action":"Open","description":"Opened Url: https:\/\/www.saucedemo.com\/","status":"DONE"},"name":"Open the Url [<Data>] in the Browser","type":"step"},{"data":{"stepno":2,"stepName":"Set","tStamp":"21-sep.-2021 10:22:22.022","action":"Set","description":"Entered Text 'standard_user' on 'UserID'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":3,"stepName":"Set","tStamp":"21-sep.-2021 10:22:22.022","action":"Set","description":"Entered Text 'test' on 'Password'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":4,"stepName":"Click","tStamp":"21-sep.-2021 10:22:22.022","action":"Click","description":"Clicking on [Login] Button","status":"DONE"},"name":"Click the [<Object>] ","type":"step"},{"data":{"stepno":5,"stepName":"takeScreenshot","tStamp":"21-sep.-2021 10:22:24.024","link":"\\img\\Web_Login1_Step-5_10-22-22.png","action":"takeScreenshot","description":"Screenshot is taken","status":"PASS"},"name":"Take a Screen Shot ","type":"step"}],"name":"Iteration_1","type":"iteration","status":"PASS"}],"status":"PASS"}
+{"noTests":5,"iterationType":"Single","description":"Login1","platform":"WIN10","exeTime":"00:00:07","iterations":1,"testcaseName":"Login1","browser":"Chrome Headless","nopassTests":"5","startTime":"21-sep.-2021 10:22:17.017","endTime":"21-sep.-2021 10:22:25.025","scenarioName":"Web","bversion":"93","nofailTests":"0","STEPS":[{"data":[{"data":{"stepno":1,"stepName":"Open","tStamp":"21-sep.-2021 10:22:21.021","action":"Open","description":"Opened Url: https:\/\/www.saucedemo.com\/","status":"DONE"},"name":"Open the Url [<Data>] in the Browser","type":"step"},{"data":{"stepno":2,"stepName":"Set","tStamp":"21-sep.-2021 10:22:22.022","action":"Set","description":"Entered Text 'standard_user' on 'UserID'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":3,"stepName":"Set","tStamp":"21-sep.-2021 10:22:22.022","action":"Set","description":"Entered Text 'test' on 'Password'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":4,"stepName":"Click","tStamp":"21-sep.-2021 10:22:22.022","action":"Click","description":"Clicking on [Login] Button","status":"DONE"},"name":"Click the [<Object>] ","type":"step"},{"data":{"stepno":5,"stepName":"takeScreenshot","tStamp":"21-sep.-2021 10:22:24.024","link":"\\img\\Web_Login1_Step-5_10-22-22.png","action":"takeScreenshot","description":"Screenshot is taken","status":"PASS"},"name":"Take a Screen Shot ","type":"step"}],"name":"Iteration_1","type":"iteration","status":"PASS"}],"status":"PASS"}
+[Uploading Results to Test management]
+Starting test case exec : Login2
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 27756
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1632212548.155][WARNING]: This version of ChromeDriver has not been tested with Chrome version 93.
+2021-09-21 10:22:29:09S +0200 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @21-sep.-2021 10:22:29.029
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @21-sep.-2021 10:22:30.030
+Using @id [user-name], Object 'UserID' Found in 19 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @21-sep.-2021 10:22:30.030
+Using @id [password], Object 'Password' Found in 26 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Invalid Object] | Action: assertElementPresent | Input:  | Conditon:  | @21-sep.-2021 10:22:30.030
+2021-09-21 10:22:40:09S +0200 [OFF ] com.cognizant.cognizantits.engine.drivers.AutomationObject getElements:null
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.cognizant.cognizantits.engine.drivers.AutomationObject$$Lambda$697/0x000000010095c040@c89d941 (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'WPU8L0081242', ip: '192.168.1.50', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 93.0.4577.82, chrome: {chromedriverVersion: 92.0.4515.107 (87a818b10553..., userDataDir: C:\Users\LA56QS\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:58874}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 38b505e277eadebe7ed0a8e1650b5cdd
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getElements(AutomationObject.java:303)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getWElements(AutomationObject.java:255)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElements(AutomationObject.java:242)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:118)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:111)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:94)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:179)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:160)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Couldn't find Object '[Invalid Object]' in stipulated Time '10' Seconds
+[FAIL]   | Element [[Invalid Object]] is not Present
+
+===================================================================================================
+
+2021-09-21 10:22:42:09S +0200 [SEVERE] com.cognizant.cognizantits.engine.execution.run.TestCaseRunner onRuntimeException:Element [[Invalid Object]] is not Present
+com.cognizant.cognizantits.engine.execution.exception.ForcedException: Element [[Invalid Object]] is not Present
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:82)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:87)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElementPresent(AssertElement.java:57)
+	at com.cognizant.cognizantits.engine.support.reflect.MethodExecutor.executeMethod(MethodExecutor.java:39)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeAction(TestStepRunner.java:165)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:161)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login2
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 1
+Time Taken           : 00:00:17
+-----------------------------------------------------
+
+{"noTests":4,"iterationType":"Single","description":"Login2","platform":"WIN10","exeTime":"00:00:17","iterations":1,"testcaseName":"Login2","browser":"Chrome Headless","nopassTests":"3","startTime":"21-sep.-2021 10:22:25.025","endTime":"21-sep.-2021 10:22:43.043","scenarioName":"Web","bversion":"93","nofailTests":"1","STEPS":[{"data":[{"data":{"stepno":1,"stepName":"Open","tStamp":"21-sep.-2021 10:22:30.030","action":"Open","description":"Opened Url: https:\/\/www.saucedemo.com\/","status":"DONE"},"name":"Open the Url [<Data>] in the Browser","type":"step"},{"data":{"stepno":2,"stepName":"Set","tStamp":"21-sep.-2021 10:22:30.030","action":"Set","description":"Entered Text 'standard_user' on 'UserID'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":3,"stepName":"Set","tStamp":"21-sep.-2021 10:22:30.030","action":"Set","description":"Entered Text 'test' on 'Password'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":4,"stepName":"assertElementPresent","tStamp":"21-sep.-2021 10:22:42.042","link":"\\img\\Web_Login2_Step-4_10-22-40.png","action":"assertElementPresent","description":"Element [[Invalid Object]] is not Present","status":"FAIL"},"name":"Click the [<Object>] ","type":"step"}],"name":"Iteration_1","type":"iteration","status":"FAIL"}],"status":"FAIL"}
+{"noTests":4,"iterationType":"Single","description":"Login2","platform":"WIN10","exeTime":"00:00:17","iterations":1,"testcaseName":"Login2","browser":"Chrome Headless","nopassTests":"3","startTime":"21-sep.-2021 10:22:25.025","endTime":"21-sep.-2021 10:22:43.043","scenarioName":"Web","bversion":"93","nofailTests":"1","STEPS":[{"data":[{"data":{"stepno":1,"stepName":"Open","tStamp":"21-sep.-2021 10:22:30.030","action":"Open","description":"Opened Url: https:\/\/www.saucedemo.com\/","status":"DONE"},"name":"Open the Url [<Data>] in the Browser","type":"step"},{"data":{"stepno":2,"stepName":"Set","tStamp":"21-sep.-2021 10:22:30.030","action":"Set","description":"Entered Text 'standard_user' on 'UserID'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":3,"stepName":"Set","tStamp":"21-sep.-2021 10:22:30.030","action":"Set","description":"Entered Text 'test' on 'Password'","status":"DONE"},"name":"Enter the value [<Data>] in the Field [<Object>]","type":"step"},{"data":{"stepno":4,"stepName":"assertElementPresent","tStamp":"21-sep.-2021 10:22:42.042","link":"\\img\\Web_Login2_Step-4_10-22-40.png","action":"assertElementPresent","description":"Element [[Invalid Object]] is not Present","status":"FAIL"},"name":"Click the [<Object>] ","type":"step"}],"name":"Iteration_1","type":"iteration","status":"FAIL"}],"status":"FAIL"}
+[Uploading Results to Test management]
+Run Finished on Tue Sep 21 10:22:43 CEST 2021
+2021-09-21 10:22:44:09S +0200 [SEVERE] tech.grasshopper.reporter.ExtentPDFReporter flush:An exception occurred
+java.io.IOException: The TrueType font null does not contain a 'cmap' table
+	at org.apache.fontbox.ttf.TrueTypeFont.getUnicodeCmapImpl(TrueTypeFont.java:561)
+	at org.apache.fontbox.ttf.TrueTypeFont.getUnicodeCmapLookup(TrueTypeFont.java:541)
+	at org.apache.fontbox.ttf.TrueTypeFont.getUnicodeCmapLookup(TrueTypeFont.java:527)
+	at org.apache.fontbox.ttf.TTFSubsetter.<init>(TTFSubsetter.java:90)
+	at org.apache.pdfbox.pdmodel.font.TrueTypeEmbedder.subset(TrueTypeEmbedder.java:347)
+	at org.apache.pdfbox.pdmodel.font.PDType0Font.subset(PDType0Font.java:256)
+	at org.apache.pdfbox.pdmodel.PDDocument.save(PDDocument.java:1367)
+	at org.apache.pdfbox.pdmodel.PDDocument.save(PDDocument.java:1342)
+	at tech.grasshopper.reporter.ReportGenerator.generate(ReportGenerator.java:92)
+	at tech.grasshopper.reporter.ExtentPDFReporter.flush(ExtentPDFReporter.java:105)
+	at tech.grasshopper.reporter.ExtentPDFReporter.access$100(ExtentPDFReporter.java:20)
+	at tech.grasshopper.reporter.ExtentPDFReporter$1.onNext(ExtentPDFReporter.java:84)
+	at tech.grasshopper.reporter.ExtentPDFReporter$1.onNext(ExtentPDFReporter.java:77)
+	at io.reactivex.rxjava3.subjects.PublishSubject$PublishDisposable.onNext(PublishSubject.java:310)
+	at io.reactivex.rxjava3.subjects.PublishSubject.onNext(PublishSubject.java:226)
+	at com.aventstack.extentreports.ReactiveSubject.onFlush(ReactiveSubject.java:83)
+	at com.aventstack.extentreports.AbstractProcessor.onFlush(AbstractProcessor.java:85)
+	at com.aventstack.extentreports.ExtentReports.flush(ExtentReports.java:284)
+	at com.cognizant.cognizantits.engine.reporting.impl.extent.ExtentSummaryHandler.flushExtentReport(ExtentSummaryHandler.java:155)
+	at com.cognizant.cognizantits.engine.reporting.impl.extent.ExtentSummaryHandler.finalizeReport(ExtentSummaryHandler.java:143)
+	at com.cognizant.cognizantits.engine.reporting.SummaryReport.finalizeReport(SummaryReport.java:170)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:196)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+-----------------------------------------------------
+ExecutionDate        : 21-sep.-2021 10-22-17
+Executed TestCases   : 2
+Passed TestCases     : 1
+Failed TestCases     : 1
+Time Taken           : 00:00:27
+ReportPath           : file:///C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep.-2021 10-22-17\summary.html
+-----------------------------------------------------
+
+---------------------------------------------------
+Azure Report XML generated
+-----------------------------------------------------
+
+2021-09-21 10:22:46:09S +0200 [INFO] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient createNewTestRun:Conneting Azure DevOps to update results
+Azure DevOps: updating //Web/Login1 result(Passed) with 2 attachments... Azure DevOps: updating //Web/Login2 result(Failed) with 2 attachments... 

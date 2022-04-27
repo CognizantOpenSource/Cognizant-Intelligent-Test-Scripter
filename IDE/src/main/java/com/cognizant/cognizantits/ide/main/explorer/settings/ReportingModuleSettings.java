@@ -18,7 +18,6 @@ package com.cognizant.cognizantits.ide.main.explorer.settings;
 import com.cognizant.cognizantits.ide.util.data.FileScanner;
 import com.cognizant.cognizantits.ide.util.logging.UILogger;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,9 +123,9 @@ public class ReportingModuleSettings {
     /**
      * @return the _jsonFile
      */
-    public String getFile() throws IOException {
-       return new File(System.getProperty("user.dir") + File.separator
-                + "Configuration" + File.separator + DBNAME + ".json").getCanonicalPath();
+    public String getFile() {
+        return System.getProperty("user.dir") + File.separator
+                + "Configuration" + File.separator + DBNAME + ".json";
     }
 
     /**
@@ -135,7 +134,7 @@ public class ReportingModuleSettings {
      * @param fields
      * @param moduleId
      */
-    public void updateFields(List<HashMap<String, String>> fields, String moduleId) throws IOException {
+    public void updateFields(List<HashMap<String, String>> fields, String moduleId) {
 
         for (HashMap<String, String> properties : fields) {
             ((JSONObject) ((JSONObject) data.get("fields")).get(moduleId))
@@ -149,7 +148,7 @@ public class ReportingModuleSettings {
      *
      * @param modules
      */
-    public void updateModules(List<HashMap<String, String>> modules) throws IOException{
+    public void updateModules(List<HashMap<String, String>> modules) {
         this.cleanModules();
         for (HashMap<String, String> properties : modules) {
             ((JSONArray) data.get("modules")).add(properties.get(moduleHeaders[0]));
@@ -157,7 +156,7 @@ public class ReportingModuleSettings {
         save();
     }
 
-    public void save() throws IOException{
+    public void save() {
         FileScanner.writeFile(new File(getFile()), data.toJSONString());
     }
 }

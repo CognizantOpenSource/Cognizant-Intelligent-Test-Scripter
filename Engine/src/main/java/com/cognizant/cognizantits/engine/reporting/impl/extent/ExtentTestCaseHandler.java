@@ -54,6 +54,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import java.util.Base64;
 
+
 @SuppressWarnings({ "unchecked" })
 public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHandler {
 	private static final Logger LOGGER = Logger.getLogger(ExtentTestCaseHandler.class.getName());
@@ -71,7 +72,7 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 	public HttpClient client = HttpClientBuilder.create().useSystemProperties().build();
 	public static Map<String, String> itemIds = new HashMap<String, String>();
 
-	String CurrentComponent ="" ;
+	String CurrentComponent = "";
 
 	int ComponentCounter = 0;
 	int iterCounter = 0;
@@ -89,7 +90,6 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 	ExtentReport extentReport = new ExtentReport();
 
 	ExtentTest test;
-	//ExtentTest originalState;
 
 	public ExtentTestCaseHandler(TestCaseReport report) {
 		super(report);
@@ -184,14 +184,13 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 			if (data.get(RDS.Step.Data.LINK) != null) {
 				filename = AppResourcePath.getCurrentResultsPath() + data.get(RDS.Step.Data.LINK);
 			}
-
                         String payloadfiles = testCaseData.get(TestCase.SCENARIO_NAME)
 		             + "_"
 		             + testCaseData.get(TestCase.TESTCASE_NAME)
 		             + "_Step-"
 		             + getStepCount()
 		             + "_";
-                        
+
 			if (isExtentEnabled()) {
 				try {
 					sendLog(getStep().Action,payloadfiles,state.toString(), stepData, filename);
@@ -234,7 +233,7 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 		reusable = RDS.getNewReusable(component, desc);
 		reusableStack.push(reusable);
 		isIteration = false;
-                this.CurrentComponent = component;
+		this.CurrentComponent = component;
 		this.test.info(MarkupHelper.createLabel("Reusable Component : ["+this.CurrentComponent+"] starts here", ExtentColor.GREY));
 	}
 
@@ -411,10 +410,11 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 		testCaseData.put(TestCase.NO_OF_TESTS, getStepCount());
 		testCaseData.put(TestCase.NO_OF_FAIL_TESTS, String.valueOf(this.FailedSteps));
 		testCaseData.put(TestCase.NO_OF_PASS_TESTS, String.valueOf(this.DoneSteps + this.PassedSteps));
-		testCaseData.put(TestCase.STATUS, getCurrentStatus().toString());           
-                if(getStepCount()==1 && this.PassedSteps==0 && this.DoneSteps!=1){
+		testCaseData.put(TestCase.STATUS, getCurrentStatus().toString());
+                if(getStepCount()==1 && this.PassedSteps==0){
                    this.test.fail(MarkupHelper.createLabel("An exception has occured! Please check the console.txt for details.",ExtentColor.RED));
                 }
+
 
 	}
 
@@ -457,7 +457,7 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 			}
 		} else {
 			String encodedString = "";
-			File file = new File(new File(filename).getCanonicalPath());
+			File file = new File(filename);
 			if (!file.isDirectory()) {
 				byte[] fileContent = FileUtils.readFileToByteArray(file);
 				encodedString = "data:image/png;base64," + Base64.getEncoder().encodeToString(fileContent);
@@ -500,6 +500,6 @@ public class ExtentTestCaseHandler extends TestCaseHandler implements PrimaryHan
 				}
 			}
 		}
-	    }
+		
 	}
-
+}

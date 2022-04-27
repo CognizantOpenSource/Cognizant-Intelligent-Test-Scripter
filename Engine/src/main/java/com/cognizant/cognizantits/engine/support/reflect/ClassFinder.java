@@ -35,7 +35,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 public class ClassFinder {
 
@@ -93,7 +92,6 @@ public class ClassFinder {
                     name = name.substring(0, name.length() - 6).replace('/', '.');
                     if (!inPkgs(pkgs, name)) {
                         try {
-                            
                             Class<?> c = cl.loadClass(name);
                             c.asSubclass(Command.class);
                             classes.add(c);

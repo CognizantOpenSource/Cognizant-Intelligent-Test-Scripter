@@ -106,6 +106,7 @@ public class RPSummaryHandler extends SummaryHandler implements PrimaryHandler {
     @Override
     public synchronized void updateTestCaseResults(RunContext runContext, TestCaseReport report, Status state,
             String executionTime) {
+        
         String status;
         if (state.equals(Status.PASS)) {
             status = "Passed";

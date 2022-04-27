@@ -305,9 +305,9 @@ public class TestsetComponent extends JPanel implements ActionListener {
                 case "Reload":
                     reload();
                     break;
-            //    case "Search":
-            //        testSetTable.searchFor(((JTextField) ae.getSource()).getText());
-            //        break;
+                case "Search":
+                    testSetTable.searchFor(((JTextField) ae.getSource()).getText());
+                    break;
                 case "GoToNextSearch":
                     testSetTable.goToNextSearch();
                     break;

@@ -54,7 +54,9 @@ public class GroupNode extends CommonNode {
     }
 
     public ScenarioNode getScenarioNodeBy(Scenario scenario) {
-        for (TreeNode scenarioNode : Collections.list(children())) {
+        //for (TreeNode scenarioNode : Collections.list(children())) {
+    	List<TreeNode> scenarioNodes = Collections.list(children());
+    	for(TreeNode scenarioNode : scenarioNodes) {
             if (((ScenarioNode)scenarioNode).getScenario().equals(scenario)) {
                 return (ScenarioNode)scenarioNode;
             }
@@ -72,8 +74,12 @@ public class GroupNode extends CommonNode {
         ReusableNode rNode = (ReusableNode) getParent();
         if (rNode.getGroupByName(name) == null) {
             setName(name);
-            for (TreeNode scenarioNode: Collections.list(children())) {
-                for (TreeNode testCaseNode : Collections.list(scenarioNode.children())) {
+            //for (TreeNode scenarioNode: Collections.list(children())) {
+            List<TreeNode> scenarioNodes = Collections.list(children());
+            for(TreeNode scenarioNode:scenarioNodes) {
+                //for (TreeNode testCaseNode : Collections.list(scenarioNode.children())) {
+            	List<TreeNode> testCaseNodes = Collections.list(scenarioNode.children());
+            	for(TreeNode testCaseNode :testCaseNodes ) {
                     ((TestCaseNode)testCaseNode).getTestCase().getReusable().setGroup(name);
                 }
             }

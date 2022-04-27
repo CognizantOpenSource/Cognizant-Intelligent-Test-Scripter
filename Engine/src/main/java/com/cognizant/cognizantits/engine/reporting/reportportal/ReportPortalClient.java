@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -265,7 +265,7 @@ public class ReportPortalClient {
             putRequest.setEntity(requestEntity);
 
         } else {
-            File f = new File(new File(filename).getCanonicalPath());
+            File f = new File(filename);
             JSONArray sendLog_array = new JSONArray();
             JSONObject sendLogMEntityJSON = new JSONObject();
             sendLogMEntityJSON.put("item_id", testitemID);

@@ -58,11 +58,7 @@ public class AndroidTree extends MobileTree {
 
     private AndroidTreeNode loadNodes(Element parent, AndroidTreeNode parentNode) {
         NodeList nodeList = parent.getChildNodes();
-        int maxcount = 2000;
-        int loopcount = nodeList.getLength();
-        if(loopcount>maxcount)
-            loopcount = maxcount;
-        for (int i = 0; i < loopcount; i++) {
+        for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (Node.ELEMENT_NODE == node.getNodeType()) {
                 AndroidTreeNode treeNode = new AndroidTreeNode(getDisplayName(node));

@@ -52,7 +52,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -111,11 +111,11 @@ public class AppMainFrame extends JFrame {
 
     private Consumer<Integer> onProgress;
 
-    public AppMainFrame() throws IOException {
+    public AppMainFrame() {
         this(null);
     }
 
-    public AppMainFrame(Consumer<Integer> onProgress) throws IOException {
+    public AppMainFrame(Consumer<Integer> onProgress) {
         this.onProgress = onProgress;
         recentItems = new RecentItems(this);
         startUp = new StartUp(this);
@@ -415,7 +415,10 @@ public class AppMainFrame extends JFrame {
 
             //Migrating Driver Settings
             Enumeration<Object> keysObj = project.getProjectSettings().getDriverSettings().keys();
-            Iterator<Object> keys = keysObj.asIterator();
+            //Iterator<Object> keys = keysObj.asIterator();
+            /*** Java 8 change ***/
+            Iterator<Object> keys = Collections.list(keysObj).iterator();
+            /***/
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 String property = project.getProjectSettings().getDriverSettings().getProperty(key);
@@ -445,7 +448,10 @@ public class AppMainFrame extends JFrame {
                 List<TestSet> testsets = release.getTestSets();
                 for (TestSet testset : testsets) {
                     Enumeration<Object> keys1 = project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().keys();
-                    Iterator<Object> keysls = keys1.asIterator();
+                   // Iterator<Object> keysls = keys1.asIterator();
+                   /*** Java 8 ***/
+                   Iterator<Object> keysls = Collections.list(keys1).iterator();
+                   /******/
                     while (keysls.hasNext()) {
                         String key = (String) keysls.next();
                         String property = project.getProjectSettings().getExecSettings(release.getName(), testset.getName()).getTestMgmgtSettings().getProperty(key);
@@ -472,7 +478,10 @@ public class AppMainFrame extends JFrame {
 
             //Migarting Test Management settings at Design level
             Enumeration<Object> keys1 = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().keys();
-            Iterator<Object> keysls = keys1.asIterator();
+            //Iterator<Object> keysls = keys1.asIterator();
+            /*** Java 8 ***/
+            Iterator<Object> keysls = Collections.list(keys1).iterator();
+            /******/
             while (keysls.hasNext()) {
                 String key = (String) keysls.next();
                 String property = project.getProjectSettings().getExecSettings().getTestMgmgtSettings().getProperty(key);

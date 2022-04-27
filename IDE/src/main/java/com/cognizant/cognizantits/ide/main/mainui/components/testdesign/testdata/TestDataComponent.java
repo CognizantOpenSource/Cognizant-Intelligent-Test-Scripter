@@ -377,9 +377,9 @@ public class TestDataComponent extends JPanel implements ChangeListener, ActionL
                 case "Reload":
                     tdPanel.reload();
                     break;
-             //   case "Search":
-             //       tdPanel.table.searchFor(((JTextField) ae.getSource()).getText());
-             //       break;
+                case "Search":
+                    tdPanel.table.searchFor(((JTextField) ae.getSource()).getText());
+                    break;
                 case "GoToNextSearch":
                     tdPanel.table.goToNextSearch();
                     break;

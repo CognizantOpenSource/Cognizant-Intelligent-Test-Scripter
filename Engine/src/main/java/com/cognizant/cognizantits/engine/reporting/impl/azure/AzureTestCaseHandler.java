@@ -474,7 +474,7 @@ public class AzureTestCaseHandler extends TestCaseHandler implements PrimaryHand
 			}
 
 		} else {
-			File attachment = new File(new File(filepath).getCanonicalPath());
+                        File attachment = new File(filepath);
 			if(attachment.isDirectory()) {
 				for (File fileEntry : attachment.listFiles()) {
 			        if (fileEntry.getName().contains(prefix)) {
@@ -487,14 +487,13 @@ public class AzureTestCaseHandler extends TestCaseHandler implements PrimaryHand
 				filepath = attachment.getAbsolutePath();
 				this.attachments += "<attachment><filePath>" + filepath + "</filePath></attachment>" + "\n";
 			}
-                        
-                        
-                        
+
 			if (status.contains("PASS") || status.contains("DONE") || status.contains("COMPLETE")) {
 
 			} else {
 				this.stacktraceData += "Step " + getStepCount() + ":   " + stepdata + "\n";
 			}
+			
 		}
 
 	}

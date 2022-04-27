@@ -16,7 +16,6 @@
 package com.cognizant.cognizantits.ide.main.explorer.settings;
 
 import com.cognizant.cognizantits.ide.util.Notification;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -49,12 +48,7 @@ public class Settings {
     }
 
     static String getConfigFileLoc() {
-        try {
-            return getAppDir() + File.separator + "Configuration" + File.separator + "ExplorerConfig.properties";
-        } catch (IOException ex) {
-            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return getAppDir() + File.separator + "Configuration" + File.separator + "ExplorerConfig.properties";
     }
 
     public static String getDefectModule() {
@@ -64,16 +58,10 @@ public class Settings {
     static void saveSettings(Map<String, String> settingsMap) {
         try {
             checkFile(CONFIG_FILE);
-            StringBuilder sb = new StringBuilder();
             for (String key : settingsMap.keySet()) {
-               // prop.setProperty(key, settingsMap.get(key));
-               sb.append(key+"="+settingsMap.get(key)+"\n");
+                prop.setProperty(key, settingsMap.get(key));
             }
-           BufferedWriter writer = new BufferedWriter(new FileWriter(CONFIG_FILE));
-           writer.write(sb.toString());
-           writer.close();
-           
-          //  prop.store(new FileWriter(CONFIG_FILE), "Exploratory Module Settings!!");
+            prop.store(new FileWriter(CONFIG_FILE), "Exploratory Module Settings!!");
             Notification.show("Settings Successfully Saved!!");
         } catch (IOException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,8 +92,8 @@ public class Settings {
         return settingsMap;
     }
 
-    private static String getAppDir() throws IOException {
-        return new File(System.getProperty("user.dir")).getCanonicalPath();
+    private static String getAppDir() {
+        return System.getProperty("user.dir");
     }
 
     private static void checkFile(File configFile) {

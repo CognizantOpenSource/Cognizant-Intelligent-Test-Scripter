@@ -18,7 +18,6 @@ package com.cognizant.cognizantits.ide.util.compiler;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
@@ -61,13 +60,7 @@ public class MacCompiler extends Compiler {
 
     @Override
     public String getScriptFile() {
-        try {
-            String userDirlocation = new File(System.getProperty("user.dir")).getCanonicalPath();
-            return userDirlocation + File.separator + "CompileRunScript.sh";
-        } catch (IOException ex) {
-            Logger.getLogger(MacCompiler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return System.getProperty("user.dir") + File.separator + "CompileRunScript.sh";
     }
 
     @Override
@@ -75,7 +68,7 @@ public class MacCompiler extends Compiler {
         try {
 
             final ProcessBuilder pb = new ProcessBuilder("/bin/sh", getScriptFile());
-            pb.directory(new File(new File(System.getProperty("user.dir")).getCanonicalPath()));
+            pb.directory(new File(System.getProperty("user.dir")));
             final Process p = pb.start();
             p.waitFor();
             String sb = IOUtils.toString(p.getErrorStream(), "UTF-8");

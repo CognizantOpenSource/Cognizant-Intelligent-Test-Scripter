@@ -51,7 +51,9 @@ public class ScenarioNode extends CommonNode {
     }
 
     public TestCaseNode getTestCaseNodeBy(TestCase testCaseName) {
-        for (TestCaseNode testCase : TestCaseNode.toList(children())) {
+        //for (TestCaseNode testCase : TestCaseNode.toList(children())) {
+    	List<TestCaseNode> testCases = TestCaseNode.toList(children());
+    	for (TestCaseNode testCase :testCases) {
             if (testCase.getTestCase().equals(testCaseName)) {
                 return testCase;
             }

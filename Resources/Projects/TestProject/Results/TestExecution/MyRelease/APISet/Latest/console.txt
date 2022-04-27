@@ -1,0 +1,66 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 1.8.0_281
+java.home            : C:\Program Files\Java\jdk1.8.0_281\jre
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Tue Apr 26 14:37:01 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:Webservice] [TestCase: Get] [Description: Get] [Browser: No Browser] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[1] TestCase selected for execution from [//MyRelease/APISet]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+testset : APISet
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching No Browser
+Launching Local Driver
+No Browser Launched
+Step:9   | Object: Webservice | Action: setEndPoint | Input: @https://json-server.azurewebsites.net/users/ | Conditon:  | @26-Apr-2022 14:37:01.001
+Payload :https://json-server.azurewebsites.net/users/
+[DONE]   | End point set : https://json-server.azurewebsites.net/users/
+
+===================================================================================================
+
+Step:10  | Object: Webservice | Action: postRestRequest | Input: {
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+} | Conditon:  | @26-Apr-2022 14:37:01.001
+Payload :{
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+}
+[COMPLETE]   | Status code is : 201
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Webservice:Get
+Executed Steps       : 2
+Passed Steps         : 1
+Failed Steps         : 0
+Time Taken           : 00:00:01
+-----------------------------------------------------
+
+Run Finished on Tue Apr 26 14:37:03 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 26-Apr-2022 14-37-01
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:01
+ReportPath           : file:///C:\Users\586126\Work\CITS\CITS2.0\Gitlab\Java8\cognizant-intelligent-test-scripter-java8\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\APISet\26-Apr-2022 14-37-01\summary.html
+-----------------------------------------------------

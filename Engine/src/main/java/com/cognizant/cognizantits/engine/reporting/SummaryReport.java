@@ -119,14 +119,11 @@ public final class SummaryReport implements OverviewReport {
 					runContext.Iteration, executionTime, FilePath.getDate(), FilePath.getTime(), runContext.BrowserName,
 					runContext.BrowserVersion, runContext.PlatformValue, startDate, endDate);
             List<File> attach = new ArrayList<>();
-           // attach.add(new File(FilePath.getCurrentResultsPath(), report.getFile().getName()));
-            /*
-            * create temp. console to avoid error from jira server on sending a open stream
-             */
-            //File tmpConsole = createTmpConsole(new File(FilePath.getCurrentResultsPath(), "console.txt"));
+           
             String logPrefix = tc.testScenario + "_" + tc.testCase;
             File testcaseLog = new File(FilePath.getCurrentTestCaseLogsLocation()+File.separator+logPrefix+".txt");
             Optional.ofNullable(testcaseLog).ifPresent(attach::add);
+
             String prefix = tc.testScenario + "_" + tc.testCase + "_Step-";
             File imgFolder = new File(FilePath.getCurrentResultsPath() + File.separator + "img");
             if (imgFolder.exists()) {
@@ -144,6 +141,7 @@ public final class SummaryReport implements OverviewReport {
                     }
                 }
             }
+
             String status = state.equals(Status.PASS) ? "Passed" : "Failed";
             if (!sync.updateResults(tc, status, attach)) {
                 report.updateTestLog(sync.getModule(), "Unable to Update Results to "

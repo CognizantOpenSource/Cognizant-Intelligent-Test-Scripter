@@ -131,13 +131,13 @@ public class InjectScript extends javax.swing.JFrame {
         }
     }
 
-    public void load() throws IOException {
+    public void load() {
         if (JAVA_COMPILER == null) {
             if (javacPath == null) {
                 Notification.show("JDK is not available in path.Please select a jdk");
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setDialogTitle("Select JDK bin path");
-                fileChooser.setSelectedFile(new File(new File(System.getenv("JAVA_HOME")).getCanonicalPath()));
+                fileChooser.setSelectedFile(new File(System.getenv("JAVA_HOME")));
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 File selected = promptFile(fileChooser);
                 while (selected != null && !Utils.getJavaCFilter().accept(selected)) {
@@ -197,6 +197,7 @@ public class InjectScript extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         console = new javax.swing.JTextArea();
 
+        javaFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         javaFileChooser.setDialogTitle("Select Java Files");
         javaFileChooser.setFileFilter(new FileNameExtensionFilter("Java Files","java")
         );

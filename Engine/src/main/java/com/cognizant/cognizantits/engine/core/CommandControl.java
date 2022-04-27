@@ -80,10 +80,6 @@ public abstract class CommandControl {
         this.Input = curr.Input;
         this.Data = curr.Data;
 
-        /********** Updates the Action for NLP_locator****************/
-        AutomationObject.Action = this.Action;
-        /**************************************************************/
-        
         if (curr.Condition != null && curr.Condition.length() > 0) {
             this.Condition = curr.Condition;
         }

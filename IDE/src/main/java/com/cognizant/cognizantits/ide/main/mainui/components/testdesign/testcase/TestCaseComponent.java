@@ -329,9 +329,9 @@ public class TestCaseComponent extends JPanel implements ActionListener {
             case "Reload":
                 reload();
                 break;
-         //   case "Search":
-         //       testCaseTable.searchFor(((JTextField) ae.getSource()).getText());
-         //       break;
+            case "Search":
+                testCaseTable.searchFor(((JTextField) ae.getSource()).getText());
+                break;
             case "GoToNextSearch":
                 testCaseTable.goToNextSearch();
                 break;

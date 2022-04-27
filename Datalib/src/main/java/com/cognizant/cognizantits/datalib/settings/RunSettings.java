@@ -149,14 +149,6 @@ public class RunSettings extends AbstractPropSettings {
         setProperty("ReportPortal", String.valueOf(value));
     }
     
-    public Boolean isAutoHealEnabled() {
-        return Boolean.valueOf(getProperty("AutoHealMode", "false"));
-    }
-    
-    public void setAutoHealMode(Boolean value) {
-        setProperty("AutoHealMode", String.valueOf(value));
-    }
-    
     public Boolean isExtentReport() {
         return Boolean.valueOf(getProperty("ExtentReport", "true"));
     }

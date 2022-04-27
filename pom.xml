@@ -5,7 +5,7 @@
     <artifactId>cognizant-intelligent-test-scripter</artifactId>
     <version>2.0</version>
     <packaging>pom</packaging>
-        <modules>            
+    <modules>            
         <module>QcConnection</module>        
         <module>StoryWriter</module>
         <module>GridNode</module>
@@ -16,7 +16,6 @@
         <module>IDE</module>
         <module>Dist</module>
     </modules>
-
      
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +23,7 @@
         <com4j.version>20110320</com4j.version>
         
         <selenium.version>3.141.59</selenium.version>
-        <sikuli.version>2.0.5</sikuli.version>
+        <sikuli.version>1.1.2</sikuli.version>
         <galen.version>2.4.4</galen.version>
         <javaclient.version>7.0.0</javaclient.version>
         <ngwebdriver.version>1.1.4</ngwebdriver.version>
@@ -46,8 +45,8 @@
         <setupDir>../Dist/release</setupDir>
         <resourceDir>../Resources</resourceDir>  
         
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>        
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>        
              
     </properties>
     <name>Cognizant Intelligent Test Scripter</name>

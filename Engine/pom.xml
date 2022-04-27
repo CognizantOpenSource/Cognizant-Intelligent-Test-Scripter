@@ -10,8 +10,8 @@
     <artifactId>cognizant-intelligent-test-scripter-engine</artifactId>
     <packaging>jar</packaging>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>            
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>            
         <timestamp>${maven.build.timestamp} UTC</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <app.root>../</app.root>
@@ -46,15 +46,11 @@
         <dependency>
             <groupId>com.sikulix</groupId>
             <artifactId>sikulixapi</artifactId>
-            <version>2.0.5</version>
+            <version>1.1.4-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.github.vidstige</groupId>
                     <artifactId>jadb</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -197,68 +193,32 @@
             <artifactId>json-path</artifactId>
             <version>2.4.0</version>
         </dependency>
-		
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>5.0.8</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>tech.grasshopper</groupId>
-			<artifactId>pdfextentreporter</artifactId>
-			<version>0.3</version>
-		</dependency>
-		
+        <dependency>
+	    <groupId>com.aventstack</groupId>
+	    <artifactId>extentreports</artifactId>
+	    <version>5.0.8</version>
+	</dependency>
+	<dependency>
+	    <groupId>tech.grasshopper</groupId>
+	    <artifactId>pdfextentreporter</artifactId>
+	    <version>0.3</version>
+	</dependency>
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
             <version>2.0.24</version>
         </dependency>
-		
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>fontbox</artifactId>
             <version>2.0.24</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>animal-sniffer-annotations</artifactId>
-            <version>1.14</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.checkerframework</groupId>
-            <artifactId>checker-compat-qual</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>info.debatty</groupId>
-            <artifactId>java-string-similarity</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.0</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.17.0</version>
-        </dependency>
-
-
     </dependencies>
     <repositories>
         <repository>
             <id>sikuli</id>
             <name>sikuli_repo</name>
-            <url>https://oss.sonatype.org/content/groups/public</url>
+            <url>http://oss.sonatype.org/content/groups/public</url>
         </repository>
     </repositories>
     <build>

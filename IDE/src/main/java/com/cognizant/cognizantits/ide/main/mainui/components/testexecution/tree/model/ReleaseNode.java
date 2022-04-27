@@ -55,7 +55,9 @@ public class ReleaseNode extends CommonNode {
     }
 
      public TestSetNode getTestSetBy(TestSet testSet) {
-        for (TestSetNode testSetNode : TestSetNode.toList(children())) {
+        //for (TestSetNode testSetNode : TestSetNode.toList(children())) {
+    	List<TestSetNode> testSetNodes = TestSetNode.toList(children());
+     	for (TestSetNode testSetNode :testSetNodes) {
             if (testSetNode.getTestSet().equals(testSet)) {
                 return testSetNode;
             }

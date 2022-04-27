@@ -34,8 +34,6 @@ import com.cognizant.storywriter.bdd.data.Story;
 import com.cognizant.storywriter.bdd.editor.StyledEditor;
 import com.cognizant.storywriter.util.Notification.Msg;
 import com.cognizant.storywriter.util.Validator;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  *
@@ -169,15 +167,10 @@ public final class UI2 extends javax.swing.JFrame {
     public String getStoryText() {
         return textArea.getText();
     }
-    
-    private static String sanitizePathTraversal(String filename) {
-        Path p = Paths.get(filename);
-        return p.getFileName().toString();
-    }
 
     void validate(String text) {
         if (Validator.isValidName(text)) {
-            File f = new File("projects", sanitizePathTraversal(text) + ".json");
+            File f = new File("projects", text + ".json");
             if (f.exists()) {
                 notify(Msg.PROJ_EXIST, false);
                 LOGGER.log(Level.WARNING, Msg.PROJ_EXIST + "{0}", f.getAbsolutePath());

@@ -86,7 +86,6 @@ public class StepMap {
         }
     }
 
-    
     public void convertTestCase(File file, TestCase testCase) {
         if (testCase != null) {
             try (FileWriter out = new FileWriter(file);

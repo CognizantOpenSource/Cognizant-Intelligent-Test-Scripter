@@ -76,9 +76,8 @@ public class Capabilities {
         x.setProperty("deviceName", browserName);
         x.setProperty("platformVersion", "");
         x.setProperty("udid", udid);
-        // Checkmarx findings
-        x.put("appActivity", appiumActivity);
-        x.put("appPackage", appPackage);
+        x.setProperty("appActivity", appiumActivity);
+        x.setProperty("appPackage", appPackage);
         addCapability(browserName, x);
     }
 

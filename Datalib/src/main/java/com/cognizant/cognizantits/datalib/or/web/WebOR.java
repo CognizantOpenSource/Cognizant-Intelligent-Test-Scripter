@@ -37,7 +37,6 @@ public class WebOR implements ORRootInf<WebORPage> {
 
     public final static List<String> OBJECT_PROPS
             = new ArrayList<>(Arrays.asList(
-                    "NLP_locator",
                     "name",
                     "id",
                     "link_text",
@@ -45,9 +44,7 @@ public class WebOR implements ORRootInf<WebORPage> {
                     "xpath",
                     "class",
                     "css",
-                    "type",
-                    "outerHTML",
-                    "tagName"));
+                    "type"));
 
     @JacksonXmlProperty(isAttribute = true, localName = "ref")
     private String name;

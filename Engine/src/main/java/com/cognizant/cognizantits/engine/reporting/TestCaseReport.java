@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 package com.cognizant.cognizantits.engine.reporting;
-
 import com.cognizant.cognizantits.engine.constants.AppResourcePath;
 import com.cognizant.cognizantits.engine.constants.FilePath;
 import com.cognizant.cognizantits.engine.constants.SystemDefaults;
-import com.cognizant.cognizantits.engine.core.Control;
 import com.cognizant.cognizantits.engine.core.RunContext;
+import com.cognizant.cognizantits.engine.core.Control;
 import com.cognizant.cognizantits.engine.core.RunManager;
 import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.reporting.impl.handlers.PrimaryHandler;
@@ -40,7 +39,7 @@ import java.util.List;
 import java.io.FileWriter;
 import org.json.simple.JSONObject;
 import org.sikuli.basics.FileManager;
-        
+
 
 public final class TestCaseReport implements Report {
 
@@ -55,7 +54,6 @@ public final class TestCaseReport implements Report {
     private static final String FileExt=".txt";
     private static final String LogFolderName="logs";
     private StringBuilder sb;
-
 
     public boolean runComplete = false;
 
@@ -80,11 +78,11 @@ public final class TestCaseReport implements Report {
           register(new ExtentTestCaseHandler(this), true);
         if(isRPEnabled())
           register(new RPTestCaseHandler(this), true);
-        register(new HtmlTestCaseHandler(this), true);
         if(isAzureEnabled())
           register(new AzureTestCaseHandler(this), true);
-    }
+        register(new HtmlTestCaseHandler(this), true);
 
+    }
     public boolean isExtentEnabled() {
             if (!RunManager.getGlobalSettings().isTestRun()) {
                 return Control.getCurrentProject().getProjectSettings()
@@ -107,6 +105,8 @@ public final class TestCaseReport implements Report {
         }
         return false;
     }
+
+
     /**
      * sets the selenium driver
      *
@@ -187,8 +187,7 @@ public final class TestCaseReport implements Report {
         System.out.println(String.format("\n%99s\n", "=").replace(" ", "="));
         String stepInfo = stepLevelLog(String.valueOf(getStep().StepNum),getStep().ObjectName,getStep().Action,getStep().Input,getStep().Condition,state,stepDescription);
         this.sb.append(stepInfo).append("\n");
-        //log(String.valueOf(getStep().StepNum),getStep().ObjectName,getStep().Action,getStep().Input,getStep().Condition); 
-       // log(String.format("Step %s: [%s]   | %s",stepNo, state, stepDescription));
+
         for (TestCaseHandler handler : handlers) {
             handler.updateTestLog(stepName, stepDescription, state, optionalLink, optional);
         }
@@ -216,7 +215,7 @@ public final class TestCaseReport implements Report {
         
         this.sb.append(closingLog(scenario+":"+testcase,eSteps,pSteps,fSteps,exeTime));
         log(this.sb.toString());
-     //   log(System.getProperty("line.separator")+"Status:"+primaryHandler.getCurrentStatus());
+
         return (currentStatus = primaryHandler.getCurrentStatus());
     }
 
@@ -324,6 +323,7 @@ public final class TestCaseReport implements Report {
                 + currentStep + "_"
                 + "Response"
                 + FileExt;
+
     }
     
     public String getWebserviceRequestFileName() {
@@ -338,6 +338,7 @@ public final class TestCaseReport implements Report {
                 + currentStep + "_"
                 + "Request"
                 + FileExt;
+
     }
   
     public String getPdfResultName() {
@@ -351,7 +352,7 @@ public final class TestCaseReport implements Report {
                 + DateTimeUtils.TimeNowForFolder()
                 + ".pdf";
     }
-    
+
     public String getLogFileName(){
         return 
                 File.separator 
@@ -388,8 +389,7 @@ public final class TestCaseReport implements Report {
     public Boolean isStepPassed() {
         if (currentStatus != null) {
             return currentStatus.equals(Status.PASS) || currentStatus.equals(Status.DONE)
-                    || currentStatus.equals(Status.SCREENSHOT) || currentStatus.equals(Status.WARNING)
-                    || currentStatus.equals(Status.COMPLETE);
+                    || currentStatus.equals(Status.SCREENSHOT);
         }
         return false;
     }

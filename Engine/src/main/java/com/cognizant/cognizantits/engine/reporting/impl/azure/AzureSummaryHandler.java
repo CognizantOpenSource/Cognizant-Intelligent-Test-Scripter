@@ -179,7 +179,7 @@ public class AzureSummaryHandler extends SummaryHandler implements PrimaryHandle
                 + "</test-suite>"
                 + "</test-run>";
         resetAzureVars();
-
+        
         FileOutputStream out = new FileOutputStream(AzureReportPath);
 
         out.write(AzureReport.xmlData.getBytes());
@@ -189,8 +189,8 @@ public class AzureSummaryHandler extends SummaryHandler implements PrimaryHandle
         System.out.println("-----------------------------------------------------\n");
 
     }
-    
-    private void resetAzureVars() {
+
+   private void resetAzureVars() {
     	AzureReport.totalDuration=0;
     	AzureReport.failed=0;
     	AzureReport.passed=0;
@@ -207,5 +207,6 @@ public class AzureSummaryHandler extends SummaryHandler implements PrimaryHandle
     	AzureReport.startTime="";
     	AzureReport.endTime="";
     }
+
 
 }

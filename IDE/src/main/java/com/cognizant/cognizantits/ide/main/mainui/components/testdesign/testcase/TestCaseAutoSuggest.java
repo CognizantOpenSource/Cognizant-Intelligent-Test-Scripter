@@ -138,7 +138,7 @@ public class TestCaseAutoSuggest {
         objectList.add("Execute");
         objectList.add("App");
         objectList.add("Database");
-       // objectList.add("ProtractorJS");
+        objectList.add("ProtractorJS");
         objectList.add("Webservice");
         return objectList;
     }

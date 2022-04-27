@@ -33,11 +33,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static java.util.stream.Collectors.toList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -177,11 +174,7 @@ public class TestExecutionUI extends JPanel implements ActionListener {
                 break;
             case "Export":
                 if (testPullPanel.isChecked()) {
-            try {
-                testExecution.getsMainFrame().getStepMap().convertTestCase(Utils.saveDialog("Manual TestCase.csv"), testPullPanel.getSelectedTestCases());
-            } catch (IOException ex) {
-                Logger.getLogger(TestExecutionUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    testExecution.getsMainFrame().getStepMap().convertTestCase(Utils.saveDialog("Manual TestCase.csv"), testPullPanel.getSelectedTestCases());
                 }
                 break;
             case "Filter":

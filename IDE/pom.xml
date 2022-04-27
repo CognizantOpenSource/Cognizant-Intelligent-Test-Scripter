@@ -9,8 +9,8 @@
     <artifactId>cognizant-intelligent-test-scripter-ide</artifactId>
     <packaging>jar</packaging>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>            
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>            
         <timestamp>${maven.build.timestamp} UTC</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     </properties>
@@ -158,13 +158,13 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.0-alpha5</version>
+            <version>1.7.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.0-alpha5</version>
+            <version>1.7.10</version>
             <scope>test</scope>
         </dependency>
 
@@ -178,16 +178,16 @@
         <dependency>
             <groupId>com.sikulix</groupId>
             <artifactId>sikulixapi</artifactId>
-            <version>2.0.5</version>
+            <version>1.1.4-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.github.vidstige</groupId>
                     <artifactId>jadb</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -270,12 +270,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>htmlunit-driver</artifactId>
             <version>2.52.0</version>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>xml-apis</groupId>
                     <artifactId>xml-apis</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
      
     </dependencies>

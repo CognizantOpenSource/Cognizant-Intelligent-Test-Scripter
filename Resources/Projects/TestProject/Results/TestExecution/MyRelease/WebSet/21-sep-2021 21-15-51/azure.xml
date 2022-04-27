@@ -1,0 +1,16 @@
+<test-run id="5849366f-c03b-42df-8f2b-e26e68a5372f" name="WebSet" fullname="WebSet" testcasecount="2" passed="1" failed="1" result="Failed" time="22.000" run-date="2021-09-21" start-time="21:15:51" end-time="21:16:16">
+<test-suite id="6035c863-9ba8-40b0-9167-6bd67168b294" type="Assembly" name="WebSet" fullname="WebSet" testcasecount="2" passed="1" failed="1" result="Failed" time="22.000">
+<test-case id="6e0b4d95-b1d8-44dc-81ee-e827aa57f7c9" name="Login1" fullname="Login1" result="Passed" time="6.000"><failure><message><![CDATA[This Test Case has no error. For details see the steps below:
+Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [DONE]   | Clicking on [Login] Button
+Step 5:   [PASS]   | Screenshot is taken
+]]></message></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep-2021 21-15-51\img\Web_Login1_Step-5_21-15-55.png</filePath></attachment>
+</attachments></test-case><test-case id="84cb6eb3-8cb0-4c41-b197-4a6ecffb6fd6" name="Login2" fullname="Login2" result="Failed" time="16.000"><failure><message><![CDATA[Step 1:   [DONE]   | Opened Url: https://www.saucedemo.com/
+Step 2:   [DONE]   | Entered Text 'standard_user' on 'UserID'
+Step 3:   [DONE]   | Entered Text 'test' on 'Password'
+Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></message><stack-trace><![CDATA[Step 4:   [FAIL]   | Element [[Invalid Object]] is not Present
+]]></stack-trace></failure><attachments><attachment><filePath>C:\Users\LA56QS\MyDevelopmentWorkspace\CITS-2.0\2.0 Features\cognizant-intelligent-test-scripter\Resources\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\21-sep-2021 21-15-51\img\Web_Login2_Step-4_21-16-11.png</filePath></attachment>
+</attachments></test-case></test-suite></test-run>

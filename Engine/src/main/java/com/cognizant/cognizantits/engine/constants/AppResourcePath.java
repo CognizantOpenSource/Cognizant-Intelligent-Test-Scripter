@@ -67,16 +67,9 @@ public class AppResourcePath {
     private static String date;
     private static String time;
 
-    public static String getAppRoot(){
-        try {
-            // return System.getProperty("user.dir");
-            return new File(System.getProperty("user.dir")).getCanonicalPath();
-        } catch (IOException ex) {
-            Logger.getLogger(AppResourcePath.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public static String getAppRoot() {
+        return System.getProperty("user.dir");
     }
-    
 
     public static String getExternalCommandsConfig() {
         return getLibPath() + File.separator + EXTERNAL_COMMANDS_CONFIG;
@@ -175,7 +168,7 @@ public class AppResourcePath {
     public static String getCurrentResultsLocation() {
         return getResultsPath() + getResultPath();
     }
-    
+
     public static String getCurrentTestCaseLogsLocation() {
         return getCurrentResultsLocation() + File.separator + date + " " + time+ File.separator + "logs";
     }

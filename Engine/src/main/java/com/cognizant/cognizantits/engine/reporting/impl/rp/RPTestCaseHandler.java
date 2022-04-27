@@ -178,9 +178,10 @@ public class RPTestCaseHandler extends TestCaseHandler implements PrimaryHandler
             		             + "_Step-"
             		             + getStepCount()
             		             + "_Response.txt";
-            
+
             if (isRPEnabled()) {
                 try {
+                    System.out.println("sending logs to : " + testcasename);
                     sendLog(payloadfile,getRPValue("rp.endpoint"), getRPValue("rp.uuid"), RunManager.getGlobalSettings().getTestSet(), getRPValue("rp.project"), testcasename,
                             state.toString(), stepData, filename);
                 } catch (IOException | ParseException e) {

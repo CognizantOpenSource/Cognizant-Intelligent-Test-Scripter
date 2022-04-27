@@ -20,13 +20,9 @@ import com.cognizant.cognizantits.ide.main.mainui.AppMainFrame;
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.util.Validator;
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import org.apache.commons.io.FilenameUtils;
 
 public class NewProject extends javax.swing.JDialog {
 
@@ -34,13 +30,13 @@ public class NewProject extends javax.swing.JDialog {
 
     private Boolean created = false;
 
-    public NewProject(AppMainFrame sMainFrame) throws IOException {
+    public NewProject(AppMainFrame sMainFrame) {
         this.sMainFrame = sMainFrame;
         initComponents();
 
         setIconImage(((ImageIcon) Utils.getIconByResourceName("/ui/resources/main/NewProject")).getImage());
-        String currDirectory = new File(System.getProperty("user.dir")).getCanonicalPath() + File.separator + "Projects";
-        fileChooser.setCurrentDirectory(new File(currDirectory));
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir") + File.separator + "Projects"));
         projLocation.setText(fileChooser.getCurrentDirectory().getAbsolutePath());
     }
 
@@ -73,6 +69,7 @@ public class NewProject extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         projName = new javax.swing.JTextField();
         projLocation = new javax.swing.JTextField();
+        browseLocation = new javax.swing.JButton();
         createProject = new javax.swing.JButton();
         error = new javax.swing.JLabel();
 
@@ -98,10 +95,10 @@ public class NewProject extends javax.swing.JDialog {
             }
         });
 
-        projLocation.setEditable(false);
-        projLocation.addActionListener(new java.awt.event.ActionListener() {
+        browseLocation.setText("...");
+        browseLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projLocationActionPerformed(evt);
+                browseLocationActionPerformed(evt);
             }
         });
 
@@ -119,22 +116,27 @@ public class NewProject extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projName)
-                    .addComponent(projLocation))
-                .addGap(59, 59, 59))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(createProject)
-                .addGap(180, 180, 180))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(error)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(projName, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                            .addComponent(projLocation))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(browseLocation))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createProject)
+                        .addGap(170, 170, 170))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(error)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +150,10 @@ public class NewProject extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(projLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseLocation))
+                .addGap(34, 34, 34)
                 .addComponent(createProject)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -161,22 +165,25 @@ public class NewProject extends javax.swing.JDialog {
         createProject();
     }//GEN-LAST:event_createProjectActionPerformed
 
+    private void browseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseLocationActionPerformed
+        int val = fileChooser.showOpenDialog(null);
+        if (val == JFileChooser.APPROVE_OPTION) {
+            projLocation.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_browseLocationActionPerformed
+
     private void projNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projNameActionPerformed
         createProject.doClick();
     }//GEN-LAST:event_projNameActionPerformed
 
-    private void projLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projLocationActionPerformed
-        projLocation.setText(System.getProperty("user.dir") + File.separator + "Projects");
-    }//GEN-LAST:event_projLocationActionPerformed
-
     private void createProject() {
         if (Validator.isValidName(projName.getText().trim())) {
-            String location = System.getProperty("user.dir") + File.separator + "Projects";
-           /* if (projLocation.getText().trim().isEmpty()) {
+            String location;
+            if (projLocation.getText().trim().isEmpty()) {
                 location = System.getProperty("user.dir") + File.separator + "Projects";
             } else {
-                location = FilenameUtils.getFullPath(projLocation.getText().trim());
-            }*/
+                location = projLocation.getText().trim();
+            }
             createProject(location);
         } else {
             error.setText("Invalid Project Name");
@@ -184,13 +191,7 @@ public class NewProject extends javax.swing.JDialog {
     }
 
     private void createProject(String location) {
-        File file = null;
-        try {
-            String fileloc = new File(location + File.separator + projName.getText()).getCanonicalPath();
-            file = new File(fileloc);
-        } catch (IOException ex) {
-            Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        File file = new File(location + File.separator + projName.getText());
         if (!file.exists()
                 && (sMainFrame.getProject() == null
                 || !sMainFrame.getProject().getLocation().equals(file.getAbsolutePath()))) {
@@ -203,6 +204,7 @@ public class NewProject extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton browseLocation;
     private javax.swing.JButton createProject;
     private javax.swing.JLabel error;
     private javax.swing.JFileChooser fileChooser;

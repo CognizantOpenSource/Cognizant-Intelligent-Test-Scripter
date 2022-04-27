@@ -1,0 +1,1 @@
+var reportName="MyRelease:APISet";var dataSet=[{"PassTC":"1","FailTC":"0","ReportPath":"26-Apr-2022 14-37-01\\summary.html","ExecTC":"1","ExecutionDate":"26-Apr-2022 14-37-01","ExecTime":"00:00:01"}]

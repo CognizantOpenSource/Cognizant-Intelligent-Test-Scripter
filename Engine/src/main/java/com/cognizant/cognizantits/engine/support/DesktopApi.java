@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -160,11 +159,9 @@ public class DesktopApi {
         logOut(String.format("Trying to exec: [%s] [%s] [%s]", command,args,file));
 
         String[] parts = prepareCommand(command, args, file);
-        Process p = null;
+
         try {
-            //String location =
-            if(!Pattern.matches("[0-9A-Za-z@.]+", parts.toString()))
-             p = Runtime.getRuntime().exec(parts);
+            Process p = Runtime.getRuntime().exec(parts);
             if (p == null) {
                 logErr("Process Not Created.");
                 return false;
