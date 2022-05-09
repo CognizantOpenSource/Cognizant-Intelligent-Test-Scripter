@@ -140,4 +140,44 @@ public class RunSettings extends AbstractPropSettings {
     public void setExcelReport(Boolean value) {
         setProperty("excelReport", String.valueOf(value));
     }
+    
+    public Boolean isRPUpdate() {
+        return Boolean.valueOf(getProperty("ReportPortal", "false"));
+    }
+
+    public void setRPUpdate(Boolean value) {
+        setProperty("ReportPortal", String.valueOf(value));
+    }
+    
+    public Boolean isAutoHealEnabled() {
+        return Boolean.valueOf(getProperty("AutoHealMode", "false"));
+    }
+    
+    public void setAutoHealMode(Boolean value) {
+        setProperty("AutoHealMode", String.valueOf(value));
+    }
+    
+    public Boolean isExtentReport() {
+        return Boolean.valueOf(getProperty("ExtentReport", "true"));
+    }
+    
+    public Boolean isAzureEnabled() {
+        return Boolean.valueOf(getProperty("AzureReport", "false"));
+    }
+
+    public void setExtentReport(Boolean value) {
+        setProperty("ExtentReport", String.valueOf(value));
+    }
+    
+    public void setAzureReport(Boolean value) {
+        setProperty("AzureReport", String.valueOf(value));
+    }
+    
+    public Boolean isSendNotification(){
+        return Boolean.valueOf(getProperty("slacknotify", "false"));
+    }
+    
+    public void setSlackNotification(Boolean value) {
+        setProperty("slacknotify", String.valueOf(value));
+    }
 }

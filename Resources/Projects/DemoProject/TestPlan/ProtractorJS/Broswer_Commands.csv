@@ -1,0 +1,21 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,ProtractorJS,initialise the protractorjs script,protractor_initialize,,,
+2,ProtractorJS,Command to open an url,protractor_open,%Prot_url%,,
+3,ProtractorJS,initialise the protractorjs script,protractor_browserRestart,,,
+4,ProtractorJS,Command to open an url,protractor_open,%Prot_url%,,
+5,ProtractorJS,initialise the protractorjs script,protractor_getCurrentUrl,,,
+6,ProtractorJS,initialise the protractorjs script,protractor_browserGetPageSource,,,
+7,ProtractorJS,initialise the protractorjs script,protractor_getTitle,,,
+8,ProtractorJS,initialise the protractorjs script,protractor_refresh,,,
+9,ProtractorJS,initialise the protractorjs script,protractor_sleep,@5000,,
+10,ProtractorJS,initialise the protractorjs script,protractor_takeScreenshot,@image.jpg,,
+11,ProtractorJS,Terminate the protractorjs script,protractor_terminate,@testsmoke.js,,
+12,ProtractorJS,Command to execute the given spec file through ProtractorJS,RunSpec,@testsmoke.js,,
+13,ProtractorJS,"Define Your Custom Protractor Spec ",protractor_customSpec,"@describe('Smokeflow', function() {it('should be created', async function() { 
+await browser.driver.manage().window().maximize();await browser.get('http://cafetownsend-angular-rails.herokuapp.com/login'); 
+await element(by.model('user.name')).sendKeys('Luke'); 
+await element(by.model('user.password')).sendKeys('Skywalker'); 
+await element(by.xpath('//*[@id=""login-form""]/fieldset/button')).click(); 
+await browser.close(); 
+});});",Custom.js,
+14,ProtractorJS,Command to execute above commands created in a spec file through ProtractorJS,RunSpec,"@Custom.js ",,

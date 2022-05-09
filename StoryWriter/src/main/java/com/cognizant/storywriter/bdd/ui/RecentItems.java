@@ -17,6 +17,7 @@ package com.cognizant.storywriter.bdd.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -74,10 +75,12 @@ public class RecentItems {
      * not exists and loads the data into a Array-list
      *
      */
-    public RecentItems() {
+    public RecentItems() throws IOException {
         recentProjects = new ArrayList<>();
         historySize = 5;
-        recentProjFile = new File(System.getProperty("user.dir") + File.separator + "recent.items");
+        String userDir = new File(System.getProperty("user.dir")).getCanonicalPath();
+        String location = userDir + File.separator + "recent.items";
+        recentProjFile = new File(location);
         if (!recentProjFile.exists()) {
             try {
                 recentProjFile.createNewFile();
@@ -189,10 +192,15 @@ public class RecentItems {
     private void writerecent() {
         try {
             recentsFile.clear();
+            StringBuilder sb = new StringBuilder();
             for (String p : recentProjects) {
-                recentsFile.setProperty(p, toName(p));
+               // recentsFile.setProperty(p, toName(p));
+               sb.append(p+"="+toName(p)+"\n");
             }
-            recentsFile.store(new FileWriter(recentProjFile),null);
+           // recentsFile.store(new FileWriter(recentProjFile),null);
+           BufferedWriter writer = new BufferedWriter(new FileWriter(recentProjFile));
+           writer.write(sb.toString());
+           writer.close();
         } catch (IOException ex) {
             Logger.getLogger(RecentItems.class.getName()).log(Level.SEVERE, null, ex);
         }

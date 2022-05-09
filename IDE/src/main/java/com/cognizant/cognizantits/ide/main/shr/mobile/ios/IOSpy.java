@@ -95,6 +95,7 @@ public class IOSpy {
         try {
             HttpClient client = HttpClients.createSystem();
             HttpGet request = new HttpGet(url);
+            if(url.startsWith("http") && url.endsWith("/wd/hub")){
             HttpResponse response = client.execute(request);
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
             StringBuilder sb = new StringBuilder();
@@ -104,6 +105,7 @@ public class IOSpy {
                 line = rd.readLine();
             }
             return parseData(sb.toString());
+            }
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(IOSpy.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

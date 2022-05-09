@@ -1,0 +1,1 @@
+var reportName="MyRelease:WebSet";var dataSet=[{"PassTC":"1","FailTC":"1","ReportPath":"27-Apr-2022 21-11-10\\summary.html","ExecTC":"2","ExecutionDate":"27-Apr-2022 21-11-10","ExecTime":"00:00:20"}]

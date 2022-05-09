@@ -96,7 +96,9 @@ function HarClient() {
     this.connect = function (options) {
         var socketURI = window.location.protocol.replace("http", "ws") + "//" + window.location.host + $.WEBUI_API_PATH;
         console.log(socketURI);
+		if(socketURI = "ws://"+ window.location.host + $.WEBUI_API_PATH){
         conn = new WebSocket(socketURI);
+		}
         conn.onopen = function (e) {
             onOpen(e);
             if (options.onOpen)

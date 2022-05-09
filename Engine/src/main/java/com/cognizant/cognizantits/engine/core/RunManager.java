@@ -17,9 +17,12 @@ package com.cognizant.cognizantits.engine.core;
 
 import com.cognizant.cognizantits.datalib.component.ExecutionStep;
 import com.cognizant.cognizantits.datalib.component.TestSet;
+import com.cognizant.cognizantits.engine.cli.LookUp;
 import com.cognizant.cognizantits.engine.constants.FilePath;
 import com.cognizant.cognizantits.engine.drivers.WebDriverFactory.Browser;
 import com.cognizant.cognizantits.engine.settings.GlobalSettings;
+import com.cognizant.cognizantits.datalib.model.Tags;
+import org.apache.commons.lang.ArrayUtils;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -98,15 +101,43 @@ public class RunManager {
     static Queue<RunContext> getTestSetRunManager() throws Exception {
         Queue<RunContext> execQ = new LinkedList<>();
         TestSet testSet = Control.exe.getTestSet();
+        int count = 0;
         try {
-            testSet.loadTableModel();
-            if (!testSet.getExecutableSteps().isEmpty()) {
-                for (ExecutionStep step : testSet.getExecutableSteps()) {
-                    addRunContext(step, execQ);
-                }
-            } else {
-                throw new Exception("No testcases are selected for exection in - " + testSet.getName());
-            }
+            testSet.loadTableModel();	
+			int tagsMatched=0;
+			if (!testSet.getExecutableSteps().isEmpty()) {
+				for (ExecutionStep step : testSet.getExecutableSteps()) {
+					Tags tags = step.getProject().getInfo().getData()
+							.findOrCreate(step.getTestCaseName(), step.getTestScenarioName()).getTags();
+					if (globalSettings.getTags()!=null) {
+						String tagsArr[] = globalSettings.getTags().split(",");
+						for (String tag : tagsArr) {
+							
+							if (tags.contains(tag)) {
+								tagsMatched = ArrayUtils.indexOf(tagsArr, tag)+1;
+								count=1;
+								break;
+							}
+							else {
+								
+								count=0;
+							}
+						}
+						if (count != 0) {
+							addRunContext(step, execQ);
+						}
+					}
+					else
+						addRunContext(step, execQ);
+						
+				}
+				if(tagsMatched==0 && globalSettings.getTags()!=null)
+					System.out.println("----------------------------------------------------------\n"
+				            +"[Error] No testcase in the selected test set contain the tag(s) ["
+							+ globalSettings.getTags() + "]");
+			} else {
+				    throw new Exception("No testcases are selected for execution in - " + testSet.getName());
+			}
         } catch (Exception ex) {
             throw new Exception(String.format(
                     "Not able to load TestSet [%s/%s]\n[%S]",
@@ -128,7 +159,12 @@ public class RunManager {
         exe.Description = exe.TestCase;
         exe.PlatformValue = step.getPlatform();
         exe.Platform = getPlatform(exe.PlatformValue);
-        exe.BrowserName = step.getBrowser();
+        String browser = RunManager.getGlobalSettings().getBrowser();
+        if (browser != null && !(browser.equals("")) && LookUp.cliflag == true) {
+            exe.BrowserName = browser;
+        } else {
+            exe.BrowserName = step.getBrowser();
+        }
         exe.Browser = Browser.fromString(exe.BrowserName);
         exe.BrowserVersionValue = step.getBrowserVersion();
         exe.BrowserVersion = getBrowserVersion(exe.BrowserVersionValue);
@@ -183,8 +219,8 @@ public class RunManager {
     static Platform getPlatform(String platform) {
         if (platform != null && !platform.trim().isEmpty()) {
             if (platform.contains("WIN8_1")) {
-				return Platform.fromString("WIN8.1");
-			}
+                return Platform.fromString("WIN8.1");
+            }
             if (platform.contains("_")) {
                 platform = platform.replace("_", " ");
                 return Platform.fromString(platform.toUpperCase());

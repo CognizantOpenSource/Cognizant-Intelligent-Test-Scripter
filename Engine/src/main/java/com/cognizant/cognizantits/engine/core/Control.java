@@ -33,6 +33,7 @@ import com.cognizant.cognizantits.engine.support.Status;
 import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
 import com.cognizant.cognizantits.engine.support.reflect.MethodExecutor;
 import com.cognizant.cognizantits.util.encryption.Encryption;
+import com.cognizant.cognizantits.engine.reporting.reportportal.ReportPortalClient;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.UUID;
@@ -125,7 +126,7 @@ public class Control {
         System.out.println("Loading RunManager");
         RunManager.loadRunManager();
         System.out.println("Initializing Report");
-        ReportManager = new SummaryReport();
+        ReportManager = new SummaryReport(); 
         triggerId = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0,15);
     }
 

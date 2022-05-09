@@ -123,22 +123,22 @@
         ]
     },
     {
-        "module": "VS Team Services",
+        "module": "AzureDevOps TestPlan",
         "options": [
             {
-                "name": "VSTSProject",
+                "name": "AzureDevOps URL",
+                "value": "https://dev.azure.com/YOUR_AZURE_ORGANIZATION/"
+            },
+            {
+                "name": "AzureDevOps Project",
                 "value": ""
             },
             {
-                "name": "VSTSAccessToken",
-                "value": "accessToken"
+                "name": "PersonalAccessToken",
+                "value": ""
             },
             {
-                "name": "VSTSUrl",
-                "value": "https://EXAMPLE.visualstudio.com/"
-            },
-            {
-                "name": "VSTSTestPlanId",
+                "name": "AzureDevOps TestPlanId",
                 "value": ""
             },
 	    {
@@ -249,7 +249,7 @@
                 "value": ""
             },
             {
-                "name": "SecretKey",
+                "name": "ZephyrToken",
                 "value": ""
             },
 			{
@@ -316,6 +316,51 @@
             },
 			{
                 "name": "proxyPort",
+                "value": ""
+            }
+        ]
+    },
+{
+        "module": "Octane",
+        "options": [
+            {
+                "name": "octaneURL",
+                "value": ""
+            },
+            {
+                "name": "Username",
+                "value": ""
+            },
+            {
+                "name": "Password",
+                "value": ""
+            },
+            {
+                "name": "SharedSpaceID",
+                "value": ""
+            },
+            {
+                "name": "WorkSpaceName",
+                "value": ""
+            },
+	    {
+                "name": "useProxy",
+                "value": "false"
+            },
+	    {
+                "name": "proxyHost",
+                "value": ""
+            },
+	    {
+                "name": "proxyPort",
+                "value": ""
+            },
+			 {
+                "name": "ClientID",
+                "value": ""
+            },
+			 {
+                "name": "ClientSecret",
                 "value": ""
             }
         ]

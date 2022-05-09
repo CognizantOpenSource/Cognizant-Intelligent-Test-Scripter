@@ -31,7 +31,7 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 /**
  *
- * 
+ *
  */
 public class SQLTextArea extends javax.swing.JDialog {
 
@@ -44,7 +44,19 @@ public class SQLTextArea extends javax.swing.JDialog {
         initComponents();
         installAutoComplete(searchStr);
         setTitle("SQL Query Editor");
-        jTextArea1.setText(step.getInput());
+         if (currentStep.getAction().contains("protractor_customSpec")) {
+            if (!step.getInput().isEmpty()) {
+                jTextArea1.setText(step.getInput());
+            }
+            else
+             jTextArea1.setText("Write your Spec file");
+            
+        }
+        else
+        { if (!step.getInput().isEmpty()) {
+                jTextArea1.setText(step.getInput());
+            }
+        }
         setLocationRelativeTo(parent);
         initCloseListener();
         setVisible(true);
@@ -67,7 +79,13 @@ public class SQLTextArea extends javax.swing.JDialog {
 
     private void installAutoComplete(List<String> searchStr) {
         ((RSyntaxTextArea) jTextArea1).setCodeFoldingEnabled(true);
-        ((RSyntaxTextArea) jTextArea1).setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_SQL);
+
+        if (currentStep.getAction().contains("protractor")) {
+            ((RSyntaxTextArea) jTextArea1).setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT);
+        } else {
+            ((RSyntaxTextArea) jTextArea1).setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_SQL);
+        }
+
         provider = new DefaultCompletionProvider();
         setSearchString(searchStr);
         AutoCompletion ac = new AutoCompletion(provider);

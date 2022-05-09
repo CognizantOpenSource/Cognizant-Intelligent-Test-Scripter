@@ -1,0 +1,9 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,ProtractorJS,initialise the protractorjs script,protractor_initialize,,,
+2,ProtractorJS,Enable/Disable Protractor to wait for Angular $http and $timeout tasks,protractor_waitForAngularEnabled,@false,,
+3,ProtractorJS,Command to open an url,protractor_open,@https://www.toolsqa.com/handling-alerts-using-selenium-webdriver/,,
+4,alertelement,Command to click on web element,protractor_click,,,ProtractorJS
+5,ProtractorJS,,protractor_getAlertText,,,
+6,ProtractorJS,,protractor_dismissAlert,,,
+7,ProtractorJS,Terminate the protractorjs script,protractor_terminate,@alert.js,,
+8,ProtractorJS,Command to execute the given spec file through ProtractorJS,RunSpec,@alert.js,,

@@ -66,7 +66,19 @@ public abstract class AbstractRenderer extends DefaultTableCellRenderer {
         comp.setForeground(Color.RED);
         comp.setToolTipText(notPresent);
     }
-
+	
+	protected void setWebserviceRequest(JComponent comp) {
+        comp.setForeground(new Color(0,204,0));
+    }
+    
+    protected void setWebserviceStart(JComponent comp) {
+        comp.setForeground(Color.BLUE);
+    }
+    
+    protected void setWebserviceStop(JComponent comp) {
+        comp.setForeground(new Color(153,102,0));
+    }
+	
     protected void setDefault(JComponent comp) {
         comp.setForeground(Color.BLACK);
         comp.setToolTipText(null);

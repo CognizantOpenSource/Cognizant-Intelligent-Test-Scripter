@@ -13,16 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+var popupFlag=0;
 jQuery.fn.centerHorizontally = function () {
-    this.css({
-	position: 'fixed',
-	top: '40px',
-	width: Math.max(0, (($(window).width() - 70))) + "px",
-	height: Math.max(0, (($(window).height() - 50))) + "px",
-	overflow: 'auto',
-	left: "30px",
-	'z-index': '2'
+	console.log(popupFlag);
+	if(popupFlag==1){
+		this.css({
+		position: 'fixed',
+		top: '200px',
+		width:'700px' ,
+		height:'150px',
+		overflow: 'auto',
+		left: "300px",
+		'z-index': '2'
     });
+	}else{
+		this.css({
+		position: 'fixed',
+		top: '40px',
+		width: Math.max(0, (($(window).width() - 70))) + "px",
+		height: Math.max(0, (($(window).height() - 50))) + "px",
+		overflow: 'auto',
+		left: "30px",
+		'z-index': '2'
+		});
+	}
     return this;
 }
 
@@ -53,6 +67,12 @@ function setStatusLink(stat, actualImagePath, expectedImagePath, mapImagePath, o
                 + "' style='cursor:pointer;'>" + stat + "</a>";
     }
     return stat;
+}
+
+function setStatusLinkWeb(stat,stepNo,fileLink, flag){
+	fileLink=fileLink.replaceAll("\\","/");
+	popupFlag=1;
+	return "<a class='exe table "+ stat.toUpperCase()+ "' onclick='showDialog("+ stepNo +",\""+ fileLink +"\","+flag+")'>"+ stat +" </a>";
 }
 
 function setStatus() {
@@ -193,3 +213,31 @@ function removeAllChild(el) {
     catch (e) {
     }
 }
+
+function showDialog(stepNo, fileLink, flag) {
+	var request=fileLink+"/Step-"+stepNo+"_Request.txt";
+	if (flag==1){
+		request="";
+	}
+	var response=fileLink+"/Step-"+stepNo+"_Response.txt";
+    showShadow();
+	if (request !=""){
+		$('#Request').css("background","#008CBA");
+		$('#Request').attr("href", request);
+	}
+	else{
+		$('#Request').css("background","#D3D3D3");
+		$('#Request').attr("href", "");
+	}
+	if (response !=""){
+		$('#Response').css("background","#4CAF50");
+	    $('#Response').attr("href", response);
+	}
+	else{
+		$('#Response').css("background","#D3D3D3");
+		$('#Response').attr("href", "");
+	}
+    $("#popup-web .popup-content").show();
+    $("#popup-web").centerHorizontally().fadeIn('fast');
+}
+

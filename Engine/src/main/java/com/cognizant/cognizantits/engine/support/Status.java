@@ -56,7 +56,11 @@ public enum Status {
     /**
      * Fail without screenshot
      */
-    FAILNS;
+    FAILNS,
+    /**
+     * Indicates submission of API Request and generation of Response
+     */
+    COMPLETE;
 
     @Override
     public String toString() {
@@ -75,6 +79,8 @@ public enum Status {
                 return "DEBUG";
             case WARNING:
                 return "WARNING";
+            case COMPLETE:
+                return "COMPLETE";
         }
         return null;
     }

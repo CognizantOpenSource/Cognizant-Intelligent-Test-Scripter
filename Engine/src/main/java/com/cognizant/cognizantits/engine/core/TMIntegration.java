@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,12 @@ import com.cognizant.cognizantits.engine.reporting.sync.Sync;
 import com.cognizant.cognizantits.engine.reporting.sync.Unknown;
 import com.cognizant.cognizantits.engine.reporting.sync.jira.JIRASync;
 import com.cognizant.cognizantits.engine.reporting.sync.jiracloud.JIRACloudSync;
+import com.cognizant.cognizantits.engine.reporting.sync.octane.OctaneSync;
 import com.cognizant.cognizantits.engine.reporting.sync.qc.QCSync;
 import com.cognizant.cognizantits.engine.reporting.sync.qc.rest.QCRestSync;
 import com.cognizant.cognizantits.engine.reporting.sync.qtest.QTestSync;
 import com.cognizant.cognizantits.engine.reporting.sync.testrail.TestRailSync;
-import com.cognizant.cognizantits.engine.reporting.sync.tfs.VStsSync;
+import com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync;
 import com.cognizant.cognizantits.engine.reporting.sync.zephyr.ZephyrSync;
 import com.cognizant.cognizantits.util.encryption.Encryption;
 
@@ -63,8 +64,8 @@ public class TMIntegration {
                     return new QCSync(decryptValues(testMgmgtSettings));
                 case "QC_REST":
                     return new QCRestSync(decryptValues(testMgmgtSettings));
-                case "VS Team Services":
-                    return new VStsSync(decryptValues(testMgmgtSettings));
+                case "AzureDevOps TestPlan":
+                    return new AzureSync(decryptValues(testMgmgtSettings));
                 case "Zephyr":
                     return new ZephyrSync(decryptValues(testMgmgtSettings));
                 case "qTestManager":
@@ -73,6 +74,8 @@ public class TMIntegration {
                 	return new JIRACloudSync(decryptValues(testMgmgtSettings));
                 case "TestRail":
                 	return new TestRailSync(decryptValues(testMgmgtSettings));
+                case "Octane":
+                	return new OctaneSync(decryptValues(testMgmgtSettings));
                 default:
                     LOG.warn("Initializing TM integration with Unknown - " + testMgmgtSettings.getUpdateResultsToTM());
                     return new Unknown();

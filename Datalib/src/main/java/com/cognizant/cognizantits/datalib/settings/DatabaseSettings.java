@@ -31,7 +31,7 @@ public class DatabaseSettings extends AbstractPropSettings {
     private void loadDefault() {
         put("db.connection.string", "jdbc:<Database>://<Host>:<Port>/<Database name>");
         put("db.user", "");
-        put("db.password", "");
+        put("db.secret", "");
         put("db.driver", "");
         put("db.commit", "True");
         put("db.timeout", "30");

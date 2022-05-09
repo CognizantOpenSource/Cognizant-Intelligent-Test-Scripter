@@ -34,6 +34,9 @@ import com.cognizant.storywriter.bdd.ui.handlers.FeatureListTransferHandler;
 import com.cognizant.storywriter.util.Notification.Msg;
 import com.cognizant.storywriter.util.SLogger;
 import com.cognizant.storywriter.util.Tools;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -53,7 +56,7 @@ public final class UIControl {
     RecentItems rItems;
     TransferHandler featureTransferHandler;
 
-    public UIControl() {
+    public UIControl() throws IOException {
         openProj = new JFileChooser(System.getProperty("user.dir"), null);
         openProj.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
         openProj.setFileFilter(com.cognizant.storywriter.util.Tools.json);
@@ -98,7 +101,7 @@ public final class UIControl {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         try {
             LogManager logManager = LogManager.getLogManager();
@@ -261,8 +264,14 @@ public final class UIControl {
     /**
      * creates new project
      */
+    
+    private static String sanitizePathTraversal(String filename) {
+        Path p = Paths.get(filename);
+        return p.getFileName().toString();
+    }
+    
     void createNewProject() {
-        String name = ui.npName.getText();
+        String name = sanitizePathTraversal(ui.npName.getText());
         if (!name.isEmpty()) {
             File f = new File("projects" + File.separator + name + ".json");
             if (!f.exists()) {

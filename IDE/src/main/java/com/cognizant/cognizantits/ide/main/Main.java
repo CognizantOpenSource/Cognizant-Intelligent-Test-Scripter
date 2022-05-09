@@ -31,6 +31,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -84,7 +85,12 @@ public class Main {
             splash.progressed(10);
             initDependencies();
             splash.progressed(20);
-            AppMainFrame mainFrame = new AppMainFrame(splash::progressed);
+            AppMainFrame mainFrame = null;
+            try {
+                mainFrame = new AppMainFrame(splash::progressed);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
             mainFrame.setVisible(false);
             mainFrame.setMinimumSize(new Dimension(1000, 700));
             mainFrame.setPreferredSize(new Dimension(1000, 700));

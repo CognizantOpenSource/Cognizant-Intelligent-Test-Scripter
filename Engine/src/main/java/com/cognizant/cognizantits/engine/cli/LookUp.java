@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2021 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import org.apache.commons.cli.ParseException;
 public class LookUp {
 
     private static final Logger LOG = Logger.getLogger(LookUp.class.getName());
-
+    public static boolean cliflag= false;
     public static final Options OPTIONS = new Options();
     private static final Map<String, Option> DO_LATER = new HashMap<>();
     private static final Map<String, Option> EXECUTION = new HashMap<>();
@@ -53,7 +53,7 @@ public class LookUp {
         OPTIONS.addOption(Op.BROWSER_NAME, true, "Browser Name (Not applicable for Testset Execution)");
         OPTIONS.addOption(Op.RS_NAME, true, "Release Name");
         OPTIONS.addOption(Op.TS_NAME, true, "Testset Name");
-
+        OPTIONS.addOption(Op.TAGS, true, "Tags");
         OPTIONS.addOption(Op.B_DATE, false, "Display current build date");
         OPTIONS.addOption(Op.B_TIME, false, "Display current build time");
         OPTIONS.addOption(Op.B_VERSION, false, "Display current build version");
@@ -94,7 +94,7 @@ public class LookUp {
     public static void exe(String[] args) {
         try {
             CommandLineParser parser = new DefaultParser();
-
+            cliflag = true;
             CommandLine cmd = parser.parse(OPTIONS, args);
             for (Option op : cmd.getOptions()) {
 
@@ -156,6 +156,7 @@ public class LookUp {
                     case Op.SC_NAME:
                     case Op.RS_NAME:
                     case Op.BROWSER_NAME:
+                    case Op.TAGS:
                         EXECUTION.put(op.getOpt(), op);
                         break;
                     default:

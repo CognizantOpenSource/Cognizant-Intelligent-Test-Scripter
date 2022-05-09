@@ -24,5 +24,8 @@ public enum ObjectType {
     SELENIUM,
     APP,
     DATABASE,
-    ANY
+    PROTRACTORJS,
+    ANY,
+	WEBSERVICE
+    
 }

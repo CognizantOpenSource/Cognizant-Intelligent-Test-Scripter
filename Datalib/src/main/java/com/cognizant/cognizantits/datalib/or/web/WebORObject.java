@@ -407,6 +407,16 @@ public class WebORObject extends UndoRedoModel implements ORObjectInf {
     public String getType() {
         return getAttributeByName("type");
     }
+    
+    @JsonIgnore
+    public String getNLPlocator() {
+        return getAttributeByName("NLP_locator");
+    }
+    
+    @JsonIgnore
+    public String getUserdefinedLocator() {
+        return getAttributeByName("user_defined_locator");
+    }
 
     @JsonIgnore
     public String getAttributeByName(String attr) {
@@ -466,6 +476,16 @@ public class WebORObject extends UndoRedoModel implements ORObjectInf {
     @JsonIgnore
     public void setType(String val) {
         setAttributeByName("type", val);
+    }
+    
+    @JsonIgnore
+    public void setNLPlocator(String val) {
+        setAttributeByName("NLP_locator", val);
+    }
+    
+    @JsonIgnore
+    public void setUserdefinedLocator(String val) {
+        setAttributeByName("user_defined_locator", val);
     }
 
     @JsonIgnore

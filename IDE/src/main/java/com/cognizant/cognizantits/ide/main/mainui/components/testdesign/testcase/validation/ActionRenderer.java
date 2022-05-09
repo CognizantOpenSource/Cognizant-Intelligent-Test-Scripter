@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import javax.swing.JComponent;
 
 /**
  *
- * 
+ *
  */
 public class ActionRenderer extends AbstractRenderer {
 
@@ -47,6 +47,12 @@ public class ActionRenderer extends AbstractRenderer {
                 } else {
                     setNotPresent(comp, reusableNotPresent);
                 }
+            } else if (step.isWebserviceStartStep()) {
+                setWebserviceStart(comp);
+            } else if (step.isWebserviceStopStep()) {
+                setWebserviceStop(comp);
+            } else if ((step.isWebserviceRequestStep())) {
+                setWebserviceRequest(comp);
             } else if (isActionValid(step, value)) {
                 setDefault(comp);
             } else {
@@ -93,6 +99,14 @@ public class ActionRenderer extends AbstractRenderer {
                 valid = MethodInfoManager.getMethodListFor(ObjectType.DATABASE)
                         .contains(action);
                 break;
+            case "ProtractorJS":
+                valid = MethodInfoManager.getMethodListFor(ObjectType.PROTRACTORJS)
+                        .contains(action);
+                break;
+	    case "Webservice":
+                valid = MethodInfoManager.getMethodListFor(ObjectType.WEBSERVICE)
+                        .contains(action);
+                break;	
             default:
                 if (isImageObject(step)) {
                     valid = MethodInfoManager.getMethodListFor(ObjectType.IMAGE)

@@ -1,0 +1,20 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,ProtractorJS,initialise the protractorjs script,protractor_initialize,,,
+2,ProtractorJS,Command to open an url,protractor_open,%Prot_url%,,
+3,uname,Command to send text to web element,protractor_set,ProtractorJS:uname,,ProtractorJS
+4,uname,Command to send text to web element,protractor_clearElement,,,ProtractorJS
+5,uname,Command to send text to web element,protractor_getElementAttribute,@class,,ProtractorJS
+6,ProtractorJS,Enable/Disable Protractor to wait for Angular $http and $timeout tasks,protractor_waitForAngularEnabled,@true,,
+7,uname,Command to send text to web element,protractor_AssertElementPresent,,,ProtractorJS
+8,greeting,Get the id value of the element,protractor_getElementId,,,ProtractorJS
+9,uname,Command to send text to web element,protractor_AssertElementDisplayed,,,ProtractorJS
+10,uname,Command to send text to web element,protractor_AssertElementSelected,,,ProtractorJS
+11,uname,,protractor_AssertElementNotSelected,,,ProtractorJS
+12,uname,Command to send text to web element,protractor_AssertElementDisplayed,,,ProtractorJS
+13,uname,Command to send text to web element,protractor_set,ProtractorJS:uname,,ProtractorJS
+14,p_label,Command to send text to web element,protractor_getElementText,,,ProtractorJS
+15,pwd,Command to send text to web element,protractor_set,ProtractorJS:pwd,,ProtractorJS
+16,login,Command to send text to web element,protractor_submitElement,,,ProtractorJS
+17,ProtractorJS,initialise the protractorjs script,protractor_browserRestart,,,
+18,ProtractorJS,Terminate the protractorjs script,protractor_terminate,@testspe.js,,
+19,ProtractorJS,Command to execute the given spec file through ProtractorJS,RunSpec,@testspe.js,,

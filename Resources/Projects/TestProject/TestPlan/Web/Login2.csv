@@ -1,0 +1,5 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,Browser,Open the Url [<Data>] in the Browser,Open,@https://www.saucedemo.com/,,
+2,UserID,Enter the value [<Data>] in the Field [<Object>],Set,@standard_user,,SwagLabsHome
+3,Password,Enter the value [<Data>] in the Field [<Object>],Set,@test,,SwagLabsHome
+4,[Invalid Object],"Click the [<Object>] ",assertElementPresent,,,SwagLabsHome

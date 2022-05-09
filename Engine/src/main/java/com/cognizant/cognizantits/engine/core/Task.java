@@ -58,7 +58,6 @@ public class Task implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Inside Task Run");
         runTime = new DateTimeUtils();
         report = new TestCaseReport();
         TestCase stc = getTestCase();
@@ -69,7 +68,6 @@ public class Task implements Runnable {
                     runContext.TestCase);
         }
         report.createReport(runContext, DateTimeUtils.DateTimeNow());
-
         int iter = 1;
         Date startexecDate = new Date();
         if (RunManager.getGlobalSettings().isTestRun()) {
@@ -96,7 +94,6 @@ public class Task implements Runnable {
             Control.ReportManager.updateTestCaseResults(runContext, report, s, runTime.timeRun());
             SystemDefaults.reportComplete.set(false);
         }
-
     }
 
     private TestCase getTestCase() {

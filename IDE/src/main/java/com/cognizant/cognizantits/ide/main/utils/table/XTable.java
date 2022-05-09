@@ -258,6 +258,7 @@ public class XTable extends JTable {
                 for (int column = 0; column < getColumnCount(); column++) {
                     String value = Objects.toString(getValueAt(row, column), "");
                     if (isRegex ? value.matches(text) : value.contains(text)) {
+                  //if (value.contains(text)){
                         if (!searchRenderer.searchRowMap.containsKey(row)) {
                             searchRenderer.searchRowMap.put(row, new ArrayList<Integer>());
                         }

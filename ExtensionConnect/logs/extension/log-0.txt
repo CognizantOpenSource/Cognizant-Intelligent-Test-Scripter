@@ -1,0 +1,4 @@
+Apr 27, 2021 5:36:20 PM com.cognizant.cognizantits.extension.server.ExtensionServer startSpy
+INFO: Launching Server for Spy
+Apr 27, 2021 5:36:20 PM com.cognizant.cognizantits.extension.server.ExtensionServer$1 run
+INFO: Starting Server

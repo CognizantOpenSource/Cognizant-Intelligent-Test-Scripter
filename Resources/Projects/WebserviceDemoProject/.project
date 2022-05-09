@@ -1,0 +1,337 @@
+{
+  "id" : "Project Name",
+  "name" : "Project Name",
+  "version" : "1.3",
+  "attributes" : [ ],
+  "tags" : [ ],
+  "_meta" : [ {
+    "type" : "attribute",
+    "name" : "scenario",
+    "desc" : "High level classification of test requirement/cases grouped together",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "tag",
+    "name" : "@smoke",
+    "desc" : "Non-exhaustive set of tests that aim at ensuring that the most important functions work",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Tag",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "tag",
+    "name" : "@uat",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Tag",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "tag",
+    "name" : "@load",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Tag",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "AccessibilityTesting",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "AngularJS_Support",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "BasicFeatures",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "DatabaseActions",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "Emulators",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "ImageBasedTesting",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "MobileBasedTesting",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "PdfTesting",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "ProtractorJS",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  }, {
+    "type" : "scenario",
+    "name" : "WebPagePerformanceTesting",
+    "ref" : "com.cognizant.cognizantits.datalib.model.Attribute",
+    "attributes" : [ ],
+    "tags" : [ ]
+  } ],
+  "data" : [ {
+    "id" : "AccessibilityTesting#AccessibilityActions",
+    "name" : "AccessibilityActions",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "AccessibilityTesting"
+    } ]
+  }, {
+    "id" : "AngularJS_Support#AngularJS_Test",
+    "name" : "AngularJS_Test",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "AngularJS_Support"
+    } ]
+  }, {
+    "id" : "BasicFeatures#DemoTestCase",
+    "name" : "DemoTestCase",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "BasicFeatures"
+    } ]
+  }, {
+    "id" : "BasicFeatures#Iterations&SubIterations",
+    "name" : "Iterations&SubIterations",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "BasicFeatures"
+    } ]
+  }, {
+    "id" : "BasicFeatures#LayoutTesting",
+    "name" : "LayoutTesting",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "BasicFeatures"
+    } ]
+  }, {
+    "id" : "BasicFeatures#Reusable",
+    "name" : "Reusable",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "reusable"
+    }, {
+      "name" : "scenario",
+      "value" : "BasicFeatures"
+    } ]
+  }, {
+    "id" : "DatabaseActions#DBTest",
+    "name" : "DBTest",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "DatabaseActions"
+    } ]
+  }, {
+    "id" : "Emulators#ChromeEmulator_Iphone5",
+    "name" : "ChromeEmulator_Iphone5",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "Emulators"
+    } ]
+  }, {
+    "id" : "Emulators#Iphone5_UserAgent",
+    "name" : "Iphone5_UserAgent",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "Emulators"
+    } ]
+  }, {
+    "id" : "Emulators#WebFlow_ChromeRWD",
+    "name" : "WebFlow_ChromeRWD",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "Emulators"
+    } ]
+  }, {
+    "id" : "ImageBasedTesting#image_Web",
+    "name" : "image_Web",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ImageBasedTesting"
+    } ]
+  }, {
+    "id" : "ImageBasedTesting#WindowsAppUsingSikuli",
+    "name" : "WindowsAppUsingSikuli",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ImageBasedTesting"
+    } ]
+  }, {
+    "id" : "MobileBasedTesting#Mobile_Browser",
+    "name" : "Mobile_Browser",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "MobileBasedTesting"
+    } ]
+  }, {
+    "id" : "MobileBasedTesting#Mobile_Native",
+    "name" : "Mobile_Native",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "MobileBasedTesting"
+    } ]
+  }, {
+    "id" : "PdfTesting#PdfvalidationActions",
+    "name" : "PdfvalidationActions",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "PdfTesting"
+    } ]
+  }, {
+    "id" : "ProtractorJS#alert",
+    "name" : "alert",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "ProtractorJS#Broswer_Commands",
+    "name" : "Broswer_Commands",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "ProtractorJS#Element_commands",
+    "name" : "Element_commands",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "ProtractorJS#expected_waits",
+    "name" : "expected_waits",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "ProtractorJS#Smokeflow",
+    "name" : "Smokeflow",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "ProtractorJS#SwitchToFrame",
+    "name" : "SwitchToFrame",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "ProtractorJS"
+    } ]
+  }, {
+    "id" : "WebPagePerformanceTesting#WebPagePerformanceTesting",
+    "name" : "WebPagePerformanceTesting",
+    "tags" : [ ],
+    "attributes" : [ {
+      "name" : "type",
+      "value" : "testcase"
+    }, {
+      "name" : "scenario",
+      "value" : "WebPagePerformanceTesting"
+    } ]
+  } ]
+}

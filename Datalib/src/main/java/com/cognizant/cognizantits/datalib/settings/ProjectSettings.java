@@ -36,6 +36,10 @@ public class ProjectSettings {
     private final MailSettings mailSettings;
     
     private final DatabaseSettings dbSettings;
+    
+    private final ReportPortalSettings rpSettings;
+    
+    private final ExtentReportSettings extentSettings;
 
     private final ExecutionSettings execSettings;
 
@@ -49,6 +53,8 @@ public class ProjectSettings {
         this.execSettings = new ExecutionSettings(getLocation());
         this.mailSettings = new MailSettings(getLocation());
         this.dbSettings = new DatabaseSettings(getLocation());
+        this.rpSettings = new ReportPortalSettings(getLocation());
+        this.extentSettings = new ExtentReportSettings(getLocation());
     }
 
     public void resetLocation() {
@@ -60,6 +66,9 @@ public class ProjectSettings {
         execSettings.setLocation(getLocation());
         mailSettings.setLocation(getLocation());
         dbSettings.setLocation(getLocation());
+        rpSettings.setLocation(getLocation());
+        extentSettings.setLocation(getLocation());
+               
     }
 
     public final String getLocation() {
@@ -76,6 +85,14 @@ public class ProjectSettings {
     
     public DatabaseSettings getDatabaseSettings(){
         return dbSettings;
+    }
+    
+    public ReportPortalSettings getRPSettings(){
+        return rpSettings;
+    }
+    
+    public ExtentReportSettings getExtentSettings(){
+        return extentSettings;
     }
     
     public DriverSettings getDriverSettings() {
@@ -115,5 +132,6 @@ public class ProjectSettings {
         testMgmtModule.save();
         mailSettings.save();
         dbSettings.save();
+        extentSettings.save();
     }
 }

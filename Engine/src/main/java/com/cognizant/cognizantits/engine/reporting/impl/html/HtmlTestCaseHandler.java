@@ -122,7 +122,8 @@ public class HtmlTestCaseHandler extends TestCaseHandler implements PrimaryHandl
             LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-
+    
+    
     /**
      * creates new iteration object
      *
@@ -229,6 +230,8 @@ public class HtmlTestCaseHandler extends TestCaseHandler implements PrimaryHandl
             case WARNING:
             case FAILNS:
                 onSetpFailed();
+                break;
+            case COMPLETE:            
                 break;
 
         }

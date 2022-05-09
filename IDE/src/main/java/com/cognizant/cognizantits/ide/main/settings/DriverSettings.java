@@ -423,6 +423,7 @@ public class DriverSettings extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configure Browsers");
+        setPreferredSize(new java.awt.Dimension(462, 550));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -679,7 +680,7 @@ public class DriverSettings extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(dupDriverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(uaEmulator))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         emulatorPanelLayout.setVerticalGroup(
             emulatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -688,7 +689,7 @@ public class DriverSettings extends javax.swing.JFrame {
                 .addComponent(duplicateEmulator)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dupDriverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 47, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(uaEmulator)
                 .addGap(16, 16, 16)
                 .addGroup(emulatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

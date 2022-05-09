@@ -98,7 +98,8 @@ public class ByObjectProp {
                 break;
             }
         }
-        Logger.getLogger(ByObjectProp.class.getName()).log(Level.SEVERE, "Find logic not implemented for - {0}", propertyName);
+        if(!propertyName.equals("NLP_locator"))
+          Logger.getLogger(ByObjectProp.class.getName()).log(Level.SEVERE, "Find logic not implemented for - {0}", propertyName);
         return null;
     }
 

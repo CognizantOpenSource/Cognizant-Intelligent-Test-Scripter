@@ -23,6 +23,7 @@ import com.cognizant.cognizantits.ide.util.Notification;
 import com.cognizant.cognizantits.ide.util.Utility;
 import com.cognizant.cognizantits.util.encryption.Encryption;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -86,13 +87,13 @@ public class SettingsUI extends javax.swing.JFrame {
         moduleConfig.setVisible(true);
     }
 
-    void saveFields(String moduleId) {
+    void saveFields(String moduleId) throws IOException {
         List<HashMap<String, String>> data = getTableData(fieldsTable, moduleId);
         conn.updateFields(data, moduleId);
         Notification.show("Field Settings Successfully Saved!!");
     }
 
-    void saveModules() {
+    void saveModules() throws IOException {
         List<HashMap<String, String>> data = getTableData(modulesTable);
         conn.updateModules(data);
         Notification.show("Modules Successfully Saved!!");
@@ -200,7 +201,7 @@ public class SettingsUI extends javax.swing.JFrame {
     }
 
     private void testConnection() {
-        String message = "Pls, provide correct details !";
+        String message = "Please provide correct details !";
         Thread dMConn;
         dMConn = new Thread(new java.lang.Runnable() {
             @Override
@@ -849,7 +850,11 @@ public class SettingsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void saveFieldsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFieldsTableActionPerformed
-        saveFields(moduleList.getSelectedItem().toString());
+        try {
+            saveFields(moduleList.getSelectedItem().toString());
+        } catch (IOException ex) {
+            Logger.getLogger(SettingsUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveFieldsTableActionPerformed
 
     private void addrowMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addrowMActionPerformed
@@ -857,7 +862,11 @@ public class SettingsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addrowMActionPerformed
 
     private void saveModulesTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveModulesTableActionPerformed
-        saveModules();
+        try {
+            saveModules();
+        } catch (IOException ex) {
+            Logger.getLogger(SettingsUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveModulesTableActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

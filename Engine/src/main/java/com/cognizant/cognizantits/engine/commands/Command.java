@@ -23,6 +23,11 @@ import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.execution.data.UserDataAccess;
 import com.cognizant.cognizantits.engine.mail.Mailer;
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
+
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,6 +49,18 @@ public class Command {
     private final CommandControl Commander;
     public UserDataAccess userData;
 
+    /********Webservice********/
+     static public Map<String, String> endPoints = new HashMap<>();
+     static public Map<String, ArrayList<String>> headers = new HashMap<>();
+     static public Map<String, String> responsebodies = new HashMap<>();
+     static public Map<String, String> responsecodes = new HashMap<>();
+     static public Map<String, String> responsemessages = new HashMap<>();
+     static public Map<String, HttpURLConnection> httpConnections = new HashMap<>();
+     static public Map<String, String> httpagents = new HashMap<>();
+     public String key;
+     static public String basicAuthorization;
+    /***************************/
+    
     public Command(CommandControl cc) {
         Commander = cc;
         Driver = Commander.seDriver.driver;
@@ -59,6 +76,10 @@ public class Command {
         Reference = Commander.Reference;
         Action = Commander.Action;
         userData = Commander.userData;
+        
+        /********Webservice********/
+        key = userData.getScenario()+userData.getTestCase();
+        /**************************/
     }
 
     public void addVar(String key, String val) {
@@ -85,7 +106,8 @@ public class Command {
         data = Mailer.decrypt(data);
         return data;
     }
-
+    
+ 
     public Stack<WebElement> getRunTimeElement() {
         return Commander.getRunTimeElement();
     }
@@ -145,4 +167,30 @@ public class Command {
     public boolean browserAction() {
         return "browser".equalsIgnoreCase(ObjectName);
     }
+    /********Webservice***************/
+    public String Endpoint(){
+		return endPoints.get(key);
+	}
+    
+    public String ResponseCode(){
+		return responsecodes.get(key);
+	}
+    
+    public String ResponseMessage(){
+		return responsemessages.get(key);
+	}
+    
+    public String ResponseBody(){
+		return responsebodies.get(key);
+	}
+    
+    public HttpURLConnection Connection(){
+		return httpConnections.get(key);
+	}
+    
+    public String HttpAgent(){
+		return httpagents.get(key);
+	}
+    
+    /*********************************/
 }

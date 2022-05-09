@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2019 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class ObjectRenderer extends AbstractRenderer {
         }
     }
 
-    private Color getColor(Object value) {
+	private Color getColor(Object value) {
         String val = Objects.toString(value, "").trim();
         switch (val) {
             case "Execute":
@@ -74,7 +74,7 @@ public class ObjectRenderer extends AbstractRenderer {
 
     private Boolean isValidObject(Object value) {
         return Objects.toString(value, "").trim()
-                .matches("Execute|App|Browser|Database");
+                .matches("Execute|App|Browser|Database|ProtractorJS|Webservice");
     }
 
 }

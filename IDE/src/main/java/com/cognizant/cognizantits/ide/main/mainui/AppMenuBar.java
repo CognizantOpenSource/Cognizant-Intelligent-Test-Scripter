@@ -17,6 +17,7 @@ package com.cognizant.cognizantits.ide.main.mainui;
 
 import com.cognizant.cognizantits.ide.main.utils.Utils;
 import com.cognizant.cognizantits.ide.util.Canvas;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -162,6 +163,7 @@ public class AppMenuBar extends JMenuBar {
 
     private JMenu createTestDataMenu() {
         JMenu testData = new JMenu("Test Data");
+
         testData.setMnemonic('D');
 
         testData.add(withMnemonics(
@@ -194,9 +196,9 @@ public class AppMenuBar extends JMenuBar {
                                 Utils.createMenuItem("Test Management Configuration", sActionListener)), 'T'));
         configure.addSeparator();
 
-        configure.add(
-                withMnemonics(
-                        Utils.createMenuItem("Schedule Run", sActionListener), 'S'));
+      //  configure.add(
+      //          withMnemonics(
+      //                  Utils.createMenuItem("Schedule Run", sActionListener), 'S'));
         configure.add(
                 withMnemonics(
                         Utils.createMenuItem("Start Server", sActionListener), 't'));

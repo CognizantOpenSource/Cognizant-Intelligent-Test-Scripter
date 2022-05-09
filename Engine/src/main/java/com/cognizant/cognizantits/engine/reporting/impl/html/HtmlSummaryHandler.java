@@ -79,6 +79,7 @@ public class HtmlSummaryHandler extends SummaryHandler implements PrimaryHandler
             perf.addHar(h, report, pageName);
         }
     }
+    
 
     private void createReportIfNotExists(String path) {
         File file = new File(path + File.separator + "media");
@@ -269,12 +270,22 @@ public class HtmlSummaryHandler extends SummaryHandler implements PrimaryHandler
         }
     }
 
+    public boolean isExtentEnabled() {
+        if (!RunManager.getGlobalSettings().isTestRun()) {
+            return Control.getCurrentProject().getProjectSettings()
+                    .getExecSettings(RunManager.getGlobalSettings().getRelease(), RunManager.getGlobalSettings().getTestSet()).getRunSettings().isExtentReport();
+        }
+        
+        return false;
+    }
     /**
      * open the summary report when execution is finished
      */
     public synchronized void launchResultSummary() {
-        if (SystemDefaults.canLaunchSummary()) {
-            DesktopApi.open(new File(FilePath.getCurrentSummaryHTMLPath()));
+        if (!isExtentEnabled()){
+            if (SystemDefaults.canLaunchSummary()) {
+                DesktopApi.open(new File(FilePath.getCurrentSummaryHTMLPath()));
+            }
         }
     }
 
