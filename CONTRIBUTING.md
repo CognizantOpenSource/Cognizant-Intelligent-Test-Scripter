@@ -1,4 +1,4 @@
-# Contributing to Cognizant Intelligent Test Scripter
+# Contributing to Cognizant Intelligent Test Scripter [2022]
 
 These are just guidelines, not rules. Use your best judgment. Please feel free to propose changes to this document in a pull request.
 
