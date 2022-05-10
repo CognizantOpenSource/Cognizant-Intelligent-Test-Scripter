@@ -1,6 +1,6 @@
 # This workflow will build CITS package using Maven and then publish it as an artifact when a release is created
 
-name: CITS Packaging
+name: Build
 
 on:
   push:
