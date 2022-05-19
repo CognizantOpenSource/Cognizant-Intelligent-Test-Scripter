@@ -20,8 +20,8 @@ import com.cognizant.cognizantits.ide.main.bdd.BddParser;
 import com.cognizant.cognizantits.ide.main.explorer.ExplorerBar;
 import com.cognizant.cognizantits.ide.main.help.Help;
 import com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testdata.ImportTestData;
-//import com.cognizant.cognizantits.ide.main.scheduler.SchedulerUI;
-//import com.cognizant.cognizantits.ide.main.server.SeleniumServer;
+import com.cognizant.cognizantits.ide.main.scheduler.SchedulerUI;
+import com.cognizant.cognizantits.ide.main.server.SeleniumServer;
 import com.cognizant.cognizantits.ide.main.settings.CognizantITSSettings;
 import com.cognizant.cognizantits.ide.main.settings.DriverSettings;
 import com.cognizant.cognizantits.ide.main.settings.TMSettings;
@@ -53,7 +53,7 @@ public class AppActionListener implements ActionListener {
 
     private final Options options;
 
- //   private final SchedulerUI scheduler;
+    private final SchedulerUI scheduler;
 
     private final BddParser bddParser;
 
@@ -68,7 +68,7 @@ public class AppActionListener implements ActionListener {
         driverSettings = new DriverSettings(sMainFrame);
         tmSettings = new TMSettings(sMainFrame);
         options = new Options();
-//        scheduler = new SchedulerUI();
+        scheduler = new SchedulerUI();
         bddParser = new BddParser(sMainFrame);
         injectScript = new InjectScript();
         importTestData = new ImportTestData(sMainFrame);
@@ -145,12 +145,12 @@ public class AppActionListener implements ActionListener {
             case "Options":
                 options.showOptions();
                 break;
- //           case "Schedule Run":
- //               scheduler.showScheduler(sMainFrame.getProject());
- //               break;
- //           case "Start Server":
- //               SeleniumServer.get().loadFor(sMainFrame.getProject());
- //               break;
+            case "Schedule Run":
+                scheduler.showScheduler(sMainFrame.getProject());
+                break;
+            case "Start Server":
+                SeleniumServer.get().loadFor(sMainFrame.getProject());
+                break;
             case "Import Feature File":
             {
                 try {
