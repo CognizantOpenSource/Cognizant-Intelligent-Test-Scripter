@@ -199,9 +199,9 @@ public class AppMenuBar extends JMenuBar {
       //  configure.add(
       //          withMnemonics(
       //                  Utils.createMenuItem("Schedule Run", sActionListener), 'S'));
-        configure.add(
-                withMnemonics(
-                        Utils.createMenuItem("Start Server", sActionListener), 't'));
+       // configure.add(
+         //       withMnemonics(
+           //             Utils.createMenuItem("Start Server", sActionListener), 't'));
 
         configure.addSeparator();
         configure.add(
