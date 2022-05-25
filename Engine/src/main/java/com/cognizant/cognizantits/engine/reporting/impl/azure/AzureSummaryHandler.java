@@ -178,7 +178,7 @@ public class AzureSummaryHandler extends SummaryHandler implements PrimaryHandle
                 + AzureReport.testcase
                 + "</test-suite>"
                 + "</test-run>";
-        resetAzureVars();
+        
 
         FileOutputStream out = new FileOutputStream(AzureReportPath);
 
@@ -187,6 +187,7 @@ public class AzureSummaryHandler extends SummaryHandler implements PrimaryHandle
         System.out.println("\n-----------------------------------------------------");
         System.out.println("Azure Report XML generated");
         System.out.println("-----------------------------------------------------\n");
+		resetAzureVars();
 
     }
     
