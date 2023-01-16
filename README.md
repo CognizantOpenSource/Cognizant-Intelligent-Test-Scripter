@@ -13,7 +13,9 @@ After extracting the zip, follow the steps from [Installation.md](Resources/Inst
 
 ## Complete Tutorial
 
-You can check this [CITS Tutorial](https://www.youtube.com/watch?v=DHQP78rAUG0&list=PLe8l5fbBj98t3_XjOSHJVbj2i943PrNNx) on YouTube
+You can check this [CITS Tutorial](https://www.youtube.com/watch?v=DHQP78rAUG0&list=PLe8l5fbBj98t3_XjOSHJVbj2i943PrNNx) on YouTube.
+
+
 Additionally, you can use the [playlist here](https://www.youtube.com/watch?v=g5y9lgefSLY&list=PLe8l5fbBj98tRPpesfTRQVX65AGSs_rRO) to understand how to use CITS to solve some real world test automation problems
 
 ## Documentation
