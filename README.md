@@ -18,6 +18,8 @@ You can check this [CITS Tutorial](https://www.youtube.com/playlist?list=PLe8l5f
 
 Additionally, you can use the [playlist here](https://www.youtube.com/playlist?list=PLe8l5fbBj98tRPpesfTRQVX65AGSs_rRO) to understand how to use CITS to solve some real world test automation problems
 
+Please follow the [playlist here](https://www.youtube.com/playlist?list=PLe8l5fbBj98vvYGbVoAokS6prVXePAvms) to understand how to perform Behaviour Driven Testing with CITS
+
 ## Documentation
 
 You can check the Help Documentation from [HelpDoc](https://cognizantqahub.github.io/Cognizant-Intelligent-Test-Scripter-Helpdoc/)
