@@ -603,7 +603,9 @@ public class Webservice extends General {
             BasicAuthorizationCheck();
             if (requestmethod.toString().equals("PUT") || requestmethod.toString().equals("POST")) {
                 writeoutRequestBody(handlePayloadorEndpoint(Data));
-            }
+            } else {
+		before.put(key, Instant.now());
+	     }
             returnResponseDetails();
             duration.put(key,Duration.between(before.get(key), after.get(key)).toMillis());
 	    Report.updateTestLog(Action, "Response received in : ["+ duration.get(key) +"ms] with Status code  : " + responsecodes.get(key), Status.COMPLETE);
