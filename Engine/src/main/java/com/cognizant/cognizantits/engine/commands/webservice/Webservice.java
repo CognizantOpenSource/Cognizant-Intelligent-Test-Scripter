@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2021 Cognizant Technology Solutions
+ * Copyright 2014 - 2023 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,8 @@ import javax.xml.xpath.XPathExpressionException;
 import org.sikuli.basics.FileManager;
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Webservice extends General {
 
@@ -359,6 +361,7 @@ public class Webservice extends General {
         while (-1 != (num = reader.read(cbuf))) {
             buf.append(cbuf, 0, num);
         }
+	after.put(key, Instant.now());
         savePayload("response", buf.toString());
         responsebodies.put(key, buf.toString());
         responsecodes.put(key, Integer.toString(httpConnections.get(key).getResponseCode()));
@@ -540,6 +543,7 @@ public class Webservice extends General {
     private void writeoutRequestBody(String data) {
         try {
             savePayload("request", data);
+	    before.put(key, Instant.now());
             try (OutputStreamWriter out = new OutputStreamWriter(httpConnections.get(key).getOutputStream())) {
                 out.write(data);
                 out.flush();
@@ -601,7 +605,8 @@ public class Webservice extends General {
                 writeoutRequestBody(handlePayloadorEndpoint(Data));
             }
             returnResponseDetails();
-            Report.updateTestLog(Action, "Status code is : " + responsecodes.get(key), Status.COMPLETE);
+            duration.put(key,Duration.between(before.get(key), after.get(key)).toMillis());
+	    Report.updateTestLog(Action, "Response received in : ["+ duration.get(key) +"ms] with Status code  : " + responsecodes.get(key), Status.COMPLETE);
         } catch (IOException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.OFF, ex.getMessage(), ex);
             Report.updateTestLog(Action,
