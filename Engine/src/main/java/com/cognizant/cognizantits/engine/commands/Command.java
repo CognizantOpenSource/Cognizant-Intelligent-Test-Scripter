@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 - 2017 Cognizant Technology Solutions
+ * Copyright 2014 - 2023 Cognizant Technology Solutions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.cognizant.cognizantits.engine.drivers.SeleniumDriver;
 import com.cognizant.cognizantits.engine.execution.data.UserDataAccess;
 import com.cognizant.cognizantits.engine.mail.Mailer;
 import com.cognizant.cognizantits.engine.reporting.TestCaseReport;
-
+import java.time.Instant;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +57,9 @@ public class Command {
      static public Map<String, String> responsemessages = new HashMap<>();
      static public Map<String, HttpURLConnection> httpConnections = new HashMap<>();
      static public Map<String, String> httpagents = new HashMap<>();
+     static public Map<String, Instant> before = new HashMap<>();
+     static public Map<String, Instant> after = new HashMap<>();
+     static public Map<String, Long> duration = new HashMap<>();	
      public String key;
      static public String basicAuthorization;
     /***************************/
