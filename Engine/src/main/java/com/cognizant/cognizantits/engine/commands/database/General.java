@@ -44,7 +44,7 @@ public class General extends Command {
     static ResultSetMetaData resultData;
     static final String DB_CONN_STR = "db.connection.string";
     static final String DB_USER = "db.user";
-    static final String DB_PWD = "db.secret";
+    static final String DB_PWD = "db.password";
     static final String DB_DRIVER = "db.driver";
     static final int DB_TIME_OUT = 30;
     static final String DB_COMMIT = "db.commit";
