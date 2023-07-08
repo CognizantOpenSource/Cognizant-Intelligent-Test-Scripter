@@ -1,0 +1,119 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Jun 10 17:25:30 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:AutoHeal] [TestCase: NewTestCase] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-9] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 102.0.5005.61 (0e59bcc00cc4985ce39ad31c150065f159d95ad3-refs/branch-heads/5005@{#819}) on port 6662
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-06-10 17:25:32:06S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: TestData0:URL2 | Conditon:  | @10-Jun-2022 17:25:32.032
+[DONE]   | Opened Url: https://demopageaiq.s3-us-west-2.amazonaws.com/v2/index.html
+
+===================================================================================================
+
+Step:2   | Object: Intro | Action: Click | Input:  | Conditon:  | @10-Jun-2022 17:25:40.040
+Element could not be identified with [relative_xpath] : [//a[@href="#intro"]]
+Expected condition failed: waiting for presence of any elements located by By.xpath: //a[@href="#intro"] (tried for 10 second(s) with 500 milliseconds interval)
+
+2022-06-10 17:25:51:06S +0530 [OFF ] com.cognizant.cognizantits.engine.drivers.AutomationObject getElements:null
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.cognizant.cognizantits.engine.drivers.AutomationObject$$Lambda$672/0x0000000100872840@2b89bf9d (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'WPO1L5CD151H3LX', ip: '192.168.1.43', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.63, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\RX37PB\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:58994}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 7e320482b5a08f276e27b5290cbc1787
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getElements(AutomationObject.java:322)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getWElements(AutomationObject.java:273)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElements(AutomationObject.java:260)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:136)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:129)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:98)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:183)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:160)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Couldn't find Object 'Intro' in stipulated Time '10' Seconds
+[FAIL]   | Seems Like the Element [Intro] is Not Present/Found in the page Try Adding wait or heal it
+
+===================================================================================================
+
+2022-06-10 17:25:53:06S +0530 [SEVERE] com.cognizant.cognizantits.engine.execution.run.TestCaseRunner onRuntimeException:Seems Like the Element [Intro] is Not Present/Found in the page Try Adding wait or heal it
+com.cognizant.cognizantits.engine.execution.exception.element.ElementException: Seems Like the Element [Intro] is Not Present/Found in the page Try Adding wait or heal it
+	at com.cognizant.cognizantits.engine.commands.General.elementDisplayed(General.java:57)
+	at com.cognizant.cognizantits.engine.commands.General.elementEnabled(General.java:63)
+	at com.cognizant.cognizantits.engine.commands.Basic.Click(Basic.java:47)
+	at com.cognizant.cognizantits.engine.support.reflect.MethodExecutor.executeMethod(MethodExecutor.java:39)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeAction(TestStepRunner.java:165)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:161)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Step:3   | Object: Browser | Action: pause | Input: @3000 | Conditon:  | @10-Jun-2022 17:25:53.053
+[DONE]   | Thread sleep for '3000
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: back | Input:  | Conditon:  | @10-Jun-2022 17:25:56.056
+[DONE]   | Navigate page back is success
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : AutoHeal:NewTestCase
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 1
+Time Taken           : 00:00:27
+-----------------------------------------------------
+
+Run Finished on Fri Jun 10 17:25:57 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 10-Jun-2022 17-25-30
+Executed TestCases   : 1
+Passed TestCases     : 0
+Failed TestCases     : 1
+Time Taken           : 00:00:27
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-25-30\summary.html
+-----------------------------------------------------
+[Thread-9] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-25-30\summary.html
+[Thread-9] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-25-30\summary.html]

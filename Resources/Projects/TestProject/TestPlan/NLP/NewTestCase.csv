@@ -1,0 +1,9 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,Browser,Open the Url [<Data>] in the Browser,Open,@https://www.flipkart.com/,,
+2,Close,"Click the [<Object>] ",Click,,,Flipkart
+3,Mobiles,"Click the [<Object>] ",Click,,,Flipkart
+4,Browser,Wait for [<Data>] milli seconds,pause,@2000,,
+5,Browser,Navigate to previous page,back,,,
+6,Travel,"Click the [<Object>] ",Click,,,Flipkart
+7,Browser,Wait for [<Data>] milli seconds,pause,@2000,,
+8,Browser,Navigate to previous page,back,,,

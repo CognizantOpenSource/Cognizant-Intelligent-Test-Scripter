@@ -1,0 +1,69 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : ${project.version}
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Wed May 31 09:34:10 IST 2023
+Loading Browser Profile
+Loading RunManager
+[Scenario:Webservice] [TestCase: Get] [Description: Get] [Browser: No Browser] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[1] TestCase selected for execution from [//MyRelease/APISet]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+testset : APISet
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching No Browser
+Launching Local Driver
+No Browser Launched
+Step:9   | Object: Webservice | Action: setEndPoint | Input: @https://json-server.azurewebsites.net/users/ | Conditon:  | @31-May-2023 09:34:11.011
+Payload :https://json-server.azurewebsites.net/users/
+[DONE]   | End point set : https://json-server.azurewebsites.net/users/
+
+===================================================================================================
+
+Step:10  | Object: Webservice | Action: postRestRequest | Input: {
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+} | Conditon:  | @31-May-2023 09:34:11.011
+Payload :{
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+}
+[COMPLETE]   | Response received in : [1905ms] with Status code  : 201
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Webservice:Get
+Executed Steps       : 2
+Passed Steps         : 1
+Failed Steps         : 0
+Time Taken           : 00:00:02
+-----------------------------------------------------
+
+[Uploading Results to Test management]
+Run Finished on Wed May 31 09:34:13 IST 2023
+[Thread-5] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\APISet\31-May-2023 09-34-10\extent.html
+[Thread-5] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\APISet\31-May-2023 09-34-10\extent.html]
+-----------------------------------------------------
+ExecutionDate        : 31-May-2023 09-34-10
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:03
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\APISet\31-May-2023 09-34-10\summary.html
+-----------------------------------------------------

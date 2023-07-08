@@ -1,0 +1,70 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Jun 10 17:33:29 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:Webservice] [TestCase: Get] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-15] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 102.0.5005.61 (0e59bcc00cc4985ce39ad31c150065f159d95ad3-refs/branch-heads/5005@{#819}) on port 6654
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-06-10 17:33:31:06S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:9   | Object: Webservice | Action: setEndPoint | Input: @https://json-server.azurewebsites.net/users/ | Conditon:  | @10-Jun-2022 17:33:31.031
+Payload :https://json-server.azurewebsites.net/users/
+[DONE]   | End point set : https://json-server.azurewebsites.net/users/
+
+===================================================================================================
+
+Step:10  | Object: Webservice | Action: postRestRequest | Input: {
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+} | Conditon:  | @10-Jun-2022 17:33:31.031
+Payload :{
+    "first_name": "ash",
+    "last_name": "xyz",
+    "email": "ash@gmail.com"
+}
+[COMPLETE]   | Status code is : 201
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Webservice:Get
+Executed Steps       : 2
+Passed Steps         : 1
+Failed Steps         : 0
+Time Taken           : 00:00:05
+-----------------------------------------------------
+
+Run Finished on Fri Jun 10 17:33:35 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 10-Jun-2022 17-33-29
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:05
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\Webservice\Get\10-Jun-2022 17-33-29\summary.html
+-----------------------------------------------------
+[Thread-15] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\Webservice\Get\10-Jun-2022 17-33-29\summary.html
+[Thread-15] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\Webservice\Get\10-Jun-2022 17-33-29\summary.html]

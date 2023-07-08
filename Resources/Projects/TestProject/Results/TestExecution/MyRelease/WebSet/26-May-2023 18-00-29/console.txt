@@ -1,0 +1,410 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : ${project.version}
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri May 26 18:00:30 IST 2023
+Loading Browser Profile
+Loading RunManager
+[Scenario:Web] [TestCase: Login1] [Description: Login1] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Web] [TestCase: Login2] [Description: Login2] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[2] TestCases selected for execution from [//MyRelease/WebSet]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+testset : WebSet
+Run Manager true
+Continue Execution true
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Starting ChromeDriver 112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refStarting Chroms/branch-heads/5615@{#936}) on peDriver 1or12.0.5615.49 (bd2a7bcb881c11e8ct 10558
+Only local fe3078connections are all709382934e3916914owed.
+Please see https-refs/branch-heads/5615@{#936}) on ://chromport 482edriver.chromium.org/security-conside73
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+rations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfullChromy.
+eDriver was started successfully.
+[1685104232.235][WARNI[1NG]: This 6851version of 04232.235][WAChromeDriver has not been tested wiRNING]: This version of ChromeDriver has not been tested with Chrome version 113.
+th Chrome version 113.
+2023-05-26 18:00:32:05S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+2023-05-26 18:00:32:05S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @26-May-2023 18:00:32.032
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @26-May-2023 18:00:32.032
+[DONE]   | Opened Url: https://www.saucedemo.com/
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @26-May-2023 18:00:34.034
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @26-May-2023 18:00:34.034
+Using @id [user-name], Using @id [user-name], Object 'UserID' Found in 81 ms
+Object 'UserID' Found in 77 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @26-May-2023 18:00:34.034
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @26-May-2023 18:00:34.034
+Using @id [password], Using @id [password], Object 'Password' Found in 30 ms
+Object 'Password' Found in 30 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Invalid Object] | Action: assertElementPresent | Input:  | Conditon:  | @26-May-2023 18:00:34.034
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Login] Button | Action: Click | Input:  | Conditon:  | @26-May-2023 18:00:34.034
+Using @id [login-button], Object '[Login] Button' Found in 35 ms
+[DONE]   | Clicking on [Login] Button
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @26-May-2023 18:00:34.034
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login1
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:05
+-----------------------------------------------------
+
+[Uploading Results to Test management]
+Shutting Down Thread as there is no IE Browser to do SelectiveThreading
+Element could not be identified with [name] : [q]
+Expected condition failed: waiting for presence of any elements located by By.name: q (tried for 10 second(s) with 500 milliseconds interval)
+
+
+-------------------- Auto Heal has been invoked --------------------
+2023-05-26 18:00:45:05S +0530 [OFF ] com.cognizant.cognizantits.engine.drivers.AutomationObject getElements:null
+java.lang.IllegalArgumentException: String must not be empty
+	at org.jsoup.helper.Validate.notEmpty(Validate.java:92)
+	at org.jsoup.nodes.Element.getElementsByTag(Element.java:868)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.elementHeal(AutomationObject.java:720)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.lambda$0(AutomationObject.java:385)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getElements(AutomationObject.java:322)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getWElements(AutomationObject.java:273)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElements(AutomationObject.java:260)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:136)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:129)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:98)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:183)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:160)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Couldn't find Object '[Invalid Object]' in stipulated Time '10' Seconds
+[FAIL]   | Element [[Invalid Object]] is not Present
+
+===================================================================================================
+
+2023-05-26 18:00:45:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.execution.run.TestCaseRunner onRuntimeException:Element [[Invalid Object]] is not Present
+com.cognizant.cognizantits.engine.execution.exception.ForcedException: Element [[Invalid Object]] is not Present
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:82)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:87)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElementPresent(AssertElement.java:57)
+	at com.cognizant.cognizantits.engine.support.reflect.MethodExecutor.executeMethod(MethodExecutor.java:39)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeAction(TestStepRunner.java:165)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:161)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login2
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 1
+Time Taken           : 00:00:15
+-----------------------------------------------------
+
+[Uploading Results to Test management]
+Shutting Down Thread as there is no IE Browser to do SelectiveThreading
+Run Finished on Fri May 26 18:00:46 IST 2023
+[Thread-5] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\26-May-2023 18-00-29\extent.html
+[Thread-5] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\26-May-2023 18-00-29\extent.html]
+-----------------------------------------------------
+ExecutionDate        : 26-May-2023 18-00-29
+Executed TestCases   : 2
+Passed TestCases     : 1
+Failed TestCases     : 1
+Time Taken           : 00:00:16
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\26-May-2023 18-00-29\summary.html
+-----------------------------------------------------
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient parseResponse:null
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient.parseResponse(AbstractHttpClient.java:160)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:391)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:341)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestSuiteId(AzureClient.java:92)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:134)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient getTestSuiteId:null
+java.lang.NullPointerException
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestSuiteId(AzureClient.java:95)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:134)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient parseResponse:null
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient.parseResponse(AbstractHttpClient.java:160)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:391)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:341)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:133)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient getTestPointId:null
+java.lang.NullPointerException
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:136)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient parseResponse:null
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient.parseResponse(AbstractHttpClient.java:160)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:391)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:341)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestSuiteId(AzureClient.java:92)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:134)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:46:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient getTestSuiteId:null
+java.lang.NullPointerException
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestSuiteId(AzureClient.java:95)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:134)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:47:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient parseResponse:null
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient.parseResponse(AbstractHttpClient.java:160)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:391)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.Get(BasicHttpClient.java:341)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:133)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:47:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient getTestPointId:null
+java.lang.NullPointerException
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.getTestPointId(AzureClient.java:136)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.lambda$1(AzureClient.java:170)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:172)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:47:05S +0530 [INFO] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient createNewTestRun:Conneting Azure DevOps to update results
+2023-05-26 18:00:47:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient parseResponse:null
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at com.cognizant.cognizantits.engine.reporting.sync.AbstractHttpClient.parseResponse(AbstractHttpClient.java:160)
+	at com.cognizant.cognizantits.engine.reporting.sync.BasicHttpClient.post(BasicHttpClient.java:178)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:174)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2023-05-26 18:00:47:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient createNewTestRun:null
+java.lang.NullPointerException
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient.createNewTestRun(AzureClient.java:179)
+	at com.cognizant.cognizantits.engine.reporting.sync.azure.AzureSync.disConnect(AzureSync.java:69)
+	at com.cognizant.cognizantits.engine.core.Control.endExecution(Control.java:198)
+	at com.cognizant.cognizantits.engine.core.Control.startRun(Control.java:179)
+	at com.cognizant.cognizantits.engine.core.Control.start(Control.java:62)
+	at com.cognizant.cognizantits.engine.core.Control.call(Control.java:71)
+	at com.cognizant.cognizantits.ide.main.mainui.EngineConfig.runProject(EngineConfig.java:46)
+	at com.cognizant.cognizantits.ide.main.mainui.components.testexecution.testset.TestsetComponent$18.run(TestsetComponent.java:278)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+

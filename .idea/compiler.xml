@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cognizant-intelligent-test-scripter-ide" />
+        <module name="cognizant-intelligent-test-scripter-qc-connection" />
+        <module name="cognizant-intelligent-test-scripter-engine" />
+        <module name="cognizant-intelligent-test-scripter-testdata-csv" />
+        <module name="storywriter" />
+        <module name="cognizant-intelligent-test-scripter-gridnode" />
+        <module name="cognizant-intelligent-test-scripter-datalib" />
+        <module name="cognizant-intelligent-test-scripter-extensionconnect" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

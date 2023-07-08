@@ -1,0 +1,23 @@
+site_name: Test Automation Framework
+site_url: 
+nav:
+    - Getting Started: gettingstarted.md
+    - Know the Tool: knowyourtool.md
+    - Browser Testing: browsertesting.md
+    - API Testing: api.md
+    - WebPage Performance Testing: webpageperformance.md
+    - Database Testing: database.md
+    - Layout Validation: layout.md
+    - Accessiblity Testing: accessibility.md
+    - Image Based Testing: image.md
+    - Engine: engine.md
+    - Customization & Source Code Maintenance: customfunction.md
+    - Command Line Interface: cli.md
+    - Behavior Driven Development: bdd.md
+    - Azure Deveops Integration: azure.md
+    - Good to know features: goodtoknow.md
+    - Shortcuts: shortcuts.md
+    - Some Tips & Tricks: tips.md
+    - Troubleshooting: troubleshooting.md
+    - Comparisons with industry standard frameworks and Limitations: comparison.md
+theme: readthedocs

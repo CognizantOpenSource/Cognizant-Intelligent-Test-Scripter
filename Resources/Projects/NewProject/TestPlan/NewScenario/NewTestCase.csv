@@ -1,0 +1,20 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,Username,"Click the [<Object>] ",Click,,,Swag
+2,Username,Enter the value [<Data>] in the Field [<Object>],Set,@standard_user,,Swag
+3,Password,"Click the [<Object>] ",Click,,,Swag
+4,Password,Enter the Decrypted value [<Data>] in the Field [<Object>],setEncrypted,@SZpqTtjfW+i4z45kdTv2OA== Enc,,Swag
+5,LOGIN,"Click the [<Object>] ",Click,,,Swag
+6,ADD TO CART,"Click the [<Object>] ",Click,,,Swag
+7,[object SVGAnimatedString],"Click the [<Object>] ",Click,,,Swag
+8,Sauce Labs Backpack,Assert if [<Object>]'s Text Equals [<Data>],assertElementTextEquals,@Sauce Labs Backpack,,Swag
+9,CHECKOUT,"Click the [<Object>] ",Click,,,Swag
+10,First Name,"Click the [<Object>] ",Click,,,Swag
+11,First Name,Enter the value [<Data>] in the Field [<Object>],Set,@Jhony,,Swag
+12,Last Name,"Click the [<Object>] ",Click,,,Swag
+13,Last Name,Enter the value [<Data>] in the Field [<Object>],Set,@Walker,,Swag
+14,Zip/Postal Code,"Click the [<Object>] ",Click,,,Swag
+15,Zip/Postal Code,Enter the value [<Data>] in the Field [<Object>],Set,@411897,,Swag
+16,CONTINUE,"Click the [<Object>] ",Click,,,Swag
+17,FINISH,"Click the [<Object>] ",Click,,,Swag
+18,THANK YOU FOR YOUR ORDER,Assert if [<Object>]'s Text Equals [<Data>],assertElementTextEquals,@THANK YOU FOR YOUR ORDER,,Swag
+19,THANK YOU FOR YOUR ORDER,"Click the [<Object>] ",Click,,,Swag

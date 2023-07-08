@@ -1,0 +1,6 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,Browser,Open the Url [<Data>] in the Browser,Open,TestData0:URL2,,
+2,Browser,Wait for [<Data>] milli seconds,pause,@3000,,
+3,Intro,"Click the [<Object>] ",Click,,,Dimension
+4,Browser,Wait for [<Data>] milli seconds,pause,@3000,,
+5,Browser,Navigate to previous page,back,,,

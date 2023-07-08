@@ -1,0 +1,84 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Thu Jun 09 19:25:29 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:AutoHeal] [TestCase: NewTestCase0] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-35] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 102.0.5005.61 (0e59bcc00cc4985ce39ad31c150065f159d95ad3-refs/branch-heads/5005@{#819}) on port 29460
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-06-09 19:25:31:06S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @09-Jun-2022 19:25:31.031
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: Username | Action: Set | Input: @standard_user | Conditon:  | @09-Jun-2022 19:25:32.032
+Using @id [user-name], Object 'Username' Found in 46 ms
+[DONE]   | Entered Text 'standard_user' on 'Username'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @secret_sauce | Conditon:  | @09-Jun-2022 19:25:32.032
+Element could not be identified with [xpath] : [//html/body/div/div/div[3]/div/div/div/form/div[2]/input]
+Expected condition failed: waiting for presence of any elements located by By.xpath: //html/body/div/div/div[3]/div/div/div/form/div[2]/input (tried for 10 second(s) with 500 milliseconds interval)
+
+
+-------------------- Auto Heal has been invoked --------------------
+Element has been healed. Attribute [CSS Selector] with value [#password] is used
+Using @css [#password], Object 'Password' Found in 10563 ms
+[DONE]   | Entered Text 'secret_sauce' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: Submit | Action: Click | Input:  | Conditon:  | @09-Jun-2022 19:25:43.043
+Using @id [login-button], Object 'Submit' Found in 43 ms
+[DONE]   | Clicking on Submit
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: pause | Input: @2000 | Conditon:  | @09-Jun-2022 19:25:43.043
+[DONE]   | Thread sleep for '2000
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : AutoHeal:NewTestCase0
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:16
+-----------------------------------------------------
+
+Run Finished on Thu Jun 09 19:25:46 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 09-Jun-2022 19-25-29
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:16
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\09-Jun-2022 19-25-29\summary.html
+-----------------------------------------------------
+[Thread-35] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\09-Jun-2022 19-25-29\summary.html
+[Thread-35] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\09-Jun-2022 19-25-29\summary.html]

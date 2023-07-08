@@ -1,0 +1,65 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Apr 07 16:52:45 CEST 2023
+Loading Browser Profile
+Loading RunManager
+[Scenario:Rest] [TestCase: GET] [Description: Test Run] [Browser: No Browser] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-14] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching No Browser
+Launching Local Driver
+No Browser Launched
+Step:1   | Object: Webservice | Action: setEndPoint | Input: @https://json-server.azurewebsites.net/users/3 | Conditon:  | @07-Apr-2023 16:52:45.045
+Payload :https://json-server.azurewebsites.net/users/3
+[DONE]   | End point set : https://json-server.azurewebsites.net/users/3
+
+===================================================================================================
+
+Step:2   | Object: Webservice | Action: getRestRequest | Input:  | Conditon:  | @07-Apr-2023 16:52:45.045
+[COMPLETE]   | Response received in : [144ms] with Status code  : 200
+
+===================================================================================================
+
+Step:3   | Object: Webservice | Action: storeResponseBodyInDataSheet | Input: RestData:Response | Conditon:  | @07-Apr-2023 16:52:45.045
+Updating value in SubIteration 1
+[DONE]   | Response body is stored in RestData:Response
+
+===================================================================================================
+
+Step:4   | Object: Webservice | Action: closeConnection | Input:  | Conditon:  | @07-Apr-2023 16:52:45.045
+[DONE]   | Connection is closed
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Rest:GET
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 0
+Time Taken           : 00:00:00
+-----------------------------------------------------
+
+Run Finished on Fri Apr 07 16:52:45 CEST 2023
+-----------------------------------------------------
+ExecutionDate        : 07-Apr-2023 16-52-45
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:00
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\WebserviceDemoProject\Results\TestDesign\Rest\GET\07-Apr-2023 16-52-45\summary.html
+-----------------------------------------------------

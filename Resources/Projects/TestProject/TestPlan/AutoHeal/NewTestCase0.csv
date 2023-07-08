@@ -1,0 +1,6 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+1,Browser,Open the Url [<Data>] in the Browser,Open,@https://vlcmeqa-emblemhealth.cs23.force.com/cciemployer/s/login/?ec=302&startURL=%2Fcciemployer%2Fs%2F,,
+2,Username,Enter the value [<Data>] in the Field [<Object>],Set,@Abc,,EmblemHealth
+3,Browser,Wait for [<Data>] milli seconds,pause,@2000,,
+4,Password,Enter the value [<Data>] in the Field [<Object>],Set,@Pqr,,EmblemHealth
+5,Browser,Wait for [<Data>] milli seconds,pause,@2000,,

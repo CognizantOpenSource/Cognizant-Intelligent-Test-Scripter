@@ -1,0 +1,87 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Apr 07 16:53:56 CEST 2023
+Loading Browser Profile
+Loading RunManager
+[Scenario:Rest] [TestCase: POST] [Description: Test Run] [Browser: No Browser] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-17] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching No Browser
+Launching Local Driver
+No Browser Launched
+Step:1   | Object: Webservice | Action: setEndPoint | Input: @https://json-server.azurewebsites.net/users/ | Conditon:  | @07-Apr-2023 16:53:56.056
+Payload :https://json-server.azurewebsites.net/users/
+[DONE]   | End point set : https://json-server.azurewebsites.net/users/
+
+===================================================================================================
+
+Step:2   | Object: Webservice | Action: postRestRequest | Input: {
+     "first_name": "ash",
+     "last_name": "xyz",
+     "email": "ash@gmail.com"
+} | Conditon:  | @07-Apr-2023 16:53:56.056
+Payload :{
+     "first_name": "ash",
+     "last_name": "xyz",
+     "email": "ash@gmail.com"
+}
+[COMPLETE]   | Response received in : [345ms] with Status code  : 201
+
+===================================================================================================
+
+Step:3   | Object: Webservice | Action: storeResponseBodyInDataSheet | Input: RestData:Response | Conditon:  | @07-Apr-2023 16:53:56.056
+Updating value in SubIteration 1
+[DONE]   | Response body is stored in RestData:Response
+
+===================================================================================================
+
+Step:4   | Object: Webservice | Action: assertResponseCode | Input: @201 | Conditon:  | @07-Apr-2023 16:53:56.056
+[PASS]   | Status code is : 201
+
+===================================================================================================
+
+Step:5   | Object: Webservice | Action: storeJSONelementInDataSheet | Input: RestData:ID | Conditon: $.id | @07-Apr-2023 16:53:56.056
+Updating value in SubIteration 1
+[DONE]   | Element text [390] is stored in RestData:ID
+
+===================================================================================================
+
+Step:6   | Object: Webservice | Action: closeConnection | Input:  | Conditon:  | @07-Apr-2023 16:53:56.056
+[DONE]   | Connection is closed
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Rest:POST
+Executed Steps       : 6
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:00
+-----------------------------------------------------
+
+Run Finished on Fri Apr 07 16:53:56 CEST 2023
+-----------------------------------------------------
+ExecutionDate        : 07-Apr-2023 16-53-56
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:00
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\WebserviceDemoProject\Results\TestDesign\Rest\POST\07-Apr-2023 16-53-56\summary.html
+-----------------------------------------------------
+[Thread-17] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\WebserviceDemoProject\Results\TestDesign\Rest\POST\07-Apr-2023 16-53-56\summary.html
+[Thread-17] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\WebserviceDemoProject\Results\TestDesign\Rest\POST\07-Apr-2023 16-53-56\summary.html]

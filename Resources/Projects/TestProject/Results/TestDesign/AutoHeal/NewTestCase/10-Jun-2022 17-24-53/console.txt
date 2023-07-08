@@ -1,0 +1,71 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Jun 10 17:24:53 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:AutoHeal] [TestCase: NewTestCase] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-6] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 102.0.5005.61 (0e59bcc00cc4985ce39ad31c150065f159d95ad3-refs/branch-heads/5005@{#819}) on port 32082
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-06-10 17:24:56:06S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: TestData0:URL1 | Conditon:  | @10-Jun-2022 17:24:56.056
+[DONE]   | Opened Url: https://demopageaiq.s3-us-west-2.amazonaws.com/v1/index.html
+
+===================================================================================================
+
+Step:2   | Object: Intro | Action: Click | Input:  | Conditon:  | @10-Jun-2022 17:25:06.006
+Using @relative_xpath [//a[@href="#intro"]], Object 'Intro' Found in 87 ms
+[DONE]   | Clicking on Intro
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: pause | Input: @3000 | Conditon:  | @10-Jun-2022 17:25:06.006
+[DONE]   | Thread sleep for '3000
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: back | Input:  | Conditon:  | @10-Jun-2022 17:25:09.009
+[DONE]   | Navigate page back is success
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : AutoHeal:NewTestCase
+Executed Steps       : 4
+Passed Steps         : 4
+Failed Steps         : 0
+Time Taken           : 00:00:16
+-----------------------------------------------------
+
+Run Finished on Fri Jun 10 17:25:10 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 10-Jun-2022 17-24-53
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:16
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-24-53\summary.html
+-----------------------------------------------------
+[Thread-6] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-24-53\summary.html
+[Thread-6] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase\10-Jun-2022 17-24-53\summary.html]

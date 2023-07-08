@@ -1,0 +1,10 @@
+Step,ObjectName,Description,Action,Input,Condition,Reference
+"*1",Browser,Open the Url [<Data>] in the Browser,Open,@https://www.globalsqa.com/demo-site/draganddrop/,,
+2,HighTatras3,Move the Browser View to the specified element [<Object>],moveTo,"463,111",,Google
+"//3",Password,Move the Browser View to the specified element [<Object>],highlight,@#a020f0,,SauceDemo
+"//4",Username,Enter the value [<Data>] in the Field [<Object>],Set,@Supriya,,SauceDemo
+"//5",Password,Enter the value [<Data>] in the Field [<Object>],Set,@Pote,,SauceDemo
+6,Browser,Wait for [<Data>] milli seconds,pause,@1000,,
+"//7",Username,Store [<Object>] element's  value  into Runtime variable: -> [<Data>],storeElementValue,%one%,,SauceDemo
+"//8",Password,Store the [<Object>] element's text into the Runtime variable: [<Data>],storeElementValue,%two%,,SauceDemo
+"//9",Browser,Verify if the specific [<Data>] is present,verifyVariable,%one%=Tirane,,

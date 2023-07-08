@@ -1,0 +1,199 @@
+<Root type="OR" ref="NewProject">
+  <Page title="Swag Labs" ref="Swag">
+    <ObjectGroup ref="Username">
+      <Object frame="" ref="Username">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="user-name" ref="name" pref="2"/>
+        <Property value="user-name" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@placeholder='Username']" ref="relative_xpath" pref="5"/>
+        <Property value="(/html/body/div[2]/div/div/div/form/input)[1]" ref="xpath" pref="6"/>
+        <Property value="form_input" ref="class" pref="7"/>
+        <Property value="#user-name" ref="css" pref="8"/>
+        <Property value="text" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="Password">
+      <Object frame="" ref="Password">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="password" ref="name" pref="2"/>
+        <Property value="password" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@placeholder='Password']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div[2]/div/div/div/form/input[2]" ref="xpath" pref="6"/>
+        <Property value="form_input" ref="class" pref="7"/>
+        <Property value="#password" ref="css" pref="8"/>
+        <Property value="password" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="LOGIN">
+      <Object frame="" ref="LOGIN">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="login-button" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@value='LOGIN']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div[2]/div/div/div/form/input[3]" ref="xpath" pref="6"/>
+        <Property value="btn_action" ref="class" pref="7"/>
+        <Property value="#login-button" ref="css" pref="8"/>
+        <Property value="submit" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="ADD TO CART">
+      <Object frame="" ref="ADD TO CART">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="(//*[normalize-space(text())='ADD TO CART'])[1]" ref="relative_xpath" pref="5"/>
+        <Property value="(/html/body/div/div[2]/div[2]/div/div[2]/div/div/div[3]/button)[1]" ref="xpath" pref="6"/>
+        <Property value="btn_primary btn_inventory" ref="class" pref="7"/>
+        <Property value="html > body.main-body > #page_wrapper > #contents_wrapper > #inventory_container > div > #inventory_container > div.inventory_list > div.inventory_item > div.pricebar > button.btn_primary.btn_inventory" ref="css" pref="8"/>
+        <Property value="submit" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="[object SVGAnimatedString]">
+      <Object frame="" ref="[object SVGAnimatedString]">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="/body/div/div[2]/div/div[2]/a/svg/path" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div/div[2]/a/svg/path" ref="xpath" pref="6"/>
+        <Property value="[object SVGAnimatedString]" ref="class" pref="7"/>
+        <Property value="path" ref="css" pref="8"/>
+        <Property value="path" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="Sauce Labs Backpack">
+      <Object frame="" ref="Sauce Labs Backpack">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//*[normalize-space(text())='Sauce Labs Backpack']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/div/div[3]/div[2]/a/div" ref="xpath" pref="6"/>
+        <Property value="inventory_item_name" ref="class" pref="7"/>
+        <Property value="div.inventory_item_name" ref="css" pref="8"/>
+        <Property value="div" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="CHECKOUT">
+      <Object frame="" ref="CHECKOUT">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="CHECKOUT" ref="link_text" pref="4"/>
+        <Property value="//a[contains(normalize-space(text()),'CHECKOUT')]" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/div[2]/a[2]" ref="xpath" pref="6"/>
+        <Property value="btn_action checkout_button" ref="class" pref="7"/>
+        <Property value="a.btn_action.checkout_button" ref="css" pref="8"/>
+        <Property value="a" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="First Name">
+      <Object frame="" ref="First Name">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="first-name" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@placeholder='First Name']" ref="relative_xpath" pref="5"/>
+        <Property value="(/html/body/div/div[2]/div[3]/div/form/div/input)[1]" ref="xpath" pref="6"/>
+        <Property value="form_input" ref="class" pref="7"/>
+        <Property value="#first-name" ref="css" pref="8"/>
+        <Property value="text" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="Last Name">
+      <Object frame="" ref="Last Name">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="last-name" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@placeholder='Last Name']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/form/div/input[2]" ref="xpath" pref="6"/>
+        <Property value="form_input" ref="class" pref="7"/>
+        <Property value="#last-name" ref="css" pref="8"/>
+        <Property value="text" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="Zip/Postal Code">
+      <Object frame="" ref="Zip/Postal Code">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="postal-code" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@placeholder='Zip/Postal Code']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/form/div/input[3]" ref="xpath" pref="6"/>
+        <Property value="form_input" ref="class" pref="7"/>
+        <Property value="#postal-code" ref="css" pref="8"/>
+        <Property value="text" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="CONTINUE">
+      <Object frame="" ref="CONTINUE">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//input[@value='CONTINUE']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/form/div[2]/input" ref="xpath" pref="6"/>
+        <Property value="btn_primary cart_button" ref="class" pref="7"/>
+        <Property value="input.btn_primary.cart_button" ref="css" pref="8"/>
+        <Property value="submit" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="FINISH">
+      <Object frame="" ref="FINISH">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="FINISH" ref="link_text" pref="4"/>
+        <Property value="//a[contains(normalize-space(text()),'FINISH')]" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/div/div[2]/div[8]/a[2]" ref="xpath" pref="6"/>
+        <Property value="btn_action cart_button" ref="class" pref="7"/>
+        <Property value="a.btn_action.cart_button" ref="css" pref="8"/>
+        <Property value="a" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="THANK YOU FOR YOUR ORDER">
+      <Object frame="" ref="THANK YOU FOR YOUR ORDER">
+        <Property value="" ref="NLP_locator" pref="1"/>
+        <Property value="" ref="name" pref="2"/>
+        <Property value="" ref="id" pref="3"/>
+        <Property value="" ref="link_text" pref="4"/>
+        <Property value="//*[normalize-space(text())='THANK YOU FOR YOUR ORDER']" ref="relative_xpath" pref="5"/>
+        <Property value="/html/body/div/div[2]/div[3]/h2" ref="xpath" pref="6"/>
+        <Property value="complete-header" ref="class" pref="7"/>
+        <Property value="h2.complete-header" ref="css" pref="8"/>
+        <Property value="h2" ref="type" pref="9"/>
+        <Property value="" ref="outerHTML" pref="10"/>
+        <Property value="" ref="tagName" pref="11"/>
+      </Object>
+    </ObjectGroup>
+  </Page>
+</Root>

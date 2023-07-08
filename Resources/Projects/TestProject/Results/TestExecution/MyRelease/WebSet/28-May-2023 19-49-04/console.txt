@@ -1,0 +1,133 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : ${project.version}
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Sun May 28 19:49:04 IST 2023
+Loading Browser Profile
+Loading RunManager
+[Scenario:Web] [TestCase: Login2] [Description: Login2] [Browser: Chrome Headless] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[1] TestCase selected for execution from [//MyRelease/WebSet]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+testset : WebSet
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome Headless
+Launching Local Driver
+Starting ChromeDriver 112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}) on port 9083
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1685283545.361][WARNING]: This version of ChromeDriver has not been tested with Chrome version 113.
+2023-05-28 19:49:05:05S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Headless Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.saucedemo.com/ | Conditon:  | @28-May-2023 19:49:05.005
+[DONE]   | Opened Url: https://www.saucedemo.com/
+
+===================================================================================================
+
+Step:2   | Object: UserID | Action: Set | Input: @standard_user | Conditon:  | @28-May-2023 19:49:06.006
+Using @id [user-name], Object 'UserID' Found in 39 ms
+[DONE]   | Entered Text 'standard_user' on 'UserID'
+
+===================================================================================================
+
+Step:3   | Object: Password | Action: Set | Input: @test | Conditon:  | @28-May-2023 19:49:06.006
+Using @id [password], Object 'Password' Found in 37 ms
+[DONE]   | Entered Text 'test' on 'Password'
+
+===================================================================================================
+
+Step:4   | Object: [Invalid Object] | Action: assertElementPresent | Input:  | Conditon:  | @28-May-2023 19:49:06.006
+Element could not be identified with [name] : [q]
+Expected condition failed: waiting for presence of any elements located by By.name: q (tried for 10 second(s) with 500 milliseconds interval)
+
+
+-------------------- Auto Heal has been invoked --------------------
+2023-05-28 19:49:17:05S +0530 [OFF ] com.cognizant.cognizantits.engine.drivers.AutomationObject getElements:null
+java.lang.IllegalArgumentException: String must not be empty
+	at org.jsoup.helper.Validate.notEmpty(Validate.java:92)
+	at org.jsoup.nodes.Element.getElementsByTag(Element.java:868)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.elementHeal(AutomationObject.java:720)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.lambda$0(AutomationObject.java:385)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getElements(AutomationObject.java:322)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.getWElements(AutomationObject.java:273)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElements(AutomationObject.java:260)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:136)
+	at com.cognizant.cognizantits.engine.drivers.AutomationObject.findElement(AutomationObject.java:129)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:98)
+	at com.cognizant.cognizantits.engine.core.CommandControl.sync(CommandControl.java:183)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:160)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Couldn't find Object '[Invalid Object]' in stipulated Time '10' Seconds
+[FAIL]   | Element [[Invalid Object]] is not Present
+
+===================================================================================================
+
+2023-05-28 19:49:17:05S +0530 [SEVERE] com.cognizant.cognizantits.engine.execution.run.TestCaseRunner onRuntimeException:Element [[Invalid Object]] is not Present
+com.cognizant.cognizantits.engine.execution.exception.ForcedException: Element [[Invalid Object]] is not Present
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:82)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElement(AssertElement.java:87)
+	at com.cognizant.cognizantits.engine.commands.AssertElement.assertElementPresent(AssertElement.java:57)
+	at com.cognizant.cognizantits.engine.support.reflect.MethodExecutor.executeMethod(MethodExecutor.java:39)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeAction(TestStepRunner.java:165)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:161)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.executeStep(TestStepRunner.java:147)
+	at com.cognizant.cognizantits.engine.execution.run.TestStepRunner.run(TestStepRunner.java:66)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.runStep(TestCaseRunner.java:397)
+	at com.cognizant.cognizantits.engine.execution.run.TestCaseRunner.run(TestCaseRunner.java:348)
+	at com.cognizant.cognizantits.engine.core.Task.runIteration(Task.java:127)
+	at com.cognizant.cognizantits.engine.core.Task.run(Task.java:83)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+---------------------------------------------------
+Testcase Name        : Web:Login2
+Executed Steps       : 4
+Passed Steps         : 3
+Failed Steps         : 1
+Time Taken           : 00:00:13
+-----------------------------------------------------
+
+[Uploading Results to Test management]
+Run Finished on Sun May 28 19:49:18 IST 2023
+-----------------------------------------------------
+ExecutionDate        : 28-May-2023 19-49-04
+Executed TestCases   : 1
+Passed TestCases     : 0
+Failed TestCases     : 1
+Time Taken           : 00:00:14
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\28-May-2023 19-49-04\summary.html
+-----------------------------------------------------
+[Thread-10] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\28-May-2023 19-49-04\summary.html
+[Thread-10] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestExecution\MyRelease\WebSet\28-May-2023 19-49-04\summary.html]
+######URLhttps://dev.azure.com/5861260079/ADOTestPlan/_apis/test/Plans/1/suites?api-version=5.0
+######projectADOTestPlan
+######suiteWeb
+######testPlanId1
+######{"count":2,"value":[{"defaultConfigurations":[{"name":"Windows 10","id":"1"}],"project":{"name":"ADOTestPlan","id":"9177e2f9-a7b8-405c-ac98-fc0dd6907ea6","url":"https:\/\/dev.azure.com\/5861260079\/_apis\/projects\/ADOTestPlan"},"inheritDefaultConfigurations":false,"suiteType":"StaticTestSuite","url":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1\/Suites\/2","revision":4,"lastUpdatedDate":"2023-05-26T13:12:51.683Z","testCaseCount":0,"name":"TestPlanIntegration","testCasesUrl":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1\/Suites\/2\/testcases","id":2,"state":"In Progress","plan":{"name":"TestPlanIntegration","id":"1","url":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1"}},{"parent":{"name":"TestPlanIntegration","id":"2","url":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1\/Suites\/2"},"project":{"name":"ADOTestPlan","id":"9177e2f9-a7b8-405c-ac98-fc0dd6907ea6","url":"https:\/\/dev.azure.com\/5861260079\/_apis\/projects\/ADOTestPlan"},"inheritDefaultConfigurations":true,"suiteType":"StaticTestSuite","url":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1\/Suites\/3","revision":4,"lastUpdatedDate":"2023-05-26T12:14:09.88Z","testCaseCount":2,"name":"Web","testCasesUrl":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1\/Suites\/3\/testcases","id":3,"state":"In Progress","plan":{"name":"TestPlanIntegration","id":"1","url":"https:\/\/dev.azure.com\/5861260079\/ADOTestPlan\/_apis\/test\/Plans\/1"}}]}
+2023-05-28 19:49:18:05S +0530 [INFO] com.cognizant.cognizantits.engine.reporting.sync.azure.AzureClient createNewTestRun:Conneting Azure DevOps to update results
+Azure DevOps: updating //Web/Login2 result(Failed) with 2 attachments... 

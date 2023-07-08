@@ -1,0 +1,77 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : 2.0
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.13
+java.home            : C:\Program Files\Java\jdk-11.0.13
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Sat Jun 11 01:07:06 IST 2022
+Loading Browser Profile
+Loading RunManager
+[Scenario:AutoHeal] [TestCase: NewTestCase0] [Description: Test Run] [Browser: Chrome] [BrowserVersion: default] [Platform: ANY][ExistingBrowser: false]
+Initializing Report
+[Thread-23] WARN com.cognizant.cognizantits.engine.core.TMIntegration - TM integration disabled for testcases running via design mode
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 102.0.5005.61 (0e59bcc00cc4985ce39ad31c150065f159d95ad3-refs/branch-heads/5005@{#819}) on port 20191
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2022-06-11 01:07:08:06S +0530 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://vlcmeqa-emblemhealth.cs23.force.com/cciemployer/s/login/?ec=302&startURL=%2Fcciemployer%2Fs%2F | Conditon:  | @11-Jun-2022 01:07:08.008
+[DONE]   | Opened Url: https://vlcmeqa-emblemhealth.cs23.force.com/cciemployer/s/login/?ec=302&startURL=%2Fcciemployer%2Fs%2F
+
+===================================================================================================
+
+Step:2   | Object: Username | Action: Set | Input: @Abc | Conditon:  | @11-Jun-2022 01:07:21.021
+Using @relative_xpath [//input[@aria-label="Username"]], Object 'Username' Found in 25 ms
+[DONE]   | Entered Text 'Abc' on 'Username'
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: pause | Input: @2000 | Conditon:  | @11-Jun-2022 01:07:21.021
+[DONE]   | Thread sleep for '2000
+
+===================================================================================================
+
+Step:4   | Object: Password | Action: Set | Input: @Pqr | Conditon:  | @11-Jun-2022 01:07:23.023
+Using @relative_xpath [//input[@aria-label="Password"] ], Object 'Password' Found in 19 ms
+[DONE]   | Entered Text 'Pqr' on 'Password'
+
+===================================================================================================
+
+Step:5   | Object: Browser | Action: pause | Input: @2000 | Conditon:  | @11-Jun-2022 01:07:23.023
+[DONE]   | Thread sleep for '2000
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : AutoHeal:NewTestCase0
+Executed Steps       : 5
+Passed Steps         : 5
+Failed Steps         : 0
+Time Taken           : 00:00:19
+-----------------------------------------------------
+
+Run Finished on Sat Jun 11 01:07:26 IST 2022
+-----------------------------------------------------
+ExecutionDate        : 11-Jun-2022 01-07-06
+Executed TestCases   : 1
+Passed TestCases     : 1
+Failed TestCases     : 0
+Time Taken           : 00:00:19
+ReportPath           : file:///C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\11-Jun-2022 01-07-06\summary.html
+-----------------------------------------------------
+[Thread-23] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to Open - C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\11-Jun-2022 01-07-06\summary.html
+[Thread-23] INFO com.cognizant.cognizantits.engine.support.DesktopApi - Trying to exec: [explorer] [%s] [C:\Users\RX37PB\CITS2.0_Cogni\CognizantOpenSource\master\Cognizant-Intelligent-Test-Scripter\Dist\release\Projects\TestProject\Results\TestDesign\AutoHeal\NewTestCase0\11-Jun-2022 01-07-06\summary.html]
