@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Browser/Driver Actions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Browser/Driver Actions";
+        var mkdocs_page_input_path = "webActions\\browser.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Browser/Driver Actions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="browserdriver-actions">Browser/Driver Actions</h1>
+<hr />
+<h2 id="open"><strong>Open</strong></h2>
+<p><strong>Description</strong>: This function will <strong>open the URL</strong> provided by the user in the selected browser</p>
+<p><strong>Input Format</strong> : @URL</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>Open</em></td>
+<td>@value</td>
+<td><code>optional</code> page timeout in secs</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>Open</em></td>
+<td>Sheet:Column</td>
+<td><code>optional</code> page timeout in secs</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>Open</em></td>
+<td>%dynamicVar%</td>
+<td><code>optional</code> page timeout in secs</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER,desc = &quot;Open the Url [&lt;Data&gt;] in the Browser&quot;,input = InputType.YES)
+    public void Open() {
+        Boolean pageTimeOut = false;
+        try {
+            if (Condition.matches(&quot;[0-9]+&quot;)) {
+                setPageTimeOut(Integer.valueOf(Condition));
+                pageTimeOut = true;
+            }
+            Driver.get(Data);
+            Report.updateTestLog(&quot;Open&quot;, &quot;Opened Url: &quot; + Data, Status.DONE);
+        } catch (TimeoutException e) {
+            Report.updateTestLog(&quot;Open&quot;, &quot;Opened Url: &quot; + Data + &quot; and cancelled page load after &quot; + Condition + &quot;seconds&quot;, Status.DONE);
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, e);
+            Report.updateTestLog(&quot;Open&quot;, e.getMessage(), Status.FAIL);
+            throw new ForcedException(&quot;Open&quot;, e.getMessage());
+        }
+        if (pageTimeOut) {
+            setPageTimeOut(300);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setbrowsersize"><strong>setBrowserSize</strong></h2>
+<p><strong>Description</strong>: This function will set the <strong>size of the browser</strong> to dimensions provided</p>
+<p><strong>Input Format</strong> : In pixels. Examples : <strong>@700x800</strong> or <strong>@700,800</strong> or <strong>@700 800</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>setBrowserSize</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>setBrowserSize</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>setBrowserSize</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Changes the browser size into [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void setBrowserSize() {
+        try {
+            if (Data.matches(&quot;\\d*(x|,| )\\d*&quot;)) {
+                String size = Data.replaceFirst(&quot;(x|,| )&quot;, &quot; &quot;);
+                String[] sizes = size.split(&quot; &quot;, 2);
+                Driver.manage().window().setSize(new Dimension(Integer.parseInt(sizes[0]), Integer.parseInt(sizes[1])));
+                Report.updateTestLog(Action, &quot; Browser is resized to &quot; + Data,
+                        Status.DONE);
+            } else {
+                Report.updateTestLog(Action, &quot; Invalid Browser size [&quot; + Data + &quot;]&quot;,
+                        Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Report.updateTestLog(Action, &quot;Unable to resize the Window &quot;,
+                    Status.FAIL);
+            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="startbrowser"><strong>StartBrowser</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>start</strong> a specified browser.</p>
+<p><strong>Input Format</strong> : @BrowserName. Example: <code>Chrome</code>, <code>Chrome Headless</code>, <code>Firefox</code>, <code>Edge</code> etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>StartBrowser</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>StartBrowser</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>StartBrowser</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Start a specified browser&quot;, input = InputType.YES)
+    public void StartBrowser() {
+        try {
+            getDriverControl().StartBrowser(Data);
+            Report.setDriver(getDriverControl());
+            Report.updateTestLog(&quot;StartBrowser&quot;, &quot;Browser Started: &quot; + Data,
+                    Status.DONE);
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, e);
+            Report.updateTestLog(&quot;StartBrowser&quot;, &quot;Error: &quot; + e.getMessage(),
+                    Status.FAIL);
+        }
+
+    }
+</code></pre>
+<hr />
+<h2 id="stopbrowser"><strong>StopBrowser</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>stop</strong> the current browser</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>StopBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>StopBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>StopBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Stop the current browser&quot;)
+
+    public void StopBrowser() {
+        getDriverControl().StopBrowser();
+        Report.updateTestLog(&quot;StopBrowser&quot;, &quot;Browser Stopped: &quot;, Status.DONE);
+    }
+</code></pre>
+<hr />
+<h2 id="restartbrowser"><strong>RestartBrowser</strong></h2>
+<p><strong>Description</strong>:  This function is used to <strong>restart</strong> current browser.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>RestartBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>RestartBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>RestartBrowser</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Restarts the Browser&quot;)
+    public void RestartBrowser() {
+        try {
+            getDriverControl().RestartBrowser();
+            Report.setDriver(getDriverControl());
+            Report.updateTestLog(&quot;RestartBrowser&quot;, &quot;Restarted Browser&quot;,Status.DONE);
+        } catch (Exception ex) {
+            Report.updateTestLog(&quot;RestartBrowser&quot;, &quot;Unable Restart Browser&quot;,Status.FAIL);
+            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+</code></pre>
+<hr />
+<h2 id="maximize"><strong>maximize</strong></h2>
+<p><strong>Description</strong>:This function is used to <strong>maximize</strong> the browser window.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>maximize</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>maximize</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>maximize</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Maximize the browser.&quot;)
+    public void maximize() {
+        try {
+            Driver.manage().window().maximize();
+            Report.updateTestLog(&quot;maximize&quot;, &quot; Window is maximized &quot;, Status.DONE);
+        } catch (Exception ex) {
+            Report.updateTestLog(&quot;maximize&quot;, &quot;Unable to maximize the Window &quot;, Status.FAIL);
+            Logger.getLogger(BrowserUtility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+</code></pre>
+<h2 id="note-by-default-the-driver-launched-by-the-tool-is-maximized">&gt; <strong>Note</strong> : By default the driver launched by the tool is maximized.</h2>
+<h2 id="refreshdriver"><strong>refreshDriver</strong></h2>
+<p><strong>Description</strong>: This function will <strong>refresh</strong> the current web page.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>refreshDriver</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>refreshDriver</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>refreshDriver</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Refresh current page &quot;)
+    public void refreshDriver() {
+        try {
+            Driver.navigate().refresh();
+            Report.updateTestLog(&quot;refreshDriver&quot;, &quot;Page is refreshed&quot;,Status.DONE);
+        } catch (WebDriverException e) {
+            Report.updateTestLog(&quot;refreshDriver&quot;, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+</code></pre>
+<hr />
+<h2 id="forward"><strong>forward</strong></h2>
+<p><strong>Description</strong>:  This function is used for <strong>navigating forward to next page.</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>forward</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>forward</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>forward</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;browser navigates to next page.&quot;)
+    public void forward() {
+        try {
+            Driver.navigate().forward();
+            Report.updateTestLog(&quot;forward&quot;, &quot;Navigate page forward is success&quot;,Status.DONE);
+        } catch (WebDriverException e) {
+            Report.updateTestLog(&quot;forward&quot;, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="back"><strong>back</strong></h2>
+<p><strong>Description</strong>: This function is used for <strong>navigating to the previous page.</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>back</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>back</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>back</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Navigate to previous page&quot;)
+    public void back() {
+        try {
+            Driver.navigate().back();
+            Report.updateTestLog(&quot;back&quot;, &quot;Navigate page back is success&quot;,Status.DONE);
+        } catch (WebDriverException e) {
+            Report.updateTestLog(&quot;back&quot;, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="addcookie"><strong>addCookie</strong></h2>
+<p><strong>Description</strong>:  This function will <strong>add a cookie</strong> defined in the input column.</p>
+<p><strong>Input Format</strong> : @<code>CookieName</code>:<code>CookieValue</code></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>addCookie</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>addCookie</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>addCookie</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Add the cookie name with value [&lt;Data&gt;].&quot;, input = InputType.YES)
+    public void addCookie() {
+
+        try {
+            String strCookieName = Data.split(&quot;:&quot;, 2)[0];
+            String strCookieValue = Data.split(&quot;:&quot;, 2)[1];
+            Cookie oCookie = new Cookie.Builder(strCookieName, strCookieValue).build();
+            Driver.manage().addCookie(oCookie);
+            Report.updateTestLog(Action, &quot;Cookie Name- '&quot; + strCookieName+ &quot;' with value '&quot; + strCookieValue + &quot;' is added&quot;,Status.DONE);
+        } catch (Exception e) {
+            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="deletecookie"><strong>deleteCookie</strong></h2>
+<p><strong>Description</strong>:  This function will delete the cookie specified by the user.</p>
+<p><strong>Input Format</strong> : @<code>CookieName</code></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>deleteCookie</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>deleteCookie</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>deleteCookie</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;delete the cookie having name [&lt;Data&gt;].&quot;, input = InputType.YES)
+    public void deleteCookie() {
+        try {
+            String strCookieName = Data;
+            Cookie oCookie = Driver.manage().getCookieNamed(strCookieName);
+            if (oCookie != null) {
+                Driver.manage().deleteCookie(oCookie);
+                Report.updateTestLog(Action, &quot;Cookie Name- '&quot;+ strCookieName + &quot;' is deleted&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(Action, &quot;Cookie doesn't exist&quot;,Status.FAIL);
+            }
+        } catch (Exception e) {
+            Report.updateTestLog(Action, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+</code></pre>
+<hr />
+<h2 id="close"><strong>close</strong></h2>
+<p><strong>Description</strong>:  This function will <strong>close the selenium Web Driver.</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>close</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>close</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>close</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Close the current browser session&quot;)
+    public void close() {
+        try {
+            Driver.close();
+            Report.updateTestLog(&quot;close&quot;, &quot;Selenium Webdriver is closed&quot;,Status.DONE);
+        } catch (WebDriverException e) {
+            Report.updateTestLog(&quot;close&quot;, e.getMessage(), Status.FAIL);
+            Logger.getLogger(CommonMethods.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

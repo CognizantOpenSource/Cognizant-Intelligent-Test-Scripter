@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Dynamic Object - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Dynamic Object";
+        var mkdocs_page_input_path = "webActions\\dynamicObjects.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Dynamic Object</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dynamic-object">Dynamic Object</h1>
+<hr />
+<h2 id="how-to-change-object-properties-at-run-time"><strong>How To Change Object Properties At Run Time?</strong></h2>
+<p>Sometimes it is necessary to use a dynamic property for objects at runtime. Customizing the existing properties at runtime can be done by using <strong>setObjectProperty</strong> and <strong>setglobalObjectProperty</strong> functions. <strong>setObjectProperty</strong> function: will update property of the driving object. <strong>setglobalObjectProperty</strong> function: will update property for all the objects. </p>
+<h3 id="setobjectproperty"><strong>setObjectProperty</strong></h3>
+<ul>
+<li>
+<p><strong>setObjectProperty</strong> action can be used by an object.</p>
+</li>
+<li>
+<p>To provide dynamic property value, use the <strong>Input</strong> column.</p>
+</li>
+<li>
+<p>To provide flag for replacing the property string, use the <strong>condition</strong> column.</p>
+</li>
+</ul>
+<p><strong>Description</strong>:  This function is used to customize any object property based on the requirement during the runtime. User can give a desired value as an input which will replace the matching condition in the object property. </p>
+<p><strong>Input Format</strong> : @User Defined Text</p>
+<p><strong>Condition Column</strong> : #Variable name</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>setObjectProperty</em></td>
+<td>@value</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setObjectProperty</em></td>
+<td>Sheet:Column</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setObjectProperty</em></td>
+<td>%dynamicVar%</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong> :</p>
+<p>There is an object whose <code>xpath</code> is <code>//div[text()='JohnDoe']</code> and another object whose <code>xpath</code> is <code>//div[text()='JaneDoe']</code></p>
+<ul>
+<li><strong>Step 1 :</strong></li>
+</ul>
+<p>We can define one object in the Object Repository whose xpath can be parameterised as
+<code>//div[text()='#userName']</code>. Now the <strong>#userName</strong> is also used in the <strong>Condition</strong> column</p>
+<ul>
+<li><strong>Step 2:</strong></li>
+</ul>
+<p>We can parameterise the <strong>#userName</strong> part from a datasheet as shown in the image below :</p>
+<p><img alt="dynamicObject1" src="../../img/actions/dynamicObject1.JPG" title="dynamicObject1" /></p>
+<p><strong>Internally uses the following Code:</strong></p>
+<pre><code class="language-java">private void setProperty(String key, String value) {
+        if (!AutomationObject.dynamicValue.containsKey(Reference)) {
+            Map&lt;String, Map&lt;String, String&gt;&gt; Object = new HashMap&lt;&gt;();
+            Map&lt;String, String&gt; property = new HashMap&lt;&gt;();
+            property.put(key, value);
+            Object.put(ObjectName, property);
+            AutomationObject.dynamicValue.put(Reference, Object);
+        } else if (!AutomationObject.dynamicValue.get(Reference).containsKey(ObjectName)) {
+            Map&lt;String, String&gt; property = new HashMap&lt;&gt;();
+            property.put(key, value);
+            AutomationObject.dynamicValue.get(Reference).put(ObjectName, property);
+        } else {
+            AutomationObject.dynamicValue.get(Reference).get(ObjectName).put(key, value);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setglobalobjectproperty"><strong>setglobalObjectProperty</strong></h2>
+<ul>
+<li>
+<p><strong>setglobalObjectProperty</strong> action can be used by Browser object.</p>
+</li>
+<li>
+<p>To provide dynamic property value, use the <strong>Input</strong> column.</p>
+</li>
+<li>
+<p>To provide flag for replacing the property string, use the <strong>condition</strong> column.</p>
+</li>
+<li>
+<p>Setting Global Object property is optional. To use object with global property when required, set <strong>GlobalObject</strong> in the <strong>Condition</strong> column.</p>
+</li>
+</ul>
+<p><strong>Description</strong>:   This function is used to customize all objects’ property based on the requirement at runtime.User can give his desired value as an input which will replace the matching condition in the object's property.</p>
+<p><strong>Input Format</strong> :Input Column : @User Defined Text</p>
+<p><strong>Condition Column</strong> : #Variable name</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>setglobalObjectProperty</em></td>
+<td>@value</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setglobalObjectProperty</em></td>
+<td>Sheet:Column</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setglobalObjectProperty</em></td>
+<td>%dynamicVar%</td>
+<td>%var%</td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<pre><code>Note: It is also possible to use **setObjectProperty**/**setglobalObjectProperty** 
+for replacing multiple variables at the same time.
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Behavior Driven Development - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Behavior Driven Development";
+        var mkdocs_page_input_path = "bdd.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Behavior Driven Development</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#importance-of-bdd-way-of-working">Importance of BDD Way of Working</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bdd-editor">BDD Editor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#createedit-feature-files-with-bdd-editor">Create/Edit Feature Files With BDD Editor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import-a-feature-file-to-create-automation-test-case-scaffolding">Import A Feature File To Create Automation Test Case Scaffolding</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bdd-reports-via-azure-devops">BDD Reports via Azure DevOps</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Behavior Driven Development</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="behavior-driven-development-bdd"><strong>Behavior Driven Development (BDD)</strong></h1>
+<hr />
+<h2 id="importance-of-bdd-way-of-working">Importance of BDD Way of Working</h2>
+<p>BDD is an Agile software development methodology in which an application is documented and designed around the behavior a user expects to experience when interacting with it. By encouraging developers to focus only on the requested behaviors of an app or program, BDD helps to avoid bloat, excessive code, unnecessary features or lack of focus.</p>
+<hr />
+<h2 id="bdd-editor">BDD Editor</h2>
+<p>The tool comes with a BDD editor that lets user to <strong>create/edit</strong> feature files. These feature files can then be imported/converted into automation test cases. The <strong>BDD editor</strong> has a provision of auto suggesting the keywords that can be used while writing feature files. Perform <strong>Ctrl+Space</strong> anywhere in the BDD editor workspace to get the list of keywords supported by the BDD editor.</p>
+<hr />
+<h2 id="createedit-feature-files-with-bdd-editor">Create/Edit Feature Files With BDD Editor</h2>
+<ul>
+<li>
+<p>From the tool UI, navigate to <strong>Tools-&gt;BDD-&gt;Open Feature Editor</strong> and the editor opens in a new window</p>
+</li>
+<li>
+<p>Create a new project by clicking on <strong>New Project</strong> option, you can also open an existing project <strong>(This is a Mandatory step)</strong></p>
+</li>
+<li>
+<p>Create a <strong>new story</strong> by clicking on <strong>[+]</strong> icon. A story is basically a feature for which <code>Scenarios</code> need to be written.</p>
+</li>
+<li>
+<p>After designing the <code>features</code> and <code>scenarios</code>, each story can be exported as a <strong><code>feature file</code></strong> , by clicking on <strong>up arrow</strong></p>
+</li>
+</ul>
+<p><img alt="featurecreation" src="../img/bdd/createfeaturefile.gif" title="featurecreation" /></p>
+<p><strong>Note:</strong> Projects created from BDD editor are saved as <strong>json</strong> files and internally <strong>Gherkin</strong> language is used to create feature files.</p>
+<p>It is also possible to open an existing feature file in the BDD editor using the <strong>down arrow</strong> icon and edit the same and save.</p>
+<hr />
+<h2 id="import-a-feature-file-to-create-automation-test-case-scaffolding">Import A Feature File To Create Automation Test Case Scaffolding</h2>
+<p>In order to translate the feature files into an automation scenario, follow the steps below :</p>
+<ul>
+<li>
+<p>Navigate to <strong>Tools-&gt;BDD-&gt;Import Feature file</strong></p>
+</li>
+<li>
+<p>Locate the feature file and click on <strong>OK</strong></p>
+<ul>
+<li>The <code>Features</code> are imported as <strong>Scenarios</strong> </li>
+<li>All the <code>Scenarios</code> are imported as <strong>Test cases</strong></li>
+<li>All the <code>Steps</code> in each scenario are imported as <strong>Reusable components</strong> </li>
+<li>All the <code>Examples</code> are imported into <strong>Data Sheets</strong> with the name of the test case</li>
+</ul>
+</li>
+</ul>
+<p><img alt="featureimport" src="../img/bdd/importfeaturefile.gif" title="featureimport" />   </p>
+<ul>
+<li>The corresponding steps can then be automated accordingly either through Recording or otherwise</li>
+</ul>
+<p><strong>Note:</strong> Any feature written in Gherkin language can be opened from the <strong>Import Feature file</strong> , even if it is not created using the <strong>BDD editor</strong>.</p>
+<hr />
+<h2 id="bdd-reports-via-azure-devops">BDD Reports via Azure DevOps</h2>
+<p>In order to generate BDD Style Reporting post execution, from the Run Settings, make sure <strong>Bdd Reporting</strong> checkbox is checked.</p>
+<p><img alt="checkbox" src="../img/bdd/4.JPG" title="checkbox" /></p>
+<p>This will generate <strong>bdd-report.json</strong> file post execution and this json file can then be fed to Azure DevOps Yaml Task to generate BDD Style Reporting.</p>
+<p>For this we need to use the following Yaml commands :</p>
+<pre><code class="language-yaml">
+- task: PublishCucumberReport@1
+  inputs:
+    jsonDir: '$(System.DefaultWorkingDirectory)/Projects/&lt;Project_Name&gt;/Results/TestExecution/&lt;Release_Name&gt;/&lt;TestSet_Name&gt;/Latest/'
+    outputPath: '$(System.DefaultWorkingDirectory)'
+    theme: 'bootstrap'
+    reportSuiteAsScenarios: true
+    name: 'ING'
+    title: 'BDD Results'
+
+</code></pre>
+<p>In Azure DevOps, the feature wise report can be viwed under the <code>Cucumber</code> Tab like the following :</p>
+<p><img alt="report" src="../img/bdd/5.JPG" title="report" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cli/" class="btn btn-neutral float-left" title="Command Line Interface"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../azure/" class="btn btn-neutral float-right" title="Azure Deveops Integration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../azure/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

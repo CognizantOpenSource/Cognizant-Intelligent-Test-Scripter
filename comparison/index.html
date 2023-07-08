@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Comparisons with industry standard frameworks and Limitations - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Comparisons with industry standard frameworks and Limitations";
+        var mkdocs_page_input_path = "comparison.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Comparisons with industry standard frameworks and Limitations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#learning-curve">Learning Curve</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#readymade-framework">Readymade Framework</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparitive-analysis">Comparitive Analysis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#limitations-of-the-tool">Limitations of the tool</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Comparisons with industry standard frameworks and Limitations</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="comparisons-with-industry-standard-frameworks-and-limitations"><strong>Comparisons with industry standard frameworks and Limitations</strong></h1>
+<h2 id="learning-curve">Learning Curve</h2>
+<hr />
+<p>Benefit of using this tool is that learning curve is very small and doesn’t require any programming skills to start.
+This immediately helps in including in the testing process, the CJEs, Business users, Platform and other DevOps Engineers who do not have programming or test automation background.</p>
+<h2 id="readymade-framework">Readymade Framework</h2>
+<hr />
+<p><code>Selenium</code>, <code>Appium</code>, <code>HttpURLConnection</code>, <code>WinAppDriver</code> are just libraries, <strong>not testing tools</strong>. A framework needs to be created from scratch or reused from open source market, to use these libraries. </p>
+<pre><code>This tool does all heavy lifting with readily available framework developed 
+on top of "Selenium", "Appium", "HttpURLConnection", "WinAppDriver"
+</code></pre>
+<h2 id="comparitive-analysis">Comparitive Analysis</h2>
+<hr />
+<p>It is important to note that in the comparison below, we will only include popular <code>java</code> or <code>python</code> <strong>frameworks</strong> and not libraries like <code>Selenium</code>, <code>Playwright</code> etc.
+Comparing frameworks with libraries is like comparing apples and oranges!</p>
+<p>The reason to choose <code>java</code>/<code>python</code> and not <code>javascript</code> is that, in Wholesale Banking, most applications are Packages and Commercial off-the-shelf (COTS) and monoliths. These applications do not have modern Web UI and are heavily focussed on the <strong>Business Processing</strong> side of things. Javascript based tools and frameworks are primarily aimed to test <strong>Modern Web UI</strong>. With Java we have a greater edge to test the processes like, <strong>Java Messaging Queue</strong>, <strong>Kafka Streams</strong>, <strong>Reports (xlsx, pdf)</strong>, <strong>DataBase</strong> etc. in addition to <strong>Web</strong> and <strong>API</strong>.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th><div style="width:380px">Features</div></th>
+<th><div style="color:#ff8241;width:150px"><strong>CITS</strong></div></th>
+<th><div style="color:#01d27a;width:100px"><strong>Cucumber</strong></div></th>
+<th><div style="color:#b23afb;width:100px"><strong>Serenity</strong></div></th>
+<th><div style="color:#29425b;width:100px"><strong>Robot Framework</strong></div></th>
+<th><div style="color:#992841;width:100px"><strong>Karate</strong></div></th>
+<th><div style="color:#6dd7bc;width:100px"><strong>Katalon</strong></div></th>
+<th><div style="color:#00adec;width:100px"><strong>Test Complete</strong></div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div style="color:Blue"><strong>Open Source</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td>Freemium</td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Integrated IDE with data sheets and property files</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue">   <strong>OS Independent</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Shallow Learning Curve</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Community Support</strong></div></td>
+<td><span style="color:Red">&cross;</span> (Community is growing but still small)</td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>High Ease of test case creation</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Business User Friendly</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Built-in Record and Spy for quick start</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Cross Browser Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Multiple Object Properties in Object Repository</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Distributed Execution</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Integration with Selenium Grid</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in support for BDD approach</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span>   (Not to confuse with Karate BDD like DSL)</td>
+<td><span style="color:Green"><strong>&check;</strong></span> (Plugins needed)</td>
+<td><span style="color:Green"><strong>&check;</strong></span> (Plugins needed)</td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in support for Data-driven approach</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in support for Keyword-driven approach</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"><strong>Customizations and enhancements</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Native Azure DevOps reports with logs and screenshots</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span> (Junit doesn't support screenshots)</td>
+<td><span style="color:Red">&cross;</span> (Junit doesn't support screenshots)</td>
+<td><span style="color:Red">&cross;</span>   (Plugins not supported in ING)</td>
+<td><span style="color:Red">&cross;</span> (Junit doesn't support screenshots)</td>
+<td><span style="color:Red">&cross;</span> (Junit doesn't support screenshots)</td>
+<td><span style="color:Red">&cross;</span> (Plugins not supported in ING)</td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Azure DevOps Test Plan Integration</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span>  (Plugins not supported in ING)</td>
+<td><span style="color:Red">&cross;</span> (Plugins not supported in ING)</td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in API Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span> (additional libraries needed)</td>
+<td><span style="color:Green"><strong>&check;</strong></span> (additional libraries needed)</td>
+<td><span style="color:Green"><strong>&check;</strong></span> (additional libraries needed)</td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Web Page Performance Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Accessibility Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Database Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Built-in Image Based Testing</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Red">&cross;</span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+<tr>
+<td><div style="color:Blue"> <strong>Docker Support</strong></div></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+<td><span style="color:Green"><strong>&check;</strong></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="limitations-of-the-tool">Limitations of the tool</h2>
+<hr />
+<ul>
+<li>
+<p>CITS is a tester-friendly tool. Developers, who are accustomed to only coding and writing scripts in an IDE like IntelliJ or Eclipse might find the UI of the tool, limiting.</p>
+</li>
+<li>
+<p>Even though the tool has an exhaustive Java project in the backend which can be customized, enhanced and even tailored for project specific purposes, it is not the first thing that a developer sees, thereby creating a feeling of lack of coding liberty.</p>
+</li>
+<li>
+<p>While CITS is designed to be user-friendly, there is still a learning curve involved in using the tool effectively. One may need to invest time in learning how to use the tool's features and scripting capabilities to create effective tests.</p>
+</li>
+<li>
+<p>The tool's community is quite small. Even though it is growing and efforts are being put in to create exhaustive documentation and videos, it will take some time for it to become popular.</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../troubleshooting/" class="btn btn-neutral float-left" title="Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

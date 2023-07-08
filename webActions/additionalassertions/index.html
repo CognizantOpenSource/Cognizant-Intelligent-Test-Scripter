@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Additional Assertions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Additional Assertions";
+        var mkdocs_page_input_path = "webActions\\additionalassertions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Additional Assertions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="additional-assertions">Additional Assertions</h1>
+<hr />
+<h2 id="assertpagesource"><strong>assertPageSource</strong></h2>
+<p><strong>Description</strong>: This function will check if the page source content of the current page is matching with the expected page source content provided by the user.</p>
+<p><strong>Input Format</strong> : @Expected PageSource content</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertPageSource</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertPageSource</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertPageSource</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">    @Action(object = ObjectType.BROWSER, desc = &quot;Assert if Page source of current page is: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void assertPageSource() {
+        if (Driver.getPageSource().equals(Data)) {
+            Report.updateTestLog(Action, &quot;Current Page Source is matched with the expected Page Source&quot;, Status.DONE);
+        } else {
+            throw new ForcedException(Action, &quot;Current Page Source doesn't match with the expected Page Source&quot;);
+        }
+    }
+</code></pre>
+<p><strong>Description</strong>:  This function will check if the text of the input element adjacent to provided label element equals the given text(in the Input Column)</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Object</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="assertvariable"><strong>assertVariable</strong></h2>
+<p><strong>Description</strong>:  This function will assert a <code>stored variable's</code> value with the value given by the user.</p>
+<p><strong>Input Format</strong> : @%var_name%=Expected Value</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertVariable</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertVariable</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertVariable</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER,desc = &quot;Assert if Key:Value -&gt; [&lt;Data&gt;] is valid&quot;,input = InputType.YES)
+    public void assertVariable() throws RuntimeException {
+        try {
+            String strObj = Data;
+            String[] strTemp = strObj.split(&quot;=&quot;, 2);
+            String strAns = strTemp[0].matches(&quot;%.+%&quot;) ? getVar(strTemp[0]) : strTemp[0];
+            if (strAns.equals(strTemp[1])) {
+                System.out.println(&quot;Condition '&quot; + Input + &quot;' is true &quot;);
+                Report.updateTestLog(&quot;assertVariable&quot;,&quot;Variable matched with Provided data&quot;, Status.PASS);
+
+            } else {
+                 System.out.println(&quot;Condition '&quot; + Input + &quot;' is false &quot;);
+                throw new Exception(&quot;Variable did not match with provided data&quot;);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertVariable&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertcookiepresent"><strong>assertCookiePresent</strong></h2>
+<p><strong>Description</strong>: This function will assert the presence of a <code>cookie</code> by it's specified name and store the result in a variable.</p>
+<p><strong>Input Format</strong> :   @CookieName</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertCookiePresent</em></td>
+<td>@value</td>
+<td>%variable%</td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertCookiePresent</em></td>
+<td>Sheet:Column</td>
+<td>%variable%</td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em><span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertCookiePresent</em></td>
+<td>%dynamicVar%</td>
+<td>%variable%</td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Assert if cookie name: [&lt;Data&gt;] is present&quot;, input = InputType.YES)
+    public void assertCookiePresent() {
+        try {
+            String strCookieName = Data;
+            if ((Driver.manage().getCookieNamed(strCookieName) != null)) {
+                System.out.println(&quot;assertCookiePresent Passed&quot;);
+                Report.updateTestLog(&quot;assertCookiePresent&quot;,&quot;Cookie name matched with the data provided&quot;,Status.PASS);
+            } else {
+                throw new Exception(&quot;Cookie name did not match with data provided&quot;);
+            }
+        } catch (Exception ex) {
+            System.out.println(&quot;assertCookiePresent Failed&quot;);
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertCookiePresent&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertcookiebyname"><strong>assertCookieByName</strong></h2>
+<p><strong>Description</strong>:  This function will assert the <code>cookie's</code> (the name of the cookie is given is specified in the input column) value with the one in the input column</p>
+<p><strong>Input Format</strong> :   @CookieName:CookieValue</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertCookieByName</em></td>
+<td>@data</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be passed from <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Assert if cookie: [&lt;Object&gt;] has name: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void assertCookieByName() {
+        try {
+
+            String strCookieName = Data.split(&quot;:&quot;, 2)[0];
+            String strCookieValue = Data.split(&quot;:&quot;, 2)[1];
+            if (Driver.manage().getCookieNamed(strCookieName) != null) {
+                if ((Driver.manage().getCookieNamed(strCookieName).getValue().equals(strCookieValue))) {
+                    System.out.println(&quot;assertCookieByName Passed&quot;);
+                    Report.updateTestLog(&quot;assertCookieByName&quot;,&quot;Cookie name matched with provided data&quot;,Status.PASS);
+
+                } else {
+                    throw new Exception(&quot;Cookie value did not match with provided data&quot;);
+                }
+            } else {
+                throw new Exception(&quot;Cookie  with the name '&quot; + strCookieName + &quot;' did not exist&quot;);
+            }
+        } catch (Exception ex) {
+            System.out.println(&quot;assertCookieByName Failed&quot;);
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertCookieByName&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertalerttext"><strong>assertAlertText</strong></h2>
+<p><strong>Description</strong>:  This function will assert the text present in alert with the given text.</p>
+<p><strong>Input Format</strong> :  @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertAlertText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertAlertText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em><span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertAlertText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Assert if an alert with text: [&lt;Data&gt;] is present&quot;, input = InputType.YES)
+    public void assertAlertText() {
+
+        try {
+            String strExpAlertText = Data;
+            if (isAlertPresent()) {
+                if ((Driver.switchTo().alert().getText().equals(strExpAlertText))) {
+                    System.out.println(&quot;assertAlertText Passed&quot;);
+                    Report.updateTestLog(&quot;assertAlertText&quot;,&quot;Alert text matched with provided data&quot;,Status.PASSNS);
+                } else {
+                    throw new Exception(&quot;Alert text did not match with the provided data&quot;);
+                }
+            } else {
+                throw new Exception(&quot;Alert not present&quot;);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(&quot;assertAlertText Failed&quot;);
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertAlertText&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertalertpresent"><strong>assertAlertPresent</strong></h2>
+<p><strong>Description</strong>:  This function will assert the presence of an <code>alert</code></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertAlertPresent</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc = &quot;Assert if an alert is present &quot;)
+    public void assertAlertPresent() {
+        try {
+            if ((isAlertPresent())) {
+                System.out.println(&quot;assertAIertPresent Passed&quot;);
+                Report.updateTestLog(&quot;assertAIertPresent&quot;, &quot;Alert present&quot;,Status.PASSNS);
+            } else {
+                throw new Exception(&quot;Alert not present&quot;);
+            }
+        } catch (Exception ex) {
+            System.out.println(&quot;assertAIertPresent Failed&quot;);
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertAIertPresent&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="asserteval"><strong>assertEval</strong></h2>
+<p><strong>Description</strong>:   This function will assert if the <code>evaluated javascript expression</code> equals the expected value provided.</p>
+<p><strong>Input Format</strong> :   @javascript:expectedvalue.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertEval</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertEval</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em><span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>assertEval</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER,desc = &quot;Assert if the evaluated javascript expression equals [&lt;Data&gt;]&quot;,input = InputType.YES)
+    public void assertEval() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) Driver;
+
+            String strExpScript = Data.split(&quot;:&quot;, 2)[0];
+            String strExpValue = Data.split(&quot;:&quot;, 2)[1];
+            Object result = js.executeScript(strExpScript);
+            if (result != null &amp;&amp; result.toString().trim().equals(strExpValue)) {
+                System.out.println(&quot;assertEval Passed&quot;);
+                Report.updateTestLog(&quot;assertEval&quot;,&quot;JS script return value matched with the expected result&quot;,Status.DONE);
+            } else {
+                throw new Exception(&quot;JS script return value did not match with the expected result&quot;);
+            }
+        } catch (Exception ex) {
+            System.out.println(&quot;assertEval Failed&quot;);
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ForcedException(&quot;assertEval&quot;, ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertvariablefromdatasheet"><strong>assertVariableFromDataSheet</strong></h2>
+<p><strong>Description</strong>:   This function will check if the <code>variable</code> given in the condition column has a value equals to the value from the datasheet mentioned in the input column. </p>
+<p><strong>Input Format</strong> :   Datasheet name:Column name</p>
+<p><strong>Condition Format</strong>: %Variable name%</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>assertVariableFromDataSheet</em></td>
+<td>Sheet:Column</td>
+<td>%variable%</td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either passed from the data sheet (<code>datasheet name : column name</code>)  as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">8@Action(object = ObjectType.BROWSER,
+            desc = &quot;Assert if  the  variable value matches with given value from datasheet(variable:datasheet-&gt;  [&lt;Data&gt;] )&quot;,
+            input = InputType.YES,
+            condition = InputType.YES)
+    public void assertVariableFromDataSheet() throws RuntimeException {
+        try {
+            String strAns = getVar(Condition);
+            if (strAns.equals(Data)) {
+                System.out.println(&quot;Variable &quot; + Condition + &quot; equals &quot; + Input);
+                Report.updateTestLog(Action, &quot;Variable is matched with the expected result&quot;, Status.DONE);
+
+            } else {
+                System.out.println(&quot;Variable &quot; + Condition + &quot; is not equal &quot; + Input);
+                throw new ForcedException(Action, &quot;Variable did not match with provided data&quot;);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Assertions.class.getName()).log(Level.SEVERE, null, e);
+            throw new ForcedException(&quot;assertVariableFromDataSheet&quot;, e.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

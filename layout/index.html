@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Layout Validation - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Layout Validation";
+        var mkdocs_page_input_path = "layout.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Layout Validation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#css-properties">CSS properties</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on">On</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#centered">Centered</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#image">Image</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#align">Align</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#near">Near</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pagedump">Pagedump</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contains">Contains</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#colorscheme">ColorScheme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inside">Inside</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#direction">Direction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#width-and-height">Width and Height</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Layout Validation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="layout-validation"><strong>Layout Validation</strong></h2>
+<hr />
+<p>!!! Documentation on this is currently in progress</p>
+<hr />
+<h3 id="css-properties"><strong><u>CSS properties</u></strong></h3>
+<ul>
+<li><strong>assertElementCssPropEquals</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified Css Property for an element is equal to the user-provided value. </p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Css Property value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@font-size 17 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCssPropContains</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified Css Property for an element contains the user-provided value.</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Css Property value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@font-family sans-serif</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCssPropEndsWith</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified Css Property for an element ends with the user-provided value.</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Css Property value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@font-size 17 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCssPropMatches</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified Css Property for an element matches with the user-provided value. User can use regular expression also in input field.</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Css Property value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@font-family (.)Arial(.)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCssPropStartsWith</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified Css Property for an element begins with the user-provided value.</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Css Property value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@font-family Helvetica</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="on"><strong><u>On</u></strong></h3>
+<ul>
+<li><strong>assertElementOnTopLeft</strong></li>
+</ul>
+<p><strong>Description</strong>: TThis function verifies if the element is moved from another element from a specified corner. Visually it could be considered as if one element is placed at the top left of another element.</p>
+<p><strong>Input Format</strong> : Locations</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Label</td>
+<td>@20 px left, 10 px bottom</td>
+<td>user picture</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE</strong>: To avoid typing the name of the secondary object, you can simply drag the
+object and drop the object from the OR(Object Repository) in to the Condition
+Column.</p>
+<ul>
+<li><strong>assertElementOnTopRight</strong></li>
+</ul>
+<p><strong>Description</strong>: This function verifies if the element is moved from another element from a specified corner. Visually it could be considered as if one element is placed at the top right of another element.</p>
+<p><strong>Input Format</strong> : Locations</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@20 px left, 10 px bottom</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementOnBottomLeft</strong></li>
+</ul>
+<p><strong>Description</strong>: This function verifies if the element is moved from another element from a specified corner. Visually it could be considered as if one element is placed at the bottom left of another element</p>
+<p><strong>Input Format</strong> : Locations</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@20 px left, 10 px bottom</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementOnBottomRight</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function verifies if the element is moved from another element from a specified corner. Visually it could be considered as if one element is placed at the bottom right of another element.</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@20 px left, 10 px bottom</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="centered"><strong><u>Centered</u></strong></h3>
+<ul>
+<li><strong>assertElementCenteredAInside</strong></li>
+</ul>
+<p><strong>Description</strong>: It allows to verify if the element is completely centered within another element with the user-defined error rate. Useful in case of responsive Web Design applications.</p>
+<p><strong>Input Format</strong> : Range or empty</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCenteredAOn</strong></li>
+</ul>
+<p><strong>Description</strong>: It allows to verify that the element is completely centered on top of another element with user-defined error rate. Useful in case of responsive Web Design applications.</p>
+<p><strong>Input Format</strong> : Range or empty</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCenteredHOn</strong></li>
+</ul>
+<p><strong>Description</strong>: It allows to verify if the element is horizontally centered on top of another element with the user-defined error rate. Useful in case of responsive Web Design applications.</p>
+<p><strong>Input Format</strong> : Range or empty</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCenteredHInside</strong></li>
+</ul>
+<p><strong>Description</strong>: It allows to verify if the element is horizontally centered within another element with the user-defined error rate. Useful in case of responsive Web Design applications.</p>
+<p><strong>Input Format</strong> : Range or empty</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCenteredVOn</strong></li>
+</ul>
+<p><strong>Description</strong>: It allows to verify if the element is vertically centered on top of another element with the user-defined error rate. Useful in case of responsive Web Design applications.</p>
+<p><strong>Input Format</strong> : Range or empty</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementCenteredVInside</strong></li>
+</ul>
+<p><strong>Description</strong>:This function will validate if the given image matches with the speci</p>
+<p><strong>Input Format</strong> : Image file location</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td></td>
+<td>Box</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>@10px</td>
+<td>Box</td>
+</tr>
+</tbody>
+</table>
+<h3 id="image"><strong><u>Image</u></strong></h3>
+<ul>
+<li><strong>assertElementImage</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to add a user-defined variable with a desired value and the scope of this variable is till the end of the test case in which it is defined</p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectToBeCompared</td>
+<td>@Parameter</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<ul>
+<li>The step given below will compare object on the screen pixel to pixel with image imagefolder/image1.png and will notify if the amount of mismatching pixel is higher than 10 pixels that is allowed maximum.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imagefolder/image1.png, error 10 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>You can also change the assertion from absolute pixels values to percentage.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imagefolder/image1.png, error 4%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When comparing images of different sizes, we place one image on top of another and assume that the missing pixels are of black color. You can change this behavior by stretching the image to </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imgs/menu-item-1.png, error 4%, stretch</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>You can also define an area which should be used from the sample image as given below. The area parameter takes 4 values: left, top, width, and height.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imgs/menu-item-1.png, error 4%, area 10 10 100 30</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Sometimes you may have different images for different browsers and this will break all your tests. For such cases, you can define different image samples in one step as given below.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imagefolder/image1.png, imagefolder/image2.png,</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>imagefolder/image3.png, error 20 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Sometimes you may want to apply some filters to compared images to have a smarter image comparison. For an instance, you can apply blur to images. This might be handy if the compared image has generated noise. Or, you can also apply denoise </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file item-1.png, error 1%,filter saturation 0, map-filter denoise 5</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If you want to apply filter only to the original image, you can use filter-a expression as given below. </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imgs/item-1.png, filter-a blur 10, error 4%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If you want to apply a specific filter only to a sample image, you can use filter-b expression as given below.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item1</td>
+<td>@file imgs/login-button.png, filter-b contrast 200, error 4%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Following will happen as a result of this check</strong>:</p>
+<pre><code>* Cognizant Intelligent Test Scripter takes both images and applies blur filter with radius 4.
+
+* It applies saturation filter with Level 0. That is, complete loss of color and change of images color to Grey.
+
+* It compares the image and builds a comparison map.
+
+* After these operations, it applies denoise filter with radius 5 pixels and removes noise from the generated map.
+
+* After all these operations, it counts the mismatching pixels.
+</code></pre>
+<p><strong>List of all available image filters</strong></p>
+<p><strong> blur &lt; radius&gt;</strong> - Blurs the image with the given radius of blur.</p>
+<p><strong>saturation &lt; level&gt;</strong> -Removes the colors with the given level. Zero value means complete loss of colors. At 100 value all the colors are left the same. At Level 50 the image is colored by half.</p>
+<p><strong>contrast &lt; level&gt;</strong> - Increases the contrast. The allowed range for level is between 0 to 258.</p>
+<p><strong>denoise &lt; radius&gt;</strong> - Removes noise from image. It is applicable only as a map-filter as it only works with black/white images. </p>
+<p><strong>quantinize &lt; colorsAmount&gt;</strong> - Makes less colors on the image.</p>
+<h3 id="align"><strong><u>Align</u></strong></h3>
+<ul>
+<li><strong>assertElementAlignedHoriz</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate Horizontal Alignment of an object with another object.</p>
+<p><strong>Input Format</strong> : alignment error rate in px </p>
+<p><strong>Syntax</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@all</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@all 10px</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObject</td>
+<td>@top</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>PrimaryObject</td>
+<td>@top 10px</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@bottom</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@bottom 10px</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@centered</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@centered 10px</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementAlignedVert</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate the Vertical Alignment of an object with another object.</p>
+<p><strong>Input Format</strong> : alignment error rate in px.</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@all</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@all 10px</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>PrimaryObject</td>
+<td>@left</td>
+<td>SecondaryObject</td>
+</tr>
+<tr>
+<td>PrimaryObject</td>
+<td>@left 10px</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td>@right</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@right 10px</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@centered</td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td>@centered 10px</td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="near"><strong><u>Near</u></strong></h3>
+<ul>
+<li><strong>assertElementNear</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified element is placed near another element.</p>
+<p><strong>Input Format</strong> :Locations</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@Parameter</td>
+<td>SecondaryObjectName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>textfield</td>
+<td>@10 px left</td>
+<td>button</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@10 px right</td>
+<td>textfield</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>textfield</td>
+<td>@5 px top</td>
+<td>button</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@5 px bottom</td>
+<td>textfield</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>textfield</td>
+<td>@5 px bottom left</td>
+<td>button</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@5 px top right</td>
+<td>textfield</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>textfield</td>
+<td>@5 px top, 10 px left</td>
+<td>button</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pagedump"><strong><u>Pagedump</u></strong></h3>
+<ul>
+<li><strong>createPageDump</strong></li>
+</ul>
+<p><strong>Description</strong> :This function will create page dump for the user specified page. </p>
+<p><strong>Input Format</strong> : PageName from ObjectRepository.</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td>@PageNameInObjectRepository</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td>@Sample</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="contains"><strong><u>Contains</u></strong></h3>
+<ul>
+<li><strong>highlight</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function will validate if specified element has a list of specified elements.</p>
+<p><strong>Input Format</strong> : Color in hexcode like <strong>@#ff44ff</strong>. If it is left empty red will be taken as default.</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td></td>
+<td>SecondarObjectName/RegularExpression</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<p>*To check if an element contains another element</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td></td>
+<td>item2</td>
+</tr>
+</tbody>
+</table>
+<p>*To check if an element contains more than one elements</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td></td>
+<td>(item2 or item2 or item3)</td>
+</tr>
+</tbody>
+</table>
+<p>*You can also use asterisk to match all other objects. For if we have an object
+menu and in it there other object like: menu-item1, menu-item2, menu-item3</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>menu</td>
+<td></td>
+<td>item-(.*)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementContainsPartly</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used when an element is not completely within another element.</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td></td>
+<td>SecondarObjectName/RegularExpression</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item1</td>
+<td></td>
+<td>item2</td>
+</tr>
+<tr>
+<td>item1</td>
+<td></td>
+<td>(item1 or item2 or item3)</td>
+</tr>
+<tr>
+<td>menu</td>
+<td></td>
+<td>item-(.*)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="colorscheme"><strong><u>ColorScheme</u></strong></h3>
+<ul>
+<li><strong>assertElementColorScheme</strong></li>
+</ul>
+<p><strong>Description</strong>: This function verifies color distribution on object area. Galen takes a picture and then calculates the object’s area color spectrum so that you can later verify the usage for specific colors.</p>
+<p><strong>Input Format</strong> : @Expected color distribution.</p>
+<p><strong>Syntax:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@Parameter</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@50% white, 4 to 5 % black, 30% #f845b7</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="inside"><strong><u>Inside</u></strong></h3>
+<ul>
+<li><strong>assertElementInsidePartly</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified element is placed partly within another element.</p>
+<p><strong>Input Format</strong> : Locations</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObject</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td></td>
+<td>box</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px top</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px bottom</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px left</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px right</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px top left</td>
+<td>container</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@10 px left right, 20 px top bottom</td>
+<td>container</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementInside</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function will validate if the specified element lies within another element.</p>
+<p><strong>Input Format</strong> : Locations</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObject</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td></td>
+<td>box</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@10 px top</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px bottom</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px left</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px right</td>
+<td>container</td>
+</tr>
+<tr>
+<td>button</td>
+<td>@10 px top left</td>
+<td>container</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>button</td>
+<td>@10 px left right, 20 px top bottom</td>
+<td>container</td>
+</tr>
+</tbody>
+</table>
+<h3 id="direction"><strong><u>Direction</u></strong></h3>
+<ul>
+<li><strong>assertElementAbove</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if an element is present above another element.</p>
+<p><strong>Input Format</strong> :Range [optional]</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObject</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>@15 px</td>
+<td>Secondary ObjectName</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementBelow</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if an element is below another element.</p>
+<p><strong>Input Format</strong> :Range [optional]</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObject</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>@15 px</td>
+<td>Secondary ObjectName</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementLeftOf</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate if the specified element is placed to the left of another element.</p>
+<p><strong>Input Format</strong> : Range in px </p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>@10 px</td>
+<td>Secondary ObjectName</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementRightOf</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function will validate if the specified element is placed at the right of another element.</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td>@Parameter</td>
+<td>SecondaryObject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>@10 px</td>
+<td>Secondary ObjectName</td>
+</tr>
+</tbody>
+</table>
+<h3 id="width-and-height"><strong><u>Width and Height</u></strong></h3>
+<ul>
+<li><strong>assertElementWidthElement</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate the width of the specified object with respect to the width of another element.</p>
+<p><strong>Input Format</strong> : @Parameter</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Object</td>
+<td>@Parameter</td>
+<td>Secondary Objectname/screen/viewport</td>
+</tr>
+<tr>
+<td>Primary Object</td>
+<td>@50 px</td>
+<td>Secondary Objectname</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementHeightElement</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will validate the height of the specified object with respect to the height of another element.</p>
+<p>Input Format : Range in %</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Object</td>
+<td>@Parameter</td>
+<td>Secondary Objectname/screen/viewport</td>
+</tr>
+<tr>
+<td>Primary Object</td>
+<td>@50%</td>
+<td>Secondary Objectname</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementWidth</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will verify the width of an object with an user provided data.</p>
+<p><strong>Input Format</strong> :@Parameter</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Object</td>
+<td>@Parameter</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>@50 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>assertElementHeight</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will verify the height of an object with an expected data.</p>
+<p><strong>Input Format</strong> : @Parameter</p>
+<p><strong>Syntax:</strong> </p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Object</td>
+<td>@Parameter</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrimaryObjectName</td>
+<td>@50 px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../database/" class="btn btn-neutral float-left" title="Database Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../accessibility/" class="btn btn-neutral float-right" title="Accessiblity Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../database/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../accessibility/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

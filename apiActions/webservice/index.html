@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>API Testing Actions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Testing Actions";
+        var mkdocs_page_input_path = "apiActions\\webservice.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>API Testing Actions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-testing-actions">API Testing Actions</h1>
+<hr />
+<h2 id="postrestrequest"><strong>postRestRequest</strong></h2>
+<p><strong>Description</strong>: This function is used to perform POST action on a Rest API.</p>
+<p><strong>Input Format</strong> : @Expected Payload</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>@Payload (from Editor)</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code>, passed inside the <strong>JSON editor</strong> which is capable of parameterising the Payload (Press ctrl+space to see the list of variables available ), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">HttpURLConnection.setDoOutput(true);
+HttpURLConnection.setRequestMethod(&quot;POST&quot;);
+
+try (OutputStreamWriter out = new OutputStreamWriter(httpConnections.get(key).getOutputStream())) {
+out.write(data);
+out.flush();
+out.close();
+}
+
+InputStreamReader reader = new InputStreamReader(HttpURLConnection.getInputStream());
+StringBuilder buf = new StringBuilder();
+char[] cbuf = new char[2048];
+int num;
+while (-1 != (num = reader.read(cbuf))) {
+    buf.append(cbuf, 0, num);
+}
+</code></pre>
+<hr />
+<h2 id="putrestrequest"><strong>putRestRequest</strong></h2>
+<p><strong>Description</strong>: This function is used to perform PUT action on a Rest API.</p>
+<p><strong>Input Format</strong> : @Expected Payload</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>putRestRequest</em></td>
+<td>@Payload (from Editor)</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>putRestRequest</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>putRestRequest</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code>, passed inside the <strong>JSON editor</strong> which is capable of parameterising the Payload (Press ctrl+space to see the list of variables available ), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">HttpURLConnection.setDoOutput(true);
+HttpURLConnection.setRequestMethod(&quot;PUT&quot;);
+
+try (OutputStreamWriter out = new OutputStreamWriter(httpConnections.get(key).getOutputStream())) {
+out.write(data);
+out.flush();
+out.close();
+}
+
+InputStreamReader reader = new InputStreamReader(HttpURLConnection.getInputStream());
+StringBuilder buf = new StringBuilder();
+char[] cbuf = new char[2048];
+int num;
+while (-1 != (num = reader.read(cbuf))) {
+    buf.append(cbuf, 0, num);
+}
+</code></pre>
+<hr />
+<h2 id="postsoaprequest"><strong>postSoapRequest</strong></h2>
+<p><strong>Description</strong>: This function is used to perform POST action on a SOAP API.</p>
+<p><strong>Input Format</strong> : @Expected Payload</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>@Payload (from Editor)</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>postRestRequest</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code>, passed inside the <strong>XML editor</strong> which is capable of parameterising the Payload (Press ctrl+space to see the list of variables available ), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">HttpURLConnection.setDoOutput(true);
+HttpURLConnection.setRequestMethod(&quot;POST&quot;);
+
+try (OutputStreamWriter out = new OutputStreamWriter(httpConnections.get(key).getOutputStream())) {
+out.write(data);
+out.flush();
+out.close();
+}
+
+InputStreamReader reader = new InputStreamReader(HttpURLConnection.getInputStream());
+StringBuilder buf = new StringBuilder();
+char[] cbuf = new char[2048];
+int num;
+while (-1 != (num = reader.read(cbuf))) {
+    buf.append(cbuf, 0, num);
+}
+</code></pre>
+<hr />
+<h2 id="getrestrequest"><strong>getRestRequest</strong></h2>
+<p><strong>Description</strong>: This function is used to perform GET action on a Rest API.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>getRestRequest</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">HttpURLConnection.setRequestMethod(&quot;GET&quot;);
+
+InputStreamReader reader = new InputStreamReader(HttpURLConnection.getInputStream());
+StringBuilder buf = new StringBuilder();
+char[] cbuf = new char[2048];
+int num;
+while (-1 != (num = reader.read(cbuf))) {
+    buf.append(cbuf, 0, num);
+}
+</code></pre>
+<hr />
+<h2 id="deleterestrequest"><strong>deleteRestRequest</strong></h2>
+<p><strong>Description</strong>:  This function is used to perform DELETE action on a Rest API.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>deleteRestRequest</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">HttpURLConnection.setRequestMethod(&quot;DELETE&quot;);
+
+InputStreamReader reader = new InputStreamReader(HttpURLConnection.getInputStream());
+StringBuilder buf = new StringBuilder();
+char[] cbuf = new char[2048];
+int num;
+while (-1 != (num = reader.read(cbuf))) {
+    buf.append(cbuf, 0, num);
+}
+</code></pre>
+<hr />
+<h2 id="assertresponsecode"><strong>assertResponseCode</strong></h2>
+<p><strong>Description</strong>: This function is used to validate the response code of SOAP/REST response.</p>
+<p><strong>Input Format</strong> : @Expected code</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseCode</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseCode</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseCode</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">responsecodes.put(key, Integer.toString(httpConnections.get(key).getResponseCode()));
+
+/***************************************************/
+
+@Action(object = ObjectType.WEBSERVICE, desc = &quot;Assert Response Code &quot;, input = InputType.YES)
+public void assertResponseCode() {
+    try {
+        if (responsecodes.get(key).equals(Data)) {
+            Report.updateTestLog(Action, &quot;Status code is : &quot; + Data, Status.PASSNS);
+        } else {
+            Report.updateTestLog(Action, &quot;Status code is : &quot; + responsecodes.get(key) + &quot; but should be &quot; + Data,Status.FAILNS);
+        }
+    } catch (Exception ex) {
+        Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+        Report.updateTestLog(Action, &quot;Error in validating response code :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+    }
+}
+</code></pre>
+<hr />
+<h2 id="assertresponsemessage"><strong>assertResponseMessage</strong></h2>
+<p><strong>Description</strong>: This function is used to validate the response message of SOAP/REST response.</p>
+<p><strong>Input Format</strong> : @Expected message</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseMessage</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseMessage</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponseMessage</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">responsemessages.put(key, httpConnections.get(key).getResponseMessage());
+
+/***************************************************/
+
+@Action(object = ObjectType.WEBSERVICE, desc = &quot;Assert Response Message &quot;, input = InputType.YES)
+    public void assertResponseMessage() {
+        try {
+            if (responsemessages.get(key).equals(Data)) {
+                Report.updateTestLog(Action, &quot;Response message is : &quot; + Data, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action,&quot;Response message is : &quot; + responsemessages.get(key) + &quot; but should be &quot; + Data, Status.FAILNS);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error in validating response message :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertresponsebodycontains"><strong>assertResponsebodycontains</strong></h2>
+<p><strong>Description</strong>: This function is used to validate whether the response body of SOAP/REST request contains an expected text or not.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponsebodycontains</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponsebodycontains</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertResponsebodycontains</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">responsemessages.put(key, httpConnections.get(key).getResponseMessage());
+
+/***************************************************/
+
+@Action(object = ObjectType.WEBSERVICE, desc = &quot;Assert Response Body contains &quot;, input = InputType.YES)
+    public void assertResponsebodycontains() {
+        try {
+            if (responsebodies.get(key).contains(Data)) {
+                Report.updateTestLog(Action, &quot;Response body contains : &quot; + Data, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action, &quot;Response body does not contain : &quot; + Data, Status.FAILNS);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error in validating response body :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertjsonelementequals"><strong>assertJSONelementEquals</strong></h2>
+<p><strong>Description</strong>:  This function is used to validate whether a certain JSON tag of the response body of REST request contains an expected text or not.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Condition Format</strong> : JSON Path of the tag</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>assertJSONelementEquals</em></td>
+<td>@value</td>
+<td>JSONPath</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertJSONelementEquals</em></td>
+<td>Sheet:Column</td>
+<td>JSONPath</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertJSONelementEquals</em></td>
+<td>%dynamicVar%</td>
+<td>JSONPath</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Assert JSON Element Equals &quot;, input = InputType.YES, condition = InputType.YES)
+    public void assertJSONelementEquals() {
+        try {
+            String response = responsebodies.get(key);
+            String jsonpath = Condition;
+            String value = JsonPath.read(response, jsonpath).toString();
+            if (value.equals(Data)) {
+                Report.updateTestLog(Action, &quot;Element text [&quot; + value + &quot;] is as expected&quot;, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action, &quot;Element text is [&quot; + value + &quot;] but is expected to be [&quot; + Data + &quot;]&quot;,Status.FAILNS);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error in validating JSON element :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="assertxmlelementequals"><strong>assertXMLelementEquals</strong></h2>
+<p><strong>Description</strong>: This function is used to validate whether a certain XML tag of the response body of SOAP request contains an expected text or not.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Condition Format</strong>: XPath of the tag</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>assertXMLelementEquals</em></td>
+<td>@value</td>
+<td>XPath</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertXMLelementEquals</em></td>
+<td>Sheet:Column</td>
+<td>XPath</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>assertXMLelementEquals</em></td>
+<td>%dynamicVar%</td>
+<td>XPath</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Assert XML Element Equals &quot;, input = InputType.YES, condition = InputType.YES)
+    public void assertXMLelementEquals() {
+
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder;
+            InputSource inputSource = new InputSource();
+            inputSource.setCharacterStream(new StringReader(responsebodies.get(key)));
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputSource);
+            doc.getDocumentElement().normalize();
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = Condition;
+            NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
+            Node nNode = nodeList.item(0);
+            String value = nNode.getNodeValue();
+            if (value.equals(Data)) {
+                Report.updateTestLog(Description, &quot;Element text [&quot; + value + &quot;] is as expected&quot;, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Description, &quot;Element text  is [&quot; + value + &quot;] but is expected to be [&quot;+Data+&quot;]&quot;, Status.FAILNS);
+            }
+        } catch (IOException | ParserConfigurationException | XPathExpressionException | DOMException
+                | SAXException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Description, &quot;Error validating XML element :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="storejsonelementindatasheet"><strong>storeJSONelementInDataSheet</strong></h2>
+<p><strong>Description</strong>: This function is used to store a certain JSON tag value inside the response body of REST request, into a respective column of a given datasheet.</p>
+<p><strong>Input Format</strong> : @Expected datasheet name:column name</p>
+<p><strong>Condition Format</strong>: JSONPath of the tag</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeJSONelementInDataSheet</em></td>
+<td>Sheet:Column</td>
+<td>JSONPath</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Datasheet to where value is supposed br stored</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Note: Ensure that your data sheet doesn't contain column names with spaces. </p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store JSON Element In DataSheet &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeJSONelementInDataSheet() {
+
+        try {
+            String strObj = Input;
+            if (strObj.matches(&quot;.*:.*&quot;)) {
+                try {
+                    System.out.println(&quot;Updating value in SubIteration &quot; + userData.getSubIteration());
+                    String sheetName = strObj.split(&quot;:&quot;, 2)[0];
+                    String columnName = strObj.split(&quot;:&quot;, 2)[1];
+                    String response = responsebodies.get(key);
+                    String jsonpath = Condition;
+                    String value = JsonPath.read(response, jsonpath).toString();
+                    userData.putData(sheetName, columnName, value);
+                    Report.updateTestLog(Action, &quot;Element text [&quot; + value + &quot;] is stored in &quot; + strObj, Status.DONE);
+                } catch (Exception ex) {
+                    Logger.getLogger(this.getClass().getName()).log(Level.OFF, ex.getMessage(), ex);
+                    Report.updateTestLog(Action, &quot;Error Storing JSON element in datasheet :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+                }
+            } else {
+                Report.updateTestLog(Action,&quot;Given input [&quot; + Input + &quot;] format is invalid. It should be [sheetName:ColumnName&quot;,Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing JSON element in datasheet :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="storexmlelementindatasheet"><strong>storeXMLelementInDataSheet</strong></h2>
+<p><strong>Description</strong>: This function is used to store a certain XML tag value inside the response body of SOAP request, into a respective column of a given datasheet.</p>
+<p><strong>Input Format</strong> : @Expected datasheet name:column name</p>
+<p><strong>Condition Format</strong>: XPath of the tag</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeXMLelementInDataSheet</em></td>
+<td>Sheet:Column</td>
+<td>XPath</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Datasheet to where value is supposed br stored</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Note: Ensure that your data sheet doesn't contain column names with spaces. </p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store XML Element In DataSheet &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeXMLelementInDataSheet() {
+
+        try {
+            String strObj = Input;
+            if (strObj.matches(&quot;.*:.*&quot;)) {
+                try {
+                    String expression = &quot;&quot;;
+                    System.out.println(&quot;Updating value in SubIteration &quot; + userData.getSubIteration());
+                    String sheetName = strObj.split(&quot;:&quot;, 2)[0];
+                    String columnName = strObj.split(&quot;:&quot;, 2)[1];
+                    String xmlText = responsebodies.get(key);
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder;
+                    InputSource inputSource = new InputSource();
+                    inputSource.setCharacterStream(new StringReader(xmlText));
+                    dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(inputSource);
+                    doc.getDocumentElement().normalize();
+                    XPath xPath = XPathFactory.newInstance().newXPath();
+                    if (Condition.matches(&quot;%.*%&quot;))
+                        expression = getVar(Condition);
+                    else
+                        expression = Condition;
+                    NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
+                    Node nNode = nodeList.item(0);
+                    String value = nNode.getNodeValue();
+                    userData.putData(sheetName, columnName, value);
+                    Report.updateTestLog(Action, &quot;Element text [&quot; + value + &quot;] is stored in &quot; + strObj, Status.DONE);
+                } catch (IOException | ParserConfigurationException | XPathExpressionException | DOMException| SAXException ex) {
+                    Logger.getLogger(this.getClass().getName()).log(Level.OFF, ex.getMessage(), ex);
+                    Report.updateTestLog(Action, &quot;Error Storing XML element in datasheet :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+                }
+            } else {
+                Report.updateTestLog(Action,
+                        &quot;Given input [&quot; + Input + &quot;] format is invalid. It should be [sheetName:ColumnName]&quot;,Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing XML element in datasheet :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+        }
+
+    }
+</code></pre>
+<hr />
+<h2 id="storejsonelement"><strong>storeJSONelement</strong></h2>
+<p><strong>Description</strong>: This function is used to store a certain JSON tag value from the response body of REST request, into a variable.</p>
+<p><strong>Input Format</strong> : @<code>JSONPath</code> of the tag</p>
+<p><strong>Condition Format</strong>: %variable%</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeJSONelement</em></td>
+<td>@<code>JSONPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeJSONelement</em></td>
+<td><strong>Sheet:Column</strong> containing <code>JSONPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeJSONelement</em></td>
+<td>%Var% containing <code>JSONPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store JSON Element&quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeJSONelement() {
+        try {
+            String variableName = Condition;
+            String jsonpath = Data;
+            if (variableName.matches(&quot;%.*%&quot;)) {
+                addVar(variableName, JsonPath.read(responsebodies.get(key), jsonpath).toString());
+                Report.updateTestLog(Action, &quot;JSON element value stored&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(Action, &quot;Variable format is not correct&quot;, Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing JSON element :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+        }
+    }
+
+</code></pre>
+<hr />
+<h2 id="storexmlelement"><strong>storeXMLelement</strong></h2>
+<p><strong>Description</strong>: This function is used to store a certain XML tag value inside the response body of SOAP request, into a variable.</p>
+<p><strong>Input Format</strong> : @<code>XPath</code> of the tag</p>
+<p><strong>Condition Format</strong>: %variable%</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeXMLelement</em></td>
+<td>@<code>XPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeXMLelement</em></td>
+<td><strong>Sheet:Column</strong> containing <code>XPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeXMLelement</em></td>
+<td>%Var% containing <code>XPath</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store XML Element&quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeXMLelement() {
+        try {
+            String variableName = Condition;
+            String expression = Data;
+            if (variableName.matches(&quot;%.*%&quot;)) {
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder;
+                InputSource inputSource = new InputSource();
+                inputSource.setCharacterStream(new StringReader(responsebodies.get(key)));
+                dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(inputSource);
+                doc.getDocumentElement().normalize();
+                XPath xPath = XPathFactory.newInstance().newXPath();
+                NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
+                Node nNode = nodeList.item(0);
+                String value = nNode.getNodeValue();
+                addVar(variableName, value);
+                Report.updateTestLog(Action, &quot;XML element value stored&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(Action, &quot;Variable format is not correct&quot;, Status.DEBUG);
+            }
+        } catch (IOException | ParserConfigurationException | XPathExpressionException | DOMException
+                | SAXException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing XML element :&quot; + &quot;\n&quot; + ex.getMessage(), Status.DEBUG);
+        }
+    }
+
+</code></pre>
+<hr />
+<h2 id="storeresponsebodyindatasheet"><strong>storeResponseBodyInDataSheet</strong></h2>
+<p><strong>Description</strong>: This function is used to store the response body of SOAP/REST request, into a respective column of a given datasheet.</p>
+<p><strong>Input Format</strong> : @Expected <strong>DatasheetName:ColumnName</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeResponseBodyInDataSheet</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Datasheet to where value is supposed br stored</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Note: Ensure that your data sheet doesn't contain column names with spaces. </p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store Response Message In DataSheet &quot;, input = InputType.YES)
+    public void storeResponseBodyInDataSheet() {
+        try {
+            String strObj = Input;
+            if (strObj.matches(&quot;.*:.*&quot;)) {
+                try {
+                    System.out.println(&quot;Updating value in SubIteration &quot; + userData.getSubIteration());
+                    String sheetName = strObj.split(&quot;:&quot;, 2)[0];
+                    String columnName = strObj.split(&quot;:&quot;, 2)[1];
+                    userData.putData(sheetName, columnName, responsebodies.get(key));
+                    Report.updateTestLog(Action, &quot;Response body is stored in &quot; + strObj, Status.DONE);
+                } catch (Exception ex) {
+                    Logger.getLogger(this.getClass().getName()).log(Level.OFF, ex.getMessage(), ex);
+                    Report.updateTestLog(Action, &quot;Error Storing text in datasheet :&quot; + ex.getMessage(), Status.DEBUG);
+                }
+            } else {
+                Report.updateTestLog(Action,
+                        &quot;Given input [&quot; + Input + &quot;] format is invalid. It should be [sheetName:ColumnName]&quot;,Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing response body in datasheet :&quot; + &quot;\n&quot; + ex.getMessage(),Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="storeheaderelementbyname"><strong>storeHeaderElementByName</strong></h2>
+<p><strong>Description</strong>: This function is used to store a Header Value of the response of SOAP/REST request, into a variable.</p>
+<p><strong>Input Format</strong> : @<code>HeaderName</code></p>
+<p><strong>Condition Format</strong> : %variable%</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>storeHeaderElementByName</em></td>
+<td>@<code>HeaderName</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeHeaderElementByName</em></td>
+<td><strong>Sheet:Column</strong> containing <code>HeaderName</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>storeHeaderElementByName</em></td>
+<td>%Var% containing <code>HeaderName</code></td>
+<td>%var%</td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEBSERVICE, desc = &quot;Store Header Element in Datasheet&quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeHeaderElementByName() {
+        try {
+            String variableName = Condition;
+            String headerName = Data;
+            if (variableName.matches(&quot;%.*%&quot;)) {
+                addVar(variableName, httpConnections.get(key).getHeaderField(headerName));
+                Report.updateTestLog(Action, &quot;Header value stored&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(Action, &quot;Variable format is not correct&quot;, Status.DEBUG);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            Report.updateTestLog(Action, &quot;Error Storing Header Element element :&quot; + &quot;\n&quot; + ex.getMessage(),
+                    Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setendpoint"><strong>setEndPoint</strong></h2>
+<p><strong>Description</strong>: This function is used to set the End Point for a Rest/SOAP API. </p>
+<p><strong>Input Format</strong> : @EndPoint</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>setEndPoint</em></td>
+<td>@Endpoint (from Editor)</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>setEndPoint</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>setEndPoint</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code>, passed inside the <strong>Endpoint editor</strong> which is capable of parameterising the Endpoint (Press ctrl+space to see the list of variables available ), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<p>Performs opening of URL Connection</p>
+<pre><code class="language-java">httpConnections.put(key, (HttpURLConnection) url.openConnection());
+</code></pre>
+<hr />
+<h2 id="addheader"><strong>addHeader</strong></h2>
+<p><strong>Description</strong>:  This function is used to add a header for a Rest/SOAP API request.</p>
+<p><strong>Input Format</strong> : @<code>HeaderName</code>=<code>HeaderValue</code></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>addHeader</em></td>
+<td>@<code>HeaderName</code>=<code>HeaderValue</code></td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>addHeader</em></td>
+<td>Sheet:Column containing <code>HeaderName</code>=<code>HeaderValue</code></td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Webservice</td>
+<td><em>addHeader</em></td>
+<td>%dynamicVar% containing <code>HeaderName</code>=<code>HeaderValue</code></td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<p>This function adds all the <strong>Headers</strong> into a HashMap <code>headerlist</code>. Then those are applied to the request as :</p>
+<pre><code class="language-java">if (headerlist.size() &gt; 0) {
+    headerlist.forEach((header) -&gt; {
+        httpConnections.get(key).setRequestProperty(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);
+    });
+}
+</code></pre>
+<hr />
+<h2 id="closeconnection"><strong>closeConnection</strong></h2>
+<p><strong>Description</strong>: This function is used to close a connection for a Rest/SOAP API request.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webservice</td>
+<td><em>closeConnection</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<p>Performs disconnection of the URL connection</p>
+<pre><code class="language-java">httpConnection.disconnect();
+</code></pre>
+<hr />
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

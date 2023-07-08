@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Some Tips & Tricks - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Some Tips \u0026 Tricks";
+        var mkdocs_page_input_path = "tips.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Some Tips & Tricks</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#execution-timeout">Execution TimeOut</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#handling-execution-timeout-of-test-sets">Handling Execution Timeout Of Test Sets</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#when-is-it-useful">When Is It Useful?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-is-it-done">How Is It Done?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#full-page-screenshots">Full Page Screenshots</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#why-the-browser-scrolls-up-and-down-at-certain-steps-in-the-application">Why The Browser Scrolls Up And Down At Certain Steps In The Application</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-stop-the-browser-from-scrolling-while-execution">How to stop the browser from scrolling while execution?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#global-data-sheet">Global Data Sheet</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#what-is-global-data-sheet">What is Global Data sheet?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-use-global-data-sheet">How To Use Global Data Sheet?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#where-to-use-the-global-data">Where to use the Global Data?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#impact-analysis">Impact Analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#impact-analysis-at-object-flow-and-test-data-level">Impact Analysis At Object, Flow And Test Data Level</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-perform-impact-analysis">How To Perform Impact Analysis?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#object-property-hierarchy">Object Property Hierarchy</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-object-property-hierarchy-at-project-page-and-object-level">Setting Object Property Hierarchy at Project, Page and Object Level</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#why-is-it-needed">Why is it needed?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#when-will-it-be-useful">When will it be useful?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-can-we-implement-it">How can we implement it?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rename-and-refactor">Rename and Refactor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#report-sharing">Report Sharing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#not-able-to-view-reports-properly-when-shared">Not Able To View Reports Properly When Shared?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-existing-browser">Use Existing Browser</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#use-case">Use Case:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-use">How To Use:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-defined-variables">User Defined Variables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#when-will-it-be-useful_1">When Will It Be Useful?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-pass-the-data-to-your-test-case-using-the-user-defined-variable">How To Pass The Data To Your Test Case Using The User Defined Variable?</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Some Tips & Tricks</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="some-tips-and-tricks"><strong>Some Tips and Tricks</strong></h1>
+<hr />
+<h2 id="execution-timeout">Execution TimeOut</h2>
+<h4 id="handling-execution-timeout-of-test-sets">Handling Execution Timeout Of Test Sets</h4>
+<p>The tool provides an option to set the <strong>Execution timeout</strong> of the test sets run from the execution panel. The default execution timeout is 300minutes (5 hours).</p>
+<h4 id="when-is-it-useful">When Is It Useful?</h4>
+<p>Suppose, you have a test set containing 100 test cases and it takes 7 hours to execute all the test cases. As the default execution timeout is 5 hours, the test set will run for the 5 hours and remaining test cases yet to run will be marked as <strong>NoRun</strong>. Increasing the timeout will help in executing the full set.</p>
+<h4 id="how-is-it-done">How Is It Done?</h4>
+<p>To set the execution timeout, go to <strong>Configuration-&gt;Run settings</strong></p>
+<ul>
+<li>
+<p>Click the <strong>Run settings</strong> tab and set the execution timeout to the desired value.</p>
+<pre><code>Note: The execution timeout must be given in minutes
+</code></pre>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: To save the settings for the individual test sets, click on the test set and open the Run settings to save or use the <strong>Quick settings</strong> option in the execution panel</p>
+</blockquote>
+<p><img alt="executiontimeout" src="../img/Things/executiontimeout.JPG" title="executiontimeout" /></p>
+<ul>
+<li>To check if the settings have been saved, go to </li>
+</ul>
+<p><strong>Projects-&gt;Project name-&gt;Settings-&gt;TestExecution-&gt;Release name-&gt;Testset name</strong> and open the <strong>RunSettings</strong> file to view the settings.</p>
+<ul>
+<li>If there are multiple test sets, the execution timeout must be set individually for each set. </li>
+</ul>
+<hr />
+<h2 id="full-page-screenshots">Full Page Screenshots</h2>
+<h4 id="why-the-browser-scrolls-up-and-down-at-certain-steps-in-the-application">Why The Browser Scrolls Up And Down At Certain Steps In The Application</h4>
+<p>While executing the test scripts, you might have observed that sometimes the browser scrolls up and down in a particular page in the application under test.</p>
+<p>This might eventually increase the execution time of your scripts as well. The browser scrolls up and down in order to take full page screen shots of the current application page.</p>
+<h4 id="how-to-stop-the-browser-from-scrolling-while-execution">How to stop the browser from scrolling while execution?</h4>
+<p>If it is not required to take full page screen shots, you can disable full page screenshots by following the steps –</p>
+<ul>
+<li>
+<p>Navigate to <strong>Configurations -&gt; Run Settings</strong></p>
+</li>
+<li>
+<p>Uncheck the check box for “Take full page screen shots”, under <strong>Run settings</strong> tab.</p>
+</li>
+<li>
+<p>You can also enable/disable the screenshots for the PASS or FAIL steps bychecking/unchecking the <strong>Pass</strong> or <strong>Fail</strong> checkboxes respectively</p>
+</li>
+</ul>
+<p><img alt="screenshot" src="../img/Things/screenshot.JPG" title="screenshot" /></p>
+<hr />
+<h2 id="global-data-sheet">Global Data Sheet</h2>
+<h4 id="what-is-global-data-sheet">What is Global Data sheet?</h4>
+<p>Global Data sheet is used to contain data that can be used across multiple data sheets (for example application URL, API endpoints etc).</p>
+<h4 id="how-to-use-global-data-sheet">How To Use Global Data Sheet?</h4>
+<p>For every project that is created, a default global data sheet is generated.</p>
+<h4 id="where-to-use-the-global-data">Where to use the Global Data?</h4>
+<p>Identify the Data column name which is common across multiple data sheets.</p>
+<p><img alt="gd1" src="../img/Things/GlobalDataSheet1.png" title="gd1" /></p>
+<p>Select that data value and click on <strong>global data</strong> icon, as shown in the image above.Give the global data id, in the respective window, as shown below,</p>
+<p><img alt="gd2" src="../img/Things/GlobalDataSheet2.png" title="gd2" /></p>
+<p>You will get the global id in the global data sheet, as shown below.</p>
+<p><img alt="gd3" src="../img/Things/GlobalDataSheet3.png" title="gd3" /></p>
+<hr />
+<h2 id="impact-analysis">Impact Analysis</h2>
+<h4 id="impact-analysis-at-object-flow-and-test-data-level">Impact Analysis At Object, Flow And Test Data Level</h4>
+<p>The tool has a feature to get the list of <strong>impacted testcases</strong>, if there is any change in the object properties, reusable component or in testdata sheet. User can quickly validate the change by running the test cases which are impacted.</p>
+<h4 id="how-to-perform-impact-analysis">How To Perform Impact Analysis?</h4>
+<p><strong>Object Level</strong> </p>
+<ul>
+<li>In the Object Repository, right-click the modified object and select the option <strong>Get Impacted TestCases</strong>.</li>
+</ul>
+<p><img alt="impact1" src="../img/Things/ImpactAnalysis1.png" title="impact1" /></p>
+<ul>
+<li>In the Impacted TestCases dialog box, the list of impacted test cases will beshown. Select the required test cases and click <strong>Create as TestSet</strong> Now a new testset will be created.</li>
+</ul>
+<p><img alt="impact2" src="../img/Things/ImpactAnalysis2.png" title="impact2" /></p>
+<p>In the Execution panel, you can see the newly created test set under the releasename. The test set will contain the selected test cases and reusables that havebeen affected due to the modifications done to that object.You can rename the testset accordingly.</p>
+<p><img alt="impact3" src="../img/Things/ImpactAnalysis3.png" title="impact3" /></p>
+<ul>
+<li>Now, select the test cases that you wish to run and click the <strong>run </strong>button.</li>
+</ul>
+<p><strong>Flow Level</strong></p>
+<ul>
+<li>In the Reusable Components section, right-click the modified reusable and selectthe option ‘<strong>Get Impacted TestCases</strong>’.</li>
+</ul>
+<p>!<img alt="impact4" src="../img/Things/ImpactAnalysis4.png" title="impact4" /></p>
+<p>You can create a new Test Set containing the required Test cases and run thesame from the Execution Panel.</p>
+<p><strong>Test Data Level</strong></p>
+<p>• In the Test Data section, right-click the modified data sheet and select the option ‘<strong>Get Impacted TestCases</strong>’.</p>
+<p><img alt="impact5" src="../img/Things/ImpactAnalysis5.png" title="impact5" /></p>
+<p>• You can create a new Test Set containing the required Test cases and run the same from the Execution Panel.</p>
+<hr />
+<h2 id="object-property-hierarchy">Object Property Hierarchy</h2>
+<h4 id="setting-object-property-hierarchy-at-project-page-and-object-level">Setting Object Property Hierarchy at Project, Page and Object Level</h4>
+<p>You can change the priority of properties of a web element based on which, elements are identified at Object, Page and Project level in the Object Repository.</p>
+<h4 id="why-is-it-needed">Why is it needed?</h4>
+<ul>
+<li>
+<p>Any object property, by which we can identify the object uniquely can be set at high priority to reduce the time taken to identify the object on the Web application.</p>
+</li>
+<li>
+<p>Instead of setting the property hierarchy for each object individually, the hierarchy can be set at the project or the page level. As a result all the objects within the same page or project will follow the same property hierarchy, enabling easy identification of objects.</p>
+</li>
+</ul>
+<h4 id="when-will-it-be-useful">When will it be useful?</h4>
+<p>If the objects <strong>id/name</strong> is dynamic in nature, we can set the object priority to relative <strong>xpath/CSS</strong> to identify the object.</p>
+<h4 id="how-can-we-implement-it">How can we implement it?</h4>
+<ul>
+<li>
+<p>To change priority at <strong>Object level</strong> , select an Object in Object Repository then in the object properties table shuffle the attributes using <strong>Up arrow or Down arrow</strong>. Now the object will be identified using the changed the property attribute.</p>
+</li>
+<li>
+<p>To change priority at <strong>Page level</strong>, set the property hierarchy in the Properties pane.Then, right click, go to
+<strong>Set Priority</strong> and select the option <strong>Set Priority to Page</strong> . Now all the objects within the page will follow the same hierarchy.</p>
+</li>
+</ul>
+<p><img alt="or1" src="../img/Things/ObjectPropertyHierarchy1.png" title="or1" /></p>
+<p><img alt="or2" src="../img/Things/ObjectPropertyHierarchy2.png" title="or2" /></p>
+<p><img alt="or3" src="../img/Things/ObjectPropertyHierarchy3.png" title="or3" /></p>
+<ul>
+<li>To change priority at <strong>Project level</strong> , set the property hierarchy in the Properties pane. Then, right click, go to <strong>Set Priority</strong> and select the option <strong>Set Priority to All</strong> .Now all the objects within the project will follow the same hierarchy.</li>
+</ul>
+<p><img alt="or4" src="../img/Things/ObjectPropertyHierarchy4.png" title="or4" /></p>
+<p><img alt="or5" src="../img/Things/ObjectPropertyHierarchy5.png" title="or5" /></p>
+<p><img alt="or6" src="../img/Things/ObjectPropertyHierarchy6.png" title="or6" /></p>
+<ul>
+<li>To change priority for <strong>selected objects</strong> , select the objects and set the property hierarchy in the Properties pane. Then, right click, go to <strong>Set Priority</strong> and select the option <strong>Set Priority to Selected</strong> . Now the selected objects will follow the same hierarchy.</li>
+</ul>
+<p><img alt="or7" src="../img/Things/ObjectPropertyHierarchy7.png" title="or4" /></p>
+<p><img alt="or8" src="../img/Things/ObjectPropertyHierarchy8.png" title="or8" /></p>
+<p><img alt="or9" src="../img/Things/ObjectPropertyHierarchy9.png" title="or9" /></p>
+<p><img alt="or10" src="../img/Things/ObjectPropertyHierarchy10.png" title="or10" /></p>
+<hr />
+<h2 id="rename-and-refactor">Rename and Refactor</h2>
+<p>The tool comes with an option to rename and refactor the object, test case, data sheet and reusable component names</p>
+<p>Consider the example, given below,</p>
+<ul>
+<li>I want to refactor the object <strong>billName</strong>.</li>
+</ul>
+<p><img alt="rename1" src="../img/Things/RenameandRefactor1.png" title="rename1" /></p>
+<ul>
+<li>Go to the Object Repository section, select the object and perform a right click. Choose <strong>Rename Object</strong> or press <strong>F2</strong></li>
+</ul>
+<p><img alt="rename2" src="../img/Things/RenameandRefactor2.png" title="rename2" /></p>
+<ul>
+<li>The object gets refactored automatically in all the locations, wherever it is used</li>
+</ul>
+<p><img alt="rename3" src="../img/Things/RenameandRefactor3.png" title="rename3" /></p>
+<ul>
+<li>The same procedure can be applied to test cases, test data sheets and reusable components as well.</li>
+</ul>
+<hr />
+<h2 id="report-sharing">Report Sharing</h2>
+<h4 id="not-able-to-view-reports-properly-when-shared">Not Able To View Reports Properly When Shared?</h4>
+<p>When you run any script from design or execution panel, the reports will be availablein the location,<strong><installation location>\Projects\Results</strong>.</p>
+<p>If you just share the <strong>.html</strong> files, your report will open as shown below,</p>
+<p><img alt="report" src="../img/Things/ReportSharing1.png" title="report" /></p>
+<p>This is because of the absence of the media folder found in the <strong><installationlocation>\Projects\<your project>\Results location</strong>. The media folder contains allthe necessary <strong>js, css</strong> and other files required to present the report file.</p>
+<p>So ensure that you share the entire results folder found in the location <strong><installationlocation>\Projects\<your project>\Results</strong>. You can compress and share the zipped file.</p>
+<p>You can also create standalone reports for the test cases or test sets. Before execution, go to <strong>Configurations-&gt;Options</strong> and enable the <strong>Create Standalone Report</strong> checkbox. After execution, the reports created will be standalone and can be sharedindependently without the Results folder.</p>
+<hr />
+<h2 id="use-existing-browser">Use Existing Browser</h2>
+<h4 id="use-case">Use Case:</h4>
+<p>If you want to run all the test cases in your test set in one session in the same browser in which the first test case is configured, then you can use this option.</p>
+<h4 id="how-to-use">How To Use:</h4>
+<p><strong>Create a test set in the execution panel</strong></p>
+<p>*Choose the browser name for the first test case alone, which is Chrome in the image below, the default browser for the other test cases will be Firefox</p>
+<p><img alt="existingbrowser1" src="../img/Things/UseExistingBrowser1.png" title="existingbrowser1" /></p>
+<ul>
+<li>With the test set selected on the left (Test Suite section), navigate to</li>
+</ul>
+<p><strong>Configuration&gt;Run Settings</strong></p>
+<p><img alt="existingbrowser1" src="../img/Things/UseExistingBrowser2.png" title="existingbrowser1" /></p>
+<ul>
+<li>
+<p>In the Run settings window, check the option Use Existing Browser and click on Save</p>
+</li>
+<li>
+<p>Now when you run the test set, all your test cases will be executed in the browser configured for the first test case in the test set in one session, irrespective of the browser names configured for the rest of the test cases.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> This option is not applicable for parallel execution</p>
+</blockquote>
+<hr />
+<h2 id="user-defined-variables">User Defined Variables</h2>
+<p>You can create a user defined variable and use the variable to access data in multiple test cases.</p>
+<h4 id="when-will-it-be-useful_1">When Will It Be Useful?</h4>
+<p>This feature really comes in handy when you have to use the same data across multiple test cases.</p>
+<p>If you are using global data sheet to pass data which is common to various testcases, you will have to map the data in the global data sheet to test data sheets of the respective test cases, which is a bit cumbersome.</p>
+<p>If you are using the user defined variable, you can directly pass the variable value to the test case i.e. mapping the data to the test data sheets in respective test cases can be skipped.</p>
+<h4 id="how-to-pass-the-data-to-your-test-case-using-the-user-defined-variable">How To Pass The Data To Your Test Case Using The User Defined Variable?</h4>
+<p>Suppose in all your test cases that you create, you first navigate to a particular URL and then perform your row, you can hard code the URL to all you test cases as shown below.</p>
+<p><strong>Please note</strong> there might be some cases where the URL is environment dependent i.e. the URL is different for different environment. In that case you will have to go to each and every test case in your project and change the URL in all the test cases manually.</p>
+<p><img alt="var1" src="../img/Things/UserDefinedVariables1.png" title="var1" /></p>
+<p>These issues can be eliminated by using user defined variables to pass the common data (URL in this case)</p>
+<p><strong>To create a user defined variable?</strong> </p>
+<p>Go to <strong>Configurations -&gt; Settings -&gt; UserDefined</strong></p>
+<p><img alt="var2" src="../img/Things/UserDefinedVariables2.png" title="var2" /></p>
+<p>Add the variable and pass the value </p>
+<p><img alt="var3" src="../img/Things/UserDefinedVariables3.png" title="var3" /></p>
+<p>Now, you will be able to use the variable inside your test case as shown below</p>
+<p><img alt="var4" src="../img/Things/UserDefinedVariables4.png" title="var4" /></p>
+<p>If you wish to run the test case in different environment now, you can simply change the value for the user defined variable and the change will be reflected in all your test cases where the variable is used.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../shortcuts/" class="btn btn-neutral float-left" title="Shortcuts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../troubleshooting/" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../shortcuts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

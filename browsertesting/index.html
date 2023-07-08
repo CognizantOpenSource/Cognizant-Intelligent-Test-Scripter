@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Browser Testing - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Browser Testing";
+        var mkdocs_page_input_path = "browsertesting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Browser Testing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#web-elements-actions">Web Elements Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dropdown-actions">Dropdown Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dynamic-waits">Dynamic Waits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#frames-and-browser-windows">Frames and Browser Windows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#browserdriver-actions">Browser/Driver Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#javascript-actions">Javascript Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#web-table-actions">Web Table Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dynamic-objects-actions">Dynamic Objects Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#assertions">Assertions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#element-assertions">Element Assertions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#element-text-assertions">Element Text Assertions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#element-attribute-assertions">Element Attribute Assertions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#browser-title-assertions">Browser Title Assertions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scroll-assertions">Scroll Assertions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#additional-assertions">Additional Assertions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Browser Testing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="browser-testing"><strong>Browser Testing</strong></h1>
+<hr />
+<p><span style="color:Green">The following are the <strong>built-in Actions</strong> within the tool to perform Browser Testing. At any point in time these actions can be modified or enhanced from the engine, based on the project needs.</span></p>
+<hr />
+<h2 id="web-elements-actions">Web Elements Actions</h2>
+<p>There are <strong>24</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/webelement/"><img alt="webelements" src="../img/actions/webelements.jpg" title="webelements" /></a></p>
+<hr />
+<h2 id="dropdown-actions">Dropdown Actions</h2>
+<p>There are <strong>17</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/dropdown/"><img alt="dropdowns" src="../img/actions/dropdowns.jpg" title="dropdowns" /></a></p>
+<hr />
+<h2 id="dynamic-waits">Dynamic Waits</h2>
+<p>There are <strong>17</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/dynamicwaits/"><img alt="waits" src="../img/actions/waits.JPG" title="waits" /></a></p>
+<hr />
+<h2 id="frames-and-browser-windows">Frames and Browser Windows</h2>
+<p>There are <strong>12</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/frames_windows/"><img alt="frames" src="../img/actions/frames.JPG" title="frames" /></a></p>
+<hr />
+<h2 id="browserdriver-actions">Browser/Driver Actions</h2>
+<p>There are <strong>12</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/browser/"><img alt="driver" src="../img/actions/driver.JPG" title="driver" /></a></p>
+<hr />
+<h2 id="javascript-actions">Javascript Actions</h2>
+<p>There are <strong>7</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/jscommands/"><img alt="js" src="../img/actions/js.JPG" title="js" /></a></p>
+<hr />
+<h2 id="web-table-actions">Web Table Actions</h2>
+<p>There are <strong>5</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/table/"><img alt="js" src="../img/actions/table.JPG" title="js" /></a></p>
+<hr />
+<h2 id="dynamic-objects-actions">Dynamic Objects Actions</h2>
+<p>There are <strong>2</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/dynamicObjects/"><img alt="js" src="../img/actions/dynamicObject2.JPG" title="js" /></a></p>
+<hr />
+<h2 id="assertions">Assertions</h2>
+<h3 id="element-assertions">Element Assertions</h3>
+<p>There are <strong>8</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/elementAssertions/"><img alt="elementAssertions" src="../img/assertions/element.JPG" title="elementAssertions" /></a></p>
+<hr />
+<h3 id="element-text-assertions">Element Text Assertions</h3>
+<p>There are <strong>12</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/elementTextAssertions/"><img alt="elementTextAssertions" src="../img/assertions/elementText.JPG" title="elementTextAssertions" /></a></p>
+<hr />
+<h3 id="element-attribute-assertions">Element Attribute Assertions</h3>
+<p>There are <strong>9</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/elementAttributeAssertions/"><img alt="elementAttributeAssertions" src="../img/assertions/attribute.JPG" title="elementAttributeAssertions" /></a></p>
+<hr />
+<h3 id="browser-title-assertions">Browser Title Assertions</h3>
+<p>There are <strong>9</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/titleassertions/"><img alt="titleassertions" src="../img/assertions/title.JPG" title="titleassertions" /></a></p>
+<hr />
+<h3 id="scroll-assertions">Scroll Assertions</h3>
+<p>There are <strong>4</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/scrollassertions/"><img alt="scrollassertions" src="../img/assertions/scroll.JPG" title="scrollassertions" /></a></p>
+<hr />
+<h3 id="additional-assertions">Additional Assertions</h3>
+<p>There are <strong>8</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../webActions/additionalassertions/"><img alt="additionalassertions" src="../img/assertions/additional.JPG" title="additionalassertions" /></a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../knowyourtool/" class="btn btn-neutral float-left" title="Know the Tool"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-right" title="API Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../knowyourtool/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

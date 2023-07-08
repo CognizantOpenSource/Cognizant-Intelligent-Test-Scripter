@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Database Testing Actions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Database Testing Actions";
+        var mkdocs_page_input_path = "dbActions\\dbActions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Database Testing Actions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="database-testing-actions">Database Testing Actions</h1>
+<hr />
+<h2 id="initdbconnection"><strong>initDBConnection</strong></h2>
+<p><strong>Description</strong>: This function will initialize the database connection</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>initDBConnection</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Initiate the DB transaction&quot;)
+    public void initDBConnection() {
+        try {
+            if (verifyDbConnection()) {
+                DatabaseMetaData metaData = dbconnection.getMetaData();
+                Report.updateTestLog(Action, &quot; Connected with &quot; + metaData.getDriverName() + &quot;\n&quot;
+                        + &quot;Driver version &quot; + metaData.getDriverVersion() + &quot; \n&quot;
+                        + &quot;Database product name &quot; + metaData.getDatabaseProductName() + &quot;\n&quot;
+                        + &quot;Database product version &quot; + metaData.getDatabaseProductVersion(),
+                        Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action, &quot;Could not able to make DB connection &quot;, Status.FAILNS);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error connecting Database: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Java</code> <strong>logic :</strong></p>
+<pre><code class="language-java">Class.forName(getDriver());
+DriverManager.getConnection(getDataBaseData(DB_CONN_STR), getDataBaseData(DB_USER),getDataBaseData(DB_PWD));
+/**OR**/
+DriverManager.getConnection(getDataBaseData(DB_CONN_STR));
+</code></pre>
+<hr />
+<h2 id="closedbconnection"><strong>closeDBConnection</strong></h2>
+<p><strong>Description</strong>: This function will close the database connection</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>closeDBConnection</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Close the DB Connection&quot;)
+    public void closeDBConnection() {
+        try {
+            if (closeConnection()) {
+                Report.updateTestLog(Action, &quot;DB Connection is closed&quot;, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action, &quot;Error in closing the DB Connection &quot;, Status.FAILNS);
+            }
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }
+
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Java</code> <strong>logic :</strong></p>
+<pre><code class="language-java">dbconnection.close();
+statement.close();
+result.close();
+</code></pre>
+<hr />
+<h2 id="assertdbresult"><strong>assertDBResult</strong></h2>
+<p><strong>Description</strong>: This function will assert if the SQL result contains a particular data in a specific column after the execution of a SQL select statement.</p>
+<p><strong>Input Format</strong> : @ExpectedValue</p>
+<p><strong>Condition</strong> : Name of the column in which result is expected</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertDBResult</em></td>
+<td>@value</td>
+<td>nameOfDBColumn</td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertDBResult</em></td>
+<td>Sheet:Column</td>
+<td>nameOfDBColumn</td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertDBResult</em></td>
+<td>%dynamicVar%</td>
+<td>nameOfDBColumn</td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Assert the value [&lt;Input&gt;] exist in the column [&lt;Condition&gt;] &quot;, input = InputType.YES, condition = InputType.YES)
+    public void assertDBResult() {
+        if (assertDB(Condition, Data)) {
+            Report.updateTestLog(Action, &quot;Value &quot; + Data + &quot; exist in the Database&quot;, Status.PASSNS);
+        } else {
+            Report.updateTestLog(Action, &quot;Value &quot; + Data + &quot; doesn't exist in the Database&quot;, Status.FAILNS);
+        }
+    }
+
+public boolean assertDB(String columnName, String condition) {
+        boolean isExist = false;
+        try {
+            result.beforeFirst();
+            if (getColumnIndex(columnName) != -1) {
+                while (result.next()) {
+                    if (Objects.equal(result.getString(columnName), condition)) {
+                        isExist = true;
+                        break;
+                    }
+                }
+            } else {
+                Report.updateTestLog(Action, &quot;Column &quot; + columnName + &quot; doesn't exist&quot;, Status.FAIL);
+            }
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error asserting the value in DB &quot; + ex.getMessage(), Status.FAIL);
+            return false;
+        }
+        return isExist;
+    }
+
+</code></pre>
+<h2 id="executeselectquery"><strong>executeSelectQuery</strong></h2>
+<p><strong>Description</strong>: This function will execute the given select query on the database</p>
+<p><strong>Input Format</strong> : @<code>SQL Query</code></p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>executeSelectQuery</em></td>
+<td>@select * from tableName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Execute the Query in [&lt;Input&gt;]&quot;, input = InputType.YES)
+    public void executeSelectQuery() {
+        try {
+            executeSelect();
+            Report.updateTestLog(Action, &quot;Executed Select Query&quot;, Status.DONE);
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error executing the SQL Query: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }
+
+public void executeSelect() throws SQLException {
+        initialize();
+        result = statement.executeQuery(Data);
+        resultData = result.getMetaData();
+        populateColumnNames();
+    }    
+
+</code></pre>
+<h2 id="executedmlquery"><strong>executeDMLQuery</strong></h2>
+<p><strong>Description</strong>:  This query will execute an SQL DML statement on the database and will commit the results back to the database</p>
+<p><strong>Input Format</strong> : @<code>SQL Query</code></p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>executeDMLQuery</em></td>
+<td>@UPDATE public."Employee" SET "Age"=27 WHERE id = 123456;</td>
+<td></td>
+</tr>
+<tr>
+<td>Database</td>
+<td><em>executeDMLQuery</em></td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Database</td>
+<td><em>executeDMLQuery</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Execute the Query in [&lt;Input&gt;]&quot;, input = InputType.YES)
+    public void executeDMLQuery() {
+        try {
+            if (executeDML()) {
+                Report.updateTestLog(Action, &quot; Table updated by using &quot; + Data, Status.PASSNS);
+            } else {
+                Report.updateTestLog(Action, &quot; Table not updated by using &quot; + Data, Status.FAILNS);
+            }
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error executing the SQL Query: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }   
+
+</code></pre>
+<h2 id="storedbvalueindatasheet"><strong>storeDBValueinDataSheet</strong></h2>
+<p><strong>Description</strong>: This action will store the value of a specific cell(from specific row and column) from the result of an SQL select statement in the data sheet</p>
+<p><strong>Input Format</strong> : @SheetName:ColumnName , Condition : DatabaseColumnName, ResultSetRowNumber</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>storeDBValueinDataSheet</em></td>
+<td>Sheet:Column</td>
+<td>productName, 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Save DB value in Test Data Sheet&quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeDBValueinDataSheet() {
+        try {
+            if (Condition != null &amp;&amp; Input != null) {
+                int rowIndex = 1;
+                result.first();
+                String[] sheetDetail = Input.split(&quot;:&quot;);
+                String sheetName = sheetDetail[0];
+                String columnName = sheetDetail[1];
+                String value;
+                String[] split = Condition.split(&quot;,&quot;);
+                if (split.length &gt; 1) {
+                    rowIndex = Integer.parseInt(split[1]);
+                }
+                if (!result.absolute(rowIndex)) {
+                    Report.updateTestLog(Action, &quot;Row : &quot; + rowIndex + &quot; doesn't exist &quot;, Status.FAILNS);
+                } else if (getColumnIndex(split[0]) != -1) {
+                    value = result.getString(split[0]);
+                    userData.putData(sheetName, columnName, value);
+                    Report.updateTestLog(Action, &quot;Value from DB &quot; + value + &quot;  stored into &quot; + &quot;the data sheet&quot;, Status.DONE);
+                } else {
+                    Report.updateTestLog(Action, &quot;Column : &quot; + split[0] + &quot; doesn't exist&quot;, Status.FAILNS);
+                }
+            } else {
+                Report.updateTestLog(Action, &quot;Incorrect Input or Condition format&quot;, Status.FAILNS);
+            }
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error: &quot; + ex.getMessage(), Status.FAILNS);
+            System.out.println(&quot;Invalid Data &quot; + Condition);
+        }
+    }
+
+</code></pre>
+<h2 id="storevalueinvariable"><strong>storeValueInVariable</strong></h2>
+<p><strong>Description</strong>: This action will store the value of a specific cell(from specific row and column) from the result of an SQL select statement in a user defined variable</p>
+<p><strong>Input Format</strong> : %variableName% , Condition : DatabaseColumnName,
+ResultSetRowNumber</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>storeValueInVariable</em></td>
+<td>%var%</td>
+<td>productName, 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">
+@Action(object = ObjectType.DATABASE, desc = &quot;Store it in the variable from the DB column [&lt;Condition&gt;] &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeValueInVariable() {
+        storeValue(Input, Condition, false);
+        if (getVar(Input) != null &amp;&amp; !getVar(Input).equals(&quot;&quot;)) {
+            Report.updateTestLog(Action, &quot;Stored in the variable&quot;, Status.PASSNS);
+        } else {
+            Report.updateTestLog(Action, &quot;Value doesn't stored in Global variable&quot;, Status.FAILNS);
+        }
+    }
+
+</code></pre>
+<h2 id="storevalueinglobalvariable"><strong>storeValueInGlobalVariable</strong></h2>
+<p><strong>Description</strong>: This action will store the value of a specific cell(from specific row and column) from the result of an SQL select statement in global variable</p>
+<p><strong>Input Format</strong> : %variableName% , Condition : DatabaseColumnName,
+ResultSetRowNumber</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>storeValueInGlobalVariable</em></td>
+<td>%var%</td>
+<td>productName, 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">
+@Action(object = ObjectType.DATABASE, desc = &quot;Store it in Global variable from the DB column [&lt;Condition&gt;] &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeValueInGlobalVariable() {
+        storeValue(Input, Condition, true);
+        if (getVar(Input) != null &amp;&amp; !getVar(Input).equals(&quot;&quot;)) {
+            Report.updateTestLog(Action, &quot;Stored in Global variable&quot;, Status.PASSNS);
+        } else {
+            Report.updateTestLog(Action, &quot;Value doesn't stored in Global variable&quot;, Status.FAILNS);
+        }
+    }
+
+</code></pre>
+<h2 id="storeresultindatasheet"><strong>storeResultInDataSheet</strong></h2>
+<p><strong>Description</strong>:  This action will store the result of an SQL select statement in the test data sheet</p>
+<p><strong>Input Format</strong> : @<code>SQL Query</code> , Condition : DatasheetName</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>storeResultInDataSheet</em></td>
+<td>select * from public."Employee"</td>
+<td>Sheet:Column</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Query and save the result in Datasheet &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeResultInDataSheet() {
+        try {
+            executeSelect();
+            result.last();
+            int totalRows = result.getRow();
+            result.beforeFirst();
+            int totalCols = resultData.getColumnCount();
+            for (int colIndex = 0; colIndex &lt; totalCols; colIndex++) {
+                result.beforeFirst();
+                for (int rowIndex = 1; rowIndex &lt;= totalRows; rowIndex++) {
+                    if (result.absolute(rowIndex)) {
+                        userData.putData(Condition, colNames.get(colIndex), result.getString(colIndex + 1), userData.getIteration(), Integer.toString(rowIndex));
+                    } else {
+                        Report.updateTestLog(Action, &quot;Row &quot; + rowIndex + &quot; doesn't exist&quot;,
+                                Status.FAILNS);
+                        return;
+                    }
+                }
+            }
+            Report.updateTestLog(Action, &quot; SQL Query Result has been saved in DataSheet: &quot;,
+                    Status.PASSNS);
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error executing the SQL Query: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }
+
+</code></pre>
+<h2 id="storeresultinvariable"><strong>storeResultInVariable</strong></h2>
+<p><strong>Description</strong>: This action will store the result of an SQL select statement in a user defined variable. The select query in this case should return a single column, the query may return multiple rows. In case the query returns a single value, the value will be stored in the variable name given (for eg:- var), In case if the select query returns multiple rows, multiple variables will be created by adding indexes to the variable name given and the value will be stored in these variables(for eg:- var1, var2, var3.....)</p>
+<p><strong>Input Format</strong> : @<code>SQL Query</code> , Condition : %VariableName% </p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>storeResultInVariable</em></td>
+<td>select * from public."Employee"</td>
+<td>%var%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Query and save the result in variable(s) &quot;, input = InputType.YES, condition = InputType.YES)
+    public void storeResultInVariable() {
+        String variableName = Condition;
+        try {
+            executeSelect();
+            result.last();
+            int totalRows = result.getRow();
+            result.beforeFirst();
+            for (int index = 1; index &lt;= totalRows; index++) {
+                if (result.absolute(index)) {
+                    if (index == 1) {
+                        addVar(variableName, result.getString(1));
+                    } else {
+                        String temp = variableName.replaceAll(&quot;[%]$&quot;, index + &quot;%&quot;);
+                        addVar(temp, result.getString(1));
+                    }
+                } else {
+                    Report.updateTestLog(Action, &quot;Row &quot; + index + &quot; doesn't exist&quot;,
+                            Status.FAILNS);
+                    return;
+                }
+            }
+            Report.updateTestLog(Action, &quot; SQL Query Result has been saved in the run time variable(s) &quot;,
+                    Status.PASSNS);
+        } catch (SQLException ex) {
+            Report.updateTestLog(Action, &quot;Error executing the SQL Query: &quot; + ex.getMessage(),
+                    Status.FAILNS);
+        }
+    }
+</code></pre>
+<h2 id="verifywithdatasheet"><strong>verifyWithDataSheet</strong></h2>
+<p><strong>Description</strong>: Verify Table values with the Test Data sheet</p>
+<p><strong>Input Format</strong> : </p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td><em>verifyWithDataSheet</em></td>
+<td>select * from public."Employee"</td>
+<td>%var%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.DATABASE, desc = &quot;Verify Table values with the Test Data sheet &quot;, input = InputType.YES)
+    public void verifyWithDataSheet() {
+        String sheetName = Data;
+        TestDataView dataView;
+        if (!sheetName.isEmpty() &amp;&amp; (dataView = userData.getTestData(sheetName)) != null) {
+            List&lt;String&gt; columns = dataView.columns();
+            boolean isFailed = false;
+            StringBuilder desc = new StringBuilder();
+            for (String column : columns.subList(4, columns.size())) {
+                if (assertDB(column, dataView.getField(column))) {
+                    desc.append(&quot;Value &quot;).append(userData.getData(sheetName, column)).append(&quot; exist in the Database&quot;).append(&quot;\n&quot;);
+                } else {
+                    isFailed = true;
+                    desc.append(&quot;Value &quot;).append(userData.getData(sheetName, column)).append(&quot; doesn't exist in the Database&quot;).append(&quot;\n&quot;);
+                }
+            }
+            Report.updateTestLog(Action, desc.toString(), isFailed ? Status.FAILNS : Status.PASSNS);
+        } else {
+            Report.updateTestLog(Action, &quot;Incorrect Sheet Name&quot;, Status.FAILNS);
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

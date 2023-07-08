@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Customization & Source Code Maintenance - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Customization \u0026 Source Code Maintenance";
+        var mkdocs_page_input_path = "customfunction.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Customization & Source Code Maintenance</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requirements-for-custom-methods-which-will-appear-in-the-ui-of-the-tool">Requirements For Custom Methods which will appear in the UI of the tool</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reporting">Reporting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-external-libraries">Adding External Libraries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#globally-exposed-variables-you-can-use-in-your-custom-method">Globally Exposed Variables You Can Use In Your Custom Method</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data">Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#input">Input</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#objectname">ObjectName</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#action">Action</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#execute-a-specific-test-case-from-custom-method">Execute A Specific Test Case From Custom Method</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#execute-an-action-from-a-custom-method">Execute An Action From A Custom Method</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-an-object-from-the-object-repository">Access An Object From The Object Repository</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-else-or-other-conditions-inside-a-custom-method">If-Else or other Conditions Inside A Custom Method</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-test-data-sheet-in-custom-method">Access Test Data Sheet In Custom Method</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#local-data-sheet">Local Data sheet</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#getdata">getData</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#putdata">putData</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#global-data-sheet">Global Data Sheet</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testdatamodel">TestDataModel</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stop-current-executioniteration-based-on-a-condition">Stop Current Execution/Iteration Based On A Condition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-iterationsubiteration-value-of-the-current-teststep">Get Iteration/Subiteration Value Of The Current TestStep</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-current-scenariotestcase-name">Get Current Scenario/TestCase Name</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-objectrepository-properties-of-webelement">Get ObjectRepository Properties Of WebElement</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-value-to-a-variable">Add Value To A Variable</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-a-variables-value-in-custom-method">Access A Variable's Value In Custom Method</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sample-custom-method">Sample Custom Method</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Customization & Source Code Maintenance</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="customization-source-code-maintenance"><strong>Customization &amp; Source Code Maintenance</strong></h1>
+<hr />
+<p>The tool mostly covers all the functions under the predefined list of available actions. But some times your scenario might demand a new <strong><code>action</code></strong> or <strong><code>utility</code></strong> to be implemented, for example performing PDF or Excel validation. This can be done by creating your own custom method.</p>
+<h3 id="requirements-for-custom-methods-which-will-appear-in-the-ui-of-the-tool">Requirements For Custom Methods which will appear in the UI of the tool</h3>
+<ul>
+<li>
+<p>Custom Methods should be <strong><code>public</code></strong>.</p>
+</li>
+<li>
+<p>The return type of Custom Methods should be <strong><code>void</code></strong>.</p>
+</li>
+<li>
+<p>Custom Methods should not contain parameters (use <strong>Data</strong> or <strong>Input</strong> or <strong>Condition</strong> variable for fetching data from the test case).</p>
+</li>
+<li>
+<p>Custom Method should contain the <strong><code>@Action</code></strong> annotation in order for it to get auto-suggested in the UI of the tool.</p>
+</li>
+<li>
+<p>Ensure that you import all the jars mentioned below, in your java file containing the
+Custom Method.</p>
+</li>
+</ul>
+<pre><code class="language-java">import com.cognizant.cognizantits.engine.commands.General;
+import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.support.Status;
+import com.cognizant.cognizantits.engine.support.methodInf.Action;
+import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
+import com.cognizant.cognizantits.engine.support.methodInf.InputType;
+</code></pre>
+<ul>
+<li>The java class file containing the Custom Method should always have a <strong><code>constructor</code></strong> as shown below, since it must extend the <strong>General</strong> class.</li>
+</ul>
+<pre><code class="language-java">public class SampleScript extends General {
+    public SampleScript(CommandControl cc) {
+        super(cc);
+    }
+
+    @Action(object = ObjectType.BROWSER, desc = &quot;&lt;Description of the Method&gt;&quot;, input = InputType.YES)
+    public void customfunction() {
+        try {
+
+            // Here in goes the logic of the method 
+
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+        }
+    }
+}
+</code></pre>
+<hr />
+<h3 id="reporting">Reporting</h3>
+<p>To display the status of the custom action in the report, you can use the function <strong><code>Report.updateTestLog</code></strong> as described below.</p>
+<pre><code class="language-java">Report.updateTestLog(&quot;Userdefined Action&quot;, &quot;Operation Done successfully&quot;, Status.PASS);
+
+// Possible Statuses are Status.PASS, Status.PASSNS, Status.FAIL, Status.FAILNS, Status.DONE, Status.DEBUG, Status.WARNING,Status.SCREENSHOT
+
+//NS = No Screenshot
+</code></pre>
+<p>To display with <strong>custom html tags</strong> in the report, use the following,</p>
+<pre><code class="language-java">Report.updateTestLog(&quot;Userdefined Action&quot;, &quot;#CTAG &amp;lt;b&amp;gt; Operation Done successfully&amp;lt;b&amp;gt;;&quot;, Status.PASS);
+</code></pre>
+<hr />
+<h3 id="adding-external-libraries">Adding External Libraries</h3>
+<ul>
+<li>
+<p>Create your custom method that uses external jar(s) apart from the existing set
+of libraries under the lib folder.</p>
+</li>
+<li>
+<p>Always ensure that your custom method is working fine from your source code
+before introducing it in to the tool</p>
+</li>
+<li>
+<p>Place the jar files of your external libraries in the <code>./lib/clib</code> folder</p>
+</li>
+<li>
+<p>Export your custom method as a jar file as explained in the <strong>Engine</strong> Section.</p>
+</li>
+</ul>
+<hr />
+<h3 id="globally-exposed-variables-you-can-use-in-your-custom-method">Globally Exposed Variables You Can Use In Your Custom Method</h3>
+<p>Following variables are defined internally and can be used in your custom method for deriving various kinds of information like the action in execution or the value stored under the Input column and etc. Given below is the description about each of the variable or keyword on the basis of it's functionality and usage.</p>
+<p>#### <strong>Driver</strong>
+- <strong>Type</strong> : <code>WebDriver</code>
+- <strong>Description</strong> : This variable will store the instance of the Webdriver class for the current browser in
+execution. Hence you can perform all the Driver related functions using this.
+- <strong>Usage</strong> :</p>
+<pre><code class="language-java">Driver.findElement(By.className(className));
+WebElement element = Driver.findElement(By.id(Data));
+</code></pre>
+<p>#### <strong>Element</strong>
+- <strong>Type</strong> : <code>WebElement</code>
+- <strong>Description</strong> : This variable corresponds to the Object used under the ObjectName column of your currently executing test step. If there is no Object used in the ObjectName column of your Test step, then this variable will be <code>Null</code>. You can perform all WebElement related functions using this variable like for instance.
+- <strong>Usage</strong> :</p>
+<pre><code class="language-java">Element.click();//This will click on the respective Object which is used in the current test step.
+</code></pre>
+<h4 id="data"><strong>Data</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : This variable stores the <strong>resolved data</strong> from the <strong>Input Column</strong> of the current test step
+in execution. That means if the step is being fed a data from the datasheet like <strong>SheetName:ColumnName</strong> or variable like <strong>%var%</strong> or hardcoded as <strong>@data</strong>, the <code>Data</code> variable will hold the <strong>actual value</strong> inside.</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(Data + &quot;Resolved Input used in InputColumn in the currentTestStep&quot;);
+</code></pre>
+<h4 id="input"><strong>Input</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : This variable stores the <strong>visible text/string</strong> in the <strong>Input Column</strong> of the current test step
+in execution. That means if the step is being fed a data from the datasheet like <strong>SheetName:ColumnName</strong> or variable like <strong>%var%</strong> or hardcoded as <strong>@data</strong>, the <code>Input</code> variable will hold the values as <strong>SheetName:ColumnName</strong>, <strong>%var%</strong> and <strong>@data</strong> respectivey</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(Input + &quot;Input used in InputColumn in the currentTestStep&quot;);
+</code></pre>
+<h4 id="objectname"><strong>ObjectName</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : This variable stores the name of the object given under the ObjectName column of the current test step in execution.</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(ObjectName + &quot;ObjectName used in ObjectColumn in the currentTestStep&quot;);
+</code></pre>
+<h4 id="description"><strong>Description</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : This variable stores the description present in the description column of the current test step.</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(Description + &quot;Description used in DescriptionColumn in the currentTestStep&quot;);
+</code></pre>
+<h4 id="action"><strong>Action</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : This variable stores the name of the action used in the Action column of the current test step.</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(Action + &quot;Action/Command used in ActionColumn in the currentTestStep&quot;);
+</code></pre>
+<h4 id="reference"><strong>Reference</strong></h4>
+<ul>
+<li><strong>Type</strong> : <code>String</code></li>
+<li>
+<p><strong>Description</strong> : TThis variable stores the <strong>Name of the Page</strong> given under the Reference column of the current test step in execution. This Name of the Page is actually defined in the Object Repository.</p>
+</li>
+<li>
+<p><strong>Usage</strong> :</p>
+</li>
+</ul>
+<pre><code class="language-java">System.out.println(Reference + &quot;Reference/PageName used in ReferenceColumn in the currentTestStep&quot;);
+</code></pre>
+<hr />
+<h3 id="execute-a-specific-test-case-from-custom-method">Execute A Specific Test Case From Custom Method</h3>
+<p>There is an inbuilt method available called <strong><code>executeTestCase</code></strong>, which can be used to execute a particular test case under a particular scenario.</p>
+<pre><code class="language-java">public void executeTestCase(String scenarioName, String testCaseName);
+public void executeTestCase(String scenarioName, String testCaseName, int subIteration);
+</code></pre>
+<p>The above method will execute the test case under the particular scenario and for that particular <strong>subiteration</strong>.</p>
+<hr />
+<h3 id="execute-an-action-from-a-custom-method">Execute An Action From A Custom Method</h3>
+<p>A method called <strong>executeMethod</strong> is available with the Engine and is overloaded in 4 different ways as follows.
+The name of the Action to be executed, should be passed as an argument and must be same as the action in the Engine.</p>
+<ul>
+<li><strong>Type 1</strong></li>
+</ul>
+<pre><code class="language-java">public void executeMethod(WebElement element, String Action);
+</code></pre>
+<p>Using this function you can provide the element and the action name, in the argument list, to execute the action on the element passed. For example,</p>
+<pre><code class="language-java">executeMethod(element, &quot;Click&quot;);
+</code></pre>
+<ul>
+<li><strong>Type 2</strong></li>
+</ul>
+<pre><code class="language-java">public void executeMethod(String Action, String Input);
+</code></pre>
+<p>Using this function you can execute the action on the <strong><code>current</code></strong> element which also requires the information under the Input column or some String information that can be given directly.For example,</p>
+<pre><code class="language-java">executeMethod(&quot;Open&quot;, &quot;@http://something&quot;);
+executeMethod(&quot;Open&quot;, input);
+</code></pre>
+<ul>
+<li><strong>Type 3</strong></li>
+</ul>
+<pre><code class="language-java"> public void executeMethod(WebElement element, String Action, String Input);
+</code></pre>
+<p>Using this function you can execute the action on the <strong>supplied element</strong> which requires the information under the <strong>Input column</strong> or some String information that can be given directly.For example,</p>
+<pre><code class="language-java">executeMethod(element, &quot;Set&quot;, input);
+</code></pre>
+<ul>
+<li><strong>Type 4</strong></li>
+</ul>
+<pre><code class="language-java">public void executeMethod(String Action);
+</code></pre>
+<p>This will just call the method of the action that was instructed. </p>
+<p><strong>Any of these overloaded methods can be used that suits your requirements best.</strong></p>
+<p>Another method to call an action without using the <strong>executeMethod</strong> function is to go with the code described below, Here, we have to set the <strong>Data variable</strong> for the current step and call the <code>Set</code> action for execution.</p>
+<pre><code class="language-java">getCommander().Data = &quot;guest&quot;;//This line will assign a value to the Data variable used in the current test step.
+new Basic(getCommander()).Set();//This line will call the Set action under the Basic java class file.
+</code></pre>
+<p>Another example of using the <strong>getCommander()</strong> function to call an action is as follows.Here the method containing the definition for the action <strong>assertElementNotDisplayed</strong> is available under the <strong>AssertElement</strong> java class file.</p>
+<pre><code class="language-java">new AssertElement(getCommander()).assertElementNotDisplayed();//This line will just make a call to the action &quot;assertlementNotDisplayed&quot;
+</code></pre>
+<hr />
+<h3 id="access-an-object-from-the-object-repository">Access An Object From The Object Repository</h3>
+<p>It is possible to access a specific object from the object repository using the function <strong>AObject.findElement</strong> as shown below.</p>
+<pre><code class="language-java">WebElement element=AObject.findElement(ObjectName, Reference);
+</code></pre>
+<p>Now all element related functions can be used for this <strong><code>element</code></strong> variable like;</p>
+<pre><code class="language-java">element.sendKeys(Data);
+</code></pre>
+<p>It is also possible to use <strong>conditioned find</strong> method.Suppose you want to find an object on a web page using a particular property,obtained from the <strong>stored set of object properties in the Object Repository (OR)</strong>, then you can use the following function.</p>
+<pre><code class="language-java">WebElement element = AObject.findElement(&quot;p&quot;, &quot;Yahoo&quot;, ObjectProperty.Id);
+</code></pre>
+<p>In the example below, a list of objects so obtained can be accessed by storing them in an <strong>ArrayList</strong>.</p>
+<pre><code class="language-java">List &lt;WebElement&gt; elementList= AObject.findElements(&quot;p&quot;, &quot;Yahoo&quot;, ObjectProperty.ClassName);
+</code></pre>
+<p>In the above example <code>object</code> <strong>p</strong> under the <code>page</code> with name <strong>Yahoo</strong> (from the object repository) is found on the web page by using the Id property.</p>
+<hr />
+<h3 id="if-else-or-other-conditions-inside-a-custom-method">If-Else or other Conditions Inside A Custom Method</h3>
+<p>It is possible to write a custom function, that checks for a condition and if the
+condition passes it will execute a set of code and if it fails then it will execute a
+different set of code.The custom method example <strong><code>handleCondition</code></strong> defined below, will check
+if the element is displayed and if so, it will execute the test case cancelTicket but if
+it is not displayed then it will just update the report with a <em>DONE</em> status.</p>
+<pre><code class="language-java">public void handleCondition() throws FrameworkException {
+
+    // No argument should be given here. Only then will this function be executed
+
+
+    //Step 1: Getting object from the object repository
+    WebElement element = AObject.findElement(&quot;ObjectName&quot;, &quot;PageName&quot;);
+
+    //Step 2: Base the condition on object being displayed or not
+    if (element.isDisplayed()) {
+
+        //Calling another test case if the condition is matched
+
+        //Pass the Scenario name,Test case name and sub-iteration index
+        executeTestCase(&quot;testscenario1&quot;, &quot;cancelTicket&quot;, 1);
+        Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;inside reusable&quot;, Status.PASS);
+
+
+        //If needed you can break the test case also by calling existing functions
+        executeMethod(&quot;StopBrowser&quot;);
+
+    } else {
+
+        Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;switch to origional&quot;, Status.DONE);
+
+    }
+}
+</code></pre>
+<hr />
+<h3 id="access-test-data-sheet-in-custom-method">Access Test Data Sheet In Custom Method</h3>
+<h4 id="local-data-sheet">Local Data sheet</h4>
+<h5 id="getdata"><strong>getData</strong></h5>
+<p>There are functions to access the data from the datasheet. The <strong>getData</strong>
+function is overloaded in the following ways and can be used accordingly in your
+custom method.</p>
+<ul>
+<li><strong>Type 1</strong></li>
+</ul>
+<pre><code class="language-java">public String getData(String DataSheetName, String ColumnName);
+</code></pre>
+<p>Provide the name of the data sheet (<strong>Sample</strong>) and column (<strong>Data1</strong>) that contains the data
+and this function will return a string which is the value of the required data.For
+instance,</p>
+<pre><code class="language-java">String input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;);
+</code></pre>
+<ul>
+<li><strong>Type 2</strong></li>
+</ul>
+<pre><code class="language-java">public String getData(String DataSheetName, String ColumnName, String Iteration, String SubIteration);
+</code></pre>
+<p>Provide the name of the <strong>sheet,column,iteration and subiteration</strong> values if you want
+to be specific, as shown in the example below;</p>
+<pre><code class="language-java">String input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;1&quot;, &quot;1&quot;);
+</code></pre>
+<p>Here the data stored in the sheet <strong>Sample</strong> ,under the column <strong>Data1</strong> having the
+<strong>subiteration</strong> and <strong>iteration</strong> value as 1 is stored in the input string variable.
+Another way is to provide all the information as given above in the argument list and
+also include the scenario and test case name.</p>
+<ul>
+<li><strong>Type 3</strong></li>
+</ul>
+<pre><code class="language-java">public String getData(String DataSheetName, String ColumnName, String ScenarioName,String TestCase, String Iteration, String SubIteration);
+</code></pre>
+<p>Example :</p>
+<pre><code class="language-java">String input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;scenario&quot;,&quot;testcase&quot;, &quot;1&quot;, &quot;1&quot;);
+</code></pre>
+<p>In the example above the data stored in the sheet <strong>Sample</strong> under the column <strong>Data1</strong>
+and belonging to the testcase named <strong>testcase</strong> and <strong>scenario</strong> named scenario having
+the iteration and subiteration value as <strong>1</strong> is stored in input string.</p>
+<h5 id="putdata"><strong>putData</strong></h5>
+<p>It is also possible to write in to the data sheet using the <strong>"putData"</strong> function:
+The <strong>putData()</strong> function is overloaded in the following ways,</p>
+<ul>
+<li><strong>Type 1</strong></li>
+</ul>
+<pre><code class="language-java">userData.putData(&quot;DatasheetName&quot;, &quot;ColumnName&quot;, &quot;value to be written&quot;);
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-java">userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;);
+</code></pre>
+<p>where <strong>Sample</strong> is the datasheet name ,<strong>Data1</strong> is the column name and <strong>kk</strong> is the value
+to be written under the respective column.</p>
+<ul>
+<li><strong>Type 2</strong></li>
+</ul>
+<p>You can also provide the <strong>iteration</strong> and <strong>subiteration</strong> values in the argument list.</p>
+<pre><code class="language-java">userData.putData(&quot;DatasheetName&quot;, &quot;ColumnName&quot;, &quot;value to be written&quot;, &quot;Iterationvalue&quot;, &quot;SubIteration value&quot;);
+</code></pre>
+<p>An example for this is,</p>
+<pre><code class="language-java">userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;, &quot;1&quot;, &quot;1&quot;);
+</code></pre>
+<p>where <strong>Sample</strong> is the datasheet name ,<strong>Data1</strong> is the column name and <strong>kk</strong> is the value
+to be written under the respective column for the iteration value of <strong>1</strong> and subiteration value of <strong>1</strong>.</p>
+<ul>
+<li><strong>Type 3</strong></li>
+</ul>
+<p>Apart from the information above you can also include the test case and scenario name as shown below,</p>
+<pre><code class="language-java">userData.putData(&quot;DatasheetName&quot;,&quot;columnName&quot;,&quot;value to be written&quot;,&quot;scenario name&quot;,&quot;test case name&quot;,&quot;Iteration value&quot;,&quot;SubIteration value&quot;);
+</code></pre>
+<p>An example for the above scenario is shown below,</p>
+<pre><code class="language-java">userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;, &quot;scenario&quot;, &quot;testcase&quot;, &quot;1&quot;, &quot;1&quot;);
+</code></pre>
+<p>where <strong>Sample</strong> is the datasheet name ,<strong>Data1</strong> is the column name,<strong>testcase</strong> is the
+testcase name,<strong>scenario</strong> is the scenario name and <strong>kk</strong> is the value to be written under
+the respective column for the iteration and subiteration value of <strong>1</strong>.</p>
+<h4 id="global-data-sheet">Global Data Sheet</h4>
+<p>To access a global data sheet from the custom method to read a global data value, use the method below :</p>
+<pre><code class="language-java">userData.getGlobalData(globalDataID, columnName);
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-java">String datavalue = userData.getGlobalData(&quot;Glob1&quot;, &quot;username&quot;);
+</code></pre>
+<p>To write or update a global data sheet, call the method below in your custom method,</p>
+<pre><code class="language-java">userData.putGlobalData(globalDataID, columnName, value);
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-java">userData.putGlobalData(&quot;Glob1&quot;, &quot;username&quot;, &quot;LukeSkywalker&quot;);
+</code></pre>
+<h4 id="testdatamodel">TestDataModel</h4>
+<p>As an alternative, you can use the following code to access the data sheet by its name and update the same, traversing through every record in the test data sheet.</p>
+<pre><code class="language-java">TestDataModel tdModel = Control.getCurrentProject().getTestData().getTestDataByName(&quot;TestDataSheetName&quot;);
+tdModel.loadTableModel();
+int rowsCount = tdModel.getRowCount();
+for (int row = 0; row &lt; tdModel.getRowCount(); row++) {
+
+    // Where orderId is a column in my data sheet
+    int colIndex = tdModel.getColumnIndex(&quot;orderId&quot;);
+
+    //To get value
+    String orderId = (String) tdModel.getValueAt(row, colIndex);
+
+    // To put values in to the sheet
+    tdModel.setValueAt(&quot;New Value&quot;, row, colIndex);
+}
+
+</code></pre>
+<hr />
+<h3 id="stop-current-executioniteration-based-on-a-condition">Stop Current Execution/Iteration Based On A Condition</h3>
+<p>The following code can be used to stop the <strong>current iteration</strong> based on a condition.</p>
+<pre><code class="language-java">Boolean something = false;
+if (something) {
+    SystemDefaults.stopCurrentIteration.set(true);//Stop the iteration
+}
+</code></pre>
+<p>The following code can be used to stop the <strong>current execution</strong> based on a condition.</p>
+<pre><code class="language-java">Boolean something = false;
+if (something) {
+    SystemDefaults.stopExecution.set(true);//Stop the execution
+}
+</code></pre>
+<hr />
+<h3 id="get-iterationsubiteration-value-of-the-current-teststep">Get Iteration/Subiteration Value Of The Current TestStep</h3>
+<p>It is possible to get the value of current iteration using the function <strong>"getIteration"</strong></p>
+<pre><code class="language-java">String iterationValue=userData.getIteration();
+</code></pre>
+<p>This function returns a string value containing the <strong>Iteration number</strong> of the current iteration.</p>
+<p>It is also possible to get the value of current subiteration using the function <strong>getSubIteration</strong></p>
+<pre><code class="language-java">String subiterationValue=userData.getSubIteration();
+</code></pre>
+<p>This function returns a string value containing the <strong>Subiteration number</strong> of the current sub iteration that is in execution.</p>
+<hr />
+<h3 id="get-current-scenariotestcase-name">Get Current Scenario/TestCase Name</h3>
+<p>The <strong>getScenario</strong> function returns a string value containing the name of the current scenario that is in execution.</p>
+<pre><code class="language-java">String scenarioName=userData.getScenario();
+</code></pre>
+<p>The <strong>getCurrentScenario</strong> function returns a string value containing the name of the current <code>Reusable</code> scenario that is in execution.</p>
+<pre><code class="language-java">String reusableScenarioName=userData.getCurrentScenario();
+</code></pre>
+<p>The <strong>getTestCase</strong> function returns a string value containing the name of the current test case in execution.</p>
+<pre><code class="language-java">String testcaseName= userData.getTestCase();
+</code></pre>
+<p>The <strong>getCurrentTestCase</strong> function returns a string value containing the name of the current <code>Reusable</code> test case in execution.</p>
+<pre><code class="language-java">String testcaseName= userData.getCurrentTestCase();
+</code></pre>
+<hr />
+<h3 id="get-objectrepository-properties-of-webelement">Get ObjectRepository Properties Of WebElement</h3>
+<p>It is possible to access the specific property of an element stored in the Object Repository  using the function <strong>AObject.getObjectProperty</strong> described below.</p>
+<pre><code class="language-java">String prop = AObject.getObjectProperty(&quot;pageName&quot;, &quot;objectName&quot;, ObjectProperty.Id);
+</code></pre>
+<p>In the above scenario, pass the name of the <strong>page</strong> (under which the object is present
+in the Object Repository),<strong>objectName</strong> and <strong>object property</strong> that you want to access.
+You can also use the following method to get the particular property of the object from the OR.</p>
+<pre><code class="language-java">String prop = AObject.getWebObject(&quot;pageName&quot;, &quot;objectName&quot;).getId();
+prop = AObject.getWebObject(Reference, ObjectName).getAttributeByName(ObjectProperty.Id); //to get current step object's Id property
+</code></pre>
+<hr />
+<h3 id="add-value-to-a-variable">Add Value To A Variable</h3>
+<p>Suppose you want to create a variable and define a value to it, you can go for <strong>addVar(arg1,arg2)</strong> function or <strong>addGlobalVar(arg1,arg2)</strong> methods.</p>
+<p>The <strong><code>addVar(arg1,arg2)</code></strong> function takes the variable name and it's value as parameters and is defined under the <strong>com.cognizant.cognizantits.engine.commands.Command</strong> java file as shown below,</p>
+<pre><code class="language-java">public void addVar(String key, String val) {
+  Commander.addVar(key, val);
+}
+</code></pre>
+<p>This method can be used as shown below:</p>
+<pre><code class="language-java">addVar(&quot;%nameVar%&quot;, &quot;LukeSkywalker&quot;);
+</code></pre>
+<p>The scope of this variable is only till the end of the execution of the test case in which it is defined.</p>
+<p>The <strong>addGlobalVar(arg1,arg2)</strong> function is used to add a value to a variable whose scope is till the end of the execution of the testset ie. till the end of execution of the last test case under the test set. This function can be used in your custom code as
+shown below:</p>
+<pre><code class="language-java">addGlobalVar(&quot;%nameVar%&quot;, &quot;LukeSkywalker&quot;);
+</code></pre>
+<p>This function is defined as shown below under the <strong>com.cognizant.cognizantits.engine.commands.Command</strong> java file.</p>
+<pre><code class="language-java">public void addGlobalVar(String key, String val) {
+    if (key.matches(&quot;%.*%&quot;)) {
+      key = key.substring(1, key.length() - 1);
+    }
+    Commander.putUserDefinedData(key, val);
+}
+</code></pre>
+<hr />
+<h3 id="access-a-variables-value-in-custom-method">Access A Variable's Value In Custom Method</h3>
+<p>The value of a <strong><code>variable</code></strong> created in your test case can be accessed using the function
+<strong>getVar</strong> which is defined, as shown below, under the <strong>com.cognizant.cognizantits.engine.commands.Command</strong> java file.</p>
+<pre><code class="language-java">public String getVar(String key) {
+    return Commander.getVar(key);
+}
+</code></pre>
+<p>This function can be used,as shown below, in your custom method. </p>
+<p>Provide the variable name between two <code>percentage symbols</code>(%%)</p>
+<pre><code class="language-java">String value = getVar(&quot;%newVar%&quot;);
+System.out.println(value);
+</code></pre>
+<p>Suppose you have defined some variables in the <strong>userdefined</strong> tab of the Settings window, which can be opened by navigating through <strong>Run Settings icon</strong> &gt;&gt; <strong>UserDefined Tab</strong>, then you can access them in your custom method in two ways:</p>
+<ul>
+<li><strong>Option 1:</strong> Use the <strong>getVar</strong> function as shown below.</li>
+</ul>
+<pre><code class="language-java">String value;
+value = getVar(&quot;%userdefinedVar%&quot;);
+value = getVar(&quot;userdefinedVar&quot;);//This also will work
+</code></pre>
+<p>The other way is to use the <strong><code>getUserDefinedData</code></strong> method,which is similar to the <strong><code>getVar</code></strong> ,but can only be used for accessing the <strong>user defined data.</strong></p>
+<pre><code class="language-java">String value = getUserDefinedData(&quot;userdefinedVar&quot;);
+System.out.println(value);
+</code></pre>
+<hr />
+<h3 id="sample-custom-method">Sample Custom Method</h3>
+<p>For creating any Custom Method, a java class is required. The following sample code can be used for understanding the usage of various variables and functions that you can access in your custom method.</p>
+<pre><code class="language-java">package com.cognizant.cognizantits.engine.commands;
+
+import com.cognizant.cognizantits.engine.commands.General;
+import com.cognizant.cognizantits.engine.core.CommandControl;
+import com.cognizant.cognizantits.engine.support.Status;
+import com.cognizant.cognizantits.engine.support.methodInf.Action;
+import com.cognizant.cognizantits.engine.support.methodInf.ObjectType;
+import com.cognizant.cognizantits.engine.support.methodInf.InputType;
+
+//extend Command to access elements
+
+public class SampleScript extends General {
+
+    public SampleScript(CommandControl cc) {
+        super(cc);
+    }
+
+    public void textExe() {
+        Report.updateTestLog(Action, &quot;textExe&quot;, Status.DONE);
+        executeTestCase(&quot;testWeb&quot;, &quot;search&quot;);
+    }
+
+    @Action(object = ObjectType.BROWSER, desc = &quot;open given url&quot;, input = InputType.YES)
+    public void prinThis(){
+        /**
+        * No argument should be specifed. Only then will your custom method
+        be executed.
+        */
+        //To do any operations before and/or after execution of eachStep add your code to
+        //functions beforeStepExecution / afterStepExecution in
+        //Annotation.java inside com.cognizant.cognizantits.engine.core package
+        //To do any operation after execution [execution is finished] add your code to
+        //afterReportComplete function in
+        //SummaryReport.java inside com.cognizant.cognizantits.engine.reporting package
+        // do ur action
+
+        try {
+            /**********************************/
+            Element.click(); //Object in ObjectName is resolved as WebElement and assigned to this variable[Element]
+            System.out.println(ObjectName + &quot;ObjectName used in ObjectColumn in the currentTestStep&quot;);
+            System.out.println(Description + &quot;Description used in DescriptionColumn in the currentTestStep&quot;);
+            System.out.println(Action + &quot;Action/Command used in ActionColumn in the currentTestStep&quot;);
+            System.out.println(Input + &quot;Input used in InputColumn in the currentTestStep&quot;);
+            System.out.println(Data + &quot;Resolved Input used in InputColumn in the currentTestStep&quot;);
+            System.out.println(Reference + &quot;Reference/PageName used in ReferenceColumn in the currentTestStep&quot;);
+
+            /**********************************/
+            System.out.println(getCurrentBrowserName() + &quot;To get the current browserName&quot;);
+
+            /**********************************/
+            //If you stored some dynamic value in a variable[%newVar%] you can get the value from the variable using
+            String value = getVar(&quot;%newVar%&quot;);
+            System.out.println(value);
+
+            //If you want to access the userdefined data created from UserDefined Settings pane you can use it in two ways
+            //1st option
+            value = getVar(&quot;%userdefinedVar%&quot;);
+            value = getVar(&quot;userdefinedVar&quot;); //This also will work
+
+            //2nd option
+            value = getUserDefinedData(&quot;userdefinedVar&quot;);
+            System.out.println(value);
+
+            //If you want to store some value in a variable[%dyanmicVar%] you can store the value into a variable using
+            //Scope is for Current Testcase
+
+            addVar(&quot;%dyanmicVar%&quot;, &quot;Value to be Stored&quot;);
+
+            //Scope is for All
+            addGlobalVar(&quot;%dyanmicVar%&quot;, &quot;Value to be Stored&quot;);
+
+            /**********************************/
+            // Using Inbuilt findMethod
+            AObject.findElement(ObjectName, Reference); //To find thecurrent step's object
+            AObject.findElements(ObjectName, Reference); //To find the current step's object
+
+            // to access the object value pass ObjectName and PageName as  inputs
+
+            // ObjectName=p
+            // PageName=Yahoo
+
+            WebElement element = AObject.findElement(&quot;p&quot;, &quot;Yahoo&quot;);
+            List&lt;WebElement&gt;elementList = AObject.findElements(&quot;p&quot;, &quot;Yahoo&quot;);
+
+            // Using Conditioned FindMethod
+
+            element = AObject.findElement(&quot;p&quot;, &quot;Yahoo&quot;, ObjectProperty.Id);
+            elementList = AObject.findElements(&quot;p&quot;, &quot;Yahoo&quot;, ObjectProperty.ClassName);
+            System.out.println(&quot;No of elements&quot; + elementList.size());
+            //Using Own findMethod
+
+            element = Driver.findElement(By.id(Data));
+
+            /**********************************/
+            // using this element you can perform selenium operations
+
+            element.sendKeys(&quot;Normal&quot;);
+            element.sendKeys(Data);
+
+            /**********************************/
+            //To get a property of an object from ObjectRepository
+
+            String prop = AObject.getWebObject(&quot;pageName&quot;,&quot;objectName&quot;).getId();
+
+            prop = AObject.getWebObject(Reference,ObjectName).getAttributeByName(ObjectProperty.Id); //to get current step object's id property
+
+            System.out.println(prop);
+
+            /**********************************/
+
+            // to access the data from DataSheets pass DataSheetName and ColumnName as inputs
+            // Don't pass GlobalData as inputsheet
+
+            // SheetName,Columnname
+            String input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;);
+
+            //To get values from specified Iteration and subiteration
+            input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;1&quot;, &quot;1&quot;);
+
+            //To get values from specified Scenario, Testcase, Iteration and subiteration
+            input = userData.getData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;scenario&quot;,&quot;testcase&quot;, &quot;1&quot;, &quot;1&quot;);
+            element.sendKeys(input);
+
+            /**********************************/
+            //To write values into DataSheet 
+            //Don't pass GlobalData as inputsheet
+
+            // SheetName,Columnname,value
+            userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;);
+
+            //to write values for specified Iteration and subiteration
+            userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;, &quot;1&quot;, &quot;1&quot;);
+
+            //to write values for specified Scenario, Testcase, Iteration and subiteration
+            userData.putData(&quot;Sample&quot;, &quot;Data1&quot;, &quot;kk&quot;, &quot;scenario&quot;, &quot;testcase&quot;, &quot;1&quot;, &quot;1&quot;);
+
+            /**********************************/
+
+            TestDataModel tdModel = Control.getCurrentProject().getTestData().getTestDataByName(&quot; TestDatasheetName&quot;);
+
+            int rowsCount = tdModel.getRowCount();
+
+            for (int row = 0; row &lt; tdModel.getRowCount(); row++) {
+
+                // Where orderId is a column in my data sheet
+                int colIndex = tdModel.getColumnIndex(&quot;orderId&quot;);
+
+                //To get value
+                String orderId = (String) tdModel.getValueAt(row, colIndex);
+
+                // To put values in to the sheet
+                tdModel.setValueAt(&quot;New Value&quot;, row, colIndex);
+            }
+
+            /**********************************/
+            //To display in Report
+            Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;Operation Done successfully&quot;, Status.PASS);
+
+            //To display in Report with custom html tags
+            Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;#CTAG&lt;b&gt;Operation Done successfully&lt;b&gt;&quot;, Status.PASS);
+
+           /**********************************/
+            //To get the current Iteration
+            userData.getIteration();
+
+            //To get the current SubIteration
+            userData.getSubIteration();
+
+            //To get the current Scenario
+
+            userData.getScenario();
+            //To get the current Testcase
+
+            userData.getTestCase();
+            //To get the current BrowserName
+
+            System.out.println(getCurrentBrowserName());
+
+            /**********************************/
+            // to stop the current iteration if u want to... based on condition
+
+            Boolean something = false;
+
+            if (something) {
+
+                SystemDefaults.stopCurrentIteration.set(true);
+                SystemDefaults.stopExecution.set(true); //Stop the execution
+
+            }
+
+            /**********************************/
+            // To use inbuilt functions
+            //simple way
+            //make sure you set the Data,Element and other variables
+
+            new Basic(getCommander()).Click();
+
+            //Old school
+
+            executeMethod(element, &quot;Click&quot;);
+            executeMethod(&quot;open&quot;, &quot;@http://something&quot;);
+            executeMethod(&quot;open&quot;, input);
+            executeMethod(element, &quot;Set&quot;, input);
+
+            /**********************************/
+            //To execute Other Testcases
+
+            // scenarioname,testcasename,subiteration
+            executeTestCase(&quot;OnlineShopping&quot;, &quot;BuyProduct&quot;, 2);
+
+            // scenarioname,testcasename
+            executeTestCase(&quot;OnlineShopping&quot;, &quot;BuyProduct&quot;);
+
+        } catch (Exception ex) {
+
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+
+        }
+    }
+
+   /**********************************/
+    public void handleCondition() throws UnCaughtException {
+
+        //Getting object from the object repository
+        WebElement element = AObject.findElement(&quot;ObjectName&quot;, &quot;PageName&quot;);
+
+        //Basing the condition on a web element being displayed
+        if (element.isDisplayed()) {
+
+            //Calling another test case if the condition is matched
+
+            //Pass the Scenario name,Test case name and sub-iteration index
+            executeTestCase(&quot;testscenario1&quot;, &quot;cancelTicket&quot;, 1);
+            Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;inside reusable&quot;, Status.PASS);
+
+            //If needed you can break the test case also by calling existing functions
+            executeMethod(&quot;StopBrowser&quot;);
+            //
+        } else {
+            Report.updateTestLog(&quot;Userdefined Action &quot;, &quot;switch to origional&quot;, Status.DONE);
+        }
+    }
+}
+</code></pre>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../engine/" class="btn btn-neutral float-left" title="Engine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cli/" class="btn btn-neutral float-right" title="Command Line Interface">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../engine/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cli/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Accessiblity Testing - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Accessiblity Testing";
+        var mkdocs_page_input_path = "accessibility.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Accessiblity Testing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#actions">Actions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#testaccessibility">testAccessibility</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testaccessibilityelement">testAccessibilityElement</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Accessiblity Testing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="accessibility-testing"><strong>Accessibility Testing</strong></h1>
+<hr />
+<p>The tool uses <strong><code>aXe</code></strong> as a library to test the accessibiity aspects of a website or specific elements.
+This feature comes packed into 2 simple actions having all the <strong>WCAG</strong> standards baked-in, thereby making execution very easy and report analysis easier.<br />
+However at any point in time we can include/exclude specific tags during the testing.</p>
+<hr />
+<h2 id="actions">Actions</h2>
+<h3 id="testaccessibility"><strong>testAccessibility</strong></h3>
+<p><strong>Description</strong>: This function will generate the accessibility report for the entire web
+page based on the input parameters passed, Report name is mandatory under the
+input.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>testAccessibility</em></td>
+<td>@ReportName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>testAccessibility</em></td>
+<td>@ReportName @include tagName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>testAccessibility</em></td>
+<td>@ReportName @exclude tagName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>testAccessibility</em></td>
+<td>@ReportName @include tagName @exclude tagName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>testAccessibility</em></td>
+<td>@ReportName @Options{}</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <strong>hardcoded</strong> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<strong>datasheet name : column name</strong>) or passed from a variable value (<strong>%variable name%</strong>).</p>
+<p><strong>Internally Uses</strong></p>
+<pre><code class="language-javascript">axe.a11yCheck(arguments[0], %s, arguments[arguments.length - 1]);
+</code></pre>
+<hr />
+<h3 id="testaccessibilityelement"><strong>testAccessibilityElement</strong></h3>
+<p><strong>Description</strong>: This function will generate the accessibility report for a particular web
+element based on the input parameters passed. The input parameters are optional.
+In case no input parameter is passed the report will be generated for all tags associated with the element, the default name for the report will be the name of the
+element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WebObject</td>
+<td><em>testAccessibilityElement</em></td>
+<td>@ReportName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>WebObject</td>
+<td><em>testAccessibilityElement</em></td>
+<td>@ReportName @Options{}</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Internally Uses</strong></p>
+<pre><code class="language-javascript">axe.a11yCheck(arguments[0], %s, arguments[arguments.length - 1]);
+</code></pre>
+<hr />
+<h2 id="example">Example</h2>
+<p>Here is an example of how to test the accessibility of all elements in a page.</p>
+<ul>
+<li>In the tool, the command is as follows :</li>
+</ul>
+<p><img alt="axe1" src="../img/accessibility/1.JPG" title="axe1" /></p>
+<ul>
+<li>On running this, a report will be generated which will have the <strong>[axe]</strong> icon as shown below.</li>
+</ul>
+<p><img alt="axe2" src="../img/accessibility/2.JPG" title="axe2" /></p>
+<ul>
+<li>On clicking this <strong>[axe]</strong> icon, the Accessibility Test report will open up which will show all the <strong>Passes</strong> as below :</li>
+</ul>
+<p><img alt="axe3" src="../img/accessibility/passes.JPG" title="axe3" /></p>
+<ul>
+<li>The report will also show all the <strong>Violations</strong> like this :</li>
+</ul>
+<p><img alt="axe4" src="../img/accessibility/violations.JPG" title="axe4" /></p>
+<ul>
+<li>
+<p>In the above example the Report failed as it had the following <strong>Violations</strong> as seen in the report :</p>
+<ul>
+<li>aria-label attribute does not exist or is empty</li>
+<li>aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty or not visible</li>
+<li>Form element does not have an implicit (wrapped) <strong><code>&lt;label&gt;</code></strong></li>
+<li>Form element does not have an explicit <strong><code>&lt;label&gt;</code></strong></li>
+<li>Element has no title attribute or the title attribute is empty</li>
+</ul>
+</li>
+<li>
+<p>The report also provides <a href="https://dequeuniversity.com/rules/axe/2.1/label?application=axeAPI">this link</a> for reference, under the [More Info] section.   </p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../layout/" class="btn btn-neutral float-left" title="Layout Validation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../image/" class="btn btn-neutral float-right" title="Image Based Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../layout/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../image/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
