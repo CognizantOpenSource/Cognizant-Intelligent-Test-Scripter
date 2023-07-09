@@ -22,7 +22,7 @@ Please follow the [playlist here](https://www.youtube.com/playlist?list=PLe8l5fb
 
 ## Documentation
 
-You can check the Help Documentation from the [wiki](https://github.com/CognizantOpenSource/Cognizant-Intelligent-Test-Scripter/wiki)
+You can check the Help Documentation from the [wiki](https://github.com/CognizantOpenSource/Cognizant-Intelligent-Test-Scripter/wiki)  
 
 ## Development / Contribution
 
