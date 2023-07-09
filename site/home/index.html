@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Shortcuts - Test Automation Framework</title>
+        <title>**Introduction** - Test Automation Framework</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -78,8 +78,8 @@
                             <li class="navitem">
                                 <a href="../goodtoknow/" class="nav-link">Good to know features</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Shortcuts</a>
+                            <li class="navitem">
+                                <a href="../shortcuts/" class="nav-link">Shortcuts</a>
                             </li>
                             <li class="navitem">
                                 <a href="../tips/" class="nav-link">Some Tips & Tricks</a>
@@ -98,16 +98,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../goodtoknow/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../tips/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -126,41 +116,33 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#shortcuts" class="nav-link">Shortcuts</a>
+            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#file-menu" class="nav-link">File Menu</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#launch-utilities" class="nav-link">Launch Utilities</a>
+            <li class="nav-item" data-level="2"><a href="#at-a-glance" class="nav-link">At a Glance</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#navigation" class="nav-link">Navigation</a>
+            <li class="nav-item" data-level="2"><a href="#integrated-development-environment-ide" class="nav-link">Integrated Development Environment (IDE)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#workspace" class="nav-link">Workspace</a>
+            <li class="nav-item" data-level="2"><a href="#integrated-bdd" class="nav-link">Integrated BDD</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#test-data-table" class="nav-link">Test Data Table</a>
+            <li class="nav-item" data-level="2"><a href="#azure-devops" class="nav-link">Azure DevOps</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#common" class="nav-link">Common</a>
+            <li class="nav-item" data-level="2"><a href="#customization" class="nav-link">Customization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#help" class="nav-link">Help</a>
+            <li class="nav-item" data-level="2"><a href="#architecture" class="nav-link">Architecture</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#mobile-spy" class="nav-link">Mobile Spy</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#others" class="nav-link">Others</a>
+            <li class="nav-item" data-level="2"><a href="#comparisons-and-limitations" class="nav-link">Comparisons and Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -171,271 +153,139 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="shortcuts"><strong>Shortcuts</strong></h1>
+<h1 id="introduction"><strong>Introduction</strong></h1>
+<p><br></p>
+<p>CITS is an <code>open-source</code> no code/low code test automation solution that provides a unified interface for all the <strong>agile</strong> test automation activities such as :
+ * <strong>test design</strong> 
+ * <strong>test development</strong> 
+ * <strong>test execution</strong> 
+ * <strong>reporting</strong> 
+ * <strong>maintenance</strong></p>
+<p><br></p>
+<h2 id="at-a-glance">At a Glance</h2>
 <hr />
-<h2 id="file-menu"><strong>File Menu</strong></h2>
 <table>
 <thead>
 <tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
+<th><div style="color:Green;width:200px">Browser Testing</div></th>
+<th><div style="color:Blue;width:200px">API Testing</div></th>
+<th><div style="color:Brown;width:200px">Database Testing</div></th>
+<th><div style="color:Grey;width:200px">WebPage Performance</div></th>
+<th><div style="color:Orange;width:200px">Layout &amp; Accessibility Testing</div></th>
+<th><div style="color:Purple;width:200px">Image Based Testing</div></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Ctrl + Shift + N</td>
-<td>Create a new project</td>
+<td>Uses <code>Selenium</code></td>
+<td>Uses java <code>HttpURLConnection</code></td>
+<td>Uses <code>JDBC Driver</code></td>
+<td><code>Page</code> and <code>Resource</code> timings report</td>
+<td>Uses <code>GalenFramework</code> for Layout Validations</td>
+<td>Uses <code>Sikuli</code></td>
 </tr>
 <tr>
-<td>Ctrl + Shift+ O</td>
-<td>Open an existing project</td>
+<td><code>~280</code> built-in actions</td>
+<td><code>~25</code> built-in actions</td>
+<td><code>~15</code> built-in actions</td>
+<td>Har Compare</td>
+<td>Creates PageDump</td>
+<td>Image comparisons</td>
 </tr>
 <tr>
-<td>Ctrl + Shift+ S</td>
-<td>Save All</td>
+<td><code>Local</code> and <code>Selenium Grid</code> execution</td>
+<td>Easy Data parameterisation</td>
+<td>Easy Data parameterisation</td>
+<td>Har Comparison Report</td>
+<td>Auto-suggests Layout Validations</td>
+<td>Image Text Extractions</td>
 </tr>
 <tr>
-<td>F1</td>
-<td>Open Help File</td>
+<td>Parallel Execution</td>
+<td>Parallel Execution</td>
+<td></td>
+<td>CLI support for Report</td>
+<td>Uses <code>aXe</code> for Accessibility Tests</td>
+<td>Image Text Validations</td>
 </tr>
 </tbody>
 </table>
+<h2 id="integrated-development-environment-ide">Integrated Development Environment (IDE)</h2>
 <hr />
-<h2 id="launch-utilities"><strong>Launch Utilities</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl + Alt +p</td>
-<td>Start Spy from the UI and open Spy window</td>
-</tr>
-<tr>
-<td>Ctrl + Alt +H</td>
-<td>Start Heal from the UI and open Heal window</td>
-</tr>
-<tr>
-<td>Alt + S</td>
-<td>To start Spy during Heal</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + I</td>
-<td>Start Image Spy</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + M</td>
-<td>Start Mobile Spy</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + R</td>
-<td>Start Recording</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>
+<p>Easy to get started with build-in <code>record</code>, <code>spy</code> and <code>heal</code> features</p>
+</li>
+<li>
+<p>Quick creation of test flow scaffoldings and boilerplate reusables</p>
+</li>
+<li>
+<p>Reusable components block for <strong>reusing scripts</strong></p>
+</li>
+<li>
+<p>Intuitive <strong>Test-data parameterisation</strong>  </p>
+</li>
+<li>
+<p>Environment-based test-data set up and execution (Example: <code>DEV</code>, <code>TEST</code>, <code>ACCEPTANCE</code>) </p>
+</li>
+<li>
+<p>Built-in Dynamic Data creation actions</p>
+</li>
+<li>
+<p>Platform independent - Can be used in any operating system supporting java, like <strong>Windows</strong>, <strong>MAC</strong>, <strong>Linux</strong></p>
+</li>
+</ul>
+<h2 id="integrated-bdd">Integrated BDD</h2>
 <hr />
-<h2 id="navigation"><strong>Navigation</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Alt+ shift + N</td>
-<td>Navigate to TEST DESIGN panel</td>
-</tr>
-<tr>
-<td>Alt+ shift + E</td>
-<td>Navigate to TEST EXECUTION panel</td>
-</tr>
-<tr>
-<td>Alt+ shift + D</td>
-<td>Navigate to DASHBOARD</td>
-</tr>
-<tr>
-<td>Alt+ shift + A</td>
-<td>Adjust UI</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>
+<p>Built-in <code>Gherkin</code> editor for writing <strong>feature files</strong></p>
+</li>
+<li>
+<p>Imports <strong>feature files</strong> to generate the corresponding Test scenarios, <code>Step Definition</code> scaffoldings and Test Data</p>
+</li>
+<li>
+<p>Generates BDD style reporting afetr execution</p>
+</li>
+</ul>
+<h2 id="azure-devops">Azure DevOps</h2>
 <hr />
-<h2 id="workspace"><strong>Workspace</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl + Plus</td>
-<td>Add row</td>
-</tr>
-<tr>
-<td>Ctrl + Minus</td>
-<td>Delete rows</td>
-</tr>
-<tr>
-<td>Ctrl + B</td>
-<td>Toggle Breakpoint</td>
-</tr>
-<tr>
-<td>Ctrl + /</td>
-<td>Toggle Comment</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>
+<p>Rich <strong>command line interface</strong> to run test cases and pass propeties and variables at run time</p>
+</li>
+<li>
+<p>Easy to add <code>cli</code> execution commands to Azure DevOps YAML files </p>
+</li>
+<li>
+<p>Generates <strong>Nunit</strong> report which shows the test results (including <code>execution logs</code>, <code>screenshots</code>, <code>request payloads</code>, <code>response payloads</code> directly in Azure DevOps)</p>
+</li>
+<li>
+<p>Seamless integration into <strong>Azure DevOps Test Plans</strong> to report back the execution status in the Test Plan</p>
+</li>
+<li>
+<p>Execute failed testcases in a test set automatically after a run</p>
+</li>
+</ul>
+<h2 id="customization">Customization</h2>
 <hr />
-<h2 id="test-data-table"><strong>Test Data Table</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl + Plus</td>
-<td>Add row</td>
-</tr>
-<tr>
-<td>Ctrl + Minus</td>
-<td>Remove row</td>
-</tr>
-<tr>
-<td>Left Double Click</td>
-<td>Edit header/ cell data</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>
+<p>Addition of new methods for project specific requirements is possible through the <code>Engine</code> project</p>
+</li>
+<li>
+<p>Enhancing an built-in method is also possible through the same way</p>
+</li>
+<li>
+<p>Incorporation of external libraries is also possible</p>
+</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
 <hr />
-<h2 id="common"><strong>Common</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F2</td>
-<td>Rename</td>
-</tr>
-<tr>
-<td>Del</td>
-<td>Delete</td>
-</tr>
-<tr>
-<td>Ctrl + X</td>
-<td>Cut</td>
-</tr>
-<tr>
-<td>Ctrl + C</td>
-<td>Copy</td>
-</tr>
-<tr>
-<td>Ctrl + V</td>
-<td>Paste</td>
-</tr>
-</tbody>
-</table>
+<p><img alt="architecture" src="../img/architecture/architecture_layers.jpg" title="architecture" /></p>
+<h2 id="comparisons-and-limitations">Comparisons and Limitations</h2>
 <hr />
-<h2 id="help"><strong>Help</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F1</td>
-<td>Open Help File</td>
-</tr>
-<tr>
-<td>F3</td>
-<td>To go to next search</td>
-</tr>
-<tr>
-<td>Shift +F3</td>
-<td>To go to previous search</td>
-</tr>
-<tr>
-<td>F5</td>
-<td>Reload</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="mobile-spy"><strong>Mobile Spy</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl + Alt+M</td>
-<td>Open Mobile Spy</td>
-</tr>
-<tr>
-<td>Alt + F4</td>
-<td>Exit Mobile Spy</td>
-</tr>
-<tr>
-<td>Ctrl + L</td>
-<td>Load the Screen of connected device</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + M</td>
-<td>Map the current view to the Selected Page</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + L</td>
-<td>Load the mapped View from Selected Page</td>
-</tr>
-<tr>
-<td>Ctrl + o</td>
-<td>Load a View from a selected file</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="others"><strong>Others</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Shortcut Keys</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F9</td>
-<td>Show Log</td>
-</tr>
-<tr>
-<td>Ctrl + Shift + E</td>
-<td>Launch Exploratory Ribbon</td>
-</tr>
-<tr>
-<td>Ctrl+ Alt + S</td>
-<td>Open Run settings</td>
-</tr>
-</tbody>
-</table></div>
+<p>Click <a href="https://theforge.ing.net/product/239813/documentation/latest/pages/comparisons.md">here</a> to read about the Comparisons with industry standard frameworks and also the limitations of the tool.</p></div>
             </div>
         </div>
 
