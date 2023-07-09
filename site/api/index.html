@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Testing - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Testing";
+        var mkdocs_page_input_path = "api.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">API Testing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-create-an-api-test-case">How to create an API Test Case?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#payload-data-parameterization">Payload Data Parameterization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#assertstore-response-tags">Assert/Store Response Tags</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#actions">Actions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>API Testing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-testing"><strong>API Testing</strong></h1>
+<hr />
+<p><span style="color:Green">API Testing is one of the strong suites of the tool. It allows us to fire requests, receive responses, validate the response status, response body and response tags.</span></p>
+<p><span style="color:Green">It also allows us to store response tags which can be used for subsequent API calls or GUI flows. This makes API Testing and GUI Testing possible in a single flow coherently.</span></p>
+<hr />
+<h2 id="how-to-create-an-api-test-case">How to create an API Test Case?</h2>
+<ul>
+<li>
+<p>A request should contain a <strong><code>setEndPoint</code></strong> action. This action is always marked in <span style="color:Blue"><strong>Blue.</strong></span> This is where you put the endpoint to which the request is supposed to be fired. This action comes with an editor for convenience of data set up.</p>
+</li>
+<li>
+<p>You can have steps to add headers/authentication etc. (if required)</p>
+</li>
+<li>
+<p>A request should contain an <strong>HTTP Method/Verb</strong> (<code>Post</code>/<code>Put</code>/<code>Get</code>/<code>Delete</code>/<code>Patch</code>) . This action is always marked in <span style="color:Green"><strong>Green.</strong></span> This also comes with an editor for convenience.</p>
+</li>
+<li>
+<p>You can have steps to validate/store response <strong>status codes</strong>, <strong>specific tags</strong> or even the <strong>entire response body.</strong></p>
+</li>
+<li>
+<p>A request should contain a <strong><code>closeConnection</code></strong> action. This action is always marked in <span style="color:Brown"><strong>Brown.</strong></span></p>
+</li>
+</ul>
+<p><img alt="api1" src="../img/api/1.JPG" title="api1" /></p>
+<p>The above is an example of a <strong><code>postRestRequest</code></strong> and then <strong><code>assertResponseCode</code></strong> followed by <strong><code>storeJSONelementInDataSheet</code></strong></p>
+<hr />
+<h2 id="payload-data-parameterization">Payload Data Parameterization</h2>
+<p>Data Parameterization can be done using the built-in <strong>editor.</strong> If you mouse-hover on the <strong>Input</strong> column, corresponding to the <strong><code>Post</code></strong>/<strong><code>Put</code></strong> request steps as well as the <strong><code>setEndPoint</code></strong> step, an option to open up the Editor comes up.</p>
+<p>Inside this editor, we can paste the entire Payload and then parameterize the specific JSON/XML tags based on our needs.</p>
+<p>If we press <span style="color:Red"><strong>[ctrl] + [SPACE]</strong></span>, the list of all available <strong>DataSheets : ColumnNames</strong> along with all <strong>user-defined variables</strong> show up. We can then select the appropriate item from where we want to parameterize.</p>
+<p>We need to press <span style="color:Red"><strong>[esc]</strong></span> to close the editor</p>
+<p><img alt="editor" src="../img/api/editor.gif" title="editor" />
+ <span style="color:Red"><em>The above image is a gif. So if its not moving, please reload the page</em></span></p>
+<hr />
+<h2 id="assertstore-response-tags">Assert/Store Response Tags</h2>
+<p>We can access the Response Tags using <strong><code>xpath</code></strong> for XMLs and <strong><code>jsonPath</code></strong> for JSONs.</p>
+<p>The corresponding <strong><code>xpath</code></strong> or <strong><code>jsonPath</code></strong> for the tag, should be entered in the <strong>Condition</strong> column like as shown below :</p>
+<p><img alt="api2" src="../img/api/2.JPG" title="api2" /></p>
+<p>Example of writing an Xpath :</p>
+<pre><code class="language-xml">&lt;root xmlns:foo=&quot;http://www.foo.org/&quot; xmlns:bar=&quot;http://www.bar.org&quot;&gt;
+    &lt;actors&gt;
+        &lt;actor id=&quot;1&quot;&gt;Christian Bale&lt;/actor&gt;
+        &lt;actor id=&quot;2&quot;&gt;Liam Neeson&lt;/actor&gt;
+        &lt;actor id=&quot;3&quot;&gt;Michael Caine&lt;/actor&gt;
+    &lt;/actors&gt;
+&lt;/root&gt;
+</code></pre>
+<p>XPath for retrieving <strong>Liam Neeson</strong> is <code>/root/actors/actor[2]/text()</code> or simply <code>//actor[2]/text()</code></p>
+<p>Example of writing a JSONPath :</p>
+<p><strong>Example 1 :</strong></p>
+<pre><code class="language-json">{ 
+   &quot;name&quot;:&quot;TestName&quot;,
+   &quot;salary&quot;:&quot;12300&quot;,
+   &quot;age&quot;:&quot;29&quot;
+}
+</code></pre>
+<p>JSON Path for retrieving <strong>TestName</strong> is <code>$.name</code> </p>
+<p><strong>Example 2 :</strong></p>
+<pre><code class="language-json">{
+    &quot;page&quot;: 2,
+    &quot;per_page&quot;: 6,
+    &quot;total&quot;: 12,
+    &quot;total_pages&quot;: 2,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 7,
+            &quot;email&quot;: &quot;michael.lawson@ing.com&quot;,
+            &quot;first_name&quot;: &quot;Michael&quot;,
+            &quot;last_name&quot;: &quot;Lawson&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;email&quot;: &quot;lindsay.ferguson@ing.com&quot;,
+            &quot;first_name&quot;: &quot;Lindsay&quot;,
+            &quot;last_name&quot;: &quot;Ferguson&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;email&quot;: &quot;tobias.funke@ing.com&quot;,
+            &quot;first_name&quot;: &quot;Tobias&quot;,
+            &quot;last_name&quot;: &quot;Funke&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;email&quot;: &quot;byron.fields@ing.com&quot;,
+            &quot;first_name&quot;: &quot;Byron&quot;,
+            &quot;last_name&quot;: &quot;Fields&quot;
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;email&quot;: &quot;george.edwards@ing.com&quot;,
+            &quot;first_name&quot;: &quot;George&quot;,
+            &quot;last_name&quot;: &quot;Edwards&quot;
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;email&quot;: &quot;rachel.howell@ing.com&quot;,
+            &quot;first_name&quot;: &quot;Rachel&quot;,
+            &quot;last_name&quot;: &quot;Howell&quot;
+        }
+    ],
+    &quot;additional&quot;: {
+        &quot;url&quot;: &quot;https://ing.com&quot;,
+        &quot;text&quot;: &quot;Happy Testing!&quot;
+    }
+}
+</code></pre>
+<p>JSON Path for retrieving <strong>byron.fields@ing.com</strong> is <code>$.data[3].email</code> [Index starts with 0]</p>
+<p>To learn more about JSONPath visit this <a href="https://github.com/json-path/JsonPath">GitHub</a> page.</p>
+<hr />
+<h2 id="actions">Actions</h2>
+<p>There are <strong>19</strong> built-in Actions. </p>
+<p><span style="color:Red"><strong>Please click the action-cloud below to check the details</strong></span></p>
+<p><a href="../apiActions/webservice/"><img alt="actions" src="../img/api/actions.JPG" title="actions" /></a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../browsertesting/" class="btn btn-neutral float-left" title="Browser Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../webpageperformance/" class="btn btn-neutral float-right" title="WebPage Performance Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../browsertesting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../webpageperformance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Browser Title Assertions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Browser Title Assertions";
+        var mkdocs_page_input_path = "webActions\\titleassertions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Browser Title Assertions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="browser-title-assertions">Browser Title Assertions</h1>
+<hr />
+<h2 id="asserttitleequals"><strong>assertTitleEquals</strong></h2>
+<p><strong>Description</strong>:  This function will validate if the title of the current page is equals the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEquals</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEquals</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEquals</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title Equals [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleEquals() {
+        assertTitle(SpecText.Type.IS);
+    }
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text is </strong>Equal<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text is</strong>  <em>- checks that text is exactly as expected</em></p>
+<hr />
+<h2 id="asserttitlecontains"><strong>assertTitleContains</strong></h2>
+<p><strong>Description</strong>:  This function will validate if the title of the current page has the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleContains</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleContains</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleContains</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title Contains [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleContains() {
+        assertTitle(SpecText.Type.CONTAINS);
+    }
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>Contains<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text contains</strong>  <em>- checks element contains expected text</em></p>
+<hr />
+<h2 id="asserttitlestartswith"><strong>assertTitleStartsWith</strong></h2>
+<p><strong>Description</strong>:   This function will validate if the title of the current page begins with the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleStartsWith</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleStartsWith</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleStartsWith</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title StartsWith [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleStartsWith() {
+        assertTitle(SpecText.Type.STARTS);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>StartsWith<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text starts</strong>  <em>- element should start with expected text</em></p>
+<hr />
+<h2 id="asserttitleendswith"><strong>assertTitleEndsWith</strong></h2>
+<p><strong>Description</strong>:   This function will validate if the title of the current page ends with the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEndsWith</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEndsWith</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleEndsWith</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title EndsWith [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleEndsWith() {
+        assertTitle(SpecText.Type.ENDS);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>EndsWith<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text ends</strong>  <em>- element should end with expected text</em></p>
+<hr />
+<h2 id="asserttitlematches"><strong>assertTitleMatches</strong></h2>
+<p><strong>Description</strong>:   This function will validate if the title current page matches  the user-provided data. You can also use regular expression in the Input field.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleMatches</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleMatches</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleMatches</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title Matches [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleMatches() {
+        assertTitle(SpecText.Type.MATCHES);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>Matches<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text matches</strong>  <em>- verifies that text matches Java Regular Expression</em></p>
+<hr />
+<h2 id="asserttitleiequals"><strong>assertTitleIEquals</strong></h2>
+<p><strong>Description</strong>:  This function will validate if the title of the current page is equals the user-provided data. This function will ignore case of user provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEquals</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEquals</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEquals</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title Equals [Ignorecase] [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleIEquals() {
+        assertTitleI(SpecText.Type.IS);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text is </strong>Equal<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text is</strong>  <em>- checks that text is exactly as expected</em></p>
+<hr />
+<h2 id="asserttitleicontains"><strong>assertTitleIContains</strong></h2>
+<p><strong>Description</strong>:  This function will validate if the title of the current page contains the user-provided data. This function will ignore case of the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIContains</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIContains</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIContains</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title Contains [Ignorecase] [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleIContains() {
+        assertTitleI(SpecText.Type.CONTAINS);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>Contains<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text contains</strong>  <em>- checks element contains expected text</em></p>
+<hr />
+<h2 id="asserttitleistartswith"><strong>assertTitleIStartsWith</strong></h2>
+<p><strong>Description</strong>: This function will validate if the current page title begins with the user-provided data. This function will ignore case of the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIStartsWith</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIStartsWith</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIStartsWith</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title StartsWith [Ignorecase] [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleIStartsWith() {
+        assertTitleI(SpecText.Type.STARTS);
+    }
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>StartsWith<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text starts</strong>  <em>- element should start with expected text</em></p>
+<hr />
+<h2 id="asserttitleiendswith"><strong>assertTitleIEndsWith</strong></h2>
+<p><strong>Description</strong>:  This function will validate if the title of the current page ends with the user-provided data. This function will ignore case of the user-provided data.</p>
+<p><strong>Input Format</strong> : @Expected text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEndsWith</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEndsWith</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertTitleIEndsWith</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<pre><code class="language-java"> @Action(object = ObjectType.BROWSER, desc =&quot;Assert if Browser's Title EndsWith [Ignorecase] [&lt;Data&gt;]&quot;, input =InputType.YES)
+    public void assertTitleIEndsWith() {
+        assertTitleI(SpecText.Type.ENDS);
+    }
+
+</code></pre>
+<p><strong>Internally uses <code>Galen Specs Language</code> to check that URL text </strong>EndsWith<strong> or not to the given URL.As Galen relies on Selenium – the text will be returned the same way it appears in a real browser (e.g. white space is ignored).</strong></p>
+<p><strong>text ends</strong>  <em>- element should end with expected text</em></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

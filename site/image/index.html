@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Image Based Testing - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Image Based Testing";
+        var mkdocs_page_input_path = "image.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Image Based Testing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#text">Text</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-image-methods">Common Image Methods</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mouse">Mouse</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#application">Application</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#drag-and-drop">Drag and Drop</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Image Based Testing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="image-based-testing"><strong>Image Based Testing</strong></h1>
+<hr />
+<p>!!! Documentation on this is currently in progress</p>
+<hr />
+<h3 id="text"><strong><u>Text</u></strong></h3>
+<ul>
+<li><strong>imgAssertText</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the given expected text is present in the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyText</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to verify if the given expected text is present in the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgStoreText</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to store image text in a user-defined variable.</p>
+<p><strong>Input Format</strong> : %Variable_Name%</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgAssertTextAbove</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the expected text is above the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgAssertTextBelow</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function is used to check if the expected text is below the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgAssertTextRight</strong></li>
+</ul>
+<p><strong>Description</strong>:This function is used to check if the expected text is at the right to the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgAssertTextLeft</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the expected text is at the left of the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyTextAbove</strong></li>
+</ul>
+<p><strong>Description</strong>: TThis function is used to check if the expected text is above the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyTextBelow</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function is used to check if the expected text is below the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyTextRight</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the expected text is to the right of the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyTextLeft</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the expected text is to the left of the image object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgStoreTextAbove</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to store a text above the object in a user-defined</p>
+<p><strong>Input Format</strong> : %Variable_Name%</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgStoreTextBelow</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to store a text below the object in a user-defined</p>
+<p><strong>Input Format</strong> : %Variable_Name%</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgStoreTextRight</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to store a text to the right of the object in a userdefined variable.</p>
+<p><strong>Input Format</strong> : %Variable_Name%</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgStoreTextLeft</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to store a text to the left of the object in a user-defined variable.</p>
+<p><strong>Input Format</strong> : %Variable_Name%</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-image-methods"><strong><u>Common Image Methods</u></strong></h3>
+<ul>
+<li><strong>imgClearAndSet</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will clear an image object and then it will set the user provided data in that object.</p>
+<p><strong>Input Format</strong> : @Expected data. </p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgSetEncrypted</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to enter the encrypted data into image objects.</p>
+<p><strong>Input Format</strong> : @Expected data. </p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: If the data is passed from data sheet, then the data in the sheet should be encrypted.</p>
+<ul>
+<li><strong>imgDoubleClick</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to find and double-click the image on the screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgVerifyImage</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to verify if the image object is on the screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgAssertImage</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to check if the image is on the screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgClick</strong></li>
+</ul>
+<p><strong>Description</strong>:  Finds and clicks the image on the screen.</p>
+<p><strong>Input Format</strong> : Give Optional parameter as keyModifiers (i.e., Ctrl/Shift/Alt)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgType</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used for typing any user given data in an image.</p>
+<p><strong>Input Format</strong> : @Expected Data</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>typeOnScreen</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to type any text on the screen where the cursor/focus is currently available.</p>
+<p><strong>Input Format</strong> : @Text to be typed</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgClearText</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to delete the whole text from the image objects such as from a text. </p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgHover</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function is used to hover the mouse over the image object on the screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgSet</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to set (Paste) the input data on the image.</p>
+<p><strong>Input Format</strong> : @Expected Data</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgRightClick</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to right-click the specificed image on the screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgWait</strong></li>
+</ul>
+<p><strong>Description</strong>: Waits for the image to appear on the screen</p>
+<p><strong>Input Format</strong> : @time in seconds .If the input column is left empty default time of 10
+seconds will be used.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgWaitVanish</strong></li>
+</ul>
+<p><strong>Description</strong>:  This function is used to wait for the image to disappear from the screen.</p>
+<p><strong>Input Format</strong> : @time in seconds. If the input column is left empty default time of 10 seconds will be used</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgFindinPage</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to find any image on the page within the desired time.</p>
+<p><strong>Input Format</strong> : @Time in miliseconds</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mouse"><strong><u>Mouse</u></strong></h3>
+<ul>
+<li><strong>imgmouseDown</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform the mouse down operation. Keys integer value can be given as the input.</p>
+<p><strong>Input Format</strong> : @Keys Integer Representation (16, 8, 4, -1, 1 respectively for mouse left, middle, right, wheel up, wheel down buttons)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgmouseUp</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform the mouse up operation. Keys integer value can be given as the input.</p>
+<p><strong>Input Format</strong> : @Keys Integer Representation (16, 8, 4, -1, 1 respectively for mouse left, middle, right, wheel up, and wheel down buttons)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>moveMouseTO</strong></li>
+</ul>
+<p><strong>Description</strong>: This function will move the mouse to a user-defined location.</p>
+<p><strong>Input Format</strong> : @Location</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="application"><strong><u>Application</u></strong></h3>
+<ul>
+<li><strong>shortcutKeys</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform the keyboard shortcut actions.</p>
+<p><strong>Input Format</strong> : @Combination of keys such as Ctrl+a</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>pressKeys</strong></li>
+</ul>
+<p><strong>Description</strong>:This function is used to perform the keyboard key press actions. After pressing it, do not forget to release the keys.</p>
+<p><strong>Input Format</strong> : @Keyboard Keys like Ctrl,Shift,Alt</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>releaseKeys</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform release actions of the keyboard keys. It will release an already pressed key.</p>
+<p><strong>Input Format</strong> : @Keyboard Keys like Ctrl,Shift,Alt</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>openApp</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to open the given application from your system.</p>
+<p><strong>Input Format</strong> : @App Name [if the path is available in the 'path' environment variable]
+or App Location.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>closeApp</strong></li>
+</ul>
+<p><strong>Description</strong>:This function is used to close any application opened by using the openApp action.</p>
+<p><strong>Input Format</strong> : @App Name or App Location</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>focusApp</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to focus any application opened by using openApp action. </p>
+<p><strong>Input Format</strong> : @App Name or App Location</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>keyboardKey</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform single keyboard key events.</p>
+<p><strong>Input Format</strong> : @Keyboard_Key(like Enter,Shift,Ctrl)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>pageDown</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform page down actions for desired number of times.</p>
+<p><strong>Input Format</strong> : @No of page down(integer)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>clickOn</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to perform click operations on text.</p>
+<p><strong>Input Format</strong> : @Text, which needs to be clicked.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>App</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="drag-and-drop"><strong><u>Drag and Drop</u></strong></h3>
+<ul>
+<li><strong>imgDragandDrop</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to drag any image and drop it on another image on the screen.</p>
+<p><strong>Input Format</strong> : @Page Name,Image Object Name</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgDragandDropAt</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to drag an image and drop it in a user-defined region.</p>
+<p><strong>Input Format</strong>:@x coordinate,y coordinate,width,height (All integers)</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>@value</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>Sheet:Column</td>
+<td></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>%dynamicVar%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgDrag</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to drag any image from screen.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>imgDropAt</strong></li>
+</ul>
+<p><strong>Description</strong>: This function is used to drop the dragged image on the given image object. Be sure that dragging is not already released.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>takeDesktopScreenShot</strong></li>
+</ul>
+<p><strong>Description</strong>:This function is used to take a screenshot of the entire screen, the screenshot includes the task bar as well if the task bar is visible</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Input</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../accessibility/" class="btn btn-neutral float-left" title="Accessiblity Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../engine/" class="btn btn-neutral float-right" title="Engine">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../accessibility/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../engine/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

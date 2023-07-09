@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Dynamic Waits - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Dynamic Waits";
+        var mkdocs_page_input_path = "webActions\\dynamicwaits.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Dynamic Waits</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dynamic-waits">Dynamic Waits</h1>
+<hr />
+<h2 id="changewaittime"><strong>changeWaitTime</strong></h2>
+<p><strong>Description</strong>: This function is used to change the override the default <code>wait time</code>(Default is 10 seconds) with the provided value. The default wait time for all the wait actions defined after <strong>changeWaitTime</strong> action will be the same as defined in the <strong>changeWaitTime</strong> action.</p>
+<p><strong>Input Format</strong> : @Time in seconds as <code>Integer</code>. Example : 20,30 etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>changeWaitTime</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>changeWaitTime</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>changeWaitTime</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;changing wait time by [&lt;Data&gt;] seconds&quot;, input = InputType.YES)
+    public void changeWaitTime() {
+        try {
+            int t = Integer.parseInt(Data);
+            if (t &gt; 0) {
+                SystemDefaults.waitTime.set(t);
+                Report.updateTestLog(&quot;changeWaitTime&quot;, &quot;Wait time changed to &quot;+ t + &quot; second/s&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(&quot;changeWaitTime&quot;,&quot;Couldn't change Wait time (invalid input)&quot;,Status.DEBUG);                        
+            }
+
+        } catch (NumberFormatException ex) {
+            Report.updateTestLog(&quot;changeWaitTime&quot;,&quot;Couldn't change Wait time &quot;, Status.DEBUG);
+            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setelementtimeout"><strong>setElementTimeOut</strong></h2>
+<p><strong>Description</strong>: This function is used to override the default <code>timeout</code> for web element finding logic(Default is 10 seconds) with the provided value.</p>
+<p><strong>Input Format</strong> : @Time in seconds as <code>Integer</code>. Example : 20,30 etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>setElementTimeOut</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>setElementTimeOut</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>setElementTimeOut</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Change Default Element finding wait time by [&lt;Data&gt;] seconds&quot;, input = InputType.YES)
+    public void setElementTimeOut() {
+        if (Data != null &amp;&amp; Data.matches(&quot;[0-9]+&quot;)) {
+            SystemDefaults.elementWaitTime.set(Integer.valueOf(Data));
+            Report.updateTestLog(Action, &quot;Element Wait time changed to &quot; + Data + &quot; second/s&quot;, Status.DONE);
+        } else {
+            Report.updateTestLog(Action,&quot;Couldn't change Element Wait time (invalid input) &quot; + Data,Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="difference-between-the-changewaittime-and-setelementtimeout-actions">Difference between the changeWaitTime and setElementTimeOut actions</h2>
+<ul>
+<li>
+<p>The <strong>changeWaitTime</strong> action is used to change the default wait time (10 seconds) for all the wait actions. Once the default wait time is changed using this action, all the <strong>wait actions</strong> used subsequently will have an explicit timeout for that set duration.</p>
+</li>
+<li>
+<p>The <strong>setElementTimeout</strong> action is used to change the default time (10 seconds) taken to find an object in your application during execution. Once the default time is changed using this action, for each step following that action will try to find the object within the specified time duration before performing the respective action on that object. If the object cannot be found within the specified time frame, an exception will be thrown.</p>
+</li>
+</ul>
+<p><strong>Note</strong>: The wait time(changeWaitTime) and the element wait time(setElementTimeOut) can also be set from the UI be navigating to <strong>Configurations-&gt; Options</strong>.</p>
+<hr />
+<h2 id="waitforelementtobevisible"><strong>waitForElementToBeVisible</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> till the element is <strong>visible on the screen</strong>. The default wait time for all elements is 10 seconds, which can be overriden using the  <strong>changeWaitTime</strong> action</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToBeVisible</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] to be visible &quot;, condition = InputType.OPTIONAL)
+    public void waitForElementToBeVisible() {
+        waitForElement(WaitType.VISIBLE, &quot;'&quot;+ this.ObjectName+ &quot;' Element becomes visible in stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.visibilityOf(Element))
+</code></pre>
+<hr />
+<h2 id="waitforelementtobeinvisible"><strong>waitForElementToBeInVisible</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the element is no longer visible on the screen.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToBeInVisible</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] to be invisible &quot;, condition = InputType.OPTIONAL)
+    public void waitForElementToBeInVisible() {
+        waitForElement(WaitType.INVISIBLE, &quot;'&quot;+ this.ObjectName+ &quot;' Element becomes invisible in stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(Element)))
+</code></pre>
+<hr />
+<h2 id="waitforelementtobeclickable"><strong>waitForElementToBeClickable</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the element becomes clickable.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToBeClickable</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] to be clickable &quot;, condition = InputType.OPTIONAL)
+    public void waitForElementToBeClickable() {
+        waitForElement(WaitType.CLICKABLE, &quot;'&quot;+ this.ObjectName+ &quot;' Element becomes Clickable in stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.elementToBeClickable(Element))
+</code></pre>
+<hr />
+<h2 id="waitforelementtobeselected"><strong>waitForElementToBeSelected</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the specified element is selected</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToBeSelected</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] to be selected &quot;, condition = InputType.OPTIONAL)
+    public void waitForElementToBeSelected() {
+        waitForElement(WaitType.SELECTED, &quot;'&quot;+ this.ObjectName+ &quot;' Element Selected in stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.elementToBeSelected(Element))
+</code></pre>
+<hr />
+<h2 id="waitforelementtocontaintext"><strong>waitForElementToContainText</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the element contains the given text</p>
+<p><strong>Input Format</strong> : @ExpectedText</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for element: [&lt;Object&gt;] to contain text [&lt;Data&gt;]&quot;, condition = InputType.OPTIONAL, input = InputType.YES)
+    public void waitForElementToContainText() {
+        waitForElement(WaitType.TEXT_CONTAINS, &quot;'&quot;+ this.ObjectName + &quot;' Element contained the text: &quot;+ Data + &quot; in stipulated Time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.textToBePresentInElement(Element, Data))
+</code></pre>
+<hr />
+<h2 id="waitforelementtocontainvalue"><strong>waitForElementToContainValue</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> till the element contains the given value</p>
+<p><strong>Input Format</strong> : @ExpectedValue</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainValue</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainValue</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToContainValue</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] element to contain value: [&lt;Data&gt;]&quot;, condition = InputType.OPTIONAL, input = InputType.YES)
+    public void waitForElementToContainValue() {
+        waitForElement(WaitType.VALUE_CONTAINS, &quot;'&quot;+ this.ObjectName + &quot;' Element contained the value: &quot;+ Data + &quot; in stipulated Time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.textToBePresentInElementValue(Element, Data))
+</code></pre>
+<hr />
+<h2 id="waitforelementtobepresent"><strong>waitForElementToBePresent</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the element loads in the DOM.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementToBePresent</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait  for the element [&lt;Object&gt;] to be present&quot;, condition = InputType.OPTIONAL)
+    public void waitForElementToBePresent() {
+        AObject.setWaitTime(getWaitTime());
+        try {
+            Element = AObject.findElement(ObjectName, Reference);
+            AObject.resetWaitTime();
+            if (Element != null) {
+                Report.updateTestLog(Action, &quot;'&quot; + this.ObjectName+ &quot;' Element Present in the stipulated time&quot;, Status.PASS);
+            } else {
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.OFF, null, ex);
+            throw new ForcedException(Action,ex.getMessage());
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="waitforframeandswitch"><strong>waitForFrameAndSwitch</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> for the <strong>frame to be available and switch to it.</strong></p>
+<p><strong>Input</strong>: @<code>id</code> or <code>name</code> or <code>index</code> [This is only applicable when the <em>ObjectName</em> is set as <em>Browser</em>]</p>
+<p>The input is optional if you choose to give the web element (the frame itself) under the <em>ObjectName</em>.This element can be added as an object under the Object repository.</p>
+<p><strong>Usage:</strong></p>
+<p><strong>1</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitForFrameAndSwitch</em></td>
+<td>frame <code>id</code> or <code>name</code> or <code>index</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>2</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Frame</code> Object</td>
+<td><em>waitForFrameAndSwitch</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.ANY, desc = &quot;Wait for Frame To Be Available and Switch to it&quot;,input=InputType.OPTIONAL,
+            condition = InputType.OPTIONAL)
+    public void waitForFrameAndSwitch() {
+        if (Element != null) {
+            waitFor(WaitType.FRAME_EL, &quot;Switched to Frame By Object '&quot;+ ObjectName + &quot;' in stipulated Time&quot;);
+        } else if (Data != null) {
+            if (Data.matches(&quot;[0-9]+&quot;)) {
+                waitFor(WaitType.FRAME_IND, &quot;Switched to Frame By Index '&quot;+ Data + &quot;' in stipulated Time&quot;);
+            } else {
+                waitFor(WaitType.FRAME_STR, &quot;Switched to Frame By Value '&quot;+ Data + &quot;' in stipulated Time&quot;);
+            }
+        }
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic for Frame</strong> <code>Element</code>:</p>
+<pre><code class="language-java">wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(Element))
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic for Frame</strong> <code>index</code>:</p>
+<pre><code class="language-java">wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(Integer.valueOf(Data, 0)))
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic for Frame</strong> <code>name</code>:</p>
+<pre><code class="language-java">wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(Data))
+</code></pre>
+<hr />
+<h2 id="waitforpageloaded"><strong>waitForPageLoaded</strong></h2>
+<p><strong>Description</strong>: This function will wait till the page is loaded. <strong>Note: This is not for Ajax calls</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitForPageLoaded</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Wait for Page to be loaded&quot;, condition = InputType.OPTIONAL)
+    public void waitForPageLoaded() {
+        waitFor(WaitType.CUSTOM_SCRIPT,&quot;Page load completed in stipulated time&quot;,
+                &quot;return document.readyState==='complete'&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>javascript</code> <strong>logic to check for the page readiness:</strong></p>
+<pre><code class="language-javascript">return document.readyState==='complete'
+</code></pre>
+<hr />
+<h2 id="waitforalertpresent"><strong>waitForAlertPresent</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> for alert to appear on the page.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitForAlertPresent</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Wait for alert to be present &quot;, condition = InputType.OPTIONAL)
+    public void waitForAlertPresent() {
+        waitFor(WaitType.ALERT_PRESENT,&quot;Alert popped up in stipulated time&quot;);
+    }
+
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.alertIsPresent())
+</code></pre>
+<hr />
+<h2 id="waitfortitletobe"><strong>waitForTitleToBe</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> till the title of the page matches with the given text.</p>
+<p><strong>Input Format</strong> : @ExpectedPageTitle</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToBe</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToBe</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToBe</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Wait for page's title to be [&lt;Data&gt;]&quot;, input = InputType.YES, condition = InputType.OPTIONAL)
+    public void waitForTitleToBe() {
+        waitFor(WaitType.TITLE_IS,&quot;Title Equals '&quot;+ Data + &quot;' in stipulated Time&quot;);
+    }
+
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.titleIs(Data));
+</code></pre>
+<hr />
+<h2 id="waitfortitletocontain"><strong>waitForTitleToContain</strong></h2>
+<p><strong>Description</strong>:  This function will <code>wait</code> till the title of the page has the given text.</p>
+<p><strong>Input Format</strong> : @Full or Partial text of the Title</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToContain</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToContain</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitForTitleToContain</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">    @Action(object = ObjectType.BROWSER, desc = &quot;Wait for page's title to contain [&lt;Data&gt;]&quot;, condition = InputType.OPTIONAL, input = InputType.YES)
+    public void waitForTitleToContain() {
+        waitFor(WaitType.TITLE_CONTAINS,&quot;Title Contains the value '&quot;+ Data + &quot;' in stipulated Time&quot;);
+    }
+
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.titleContains(Data))
+</code></pre>
+<hr />
+<h2 id="waittillcustomscript"><strong>waitTillCustomScript</strong></h2>
+<p><strong>Description</strong>:   This function will <code>wait</code> till the given JavaScript returns true. It is applicable only for JavaScript functions that return a boolean value.</p>
+<p><strong>Input Format</strong> : @<code>Javascript</code> to evaluate </p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>waitTillCustomScript</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitTillCustomScript</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>waitTillCustomScript</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">    @Action(object = ObjectType.BROWSER, desc = &quot;Wait till the given javascript condition [&lt;Data&gt;] returns true&quot;, input = InputType.YES, condition = InputType.OPTIONAL)
+    public void waitTillCustomScript() {
+        if (Data != null &amp;&amp; !Data.trim().isEmpty()) {
+            if (Data.contains(&quot;return&quot;)) {
+                waitFor(WaitType.CUSTOM_SCRIPT,&quot;Condition passed in stipulated time&quot;,Data);
+            } else {
+                Report.updateTestLog(Action, &quot;Javascript condition should have atleast one return and the condtion should return Boolean value&quot;, Status.DEBUG);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Include a proper javascript condition to check&quot;, Status.DEBUG);
+        }
+    }
+
+</code></pre>
+<p><strong>Internally uses the following logic :</strong></p>
+<pre><code class="language-java">    private ExpectedCondition&lt;?&gt; getCustomCondition(final String javascript) {
+        return new ExpectedCondition&lt;Boolean&gt;() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                return (Boolean) ((JavascriptExecutor) driver).executeScript(javascript);
+            }
+        };
+    }
+</code></pre>
+<hr />
+<h2 id="waitforelementselectiontobetrue"><strong>waitForElementSelectionToBeTrue</strong></h2>
+<p><strong>Description</strong>:  This function will wait till the element selection becomes true</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementSelectionToBeTrue</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] element to be selected: [&lt;Data&gt;]&quot;, condition = InputType.OPTIONAL)
+    public void waitForElementSelectionToBeTrue() {
+        waitForElement(WaitType.EL_SELECT_TRUE, &quot;'&quot;+ this.ObjectName + &quot;' Element got Selected in the stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.elementSelectionStateToBe(Element, true))
+</code></pre>
+<hr />
+<h2 id="waitforelementselectiontobefalse"><strong>waitForElementSelectionToBeFalse</strong></h2>
+<p><strong>Description</strong>: This function will <code>wait</code> till the element selection becomes false.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>waitForElementSelectionToBeFalse</em></td>
+<td></td>
+<td>PageName</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java"> @Action(object = ObjectType.SELENIUM, desc = &quot;Wait for [&lt;Object&gt;] element to be deselected&quot;, condition = InputType.OPTIONAL)
+    public void waitForElementSelectionToBeFalse() {
+        waitForElement(WaitType.EL_SELECT_FALSE, &quot;'&quot;+ this.ObjectName+ &quot;' Element got Deselected in the stipulated time&quot;);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">wait.until(ExpectedConditions.elementSelectionStateToBe(Element, false))
+</code></pre>
+<hr />
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

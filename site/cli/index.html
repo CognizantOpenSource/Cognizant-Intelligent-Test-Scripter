@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Command Line Interface - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Command Line Interface";
+        var mkdocs_page_input_path = "cli.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Command Line Interface</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Command Line Interface</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="command-line-interface"><strong>Command Line Interface</strong></h1>
+<hr />
+<p>The tool has a rich set of command line options for execution with parameters, retrieving execution details, setting variables, change settings etc.</p>
+<table>
+<thead>
+<tr>
+<th><div style="color:Green;width:100px">Options</div></th>
+<th><div style="color:Brown;width:400px">Output</div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-v</code>,<code>--version</code></td>
+<td>Display current build details</td>
+</tr>
+<tr>
+<td><code>-run</code></td>
+<td>Run with the given details</td>
+</tr>
+<tr>
+<td><code>-rerun</code></td>
+<td>Rerun the last execution</td>
+</tr>
+<tr>
+<td><code>-project_location</code> <arg></td>
+<td>Project Location for Execution</td>
+</tr>
+<tr>
+<td><code>-scenario</code> <arg></td>
+<td>Scenario Name</td>
+</tr>
+<tr>
+<td><code>-testcase</code> <arg></td>
+<td>Testcase Name</td>
+</tr>
+<tr>
+<td><code>-browser</code> <arg></td>
+<td>Browser Name (Not applicable for Testset Execution)</td>
+</tr>
+<tr>
+<td><code>-release</code> <arg></td>
+<td>Release Name</td>
+</tr>
+<tr>
+<td><code>-testset</code> <arg></td>
+<td>Testset Name</td>
+</tr>
+<tr>
+<td><code>-tags</code> <arg></td>
+<td>Tags of Test Cases to be exceuted</td>
+</tr>
+<tr>
+<td><code>-bDate</code></td>
+<td>Display current build date</td>
+</tr>
+<tr>
+<td><code>-bTime</code></td>
+<td>Display current build time</td>
+</tr>
+<tr>
+<td><code>-bVersion</code></td>
+<td>Display current build version</td>
+</tr>
+<tr>
+<td><code>-dont_launch_report</code></td>
+<td>Disables launching summary report after execution</td>
+</tr>
+<tr>
+<td><code>-help</code></td>
+<td>Help</td>
+</tr>
+<tr>
+<td><code>-hi</code></td>
+<td>Says Hello!</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>Display Current Time</td>
+</tr>
+<tr>
+<td><code>-latest_exe</code> <arg></td>
+<td>Returns the given property value for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_loc</code></td>
+<td>Returns the results folder for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_status</code></td>
+<td>Returns the status for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_data_loc</code></td>
+<td>Returns the Report data location for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_data_raw</code></td>
+<td>Returns the Report data for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_log_loc</code></td>
+<td>Returns the log file location for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_log_raw</code></td>
+<td>Returns the log file for the latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_perf_status</code> <arg></td>
+<td>Returns the page load performance results for latest execution</td>
+</tr>
+<tr>
+<td><code>-latest_exe_perf_report</code> <arg></td>
+<td>Returns the page load performance report for latest execution</td>
+</tr>
+<tr>
+<td><code>-checkPagePerf</code> <arg></td>
+<td>Returns the page load performance results after Run</td>
+</tr>
+<tr>
+<td><code>-setVar</code> <arg></td>
+<td>Create/Set user defined variable <code>[-setVar "var=value"]</code></td>
+</tr>
+<tr>
+<td><code>-setEnv</code> <arg></td>
+<td>Create/Set Env settings <override></td>
+</tr>
+<tr>
+<td><code>-standalone_report</code></td>
+<td>Create Standalone Report instead of Relative one</td>
+</tr>
+</tbody>
+</table>
+<p>The examples below are shown with <strong><code>Run.bat</code></strong>, but same set of <code>cli</code> options are available for <strong><code>Run.command</code></strong> to be used in Linux or MAC.</p>
+<ul>
+<li><strong>Single Test Case Execution</strong></li>
+</ul>
+<pre><code class="language-shell">Run.bat -run -project_location &quot;Projects\Demo&quot; -scenario &quot;NewScenario&quot; -testcase &quot;NewTestCase&quot; -browser &quot;Chrome&quot;
+</code></pre>
+<ul>
+<li><strong>Test Set Execution</strong></li>
+</ul>
+<pre><code class="language-shell">Run.bat -run -project_location &quot;Projects\Demo&quot; -release &quot;NewRelease&quot; -testset &quot;NewTestSet&quot;
+</code></pre>
+<ul>
+<li><strong>Test Set Execution with specific tags</strong></li>
+</ul>
+<pre><code class="language-shell">Run.bat -run -project_location &quot;Projects\Demo&quot; -release &quot;NewRelease&quot; -testset &quot;NewTestSet&quot; -tags &quot;@Smoke&quot;
+</code></pre>
+<ul>
+<li><strong>Test Set Execution with Updated Environment Settings</strong></li>
+</ul>
+<pre><code class="language-shell">Run.bat -run -project_location &quot;Projects\Demo&quot; -release &quot;NewRelease&quot; -testset &quot;NewTestSet&quot; -setEnv &quot;run.TestEnv=Acceptance&quot;
+</code></pre>
+<p>In the above example, the test set will be forced to be executed on <code>Acceptance</code> Environment</p>
+<p><strong><code>-setEnv</code></strong> is a very powerful command to override all the environment settings and userdefined variables.
+This can override the values in all of these settings :</p>
+<p><img alt="settings" src="../img/cli/3.JPG" title="settings" /></p>
+<p>Lets look at the <code>Run Settings</code> for a Test Set. If we enter into the project location and navigate to the following location :</p>
+<p><code>Settings\TestExecution\</code>&lt;<code>ReleaseName</code>&gt;<code>\</code>&lt;<code>TestSetName</code>&gt; </p>
+<p>We will find the <code>RunSettings.Properties</code> and the <code>TestMgmtSettings.Properties</code> files.</p>
+<p>The <code>RunSettings.Properties</code> holds all the corresponding settings that we enter via the UI of the tool.</p>
+<p><img alt="runsettings" src="../img/cli/1.JPG" title="runsettings" /></p>
+<p>Any of these properties can be overriden by <strong><code>-setEnv</code></strong>. </p>
+<p>For Example: <code>-setEnv "run.TakeFullPageScreenShot=False"</code></p>
+<p>Similarly, if we go to the <strong>project location</strong> and navigate to <code>Settings\</code> directory, the <code>userDefinedSettings.Properties</code> holds all the corresponding data that we enter via the UI of the tool.</p>
+<p><img alt="usersettings" src="../img/cli/2.JPG" title="usersettings" /></p>
+<p>We can use by <strong><code>-setEnv</code></strong> to override these values too.</p>
+<p>For Example: <code>-setEnv "user.Key1=NewValue1"</code></p>
+<p>For the following settings, <strong><code>-setEnv</code></strong> can be used as follows :
+|Settings|option|
+|--------|-------|
+|Global settings| -setEnv "<code>exe</code>.SettingName=Value"|
+Run Settings | -setEnv "<code>run</code>.SettingName=Value"|
+User Defined Settings | -setEnv "<code>user</code>.SettingName=Value"|
+Driver Settings | -setEnv "<code>driver</code>.SettingName=Value"|
+Test Management Settings | -setEnv "<code>tm</code>.SettingName=Value"|</p>
+<p>Multiple settings can be altered via a single command as well :</p>
+<pre><code class="language-shell">-setEnv &quot;run.var=value;exe.var=value;user.var=value&quot;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../customfunction/" class="btn btn-neutral float-left" title="Customization & Source Code Maintenance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bdd/" class="btn btn-neutral float-right" title="Behavior Driven Development">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../customfunction/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../bdd/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

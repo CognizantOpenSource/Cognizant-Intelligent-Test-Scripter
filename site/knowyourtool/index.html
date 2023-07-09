@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Know the Tool - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Know the Tool";
+        var mkdocs_page_input_path = "knowyourtool.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Know the Tool</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#menu-ribbon">Menu Ribbon</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-tools">1. Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-execution">2. Execution</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-test-data">4. Test Data</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#set-up-multiple-environments">Set up Multiple Environments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-object-repository">5. Object Repository</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-execution-pane">Test Execution Pane</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashboard-pane">Dashboard Pane</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Know the Tool</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="know-the-tool"><strong>Know The Tool</strong></h1>
+<hr />
+<h2 id="menu-ribbon">Menu Ribbon</h2>
+<h3 id="1-tools"><strong>1. Tools</strong></h3>
+<p><img alt="tools" src="../img/toolui/01.png" title="tools" /></p>
+<h3 id="2-execution"><strong>2. Execution</strong></h3>
+<p><img alt="execution" src="../img/toolui/2.JPG" title="execution" /></p>
+<hr />
+<p>## Test Design Pane</p>
+<p>This is where the test cases are designed and debugged. On opening the tool, the user by default lands on this pane.</p>
+<p><img alt="design" src="../img/toolui/design.JPG" title="design" /></p>
+<p><strong>The Design Pane is composed of the following 5 components :</strong></p>
+<p>### <strong>1. Test Plan</strong></p>
+<p>This where the Test Scenarios and Test Cases are created and organized.
+ Every <code>Scenario</code> in the tool's UI , is a <code>Directory</code> in the backend and every <code>Test case</code> is a <code>.csv</code> file.</p>
+<p>To see this, you can navigate to the location of your tool, then <code>Projects</code> &gt;&gt; <code>Your Project</code> &gt;&gt; <code>Test Plan</code></p>
+<p><img alt="testplan1" src="../img/toolui/TestPlan1.JPG" title="testplan1" /></p>
+<p>If you select a Scenario or Test Case and <strong>Right Click</strong>, you will have some interesting and handy options to work with :</p>
+<p><img alt="testplan2" src="../img/toolui/TestPlan2.JPG" title="testplan2" /></p>
+<hr />
+<p>### <strong>2. Reusable Components</strong></p>
+<p>This where the <strong>Reusable</strong> Test Scenarios and Test Cases (<strong>logical grouping of test steps</strong>) are created and organized. Every <code>Scenario</code> in the tool's UI , is a <code>Directory</code> in the backend and every <code>Test case</code> is a <code>.csv</code> file.</p>
+<p>To see this, you can navigate to the location of your tool, then <code>Projects</code> &gt;&gt; <code>Your Project</code> &gt;&gt; <code>Test Plan</code></p>
+<p><img alt="reusables" src="../img/toolui/Reusables.JPG" title="reusables" /></p>
+<p>What differentiates the Scenarios and Test Cases in the Test Plan compared to those in the Reusable Component is the purpose :
+ * <strong>Test Plan</strong> is supposed contain Functional/Regression/E2E/Business Test Cases
+ * <strong>Reusable Component</strong> is supposed contain logical test step groupings, to be used in multiple test cases in the test plan.</p>
+<p>The tool makes use of the <strong><code>ReusableComponent.xml</code></strong> located in the Project Location, to differentiate between the above 2 type :</p>
+<p>Here is the <code>ReusableComponent.xml</code> for the above example :</p>
+<p>```xml
+<Root ref="Example" type="RC">
+    <Folder ref="UI">
+        <Scenario ref="Common">
+            <TestCase exeType="Executable" ref="Login"/>
+        </Scenario>
+        <Scenario ref="Purchase">
+            <TestCase exeType="Executable" ref="Add to Cart"/>
+            <TestCase exeType="Executable" ref="Checkout"/>
+            <TestCase exeType="Executable" ref="Logout"/>
+        </Scenario>
+    </Folder>
+</Root></p>
+<p>```</p>
+<p>If you select a Reusable Scenario or Reusable Test Case and <strong>Right Click</strong>, you will have some interesting and handy options to work with :</p>
+<p><img alt="reusable1" src="../img/toolui/Reusables2.JPG" title="reusables1" /></p>
+<hr />
+<p>### <strong>3. Test Steps</strong></p>
+<p>This is the canvas where you have your test steps in sequential order</p>
+<p><img alt="steps1" src="../img/toolui/TestSteps1.JPG" title="steps1" /></p>
+<p>To make working simple, intuitive and easy, you can also use the <strong>drag and drop</strong> to create test steps.</p>
+<p>In the following example, we can create the <em>Checkout</em> Reusable simply by <strong>dragging and dropping the objects</strong> from the Object Repository and parameterizing them by <strong>dragging and dropping the datasheet columns</strong></p>
+<p><img alt="drag_drop1" src="../img/toolui/draganddrop1.gif" title="drag_drop1" />
+  <span style="color:Red"><em>The above image is a gif. So if its not moving, please reload the page</em></span></p>
+<p>As a best practice, it is advisable to compose your test case <strong>only with Reusables</strong> and not have any loose (orphan) steps.</p>
+<p>You can also drag and drop the Reusables to create test cases like this :</p>
+<p><img alt="drag_drop2" src="../img/toolui/draganddrop2.gif" title="drag_drop2" />
+  <span style="color:Red"><em>The above image is a gif. So if its not moving, please reload the page</em></span></p>
+<hr />
+<h3 id="4-test-data"><strong>4. Test Data</strong></h3>
+<p>This is the area where you can set up your test data in multiple sheets.</p>
+<p><img alt="data1" src="../img/toolui/Data1.JPG" title="data1" /></p>
+<h4 id="set-up-multiple-environments">Set up Multiple Environments</h4>
+<p>To set up environment based execution, you can set up mutiple environments following the 5 steps as below :</p>
+<p><img alt="data2" src="../img/toolui/data2.JPG" title="data2" /></p>
+<ul>
+<li><strong>Step 1</strong> : From <strong>Test Data</strong> &gt;&gt; Make sure <strong>Multiple Environments</strong> is selected</li>
+<li><strong>Step 2</strong> : Click the <strong>[+]</strong> icon in the Data Section, to add a new Environment</li>
+<li><strong>Step 3</strong> : Enter the [Environment] Name</li>
+<li><strong>Step 4</strong> : Check <strong>[Copy Data from Other Environments]</strong></li>
+<li><strong>Step 5</strong> : Select the Environment and the corresponding Data sheets to be copied and then click <strong>[Create] Button</strong></li>
+</ul>
+<hr />
+<p>If you select a data cell and <strong>Right Click</strong>, you will have some interesting and handy options to work with :</p>
+<p><img alt="data3" src="../img/toolui/data3.JPG" title="data3" /></p>
+<hr />
+<h3 id="5-object-repository"><strong>5. Object Repository</strong></h3>
+<p>This is the area where the Web Elements/Objects are present along with the multiple attributes/properties to be used to find that element on the Application.</p>
+<pre><code>If any of the properties gets changed or updated in the application, the tool will try 
+to use the next property in the list to identify and loop through the entire list, till 
+it finds a unique match.
+</code></pre>
+<p><img alt="or1" src="../img/toolui/OR1.JPG" title="or1" /></p>
+<p>If you select a Property and <strong>Right Click</strong>, you will have some interesting and handy options to work with. These options are applicable to used for :</p>
+<ul>
+<li>Selected Object</li>
+<li>All objects in the Page</li>
+<li>All Objects in the OR </li>
+</ul>
+<p><img alt="or2" src="../img/toolui/OR2.JPG" title="or2" /></p>
+<hr />
+<h2 id="test-execution-pane">Test Execution Pane</h2>
+<p><img alt="nav1" src="../img/toolui/NavigateToExecute.JPG" title="nav1" /></p>
+<p>In this pane we can club our test cases together into logical <em>test sets</em> or <em>test suites</em> and execute them - Either locally or via a CICD pipeline.</p>
+<p><img alt="execution" src="../img/toolui/execution.JPG" title="execution" /></p>
+<ul>
+<li><strong>Step 1</strong> : Right Click on the Project Name &gt;&gt; <strong>Add Release</strong> &gt;&gt; Right Click on the Release Name &gt;&gt; <strong>Add TestSet</strong></li>
+<li><strong>Step 2</strong> : Select the test cases that you want to add to the set. You can do individual selections or bulk selection by simply selecting the entire Scenario. Once selected, click on the <span style="color:Green"><strong>Green &lt;--- Arrow</strong></span> to pull your selections into the set.</li>
+<li><strong>Step 3</strong> : Order the Test Cases in the sequence of your choice. Choose the appropriate Browsers.</li>
+<li><strong>Step 4</strong> : Click on the <strong>gear icon</strong> and open up the <strong>Run Settings</strong>. Here you can configure many settings like :<ul>
+<li>Parallel Thread count</li>
+<li>Execution Mode as Grid or Local</li>
+<li>Which Environment to pick for execution</li>
+</ul>
+</li>
+</ul>
+<p>Once done, we are good to start our execution by clicking on the <span style="color:Green"><strong>Green Play/Run button</strong></span></p>
+<hr />
+<h2 id="dashboard-pane">Dashboard Pane</h2>
+<p><img alt="nav2" src="../img/toolui/NavigateToDashboard.JPG" title="nav2" /></p>
+<p>In this pane we can view the detailed summary report and even access historical individual reports.</p>
+<p>The <strong>Detailed Summary Report</strong> tab looks like this :</p>
+<p><img alt="dashboard1" src="../img/toolui/Dashboard1.JPG" title="dashboard1" /></p>
+<p>The <strong>Latest Summary Report</strong> tab looks like this :</p>
+<p><img alt="dashboard2" src="../img/toolui/Dashboard2.JPG" title="dashboard2" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../gettingstarted/" class="btn btn-neutral float-left" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../browsertesting/" class="btn btn-neutral float-right" title="Browser Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../gettingstarted/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../browsertesting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

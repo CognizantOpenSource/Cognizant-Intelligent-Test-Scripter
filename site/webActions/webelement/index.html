@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Web Element Actions - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Web Element Actions";
+        var mkdocs_page_input_path = "webActions\\webelement.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Web Element Actions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="web-element-actions">Web Element Actions</h1>
+<hr />
+<h2 id="set"><strong>Set</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>enter data</strong> in an <code>input</code> type object.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>Set</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>Set</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>Set</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Enter the value [&lt;Data&gt;] in the Field [&lt;Object&gt;]&quot;, input = InputType.YES)
+    public void Set() {
+        if (elementEnabled()) {
+            Element.clear();
+            Element.sendKeys(Data);
+            Report.updateTestLog(Action, &quot;Entered Text '&quot; + Data + &quot;' on '&quot; + ObjectName + &quot;'&quot;, Status.DONE);
+        } else {
+            throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setifexists"><strong>SetIfExists</strong></h2>
+<p><strong>Description</strong>: This function will check if an element <strong>exists</strong>. If the element exists, data will be <code>set</code> for that element else that step will be ignored.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>SetIfExists</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>SetIfExists</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>SetIfExists</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Enter the value [&lt;Data&gt;] in the [&lt;Object&gt;] if it exists&quot;, input = InputType.YES)
+    public void SetIfExists() {
+        if (Element != null) {
+            Set();
+        } else {
+            Report.updateTestLog(Action, &quot;Element [&quot; + ObjectName + &quot;] not Exists&quot;, Status.DONE);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setandcheck"><strong>setAndCheck</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>enter data</strong> in object and check if the <strong>element's value matches with the entered value.</strong></p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>SetAndCheck</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>SetAndCheck</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>SetAndCheck</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Enter the value [&lt;Data&gt;] in the Field [&lt;Object&gt;] and check [&lt;Data&gt;] matches with [&lt;Object&gt;] value&quot;, input = InputType.YES)
+    public void SetAndCheck() {
+        if (elementEnabled()) {
+            Element.clear();
+            Element.sendKeys(Data);
+            if (Element.getAttribute(&quot;value&quot;).equals(Data)) {
+                Report.updateTestLog(&quot;Set&quot;, &quot;Entered Text '&quot; + Data + &quot;' on '&quot;
+                        + ObjectName + &quot;'&quot;, Status.DONE);
+            } else {
+                Report.updateTestLog(&quot;Set&quot;, &quot;Unable Enter Text '&quot; + Data
+                        + &quot;' on '&quot; + ObjectName + &quot;'&quot;, Status.FAIL);
+            }
+        } else {
+            throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setencrypted"><strong>setEncrypted</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>enter encrypted data</strong> to an object</p>
+<p><strong>Input Format</strong> : @Encrypted text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>setEncrypted</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setEncrypted</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: If the data is passed from a data sheet, the data in the datasheet should be <code>encrypted</code>. To manually encrypt a data, select the data cell, <strong>right click and select Encrypt</strong></p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Enter the Decrypted value [&lt;Data&gt;] in the Field [&lt;Object&gt;]&quot;, input = InputType.YES)
+    public void setEncrypted() {
+        if (Data != null &amp;&amp; Data.matches(&quot;.* Enc&quot;)) {
+            if (elementEnabled()) {
+                try {
+                    Element.clear();
+                    Data = Data.substring(0, Data.lastIndexOf(&quot; Enc&quot;));
+                    byte[] valueDecoded = Encryption.getInstance().decrypt(Data).getBytes();
+                    Element.sendKeys(new String(valueDecoded));
+                    Report.updateTestLog(Action, &quot;Entered Encrypted Text &quot; + Data + &quot; on &quot; + ObjectName, Status.DONE);
+                } catch (Exception ex) {
+                    Report.updateTestLog(&quot;setEncrypted&quot;, ex.getMessage(), Status.FAIL);
+                    Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Data not encrypted '&quot; + Data + &quot;'&quot;, Status.DEBUG);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="setinputbylabel"><strong>setInputByLabel</strong></h2>
+<p><strong>Description</strong>: This function is used to <strong>enter data</strong> in an <code>input</code> type object which is adjacent to the provided <code>label</code> type element.</p>
+<p><strong>Input Format</strong> : @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code> object</td>
+<td><em>setInputByLabel</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td><code>label</code> object</td>
+<td><em>setInputByLabel</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td><code>label</code> object</td>
+<td><em>setInputByLabel</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java"> @Action(object = ObjectType.SELENIUM, 
+            desc =&quot;Set the data [&lt;Data&gt;] to an input element that is adjacent to the provided label element [&lt;Object&gt;]&quot;, 
+            input =InputType.YES)
+    public void setInputByLabel() {
+        cc.Element = findInputElementByLabelTextByXpath();
+        new Basic(cc).Set();
+    }
+</code></pre>
+<hr />
+<h2 id="setbyjs"><strong>setByJS</strong></h2>
+<p><strong>Description</strong>:  This function is used to <strong>enter data</strong> in an <code>input</code> type object using <code>JavaScript</code>. This is useful when selenium functions do not work.</p>
+<p><strong>Input Format</strong> : @Expected data</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>setByJS</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setByJS</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setByJS</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java"> @Action(object = ObjectType.SELENIUM, desc = &quot;Set [&lt;Data&gt;] on [&lt;Object&gt;]&quot;, input = InputType.YES)
+    public void setByJS() {
+        if (elementPresent()) {
+            try {
+                JavascriptExecutor js = (JavascriptExecutor) Driver;
+                js.executeScript(&quot;arguments[0].value='&quot; + Data + &quot;'&quot;, Element);
+                Report.updateTestLog(Action, &quot;Entered Text '&quot; + Data + &quot;' on '&quot; + ObjectName + &quot;'&quot;, Status.DONE);
+            } catch (Exception ex) {
+                Logger.getLogger(JSCommands.class.getName()).log(Level.SEVERE, null, ex);
+                Report.updateTestLog(Action, &quot;Couldn't set value on &quot; + ObjectName + &quot; - Exception &quot; + ex.getMessage(),
+                        Status.FAIL);
+            }
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, ObjectName);
+        }
+    }
+
+</code></pre>
+<hr />
+<h2 id="setencryptedbyjs"><strong>setEncryptedByJS</strong></h2>
+<p><strong>Description</strong>:  This function is used to <strong>enter encrypted data</strong> to an object using <code>JavaScript</code>. This is useful when selenium functions do not work.</p>
+<p><strong>Input Format</strong> : @Expected encrypted data</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>setEncryptedByJS</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>setEncryptedByJS</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java"> @Action(object = ObjectType.SELENIUM, desc = &quot;Set encrypted data on [&lt;Object&gt;]&quot;, input=InputType.YES)
+    public void setEncryptedByJS() {
+        if (Data != null &amp;&amp; Data.matches(&quot;.* Enc&quot;)) {
+            if (elementEnabled()) {
+                try {
+                    Data = Data.substring(0, Data.lastIndexOf(&quot; Enc&quot;));
+                    byte[] valueDecoded = Encryption.getInstance().decrypt(Data).getBytes();
+                    JavascriptExecutor js = (JavascriptExecutor) Driver;
+                    js.executeScript(&quot;arguments[0].value='&quot; + new String(valueDecoded) + &quot;'&quot;, Element);
+                    Report.updateTestLog(Action, &quot;Entered Text '&quot; + Data + &quot;' on '&quot; + ObjectName + &quot;'&quot;, Status.DONE);
+                } catch (Exception ex) {
+                    Report.updateTestLog(Action, ex.getMessage(), Status.FAIL);
+                    Logger.getLogger(JSCommands.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                throw new ElementException(ElementException.ExceptionType.Element_Not_Enabled, ObjectName);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Data not encrypted '&quot; + Data + &quot;'&quot;, Status.DEBUG);
+        }
+    }
+
+</code></pre>
+<hr />
+<h2 id="click"><strong>Click</strong></h2>
+<p><strong>Description</strong>: This function is used to perform <code>click</code> operation on a Web Element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>Click</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click the [&lt;Object&gt;] &quot;)
+    public void Click() {
+        if (elementEnabled()) {
+            Element.click();
+            Report.updateTestLog(Action, &quot;Clicking on &quot; + ObjectName, Status.DONE);
+        } else {
+            throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="clickifexists"><strong>clickIfExists</strong></h2>
+<p><strong>Description</strong>:  This function is used to perform <code>click</code> operation on a Web Element if the element exists in the DOM. If it does not exist, the step will be ignored.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>clickIfExists</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click the [&lt;Object&gt;] if it exists&quot;)
+    public void ClickIfExists() {
+        if (Element != null) {
+            Click();
+        } else {
+            Report.updateTestLog(Action, &quot;Element [&quot; + ObjectName + &quot;] not Exists&quot;, Status.DONE);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="clickifvisible"><strong>ClickIfVisible</strong></h2>
+<p><strong>Description</strong>:  This function is used to perform <code>click</code> operation on a Web Element if the element is visible on the page. If it is not visible, the step will be ignored.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>ClickIfVisible</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click the [&lt;Object&gt;] if it is displayed&quot;)
+    public void ClickIfVisible() {
+        if (Element != null) {
+            if (Element.isDisplayed()) {
+                Click();
+            } else {
+                Report.updateTestLog(Action, &quot;Element [&quot; + ObjectName + &quot;] not Visible&quot;, Status.DONE);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Element [&quot; + ObjectName + &quot;] not Exists&quot;, Status.DONE);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="clickinputbylabel"><strong>clickInputByLabel</strong></h2>
+<p><strong>Description</strong>: This function will <code>click</code> an <code>input</code> type element that is adjacent to the provided <code>label</code> type element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code> object</td>
+<td><em>clickInputByLabel</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, 
+            desc =&quot;Click on an element whose label is provided in the [&lt;Object&gt;]&quot;
+            )
+    public void clickInputByLabel() {
+        cc.Element = findInputElementByLabelTextByXpath();
+        new Basic(cc).Click();
+    }
+</code></pre>
+<hr />
+<h2 id="clickinputbytext"><strong>clickInputByText</strong></h2>
+<p><strong>Description</strong>: This function will <code>click</code> an input element that is adjacent to the provided text </p>
+<p><strong>Input Format</strong> : @Label of the element</p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>clickInputByText</em></td>
+<td>@value</td>
+<td></td>
+<td></td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>clickInputByText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td></td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Browser</td>
+<td><em>clickInputByText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td></td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, 
+            desc =&quot;click on the element whose label is provided in the [&lt;Input&gt;]&quot;, 
+            input =InputType.YES)
+    public void clickInputByText() {
+        cc.Element = findInputElementByLabelTextByXpath(Data);
+        new Basic(cc).Click();
+    }
+</code></pre>
+<hr />
+<h2 id="clickandwait"><strong>clickAndWait</strong></h2>
+<p><strong>Description</strong>: This function is used to <code>click</code> and <strong>wait for the page to be loaded.</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>clickAndWait</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click the [&lt;Object&gt;] and Wait for Page to be loaded&quot;, condition = InputType.OPTIONAL)
+    public void clickAndWait() {
+        if (Element != null) {
+            Element.click();
+            waitForPageLoaded();
+            Report.updateTestLog(Action, &quot;Click and wait for page load is done&quot;,
+                    Status.DONE);
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, Condition);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="clickbyjs"><strong>clickByJS</strong></h2>
+<p><strong>Description</strong>:  This function will use <code>JavaScript</code> to <code>click</code> an object. This is useful when selenium functions do not work.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>clickByJS</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click on [&lt;Object&gt;]&quot;)
+    public void clickByJS() {
+        if (elementPresent()) {
+            try {
+                JavascriptExecutor js = (JavascriptExecutor) Driver;
+                js.executeScript(&quot;arguments[0].click();&quot;, Element);
+                Report.updateTestLog(Action, &quot;Clicked on &quot; + ObjectName, Status.DONE);
+            } catch (Exception ex) {
+                Logger.getLogger(JSCommands.class.getName()).log(Level.SEVERE, null, ex);
+                Report.updateTestLog(Action, &quot;Couldn't click on &quot; + ObjectName + &quot; - Exception &quot; + ex.getMessage(),
+                        Status.FAIL);
+            }
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="clickandholdelement"><strong>clickAndHoldElement</strong></h2>
+<p><strong>Description</strong>:  This function is used to <code>click and hold</code> an object. </p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>clickAndHoldElement</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Click and hold the [&lt;Object&gt;] element &quot;)
+    public void clickAndHoldElement() {
+        if (elementEnabled()) {
+            new Actions(Driver).clickAndHold(Element).build().perform();
+            Report.updateTestLog(Action, &quot;Click and hold done&quot;, Status.DONE);
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="releaseelement"><strong>releaseElement</strong></h2>
+<p><strong>Description</strong>:  This function is used to release the element held by <strong>clickAndHoldElement</strong></p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>releaseElement</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM,
+            desc = &quot;Release the dragged element over the [&lt;Object&gt;] element &quot;)
+    public void releaseElement() {
+        if (elementEnabled()) {
+            new Actions(Driver).release(Element).build().perform();
+            Report.updateTestLog(Action, &quot;releaseElement action is done&quot;, Status.DONE);
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="rightclick"><strong>rightClick</strong></h2>
+<p><strong>Description</strong>: This function is used to perform <code>right click</code> operation on an object or in the browser.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>rightClick</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(desc = &quot;To Perform Right Click action on WebPage/Element&quot;)
+    public void rightClick() {
+        String desc = &quot;Right click action performed on &quot;;
+        Actions action = new Actions(Driver);
+        if (Element != null) {
+            action.contextClick(Element).build().perform();
+            desc += &quot;Element - &quot; + ObjectName;
+        } else {
+            action.contextClick().build().perform();
+            desc += &quot;Webpage&quot;;
+        }
+        Report.updateTestLog(Action, desc, Status.DONE);
+    }
+</code></pre>
+<hr />
+<h2 id="doubleclickelement"><strong>doubleClickElement</strong></h2>
+<p><strong>Description</strong>: This function will perform <code>double-click</code> on an object.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>doubleClickElement</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Double click [&lt;Object&gt;] element&quot;)
+    public void doubleClickElement() {
+        if (elementEnabled()) {
+            new Actions(Driver).doubleClick(Element).build().perform();
+            Report.updateTestLog(&quot;doubleClickElement&quot;, &quot;'&quot; + Element
+                    + &quot;' is doubleClicked&quot;, Status.DONE);
+        } else {
+            throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="submit"><strong>submit</strong></h2>
+<p><strong>Description</strong>:  This function will perform <code>submit</code> action on an element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>submit</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Submit action on the browser&quot;)
+    public void Submit() {
+        if (elementEnabled()) {
+            Element.submit();
+            Report.updateTestLog(Action, &quot;[&quot; + ObjectName + &quot;] Submitted successfully &quot;, Status.DONE);
+
+        } else {
+            throw new ElementException(ExceptionType.Element_Not_Enabled, ObjectName);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="submitifexists"><strong>SubmitIfExists</strong></h2>
+<p><strong>Description</strong>:  This function will perform <code>submit</code> action on an element only if it exists in the DOM, else the step will be ignored.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>SubmitIfExists</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Submit the [&lt;Object&gt;] if it exists&quot;)
+    public void SubmitIfExists() {
+        if (Element != null) {
+            Submit();
+        } else {
+            Report.updateTestLog(Action, &quot;Element [&quot; + ObjectName + &quot;] not Exists&quot;, Status.DONE);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="submitinputbylabel"><strong>submitInputByLabel</strong></h2>
+<p><strong>Description</strong>: This function will perform <code>submit</code> action on an <code>input</code> element adjacent to the provided <code>label</code> element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code> object</td>
+<td><em>submitInputByLabel</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc =&quot;Submit input element adjacent to the provided label element [&lt;Object&gt;]&quot;)
+    public void submitInputByLabel() {
+        cc.Element = findInputElementByLabelTextByXpath();
+        new Basic(cc).Submit();
+    }
+</code></pre>
+<hr />
+<h2 id="check"><strong>check</strong></h2>
+<p><strong>Description</strong>:  This function will <code>check</code> the specified <strong>Checkbox</strong> element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>check</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Check the [&lt;Object&gt;] element&quot;)
+    public void check() {
+        if (Element != null) {
+            if (Element.isEnabled()) {
+                if (!Element.isSelected()) {
+                    Element.click();
+                }
+                if (Element.isSelected()) {
+                    Report.updateTestLog(&quot;check&quot;, &quot;Checkbox '&quot; + Element+ &quot;'  has been selected/checked successfully&quot;,Status.DONE);
+                } else {
+                    Report.updateTestLog(&quot;check&quot;, &quot;Checkbox '&quot; + Element+ &quot;' couldn't be selected/checked&quot;, Status.FAIL);
+                }
+            } else {
+                Report.updateTestLog(&quot;check&quot;, &quot;Checkbox '&quot; + Element+ &quot;' is not enabled&quot;, Status.FAIL);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Object [&quot; + ObjectName + &quot;] not found&quot;, Status.FAIL);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="checkallcheckboxes"><strong>checkAllCheckBoxes</strong></h2>
+<p><strong>Description</strong>:  This function will <code>check</code> <strong>all the checkboxes</strong> on a page.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td><em>checkAllCheckBoxes</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.BROWSER, desc = &quot;Check all the check boxes in the context&quot;)
+    public void checkAllCheckBoxes() {
+        try {
+            List&lt;WebElement&gt; checkboxes = Driver.findElements(By.cssSelector(&quot;input[type=checkbox]&quot;));
+            if (checkboxes.isEmpty()) {
+                Report.updateTestLog(Action, &quot;No Checkbox present in the page&quot;, Status.WARNING);
+            } else {
+                for (WebElement checkbox : checkboxes) {
+                    if (checkbox.isDisplayed() &amp;&amp; !checkbox.isSelected()) {
+                        checkbox.click();
+                    }
+                }
+                Report.updateTestLog(Action, &quot;All checkboxes are checked&quot;, Status.PASS);
+            }
+        } catch (Exception ex) {
+            Report.updateTestLog(Action, &quot;Error while checking checkboxes - &quot; + ex, Status.FAIL);
+            Logger.getLogger(CheckBox.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+</code></pre>
+<hr />
+<h2 id="uncheck"><strong>uncheck</strong></h2>
+<p><strong>Description</strong>:  This function will <code>uncheck</code> the specified <strong>Checkbox</strong>.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>uncheck</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.WEB, desc = &quot;Uncheck the [&lt;Object&gt;] element&quot;)
+    public void uncheck() {
+        if (Element != null) {
+            if (Element.isEnabled()) {
+                if (Element.isSelected()) {
+                    Element.click();
+                }
+                if (!Element.isSelected()) {
+                    Report.updateTestLog(&quot;uncheck&quot;, &quot;Checkbox '&quot; + Element+ &quot;'  has been un-checked successfully&quot;,Status.DONE);
+                } else {
+                    Report.updateTestLog(&quot;uncheck&quot;, &quot;Checkbox '&quot; + Element+ &quot;' couldn't be un-checked&quot;, Status.FAIL);
+                }
+            } else {
+                Report.updateTestLog(&quot;uncheck&quot;, &quot;Checkbox '&quot; + Element+ &quot;' is not enabled&quot;, Status.FAIL);
+            }
+        } else {
+            Report.updateTestLog(Action, &quot;Object[&quot; + ObjectName + &quot;] not found&quot;, Status.FAIL);
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

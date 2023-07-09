@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Azure Deveops Integration - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Azure Deveops Integration";
+        var mkdocs_page_input_path = "azure.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Azure Deveops Integration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#azure-devops-repository">Azure DevOps Repository</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-way-libraries-pushed-to-azure-repository">Simple way - Libraries pushed to Azure Repository.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-way-libraries-pushed-to-azure-artifactsrecommended">Advanced way - Libraries pushed to Azure Artifacts.[Recommended]</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azure-devops-pipeline">Azure DevOps Pipeline</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-way-libraries-pulled-in-from-azure-repository">Simple way - Libraries pulled in from Azure Repository.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-way-libraries-pulled-in-from-azure-artifactsrecommended">Advanced way - Libraries pulled in from Azure Artifacts.[Recommended]</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-results">Test Results</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pipeline-analytics">Pipeline Analytics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azuredevops-test-plan">AzureDevOps Test Plan</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Azure Deveops Integration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="azure-devops-integration"><strong>Azure DevOps Integration</strong></h1>
+<hr />
+<p>Integration with Azure DevOps involves the following points :</p>
+<ul>
+<li><strong>Check-in the tests into Azure Repository</strong>. Here we need to understand which are the files that need to go into Azure Repo.</li>
+<li>Execution of tests via <strong>Azure DevOps Pipeline</strong>.</li>
+<li>Viewing of <strong>Test Results</strong> (Pass, Fail, Logs, Screenshots etc.) in Azure DevOps itself</li>
+<li><strong>Analysis</strong> of Historical Results via Azure Analytics</li>
+<li>Feed test results automatically to <strong>Azure DevOps Test Plans</strong> [Optional]</li>
+</ul>
+<p><img alt="azdo1" src="../img/azdo/1.png" title="azdo1" /></p>
+<hr />
+<h2 id="azure-devops-repository"><strong>Azure DevOps Repository</strong></h2>
+<h3 id="simple-way-libraries-pushed-to-azure-repository">Simple way - Libraries pushed to Azure Repository.</h3>
+<p>The <code>.gitignore</code> file content should be as shown below. Every other file should be pushed to the Repository.</p>
+<pre><code>LICENSE
+Extensions/
+GridNode/
+Jenkins/
+logs/
+Projects/*/Results/*/
+Projects/*/*/Results/*/
+web/
+recent.items
+log.txt
+Tools/
+</code></pre>
+<h3 id="advanced-way-libraries-pushed-to-azure-artifactsrecommended">Advanced way - Libraries pushed to Azure Artifacts.[Recommended]</h3>
+<p>The <code>lib</code> and the <code>*.jar</code> are the 2 additions in this case. These <code>jars</code> should be pushed to Azure Artifacts instead of Repositories.</p>
+<pre><code class="language-gitignore">LICENSE
+Extensions/
+GridNode/
+Jenkins/
+logs/
+Projects/*/Results/*/
+Projects/*/*/Results/*/
+web/
+recent.items
+log.txt
+MT_Messages/
+Tools/
+lib/
+*.jar
+</code></pre>
+<p><strong>Steps to publish artifact from working location to Azure Artifacts:</strong></p>
+<ul>
+<li>Create a zip of the <code>lib</code> folder.</li>
+<li>Generate a PAT from Azure DevOps Portal following <a href="https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;tabs=Windows">this.</a> If you already have a PAT, you can reuse it.</li>
+<li>Open <code>cmd</code> terminal and execute the following commands :</li>
+</ul>
+<p><code>shell
+  SET AZDO_ARTIFACTTOOL_PAT=&lt;Your Personal Access Token&gt;
+  &lt;Your Location&gt;\ArtifactTool\artifacttool.exe universal publish --service https://dev.azure.com/INGCDaaS/ --patvar AZDO_ARTIFACTTOOL_PAT --feed PXXXXX-incoming-feed-name --project IngOne --package-name lib --package-version &lt;version&gt; --path &lt;Your Location&gt;\lib.zip</code>
+Repeat the process for the <code>ide.jar</code></p>
+<hr />
+<h2 id="azure-devops-pipeline"><strong>Azure DevOps Pipeline</strong></h2>
+<h3 id="simple-way-libraries-pulled-in-from-azure-repository">Simple way - Libraries pulled in from Azure Repository.</h3>
+<p>The <code>yaml</code> file content should be as shown below.</p>
+<pre><code class="language-yaml">pool:
+  name: 'CDaaSLinux'
+
+stages :
+  - stage: TestExecution
+    jobs :
+     - job :  TestExecution
+       steps:    
+          - checkout:  self
+            fetchDepth: 1
+            clean: true  
+
+          # This is to set Java 11
+          - script: |
+              echo &quot;##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_11_X64)&quot;
+              echo &quot;##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)/bin:$(PATH)&quot;
+            displayName: &quot;Set java version to 11&quot;  
+
+          # This is to set Permissions
+          - task: CmdLine@2
+            inputs:
+              script: 'chmod -R 755 ./'
+            displayName: 'Set Permissions'          
+
+          # This is to trigger execution
+          - task: CmdLine@2
+            inputs:
+              script: './Run.command -run -project_location &quot;Projects/&lt;your_project_name&gt;&quot; -release &quot;&lt;your_release_name&gt;&quot; -testset &quot;&lt;your_testset_name&gt;&quot; -setEnv &quot;run.AzureReport=true&quot;'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+            displayName: 'Execute Tests'
+
+          # This is to publish test results  
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'Projects/&lt;your_project_name&gt;/Results/TestExecution/&lt;your_release_name&gt;/&lt;your_testset_name&gt;/Latest/azure.xml'
+              testRunTitle: 'Test Results'  
+</code></pre>
+<h3 id="advanced-way-libraries-pulled-in-from-azure-artifactsrecommended">Advanced way - Libraries pulled in from Azure Artifacts.[Recommended]</h3>
+<p>The <code>yaml</code> file content should be as shown below.</p>
+<pre><code class="language-yaml">pool:
+  name: 'CDaaSLinux'
+
+stages :
+  - stage: TestExecution
+    jobs :
+     - job :  TestExecution
+       steps:    
+          - checkout:  self
+            fetchDepth: 1
+            clean: true  
+
+          # This is to set Java 11
+          - script: |
+              echo &quot;##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_11_X64)&quot;
+              echo &quot;##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)/bin:$(PATH)&quot;
+            displayName: &quot;Set java version to 11&quot;  
+
+          # This is to set Permissions
+          - task: CmdLine@2
+            inputs:
+              script: 'chmod -R 755 ./'
+            displayName: 'Set Permissions'       
+
+          # This is to download the ide jar from Artifacts 
+          - task: UniversalPackages@0
+            inputs:
+                command: 'download'
+                downloadDirectory: '$(System.DefaultWorkingDirectory)'
+                feedsToUse: 'internal'
+                vstsFeed: '&lt;your_feed_uuid&gt;'
+                vstsFeedPackage: '&lt;your_pacakage_feed_uuid&gt;'
+                vstsPackageVersion: '*'
+            displayName: 'Download main jar'
+
+          # This is to download the lib.zip from Artifacts
+          - task: UniversalPackages@0
+            inputs:
+                command: 'download'
+                downloadDirectory: '$(System.DefaultWorkingDirectory)'
+                feedsToUse: 'internal'
+                vstsFeed: '&lt;your_feed_uuid&gt;'
+                vstsFeedPackage: '&lt;your_pacakage_feed_uuid&gt;'
+                vstsPackageVersion: '*'
+            displayName: 'Download supporting libraries zip'
+
+          # This is to unzip the lib.zip
+          - task: CmdLine@2
+            inputs:
+                script: 'unzip lib.zip'
+                workingDirectory: '$(System.DefaultWorkingDirectory)'
+            displayName: 'Unzip supporting libraries'   
+
+          # This is to trigger execution
+          - task: CmdLine@2
+            inputs:
+              script: './Run.command -run -project_location &quot;Projects/&lt;your_project_name&gt;&quot; -release &quot;&lt;your_release_name&gt;&quot; -testset &quot;&lt;your_testset_name&gt;&quot; -setEnv &quot;run.AzureReport=true&quot;'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+            displayName: 'Execute Tests'
+
+          # This is to publish test results  
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'Projects/&lt;your_project_name&gt;/Results/TestExecution/&lt;your_release_name&gt;/&lt;your_testset_name&gt;/Latest/azure.xml'
+              testRunTitle: 'Test Results'
+</code></pre>
+<hr />
+<h2 id="test-results"><strong>Test Results</strong></h2>
+<p>To view the Test Results we need to navigate to the <strong><code>Tests</code></strong> tab of the Azure DevOps Pipeline.</p>
+<p><img alt="tests" src="../img/azdo/2.PNG" title="tests" /></p>
+<p>If we click on the <strong><code>Tests</code></strong> we will see the detailed steps of execution under <strong>Debug</strong> Window.</p>
+<p><img alt="steps" src="../img/azdo/3.PNG" title="steps" /></p>
+<p>If we have <strong><code>API Tests</code></strong> we will see the request/response payloads in the  <strong>Attachment</strong> Window.  </p>
+<p><img alt="api" src="../img/azdo/4.PNG" title="api" /></p>
+<p>If we have <strong><code>Browser Tests</code></strong> we will see the screenshots in the  <strong>Attachment</strong> Window. </p>
+<p><img alt="browser" src="../img/azdo/5.PNG" title="browser" /></p>
+<hr />
+<h2 id="pipeline-analytics"><strong>Pipeline Analytics</strong></h2>
+<p>If we click on the <code>Pipeline Name</code> and navigate to the <strong><code>Analytics</code></strong> tab of the Azure DevOps Pipeline, we will see the report like this :</p>
+<p><img alt="analytics" src="../img/azdo/6.PNG" title="analytics" /></p>
+<p>We can use this feature to determine the health of the pipeline and analysis of historical test reports.</p>
+<hr />
+<h2 id="azuredevops-test-plan"><strong>AzureDevOps Test Plan</strong></h2>
+<p><strong>Content Coming Soon</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bdd/" class="btn btn-neutral float-left" title="Behavior Driven Development"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../goodtoknow/" class="btn btn-neutral float-right" title="Good to know features">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../bdd/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../goodtoknow/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

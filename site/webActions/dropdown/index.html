@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Dropdowns - Test Automation Framework</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Dropdowns";
+        var mkdocs_page_input_path = "webActions\\dropdown.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../goodtoknow/">Good to know features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Dropdowns</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dropdowns">Dropdowns</h1>
+<hr />
+<h2 id="selectbyindex"><strong>selectByIndex</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code> an option from a <code>dropdown</code> whose index matches the given index.</p>
+<p><strong>Input Format</strong> :  @<code>Index</code> of item to be selected from dropdown. Example : <code>0</code> or <code>1</code> or <code>2</code> etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectByIndex</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByIndex</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByIndex</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p>Inputs in the Input column can be either <code>hardcoded</code> (in this case the data is preceded by a "<strong>@</strong>"), passed from the data sheet (<code>datasheet name : column name</code>) or passed from a variable value (<code>%variable name%</code>), as given in the above example.</p>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select all options from a select Element [&lt;Object&gt;]&quot;, input = InputType.YES)
+    public void selectByIndex() {
+        select(SelectType.Select, SelectRange.Single, SelectBy.Index);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.selectByIndex(Integer.parseInt(Data))
+</code></pre>
+<hr />
+<h2 id="selectbyvisibletext"><strong>selectByVisibleText</strong></h2>
+<p><strong>Description</strong>:  This function will select an option from a <code>dropdown</code> whose visible text matches the given text.</p>
+<p><strong>Input Format</strong> :  @<code>Text</code> of item to be selected from dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectByVisibleText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByVisibleText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByVisibleText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select item in [&lt;Object&gt;] which has text: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void selectByVisibleText() {
+        select(SelectType.Select, SelectRange.Single, SelectBy.Text);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.selectByVisibleText(Data)
+</code></pre>
+<hr />
+<h2 id="selectbyvalue"><strong>selectByValue</strong></h2>
+<p><strong>Description</strong>:  This function will select an option from a <code>dropdown</code> whose value (<code>value</code> attribute of <code>option</code> HTML tag) matches the given value.</p>
+<p><strong>Input Format</strong> :  @<code>value</code> attribute of item to be selected from dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectByValue</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByValue</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectByValue</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select item in [&lt;Object&gt;] which has the value: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void selectByValue() {
+        select(SelectType.Select, SelectRange.Single, SelectBy.Value);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.selectByValue(Data)
+</code></pre>
+<hr />
+<h2 id="selectmultiplebyindex"><strong>selectMultipleByIndex</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code>  <strong>all options</strong> that have index matching the given set of indices.</p>
+<p><strong>Input Format</strong> : @Expected index1,Expected index2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByIndex</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByIndex</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByIndex</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select items [&lt;Data&gt;] of [&lt;Object&gt;] by index&quot;, input = InputType.YES)
+    public void selectMultipleByIndex() {
+        select(SelectType.Select, SelectRange.Multiple, SelectBy.Index);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.selectByIndex(Integer.parseInt(value));
+}
+</code></pre>
+<hr />
+<h2 id="selectmultiplebytext"><strong>selectMultipleByText</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code> <strong>all options</strong> that display the text matching the given text.</p>
+<p><strong>Input Format</strong> :  @Expected Text1,Expected Text2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select items [&lt;Data&gt;] of [&lt;Object&gt;] by visible Text&quot;, input = InputType.YES)
+    public void selectMultipleByText() {
+        select(SelectType.Select, SelectRange.Multiple, SelectBy.Text);
+    }
+
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.selectByVisibleText(value);
+}
+</code></pre>
+<hr />
+<h2 id="selectmultiplebyvalue"><strong>selectMultipleByValue</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code> <strong>all options</strong> that have value (<code>value</code> attribute of <code>option</code> HTML tag) matching the given value.</p>
+<p><strong>Input Format</strong> :  @Expected value1,Expected value2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectMultipleByText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select items [&lt;Data&gt;] of [&lt;Object&gt;] by value&quot;, input = InputType.YES)
+    public void selectMultipleByValue() {
+        select(SelectType.Select, SelectRange.Multiple, SelectBy.Value);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.selectByValue(value);
+}
+</code></pre>
+<hr />
+<h2 id="selectindexfromunorderedlist"><strong>selectIndexFromUnorderedList</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code> the value from an <strong>unordered list based on the index.</strong></p>
+<p><strong>Input Format</strong> :@<code>Index</code> of item to be selected from dropdown. Example : <code>0</code> or <code>1</code> or <code>2</code> etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectIndexFromUnorderedList</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectIndexFromUnorderedList</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectIndexFromUnorderedList</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;selecting value by index [&lt;Data&gt;] from unordered list .&quot;, input = InputType.YES)
+    public void selectIndexFromUnorderedList() {
+        selectFromUnorderedList(SelectBy.Index);
+    }
+</code></pre>
+<hr />
+<h2 id="selectvaluefromunorderedlist"><strong>selectValueFromUnorderedList</strong></h2>
+<p><strong>Description</strong>:  This function will <code>select</code> the value based on the <strong>visible text from an unordered list.</strong></p>
+<p><strong>Input Format</strong> : @<code>Text</code> of item to be selected from dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectValueFromUnorderedList</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectValueFromUnorderedList</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>selectValueFromUnorderedList</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;selecting value [&lt;Data&gt;] from unordered list .&quot;, input = InputType.YES)
+    public void selectValueFromUnorderedList() {
+        selectFromUnorderedList(SelectBy.Text);
+    }
+
+</code></pre>
+<hr />
+<h2 id="deselectbyindex"><strong>deSelectByIndex</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> an option that has index matching the given index.</p>
+<p><strong>Input Format</strong> : @<code>Index</code> of item to be de-selected from dropdown. Example : <code>0</code> or <code>1</code> or <code>2</code> etc.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectByIndex</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByIndex</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByIndex</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM,
+            desc = &quot;Deselect  item in [&lt;Object&gt;] which has index: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void deSelectByIndex() {
+        select(SelectType.DeSelect, SelectRange.Single, SelectBy.Index);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.deselectByIndex(Integer.parseInt(Data))
+</code></pre>
+<hr />
+<h2 id="deselectbyvisibletext"><strong>deSelectByVisibleText</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> an option that displays text matching the given text.</p>
+<p><strong>Input Format</strong> :  @<code>Text</code> of item to be de-selected from dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectByVisibleText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByVisibleText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByVisibleText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM,
+            desc = &quot;Deselect item in [&lt;Object&gt;] which has text: [&lt;Data&gt;]&quot;, input = InputType.YES)
+    public void deSelectByVisibleText() {
+        select(SelectType.DeSelect, SelectRange.Single, SelectBy.Text);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.deselectByVisibleText(Data)  
+</code></pre>
+<hr />
+<h2 id="deselectbyvalue"><strong>deSelectByValue</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> an option from a <code>dropdown</code> whose value (<code>value</code> attribute of <code>option</code> HTML tag) matches the given value.</p>
+<p><strong>Input Format</strong> : @<code>value</code> attribute of item to be de-selected from dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectByValue</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByValue</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectByValue</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">  @Action(object = ObjectType.SELENIUM,
+            desc = &quot;Deselect item in [&lt;Object&gt;] which has value: [&lt;Data&gt;]&quot;,
+            input = InputType.YES)
+    public void deSelectByValue() {
+        select(SelectType.DeSelect, SelectRange.Single, SelectBy.Value);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">select.deselectByValue(Data)
+</code></pre>
+<hr />
+<h2 id="deselectmultiplebyindex"><strong>deSelectMultipleByIndex</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> all options that has index matching the given indices. This is done by examining the <code>index</code> attribute of an element, and not merely by counting.If there is no index attribute used then use the <code>option index</code> by count</p>
+<p><strong>Input Format</strong> :  @Expected index1,Expected index2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByIndex</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByIndex</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByIndex</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Deselect items [&lt;Data&gt;] of [&lt;Object&gt;] by index&quot;, input = InputType.YES)
+    public void deSelectMultipleByIndex() {
+        select(SelectType.DeSelect, SelectRange.Multiple, SelectBy.Index);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.deselectByIndex(Integer.parseInt(value));
+}
+</code></pre>
+<hr />
+<h2 id="deselectmultiplebytext"><strong>deSelectMultipleByText</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> all options that display text matching the given text.</p>
+<p><strong>Input Format</strong> :  @Expected Text1,Expected Text2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByText</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByText</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByText</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Deselect items [&lt;Data&gt;] of [&lt;Object&gt;] by visible Text&quot;, input = InputType.YES)
+    public void deSelectMultipleByText() {
+        select(SelectType.DeSelect, SelectRange.Multiple, SelectBy.Text);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.deselectByVisibleText(value);
+}
+</code></pre>
+<hr />
+<h2 id="deselectmultiplebyvalue"><strong>deSelectMultipleByValue</strong></h2>
+<p><strong>Description</strong>:  This function will <code>de-select</code> <strong>all options</strong> that have value (<code>value</code> attribute of <code>option</code> HTML tag) matching the given value.</p>
+<p><strong>Input Format</strong> :  @Expected value1,Expected value2</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByValue</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByValue</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>deSelectMultipleByValue</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Deselect items [&lt;Data&gt;] of [&lt;Object&gt;] by value&quot;, input = InputType.YES)
+    public void deSelectMultipleByValue() {
+        select(SelectType.DeSelect, SelectRange.Multiple, SelectBy.Value);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">String[] values = Data.split(&quot;,&quot;);
+for (String value : values) {
+    select.deselectByValue(value);
+}
+</code></pre>
+<hr />
+<h2 id="selectall"><strong>selectAll</strong></h2>
+<p><strong>Description</strong>:   This function will select all options from a select element.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>selectAll</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Select all options from a select Element [&lt;Object&gt;]&quot;)
+    public void selectAll() {
+        select(SelectType.Select, SelectRange.All, null);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">Select select = new Select(Element);
+for (int i = 0; i &lt; select.getOptions().size(); i++) {
+     select.selectByIndex(i);
+    }
+</code></pre>
+<hr />
+<h2 id="deselectall"><strong>deSelectAll</strong></h2>
+<p><strong>Description</strong>:  This function will clear all the <strong>selected entries</strong> in a dropdown. This is only valid when there is support for multiple selections in the dropdown.</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>deSelectAll</em></td>
+<td></td>
+<td></td>
+<td>PageName</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM, desc = &quot;Deselect all items in  [&lt;Object&gt;]&quot;)
+    public void deSelectAll() {
+        select(SelectType.DeSelect, SelectRange.All, null);
+    }
+</code></pre>
+<p><strong>Internally uses the following</strong> <code>Selenium</code> <strong>logic :</strong></p>
+<pre><code class="language-java">new Select(Element).deselectAll()
+</code></pre>
+<hr />
+<h2 id="assertselectcontains"><strong>assertSelectContains</strong></h2>
+<p><strong>Description</strong>: This function will <code>assert</code> if the selected element from the <code>dropdown</code> matches the user-specified input.</p>
+<p><strong>Input Format</strong> :  @Expected Text</p>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ObjectName</th>
+<th>Action</th>
+<th>Input</th>
+<th>Condition</th>
+<th>Reference</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><em>assertSelectContains</em></td>
+<td>@value</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Green">&lt;&lt; <em>Hardcoded Input</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertSelectContains</em></td>
+<td>Sheet:Column</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Blue">&lt;&lt; <em>Input from Datasheet</em></span></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><em>assertSelectContains</em></td>
+<td>%dynamicVar%</td>
+<td></td>
+<td>PageName</td>
+<td><span style="color:Brown">&lt;&lt;<em>Input from variable</em></span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corresponding Code:</strong></p>
+<pre><code class="language-java">@Action(object = ObjectType.SELENIUM,desc = &quot;Assert if the  select list [&lt;Object&gt;] contains [&lt;Data&gt;]&quot;,
+            input = InputType.YES)
+    public void assertSelectContains() {
+        if (elementPresent()) {
+            Boolean isPresent = false;
+            Select select = new Select(Element);
+            for (WebElement option : select.getOptions()) {
+                if (option.getText().trim().equals(Data)) {
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (isPresent) {
+                Report.updateTestLog(Action, ObjectName + &quot; Contains the Option &quot; + Data, Status.DONE);
+            } else {
+                Report.updateTestLog(Action, ObjectName + &quot; doesn't Contains the Option &quot; + Data, Status.DEBUG);
+            }
+        } else {
+            throw new ElementException(ElementException.ExceptionType.Element_Not_Found, ObjectName);
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

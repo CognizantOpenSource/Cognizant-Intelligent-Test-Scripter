@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Good to know features - Test Automation Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Good to know features";
+        var mkdocs_page_input_path = "goodtoknow.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Test Automation Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../knowyourtool/">Know the Tool</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../browsertesting/">Browser Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../webpageperformance/">WebPage Performance Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database/">Database Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../layout/">Layout Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../accessibility/">Accessiblity Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image/">Image Based Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../engine/">Engine</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customfunction/">Customization & Source Code Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bdd/">Behavior Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure Deveops Integration</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Good to know features</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#01-global-data-sheets">01. Global Data Sheets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#02-rename-a-project">02. Rename a Project</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#03-execute-a-reusable-for-specific-set-of-data">03. Execute A Reusable For Specific Set Of Data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#04-looping">04. Looping</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#05-iterations-and-subiterations-in-test-execution-panel">05. Iterations And Subiterations In Test Execution Panel</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#06-handle-random-actionspop-up-windows">06. Handle Random Actions/Pop up Windows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#07-how-to-navigate-between-test-data-sheets">07. How To Navigate between Test Data Sheets?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#08-how-to-call-autoit-scripts-in-the-tool">08. How To Call AutoIT scripts in the tool?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#09-user-defined-variables">09. User Defined Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10-how-to-change-report-theme">10. How To Change Report Theme?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11-generate-run-time-data">11. Generate Run Time Data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-add-custom-functions-for-run-time-data-generation">12. Add Custom Functions For Run Time Data Generation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13-enablingdisabling-screenshots-for-passfail">13. Enabling/Disabling screenshots for PASS/FAIL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14-execution-in-debug-mode">14. Execution in debug mode.</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../shortcuts/">Shortcuts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Some Tips & Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../comparison/">Comparisons with industry standard frameworks and Limitations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Test Automation Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Good to know features</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="good-to-know-features"><strong>Good to know features</strong></h1>
+<hr />
+<h2 id="01-global-data-sheets">01. Global Data Sheets</h2>
+<p>For every project that is created in Cognizant Intelligent Test Scripter, a default
+global data sheet is generated. The data entered in the global data sheet can be
+referenced in any test data sheet within the project. This allows you to reuse the
+data across multiple test cases.</p>
+<p><strong>Where to use the Global Data?</strong></p>
+<p>Identify the Data column name which is common across multiple data sheets.</p>
+<p><img alt="things4" src="../img/Things/Things4.png" title="things4" /></p>
+<p>Select that data value and click on <strong>global data</strong> icon, as shown in the image above. Give the global data id, in the respective window, as shown below,</p>
+<p><img alt="things5" src="../img/Things/Things5.png" title="things5" /></p>
+<p>You will get the global id in the global data sheet, as shown below.</p>
+<p><img alt="things6" src="../img/Things/Things6.png" title="things6" /></p>
+<h2 id="02-rename-a-project">02. Rename a Project</h2>
+<p>To rename your project, right click on the project name from the <strong>Test Plan</strong> section and choose <strong>Details</strong> from the context menu option.</p>
+<p><img alt="things7" src="../img/Things/Things7.png" title="things7" /></p>
+<p>The <strong>Project Details</strong> window opens and the following options are available in the window, as shown below.</p>
+<p><img alt="things8" src="../img/Things/Things8.png" title="things8" /></p>
+<p>To rename your project, give the new name in the <strong>Project Name text box</strong> and click on <strong>Rename</strong>. Your project will be renamed.</p>
+<p>The <strong>open</strong> option opens the project location in your system.</p>
+<p>Right below these options, you have details on the total number of scenarios, test cases, reusable components and test data sheets present in the project.</p>
+<h2 id="03-execute-a-reusable-for-specific-set-of-data">03. Execute A Reusable For Specific Set Of Data</h2>
+<p>A reusable test case can be executed with a desired set of data by providing the sub iteration index in the Input column. It will fetch the data set from the data sheet with the desired index and use it within the test case. This is very useful when you want to execute the same reusable component, inside a single test case, with different set set of data passed each time.</p>
+<p><img alt="things9" src="../img/Things/Things9.png" title="things9" /></p>
+<h2 id="04-looping">04. Looping</h2>
+<p><strong>NOTE:</strong> In Test Design panel, users are only given access to Iteration 1 and its various Subiterations</p>
+<p><img alt="things10" src="../img/Things/Things10.png" title="things10" /></p>
+<ul>
+<li>
+<p>For the above image, Steps 11 to 18 will be executed 2 times (equal to the number of Sub iterations for Iteration 1)</p>
+</li>
+<li>
+<p>For first iteration, data will be taken from Iteration 1 and Subiteration 1</p>
+</li>
+<li>
+<p>For second iteration, data will be taken from Iteration 1 and Subiteration 2</p>
+</li>
+<li>
+<p>To repeat an entire Test Case, keep <strong>Start Param</strong> in the first Step of your test Case and <strong>End Param</strong> in the last Step of your Test Case.</p>
+</li>
+<li>
+<p>In the above image, we have used <strong>End Param:@1</strong>. This will execute Step 11 to 18, once and not twice.</p>
+</li>
+<li>
+<p>To iterate through the entire Test Case for all the sub iterations of data in the data sheet, keep <strong>Start Param</strong> in the first step and <strong>End Param</strong> in the last step of your Test Case.</p>
+</li>
+</ul>
+<h2 id="05-iterations-and-subiterations-in-test-execution-panel">05. Iterations And Subiterations In Test Execution Panel</h2>
+<ul>
+<li><strong>NOTE:</strong> In the Test Execution panel, you are given access to all Iterations and their Sub iterations.</li>
+</ul>
+<p><img alt="things11" src="../img/Things/Things11.png" title="things11" /></p>
+<ul>
+<li>
+<p>In the above image, there are some options given under the Iteration column</p>
+</li>
+<li>
+<p><strong>All</strong>: will Iterate through all your Iterations of your datasheet.</p>
+</li>
+<li>
+<p><strong>Single</strong>: will only Iterate through Iteration 1 of your datasheet.</p>
+</li>
+<li>
+<p><strong>n:n</strong> (Range): will Iterate through a range of iterations.</p>
+<blockquote>
+<p>For example, if you use 2:5, then Cognizant Intelligent Test Scripter will only Iterate through Iteration 2 to Iteration 5 even if there are more iterations.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>n</strong>: will allow you to Iterate a particular (nth) iteration in your datasheet.</p>
+<blockquote>
+<p>For example, if you use 5, then Cognizant Intelligent Test Scripter iterate only the 5th iteration and all its sub iterations.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Subiterations will work according to the definition of <strong>Start Param</strong> and <strong>End Param</strong> in the Test Design panel.</p>
+</blockquote>
+<p><strong>Looping Without Test Datasheet</strong></p>
+<ul>
+<li>To repeat few steps, use Start Loop and <strong>End Loop:@n</strong>.</li>
+</ul>
+<p><img alt="things12" src="../img/Things/Things12.png" title="things12" /></p>
+<ul>
+<li>In the above image, Start Loop is at Step 2 and <strong>End Loop:@5</strong> is at Step 8. So, Step 2 to 8 will be repeated 5 times.</li>
+</ul>
+<h2 id="06-handle-random-actionspop-up-windows">06. Handle Random Actions/Pop up Windows</h2>
+<p>In some applications, there may be components which will originate at random ie. the origination of such components cannot be predicted. This section will describe how to handle such components.</p>
+<p><strong>Logic</strong></p>
+<p>Since the origin of some components cannot be predicted, check for the availability of the respective component before or after performing each step.</p>
+<p><strong>How To Do It?</strong></p>
+<ul>
+<li>
+<p>Open ther Engine in <strong>Eclipse IDE</strong> (or any IDE supporting java development).</p>
+</li>
+<li>
+<p>Navigate to <strong>com.cognizant.cognizantits.engine.execution.run</strong>.</p>
+</li>
+<li>
+<p>The following actions will be available in this class <strong>Annotation</strong>:</p>
+</li>
+<li>
+<p><strong>beforeStepExecution</strong>:Enter the code to handle the component here ,if you want to perform the check before the execution of each step.</p>
+</li>
+<li>
+<p><strong>afterStepExecution</strong>:Enter the code to handle the component here,if you want to perform the check after the execution of each step.</p>
+</li>
+</ul>
+<h2 id="07-how-to-navigate-between-test-data-sheets">07. How To Navigate between Test Data Sheets?</h2>
+<ul>
+<li>
+<p>Right click on any data sheet and choose the option <strong>Search Test Data</strong> from the context menu</p>
+</li>
+<li>
+<p>In the <strong>Go To Test Data</strong> window, choose the test data sheet or the global data sheet to which you want to navigate</p>
+</li>
+<li>
+<p>You will be navigated to the respective sheet after clicking on <strong>[OK]</strong></p>
+</li>
+</ul>
+<h2 id="08-how-to-call-autoit-scripts-in-the-tool">08. How To Call AutoIT scripts in the tool?</h2>
+<p>To call any <strong>.exe</strong> file and execute the same directly from the UI, follow the procedure
+below :</p>
+<ul>
+<li>Create a test step, under the object name as <strong>App</strong> , action as <strong>openApp</strong> and give the path of the <strong>exe</strong> file under the <strong>Input</strong> column, as shown below.</li>
+</ul>
+<p>Now when you run this script, the corresponding <strong>.exe</strong> file will be executed.</p>
+<h2 id="09-user-defined-variables">09. User Defined Variables</h2>
+<p>User Defined variables can be created and defined by two ways as given below.</p>
+<ul>
+<li>
+<p>Using the actions <strong>AddVar</strong> and <strong>AddGlobalVar</strong>. <strong>AddVar</strong> action will let you de􀂦ne a variable whose scope is throughout the execution of your test case and is valid for all the sub-iterations of the iteration 1 of your test case. But <strong>AddGlobalVar</strong> action will let you define a variable whose scope is throughout the execution of your test set.</p>
+</li>
+<li>
+<p>Navigate to <strong>Configuration&gt;Run Settings</strong> tab and provide your variable name and value under <strong>the Property Name</strong> and <strong>Value</strong> columns respectively, as shown in the screen shot below. Click on <strong>save</strong> for saving your settings.</p>
+</li>
+</ul>
+<p>These variables can now be used anywhere in your project, an example of which
+is shown below.</p>
+<p>In addition to these, we have certain actions that take variables as input and will
+store the corresponding result in the variable provided.</p>
+<h2 id="10-how-to-change-report-theme">10. How To Change Report Theme?</h2>
+<ul>
+<li>
+<p>Go to <strong>Configuration&gt;Options Theme</strong>.</p>
+</li>
+<li>
+<p>From the <strong>Reporting theme</strong>, select a theme of your choice.</p>
+</li>
+<li>
+<p>You can also toggle between <strong><em>Single</em>* and </strong>Group View**.</p>
+</li>
+<li>
+<p>You can choose which columns need to be displayed in the report.</p>
+</li>
+<li>
+<p>Show or hide columns in the report using the <strong>show/hide columns</strong> option. Check the respective column name checkbox to display that column or <strong>uncheck</strong> the respective column name checkbox to hide it.</p>
+</li>
+</ul>
+<p><strong>Filtering In Report</strong></p>
+<p>You can filter reports using <strong>Global Search or Column Search</strong>.</p>
+<p><strong>Sorting In Report</strong></p>
+<p>You can sort the reports using the <strong>up/down</strong> arrows beside each column name.</p>
+<h2 id="11-generate-run-time-data">11. Generate Run Time Data</h2>
+<p>There are options available in the <strong>Input</strong> column to perform functions like rounding off numbers, generating a random number, concatenating strings, other arithmetic calculations and etc.</p>
+<p>Follow the steps below to access those options.</p>
+<ul>
+<li>
+<p>Consider any action that requires <strong>Input</strong> column. For instance let us take the <strong>Print</strong> action. Instead of providing the URL directly, you can concatenate two strings that lead to the URL.</p>
+</li>
+<li>
+<p>Consider the custom method below that uses the <strong>Data</strong> keyword which will process the concatenate function and open the URL.</p>
+</li>
+</ul>
+<p><img alt="things14" src="../img/Things/Things14.png" title="things14" /></p>
+<p><strong>Note</strong>: It is also possible to combine two relevant functions for optimum usage . 
+For example,=<strong>Concat(Diaphragm,=Round(360.45))</strong> in the input column will return the following result <strong>Diaphragm360</strong>.</p>
+<h2 id="12-add-custom-functions-for-run-time-data-generation">12. Add Custom Functions For Run Time Data Generation</h2>
+<p>Navigate to :</p>
+<p><strong>com.cognizant.cognizantits.engine.util.data.fx; &gt; Functions.java</strong> add your custom function as shown below. This is an example of creating a <strong><code>Trim</code></strong> function which will accept a String input and will return a trimmed output.</p>
+<pre><code class="language-java">public Object Trim(String... args) {
+        String op = &quot;&quot;;
+        try {
+            op = args[0].trim();
+
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return op;
+    }
+</code></pre>
+<h2 id="13-enablingdisabling-screenshots-for-passfail">13. Enabling/Disabling screenshots for PASS/FAIL</h2>
+<p>In the report, you will be able to view the screenshots for the steps whose Status is <strong>PASS</strong> or <strong>FAIL</strong>. However, you have the option to enable/disable the screenshots for such steps.</p>
+<ul>
+<li>
+<p>In the Cognizant Intelligent Test Scripter UI, go to <strong>Configurations-&gt;Run Settings</strong>.</p>
+</li>
+<li>
+<p>Under Screenshot section, you can check/uncheck the <strong>Pass</strong> or <strong>Fail</strong> checkboxes in order to enable/disable the screenshots in the report.</p>
+</li>
+<li>
+<p>To enable/disable the screenshots for the entire page, check/uncheck the <strong>Take Full Page Screenshot</strong> checkbox.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: Give the status as <strong>PASSNS</strong> or <strong>FAILNS</strong> under the <strong>Report.updateTestLog()</strong> method for <strong>PASS status without screenshot</strong> or <strong>FAIL status without screenshot</strong> respectively.</p>
+</blockquote>
+<h2 id="14-execution-in-debug-mode">14. Execution in debug mode.</h2>
+<p>You can debug the errors in your test case by adding breakpoints to the desired test
+steps and running the test case in debug mode.</p>
+<ul>
+<li>
+<p>Select the steps for which you wish to add a breakpoint, right click and choose <strong>Toggle Breakpoint</strong>.</p>
+</li>
+<li>
+<p>Right click the <strong>Debug</strong> button (situated next to the run button), select the browser of your choice and click the <strong>Debug</strong> button.</p>
+</li>
+<li>
+<p>Once the execution starts, the debug toolbar will appear on top of the screen as shown below. The execution will pause at the step where the breakpoint has been added. You can then debug your test case accordingly.</p>
+</li>
+</ul>
+<p><img alt="debug" src="../img/Things/debug.JPG" title="debug" /></p>
+<ul>
+<li>
+<p>To view the console log, click the button.</p>
+</li>
+<li>
+<p>To pause the execution of the test case, click the button. Once the execution has been paused, you can insert new succeeding steps in the test case or check the object properties using Object Heal and update them.</p>
+</li>
+<li>
+<p>To resume the execution of the test case, click the button.</p>
+</li>
+<li>
+<p>To move to the next step of the test case, click the button.</p>
+</li>
+<li>
+<p>To stop the execution of the test case, click the button.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: In addition to adding breakpoints to the test steps, you can comment the selected test steps as well, by performing right click and choosing the option <strong>Toggle Comments</strong>.</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../azure/" class="btn btn-neutral float-left" title="Azure Deveops Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../shortcuts/" class="btn btn-neutral float-right" title="Shortcuts">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../azure/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../shortcuts/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
