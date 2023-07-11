@@ -40,6 +40,26 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#at-a-glance">At a Glance</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integrated-bdd">Integrated BDD</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azure-devops">Azure DevOps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#customization">Customization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparisons-and-limitations">Comparisons and Limitations</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="gettingstarted/">Getting Started</a>
                 </li>
@@ -139,10 +159,145 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="introduction"><strong>Introduction</strong></h1>
+<p><br></p>
+<p>CITS is an <code>open-source</code> no code/low code test automation solution that provides a unified interface for all the <strong>agile</strong> test automation activities such as :
+ * <strong>test design</strong> 
+ * <strong>test development</strong> 
+ * <strong>test execution</strong> 
+ * <strong>reporting</strong> 
+ * <strong>maintenance</strong></p>
+<p><br></p>
+<h2 id="at-a-glance">At a Glance</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th><div style="color:Green;width:200px">Browser Testing</div></th>
+<th><div style="color:Blue;width:200px">API Testing</div></th>
+<th><div style="color:Brown;width:200px">Database Testing</div></th>
+<th><div style="color:Grey;width:200px">WebPage Performance</div></th>
+<th><div style="color:Orange;width:200px">Layout &amp; Accessibility Testing</div></th>
+<th><div style="color:Purple;width:200px">Image Based Testing</div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uses <code>Selenium</code></td>
+<td>Uses java <code>HttpURLConnection</code></td>
+<td>Uses <code>JDBC Driver</code></td>
+<td><code>Page</code> and <code>Resource</code> timings report</td>
+<td>Uses <code>GalenFramework</code> for Layout Validations</td>
+<td>Uses <code>Sikuli</code></td>
+</tr>
+<tr>
+<td><code>~280</code> built-in actions</td>
+<td><code>~25</code> built-in actions</td>
+<td><code>~15</code> built-in actions</td>
+<td>Har Compare</td>
+<td>Creates PageDump</td>
+<td>Image comparisons</td>
+</tr>
+<tr>
+<td><code>Local</code> and <code>Selenium Grid</code> execution</td>
+<td>Easy Data parameterisation</td>
+<td>Easy Data parameterisation</td>
+<td>Har Comparison Report</td>
+<td>Auto-suggests Layout Validations</td>
+<td>Image Text Extractions</td>
+</tr>
+<tr>
+<td>Parallel Execution</td>
+<td>Parallel Execution</td>
+<td></td>
+<td>CLI support for Report</td>
+<td>Uses <code>aXe</code> for Accessibility Tests</td>
+<td>Image Text Validations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integrated-development-environment-ide">Integrated Development Environment (IDE)</h2>
+<hr />
+<ul>
+<li>
+<p>Easy to get started with build-in <code>record</code>, <code>spy</code> and <code>heal</code> features</p>
+</li>
+<li>
+<p>Quick creation of test flow scaffoldings and boilerplate reusables</p>
+</li>
+<li>
+<p>Reusable components block for <strong>reusing scripts</strong></p>
+</li>
+<li>
+<p>Intuitive <strong>Test-data parameterisation</strong>  </p>
+</li>
+<li>
+<p>Environment-based test-data set up and execution (Example: <code>DEV</code>, <code>TEST</code>, <code>ACCEPTANCE</code>) </p>
+</li>
+<li>
+<p>Built-in Dynamic Data creation actions</p>
+</li>
+<li>
+<p>Platform independent - Can be used in any operating system supporting java, like <strong>Windows</strong>, <strong>MAC</strong>, <strong>Linux</strong></p>
+</li>
+</ul>
+<h2 id="integrated-bdd">Integrated BDD</h2>
+<hr />
+<ul>
+<li>
+<p>Built-in <code>Gherkin</code> editor for writing <strong>feature files</strong></p>
+</li>
+<li>
+<p>Imports <strong>feature files</strong> to generate the corresponding Test scenarios, <code>Step Definition</code> scaffoldings and Test Data</p>
+</li>
+<li>
+<p>Generates BDD style reporting afetr execution</p>
+</li>
+</ul>
+<h2 id="azure-devops">Azure DevOps</h2>
+<hr />
+<ul>
+<li>
+<p>Rich <strong>command line interface</strong> to run test cases and pass propeties and variables at run time</p>
+</li>
+<li>
+<p>Easy to add <code>cli</code> execution commands to Azure DevOps YAML files </p>
+</li>
+<li>
+<p>Generates <strong>Nunit</strong> report which shows the test results (including <code>execution logs</code>, <code>screenshots</code>, <code>request payloads</code>, <code>response payloads</code> directly in Azure DevOps)</p>
+</li>
+<li>
+<p>Seamless integration into <strong>Azure DevOps Test Plans</strong> to report back the execution status in the Test Plan</p>
+</li>
+<li>
+<p>Execute failed testcases in a test set automatically after a run</p>
+</li>
+</ul>
+<h2 id="customization">Customization</h2>
+<hr />
+<ul>
+<li>
+<p>Addition of new methods for project specific requirements is possible through the <code>Engine</code> project</p>
+</li>
+<li>
+<p>Enhancing an built-in method is also possible through the same way</p>
+</li>
+<li>
+<p>Incorporation of external libraries is also possible</p>
+</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<hr />
+<p><img alt="architecture" src="img/architecture/architecture_layers.jpg" title="architecture" /></p>
+<h2 id="comparisons-and-limitations">Comparisons and Limitations</h2>
+<hr />
+<p>Click <a href="https://theforge.ing.net/product/239813/documentation/latest/pages/comparisons.md">here</a> to read about the Comparisons with industry standard frameworks and also the limitations of the tool.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="gettingstarted/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -165,6 +320,8 @@
     
     
     
+      <span><a href="gettingstarted/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script>var base_url = '.';</script>
@@ -182,5 +339,5 @@
 
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-07-09 15:44:37.578571+00:00
+Build Date UTC : 2023-07-11 10:50:26.196695+00:00
 -->
