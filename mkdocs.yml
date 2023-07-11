@@ -1,6 +1,7 @@
 site_name: Test Automation Framework
 site_url: 
 nav:
+    - Home: index.md
     - Getting Started: gettingstarted.md
     - Know the Tool: knowyourtool.md
     - Browser Testing: browsertesting.md
