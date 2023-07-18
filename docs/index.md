@@ -87,7 +87,7 @@
 ## Comparisons and Limitations
 -----------------------
 
-Click [here](https://theforge.ing.net/product/239813/documentation/latest/pages/comparisons.md) to read about the Comparisons with industry standard frameworks and also the limitations of the tool.
+Click [here](https://cognizantopensource.github.io/Cognizant-Intelligent-Test-Scripter/comparison/) to read about the Comparisons with industry standard frameworks and also the limitations of the tool.
 
 
 
