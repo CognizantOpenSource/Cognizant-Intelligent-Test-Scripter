@@ -74,7 +74,7 @@ For this we need to use the following Yaml commands :
     outputPath: '$(System.DefaultWorkingDirectory)'
     theme: 'bootstrap'
     reportSuiteAsScenarios: true
-    name: 'ING'
+    name: 'Sample'
     title: 'BDD Results'
 
 ```
